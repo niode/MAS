@@ -13,7 +13,7 @@ public class Pathfinder
     return null;
   }
 
-  public static ArrayList<Grid> getRange(PathOptions opt)
+  public static ArrayList<Cell> getRange(PathOptions opt)
   {
     // Placeholder.
     return null;

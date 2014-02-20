@@ -13,16 +13,16 @@ public class AresParser {
 
     public static final String delim = "[ \n\r\\(\\)\\[\\]\\{\\};,]+";
 
-    public static Grid[][] buildWorld(String file_location) throws AresParserException {
+    public static Cell[][] buildWorld(String file_location) throws AresParserException {
         String line;
-        Grid[][] world = null;
+        Cell[][] world = null;
         try {
             try (BufferedReader in = new BufferedReader(new FileReader(file_location.trim()))) {
                 world = readWorldSize(in);
                 while ((line = in.readLine()) != null) {
-                    Grid grid = readAndBuildGrid(line);
-                    if (grid != null) {
-                        world[grid.getLocation().getRow()][grid.getLocation().getCol()] = grid;
+                    Cell cell = readAndBuildCell(line);
+                    if (cell != null) {
+                        world[cell.getLocation().getRow()][cell.getLocation().getCol()] = cell;
                     }
                 }
             }
@@ -32,14 +32,14 @@ public class AresParser {
         return world;
     }
 
-    public static Grid[][] readWorldSize(BufferedReader in) throws Exception {
+    public static Cell[][] readWorldSize(BufferedReader in) throws Exception {
         String[] tokens = in.readLine().split(" ");
         int rows = Integer.parseInt(tokens[3]);
         int cols = Integer.parseInt(tokens[6]);
-        return new Grid[rows][cols];
+        return new Cell[rows][cols];
     }
 
-    public static Grid readAndBuildGrid(String line) throws Exception {
+    public static Cell readAndBuildCell(String line) throws Exception {
         StringTokenizer tokens = new StringTokenizer(line, "[](),% ");
         int row = Integer.parseInt(tokens.nextToken());
         int col = Integer.parseInt(tokens.nextToken());
@@ -47,24 +47,24 @@ public class AresParser {
         String kill = tokens.nextToken();
         String charge = tokens.nextToken();
         int percent_chance = Integer.parseInt(tokens.nextToken());
-        Grid grid = new Grid(row, col);
+        Cell cell = new Cell(row, col);
         if (fire.charAt(0) == '+') {
-            grid.setOnFire();
+            cell.setOnFire();
         } else {
-            grid.setNotOnFire();
+            cell.setNotOnFire();
         }
         if (kill.charAt(0) == '+') {
-            grid.setKiller();
+            cell.setKiller();
         } else {
-            grid.setStable();
+            cell.setStable();
         }
         if (charge.charAt(0) == '+') {
-            grid.setChargingGrid();
+            cell.setChargingCell();
         } else {
-            grid.setNormalGrid();
+            cell.setNormalCell();
         }
-        grid.setPercentChance(percent_chance);
-        return grid;
+        cell.setPercentChance(percent_chance);
+        return cell;
     }
 
     public static AresCommand parseAresCommand(String string) throws AresParserException {
@@ -174,9 +174,9 @@ public class AresParser {
                 Text(scanner, "ENG_LEV");
                 int energy_level = Int(scanner);
                 Comma(scanner);
-                Text(scanner, "GRID_INFO");
+                Text(scanner, "CELL_INFO");
                 OpenRoundBracket(scanner);
-                GridInfo top_layer_info = GridInfo(scanner);
+                CellInfo top_layer_info = CellInfo(scanner);
                 CloseRoundBracket(scanner);
                 Comma(scanner);
                 Text(scanner, "NUM_SIG");
@@ -325,9 +325,9 @@ public class AresParser {
 
     public static SurroundInfo SurroundInfo(StringTokenizer scanner) throws AresParserException {
         SurroundInfo Info = new SurroundInfo();
-        Text(scanner, "CURR_GRID");
+        Text(scanner, "CURR_CELL");
         OpenRoundBracket(scanner);
-        Info.setCurrentInfo(GridInfo(scanner));
+        Info.setCurrentInfo(CellInfo(scanner));
         CloseRoundBracket(scanner);
         Comma(scanner);
         Text(scanner, "NUM_SIG");
@@ -340,60 +340,60 @@ public class AresParser {
         Comma(scanner);
         Text(scanner, Direction.NORTH_WEST.toString());
         OpenRoundBracket(scanner);
-        Info.setSurroundInfo(Direction.NORTH_WEST, GridInfo(scanner));
+        Info.setSurroundInfo(Direction.NORTH_WEST, CellInfo(scanner));
         CloseRoundBracket(scanner);
         Comma(scanner);
         Text(scanner, Direction.NORTH.toString());
         OpenRoundBracket(scanner);
-        Info.setSurroundInfo(Direction.NORTH, GridInfo(scanner));
+        Info.setSurroundInfo(Direction.NORTH, CellInfo(scanner));
         CloseRoundBracket(scanner);
         Comma(scanner);
         Text(scanner, Direction.NORTH_EAST.toString());
         OpenRoundBracket(scanner);
-        Info.setSurroundInfo(Direction.NORTH_EAST, GridInfo(scanner));
+        Info.setSurroundInfo(Direction.NORTH_EAST, CellInfo(scanner));
         CloseRoundBracket(scanner);
         Comma(scanner);
         Text(scanner, Direction.EAST.toString());
         OpenRoundBracket(scanner);
-        Info.setSurroundInfo(Direction.EAST, GridInfo(scanner));
+        Info.setSurroundInfo(Direction.EAST, CellInfo(scanner));
         CloseRoundBracket(scanner);
         Comma(scanner);
         Text(scanner, Direction.SOUTH_EAST.toString());
         OpenRoundBracket(scanner);
-        Info.setSurroundInfo(Direction.SOUTH_EAST, GridInfo(scanner));
+        Info.setSurroundInfo(Direction.SOUTH_EAST, CellInfo(scanner));
         CloseRoundBracket(scanner);
         Comma(scanner);
         Text(scanner, Direction.SOUTH.toString());
         OpenRoundBracket(scanner);
-        Info.setSurroundInfo(Direction.SOUTH, GridInfo(scanner));
+        Info.setSurroundInfo(Direction.SOUTH, CellInfo(scanner));
         CloseRoundBracket(scanner);
         Comma(scanner);
         Text(scanner, Direction.SOUTH_WEST.toString());
         OpenRoundBracket(scanner);
-        Info.setSurroundInfo(Direction.SOUTH_WEST, GridInfo(scanner));
+        Info.setSurroundInfo(Direction.SOUTH_WEST, CellInfo(scanner));
         CloseRoundBracket(scanner);
         Comma(scanner);
         Text(scanner, Direction.WEST.toString());
         OpenRoundBracket(scanner);
-        Info.setSurroundInfo(Direction.WEST, GridInfo(scanner));
+        Info.setSurroundInfo(Direction.WEST, CellInfo(scanner));
         CloseRoundBracket(scanner);
         return Info;
     }
 
-    public static GridInfo GridInfo(StringTokenizer scanner) throws AresParserException {
+    public static CellInfo CellInfo(StringTokenizer scanner) throws AresParserException {
         String type = String(scanner);
-        boolean normal_grid = true;
+        boolean normal_cell = true;
         switch (type) {
-            case "NO_GRID":
-                return new GridInfo();
-            case "NORMAL_GRID":
-                normal_grid = true;
+            case "NO_CELL":
+                return new CellInfo();
+            case "NORMAL_CELL":
+                normal_cell = true;
                 break;
-            case "CHARGING_GRID":
-                normal_grid = false;
+            case "CHARGING_CELL":
+                normal_cell = false;
                 break;
             default:
-                throw new AresParserException("Expected " + type + " to be <grid_type>");
+                throw new AresParserException("Expected " + type + " to be <cell_type>");
         }
         OpenRoundBracket(scanner);
         Text(scanner, "ROW_ID");
@@ -421,7 +421,7 @@ public class AresParser {
         WorldObjectInfo top_layer_info = ObjectInfo(scanner);
         CloseRoundBracket(scanner);
         CloseRoundBracket(scanner);
-        return new GridInfo(normal_grid, new Location(row, col), on_fire, move_cost, agent_id_list, top_layer_info);
+        return new CellInfo(normal_cell, new Location(row, col), on_fire, move_cost, agent_id_list, top_layer_info);
     }
 
     public static WorldObjectInfo ObjectInfo(StringTokenizer scanner) throws AresParserException {

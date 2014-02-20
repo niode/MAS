@@ -7,10 +7,10 @@ import Ares.World.Info.*;
 public class OBSERVE_RESULT extends AresCommand {
 
     private int energy_level;
-    private GridInfo top_layer_info;
+    private CellInfo top_layer_info;
     private LifeSignals life_signals;
 
-    public OBSERVE_RESULT(int energy_level, GridInfo top_layer_info, LifeSignals life_signals) {
+    public OBSERVE_RESULT(int energy_level, CellInfo top_layer_info, LifeSignals life_signals) {
         this.energy_level = energy_level;
         this.top_layer_info = top_layer_info;
         this.life_signals = life_signals;
@@ -20,7 +20,7 @@ public class OBSERVE_RESULT extends AresCommand {
         return energy_level;
     }
 
-    public GridInfo getTopLayerInfo() {
+    public CellInfo getTopLayerInfo() {
         return top_layer_info;
     }
 
@@ -30,7 +30,7 @@ public class OBSERVE_RESULT extends AresCommand {
 
     @Override
     public String toString() {
-        return String.format("%s ( ENG_LEV %s , GRID_INFO ( %s ) , NUM_SIG %s , LIFE_SIG %s )", STR_OBSERVE_RESULT, energy_level, top_layer_info, life_signals.size(), life_signals);
+        return String.format("%s ( ENG_LEV %s , CELL_INFO ( %s ) , NUM_SIG %s , LIFE_SIG %s )", STR_OBSERVE_RESULT, energy_level, top_layer_info, life_signals.size(), life_signals);
     }
 
     public void distort(double factor) {

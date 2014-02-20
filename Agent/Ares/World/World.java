@@ -6,9 +6,9 @@ public class World {
 
     private int rows;
     private int cols;
-    private Grid[][] world;
+    private Cell[][] world;
 
-    public World(Grid[][] world) {
+    public World(Cell[][] world) {
         this.rows = world.length;
         this.cols = world[0].length;
         this.world = world;
@@ -18,20 +18,20 @@ public class World {
         if (rows > 0 && cols > 0) {
             this.rows = rows;
             this.cols = cols;
-            world = new Grid[rows][cols];
+            world = new Cell[rows][cols];
             for (int row = 0; row < rows; row++) {
                 for (int col = 0; col < cols; col++) {
-                    world[row][col] = new Grid(row, col);
+                    world[row][col] = new Cell(row, col);
                 }
             }
         }
     }
 
-    public Grid[][] getGrid() {
+    public Cell[][] getCell() {
         return world;
     }
 
-    public void setGrid(Grid[][] world) {
+    public void setCell(Cell[][] world) {
         this.rows = world.length;
         this.cols = world[0].length;
         this.world = world;
@@ -45,16 +45,16 @@ public class World {
         return cols;
     }
 
-    public void setGridAt(Location location, Grid grid) {
+    public void setCellAt(Location location, Cell cell) {
         if (world == null || location == null) {
             return;
         }
         if (location.valid(rows, cols)) {
-            world[location.getRow()][location.getCol()] = grid;
+            world[location.getRow()][location.getCol()] = cell;
         }
     }
 
-    public Grid getGridAt(Location location) {
+    public Cell getCellAt(Location location) {
         if (world == null || location == null) {
             return null;
         }
@@ -64,7 +64,7 @@ public class World {
         return null;
     }
 
-    public Grid getGridNeighbours(Direction direction, Location location) {
-        return getGridAt(location.add(direction.getRowInc(), direction.getColInc()));
+    public Cell getCellNeighbours(Direction direction, Location location) {
+        return getCellAt(location.add(direction.getRowInc(), direction.getColInc()));
     }
 }

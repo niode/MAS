@@ -80,9 +80,9 @@ public class AgentBrain extends Brain {
             }
         }
         if (command instanceof OBSERVE) {
-            int row_size = getWorld().getGrid().length;
+            int row_size = getWorld().getCell().length;
             int row = random.nextInt(row_size);
-            int col_size = getWorld().getGrid()[row].length;
+            int col_size = getWorld().getCell()[row].length;
             int col = random.nextInt(col_size);
             command = new OBSERVE(new Location(row, col));
         } else if (command instanceof MOVE) {

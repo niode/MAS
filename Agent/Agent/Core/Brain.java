@@ -70,7 +70,7 @@ public abstract class Brain {
             agent.setAgentState(AgentStates.READ_MAIL);
         } else if (ares_command instanceof MOVE_RESULT) {
             MOVE_RESULT command = (MOVE_RESULT) ares_command;
-            GridInfo curr = command.getSurrroundInfo().getCurrentInfo();
+            CellInfo curr = command.getSurrroundInfo().getCurrentInfo();
             agent.setEnergyLevel(command.getEnergyLevel());
             agent.setLocation(curr.getLocation());
             handleMoveResult(command);
@@ -84,7 +84,7 @@ public abstract class Brain {
             agent.setAgentState(AgentStates.THINK);
         } else if (ares_command instanceof SAVE_SURV_RESULT) {
             SAVE_SURV_RESULT command = (SAVE_SURV_RESULT) ares_command;
-            GridInfo curr = command.getSurrroundInfo().getCurrentInfo();
+            CellInfo curr = command.getSurrroundInfo().getCurrentInfo();
             agent.setEnergyLevel(command.getEnergyLevel());
             agent.setLocation(curr.getLocation());
             handleSaveSurvResult(command);
@@ -95,7 +95,7 @@ public abstract class Brain {
             }
         } else if (ares_command instanceof TEAM_DIG_RESULT) {
             TEAM_DIG_RESULT command = (TEAM_DIG_RESULT) ares_command;
-            GridInfo curr = command.getSurrroundInfo().getCurrentInfo();
+            CellInfo curr = command.getSurrroundInfo().getCurrentInfo();
             agent.setEnergyLevel(command.getEnergyLevel());
             agent.setLocation(curr.getLocation());
             handleTeamDigResult((TEAM_DIG_RESULT) ares_command);
