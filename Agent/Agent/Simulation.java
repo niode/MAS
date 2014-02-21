@@ -96,6 +96,18 @@ public class Simulation
     return cell.getTopLayer();
   }
 
+  public LifeSignals getLifeSignals(int x, int y)
+  {
+    return getLifeSignals(new Location(x, y));
+  }
+
+  public LifeSignals getLifeSignals(Location location)
+  {
+    Cell cell = world.getCell(location);
+    if(cell == null) return null;
+    return cell.getLifeSignals();
+  }
+
 
 /* ----------------------------------------------------------------------------
  * Update functions.
