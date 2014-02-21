@@ -22,9 +22,11 @@ public class AgentBrain extends Brain {
     }
 
     @Override
-    public void setWorld(World world)
+    public void setStartState(World world, AgentID id, Location location, int energy)
     {
-      sim.setWorld(world);
+      sim.update(world);
+      sim.update(id, energy);
+      sim.update(id, location);
     }
 
     @Override

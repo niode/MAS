@@ -1,5 +1,6 @@
 package Agent.Core;
 
+import Ares.*;
 import Ares.Commands.*;
 import Ares.Commands.AresCommands.*;
 import Ares.Parsers.*;
@@ -17,9 +18,7 @@ public abstract class Brain {
       this.base = base;
     }
 
-    public void setWorld(World world_info) {
-        BaseAgent.log(LogLevels.State_Changes, "Brain: New world");
-    }
+    public abstract void setStartState(World world, AgentID id, Location location, int energy);
 
     public abstract void handleFwdMessage(FWD_MESSAGE msg);
 
@@ -44,7 +43,10 @@ public abstract class Brain {
             agent.setId(connect_ok.getNewAgentID());
             agent.setEnergyLevel(connect_ok.getEnergyLevel());
             agent.setLocation(connect_ok.getLocation());
-            setWorld(new World(AresParser.buildWorld(connect_ok.getWorldFilename())));
+            setStartState(new World(AresParser.buildWorld(connect_ok.getWorldFilename())),
+                          connect_ok.getNewAgentID(),
+                          connect_ok.getLocation(),
+                          connect_ok.getEnergyLevel());
             agent.setAgentState(AgentStates.CONNECTED);
             BaseAgent.log(LogLevels.Test, "Connected successfully");
         } else if (ares_command instanceof DEATH_CARD) {

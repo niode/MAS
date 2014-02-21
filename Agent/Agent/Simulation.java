@@ -22,11 +22,6 @@ public class Simulation
     round++;
   }
 
-  public void setWorld(World world)
-  {
-    this.world = world;
-  }
-
   public Agent getAgent(AgentID id)
   {
     for(Agent agnt : agents)
@@ -40,6 +35,11 @@ public class Simulation
   public Cell getCell(Location location)
   {
     return world.getCell(location);
+  }
+
+  public void update(World world)
+  {
+    this.world = world;
   }
 
   // Update an agent's energy level.
