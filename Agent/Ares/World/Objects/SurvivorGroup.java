@@ -37,8 +37,8 @@ public class SurvivorGroup extends WorldObject {
         } else {
             setAlive();
         }
-        setChanged();
-        notifyObservers();
+        
+        
     }
 
     public void removeEnergy(int remove_energy) {
@@ -48,8 +48,8 @@ public class SurvivorGroup extends WorldObject {
             energy_level = 0;
             setDead();
         }
-        setChanged();
-        notifyObservers();
+        
+        
     }
 
     public int getNumberOfSurvivors() {
@@ -58,8 +58,8 @@ public class SurvivorGroup extends WorldObject {
 
     public final void setNumberOfSurvivors(int number_of_survivors) {
         this.number_of_survivors = number_of_survivors;
-        setChanged();
-        notifyObservers();
+        
+        
     }
 
     @Override

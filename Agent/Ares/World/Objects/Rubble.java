@@ -31,8 +31,8 @@ public class Rubble extends WorldObject {
 
     public void setRemoveEnergy(int remove_energy) {
         this.remove_energy = remove_energy;
-        setChanged();
-        notifyObservers();
+        
+        
     }
 
     public int getRemoveAgents() {
@@ -41,8 +41,8 @@ public class Rubble extends WorldObject {
 
     public void setRemoveAgents(int remove_agents) {
         this.remove_agents = remove_agents;
-        setChanged();
-        notifyObservers();
+        
+        
     }
 
     @Override

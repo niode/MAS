@@ -43,8 +43,8 @@ public class Survivor extends WorldObject {
         } else {
             setAlive();
         }
-        setChanged();
-        notifyObservers();
+        
+        
     }
 
     public void removeEnergy(int remove_energy) {
@@ -54,8 +54,8 @@ public class Survivor extends WorldObject {
             energy_level = 0;
             setDead();
         }
-        setChanged();
-        notifyObservers();
+        
+        
     }
 
     public int getDamageFactor() {
@@ -64,8 +64,8 @@ public class Survivor extends WorldObject {
 
     public final void setDamageFactor(int damage_factor) {
         this.damage_factor = damage_factor;
-        setChanged();
-        notifyObservers();
+        
+        
     }
 
     public int getBodyMass() {
@@ -74,8 +74,8 @@ public class Survivor extends WorldObject {
 
     public final void setBodyMass(int body_mass) {
         this.body_mass = body_mass;
-        setChanged();
-        notifyObservers();
+        
+        
     }
 
     public int getMentalState() {
@@ -84,8 +84,8 @@ public class Survivor extends WorldObject {
 
     public final void setMentalState(int mental_state) {
         this.mental_state = mental_state;
-        setChanged();
-        notifyObservers();
+        
+        
     }
 
     @Override
