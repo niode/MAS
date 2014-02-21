@@ -2,13 +2,14 @@ package Ares.World;
 
 import Ares.*;
 import Ares.World.Parts.*;
+import java.util.*;
 
 public class Agent{
 
     private enum State {
-
         ALIVE, DEAD;
     }
+
     private AgentID agent_id;
     private Location location;
     private int energy_level;

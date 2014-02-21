@@ -9,12 +9,18 @@ import Ares.World.Info.*;
 public abstract class Brain {
 
     private World world;
+    private BaseAgent base;
 
     public Brain() {
     }
 
     public World getWorld() {
         return world;
+    }
+
+    public void setBaseAgent(BaseAgent base)
+    {
+      this.base = base;
     }
 
     public void setWorld(World world_info) {
@@ -48,11 +54,6 @@ public abstract class Brain {
             world = new World(AresParser.buildWorld(connect_ok.getWorldFilename()));
             agent.setAgentState(AgentStates.CONNECTED);
             BaseAgent.log(LogLevels.Test, "Connected successfully");
-            //for (int i = 0; i < world.length; i++) {
-            //    for (int j = 0; j < world[i].length; j++) {
-            //        BaseAgent.log(LogLevels.Test, "" + world[i][j]);
-            //    }
-            //}
         } else if (ares_command instanceof DEATH_CARD) {
             agent.setAgentState(AgentStates.SHUTTING_DOWN);
             handleDead();
@@ -70,13 +71,13 @@ public abstract class Brain {
             agent.setAgentState(AgentStates.READ_MAIL);
         } else if (ares_command instanceof MOVE_RESULT) {
             MOVE_RESULT command = (MOVE_RESULT) ares_command;
-            CellInfo curr = command.getSurrroundInfo().getCurrentInfo();
-            agent.setEnergyLevel(command.getEnergyLevel());
-            agent.setLocation(curr.getLocation());
+            //CellInfo curr = command.getSurroundInfo().getCurrentInfo();
+            //agent.setEnergyLevel(command.getEnergyLevel());
+            //agent.setLocation(curr.getLocation());
             handleMoveResult(command);
         } else if (ares_command instanceof OBSERVE_RESULT) {
             OBSERVE_RESULT command = (OBSERVE_RESULT) ares_command;
-            agent.setEnergyLevel(command.getEnergyLevel());
+            //agent.setEnergyLevel(command.getEnergyLevel());
             handleObserveResult(command);
         } else if (ares_command instanceof ROUND_END) {
             agent.setAgentState(AgentStates.IDLE);
@@ -84,9 +85,9 @@ public abstract class Brain {
             agent.setAgentState(AgentStates.THINK);
         } else if (ares_command instanceof SAVE_SURV_RESULT) {
             SAVE_SURV_RESULT command = (SAVE_SURV_RESULT) ares_command;
-            CellInfo curr = command.getSurrroundInfo().getCurrentInfo();
-            agent.setEnergyLevel(command.getEnergyLevel());
-            agent.setLocation(curr.getLocation());
+            //CellInfo curr = command.getSurroundInfo().getCurrentInfo();
+            //agent.setEnergyLevel(command.getEnergyLevel());
+            //agent.setLocation(curr.getLocation());
             handleSaveSurvResult(command);
         } else if (ares_command instanceof SLEEP_RESULT) {
             SLEEP_RESULT command = (SLEEP_RESULT) ares_command;
@@ -95,9 +96,9 @@ public abstract class Brain {
             }
         } else if (ares_command instanceof TEAM_DIG_RESULT) {
             TEAM_DIG_RESULT command = (TEAM_DIG_RESULT) ares_command;
-            CellInfo curr = command.getSurrroundInfo().getCurrentInfo();
-            agent.setEnergyLevel(command.getEnergyLevel());
-            agent.setLocation(curr.getLocation());
+            //CellInfo curr = command.getSurroundInfo().getCurrentInfo();
+            //agent.setEnergyLevel(command.getEnergyLevel());
+            //agent.setLocation(curr.getLocation());
             handleTeamDigResult((TEAM_DIG_RESULT) ares_command);
         } else if (ares_command instanceof ARES_UNKNOWN) {
             BaseAgent.log(LogLevels.Always, "Brain: Got Unknown command reply from ARES");

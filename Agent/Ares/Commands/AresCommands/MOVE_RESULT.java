@@ -17,7 +17,7 @@ public class MOVE_RESULT extends AresCommand {
         return energy_level;
     }
 
-    public SurroundInfo getSurrroundInfo() {
+    public SurroundInfo getSurroundInfo() {
         return surround_info;
     }
 

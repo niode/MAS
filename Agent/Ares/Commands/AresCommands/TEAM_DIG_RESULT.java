@@ -17,7 +17,7 @@ public class TEAM_DIG_RESULT extends AresCommand {
         return energy_level;
     }
 
-    public SurroundInfo getSurrroundInfo() {
+    public SurroundInfo getSurroundInfo() {
         return surround_info;
     }
 
