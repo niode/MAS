@@ -37,6 +37,12 @@ public class Simulation
     return world.getCell(location);
   }
 
+
+  /*
+   * Update functions.
+   * These functions update the state of the simulation.
+   *
+   */
   public void update(World world)
   {
     this.world = world;

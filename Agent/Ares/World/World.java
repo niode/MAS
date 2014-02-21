@@ -64,7 +64,7 @@ public class World {
         return null;
     }
 
-    public Cell getCellNeighbours(Direction direction, Location location) {
+    public Cell getCellNeighbour(Direction direction, Location location) {
         return getCell(location.add(direction.getRowInc(), direction.getColInc()));
     }
 }
