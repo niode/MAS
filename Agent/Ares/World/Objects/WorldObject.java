@@ -3,9 +3,8 @@ package Ares.World.Objects;
 import Ares.World.Info.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 
-public abstract class WorldObject extends Observable implements Cloneable {
+public abstract class WorldObject implements Cloneable {
 
     protected enum State {
 
@@ -49,8 +48,6 @@ public abstract class WorldObject extends Observable implements Cloneable {
 
     private void setState(State state) {
         this.state = state;
-        setChanged();
-        notifyObservers();
     }
 
     public int getID() {
@@ -59,8 +56,6 @@ public abstract class WorldObject extends Observable implements Cloneable {
 
     public void setID(int ID) {
         this.ID = ID;
-        setChanged();
-        notifyObservers();
     }
 
     @Override

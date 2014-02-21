@@ -45,7 +45,7 @@ public class World {
         return cols;
     }
 
-    public void setCellAt(Location location, Cell cell) {
+    public void setCell(Location location, Cell cell) {
         if (world == null || location == null) {
             return;
         }
@@ -54,7 +54,7 @@ public class World {
         }
     }
 
-    public Cell getCellAt(Location location) {
+    public Cell getCell(Location location) {
         if (world == null || location == null) {
             return null;
         }
@@ -65,6 +65,6 @@ public class World {
     }
 
     public Cell getCellNeighbours(Direction direction, Location location) {
-        return getCellAt(location.add(direction.getRowInc(), direction.getColInc()));
+        return getCell(location.add(direction.getRowInc(), direction.getColInc()));
     }
 }
