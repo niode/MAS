@@ -7,15 +7,9 @@ import Ares.World.*;
 import Ares.World.Info.*;
 
 public abstract class Brain {
-
-    private World world;
     private BaseAgent base;
 
     public Brain() {
-    }
-
-    public World getWorld() {
-        return world;
     }
 
     public void setBaseAgent(BaseAgent base)
@@ -51,7 +45,7 @@ public abstract class Brain {
             agent.setId(connect_ok.getNewAgentID());
             agent.setEnergyLevel(connect_ok.getEnergyLevel());
             agent.setLocation(connect_ok.getLocation());
-            world = new World(AresParser.buildWorld(connect_ok.getWorldFilename()));
+            setWorld(new World(AresParser.buildWorld(connect_ok.getWorldFilename())));
             agent.setAgentState(AgentStates.CONNECTED);
             BaseAgent.log(LogLevels.Test, "Connected successfully");
         } else if (ares_command instanceof DEATH_CARD) {

@@ -22,6 +22,12 @@ public class AgentBrain extends Brain {
     }
 
     @Override
+    public void setWorld(World world)
+    {
+      sim.setWorld(world);
+    }
+
+    @Override
     public void handleDisconnect() {
         BaseAgent.log(LogLevels.Always, "DISCONNECT");
     }
