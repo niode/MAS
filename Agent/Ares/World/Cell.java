@@ -221,7 +221,7 @@ public class Cell{
         
     }
 
-    public int getPercentChange() {
+    public int getPercentChance() {
         return percent_chance;
     }
 

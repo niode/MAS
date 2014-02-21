@@ -1,5 +1,8 @@
 package Ares;
 
+import java.util.List;
+import java.util.LinkedList;
+
 public enum Direction {
 
     UNKNOWN(-1, -1, -1, 0, 0, "UNKNOWN", "Unknown"),
@@ -73,6 +76,20 @@ public enum Direction {
             default:
                 return UNKNOWN;
         }
+    }
+
+    public static List<Direction> All()
+    {
+      List<Direction> result = new LinkedList<Direction>();
+      result.add(NORTH);
+      result.add(NORTH_EAST);
+      result.add(EAST);
+      result.add(SOUTH_EAST);
+      result.add(SOUTH);
+      result.add(SOUTH_WEST);
+      result.add(WEST);
+      result.add(NORTH_WEST);
+      return result;
     }
 
     public static Direction getDirection(int index) {
