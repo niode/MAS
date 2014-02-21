@@ -22,6 +22,11 @@ public class Simulation
     round++;
   }
 
+  public void setWorld(World world)
+  {
+    this.world = world;
+  }
+
   public Agent getAgent(AgentID id)
   {
     for(Agent agnt : agents)

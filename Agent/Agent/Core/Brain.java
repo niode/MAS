@@ -18,7 +18,6 @@ public abstract class Brain {
     }
 
     public void setWorld(World world_info) {
-        this.world = world_info;
         BaseAgent.log(LogLevels.State_Changes, "Brain: New world");
     }
 
