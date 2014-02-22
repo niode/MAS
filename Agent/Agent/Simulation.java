@@ -5,17 +5,36 @@ import Ares.World.*;
 import Ares.World.Info.*;
 import Ares.World.Objects.*;
 import java.util.List;
+import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class Simulation
 {
+  private static final int NUM_AGENTS = 7;
+  private static final int NUM_TEAMS = 2;
+
+  private World world = null;
+  private List<Agent> agents = new ArrayList<Agent>(NUM_AGENTS * NUM_TEAMS);
+  private List<Location> chargers = new LinkedList<Location>();
+  private boolean[][] visited = null;
+  private AgentID self = null;
+
   private int round = 0;
-  private World world;
-  private int saved = 0;
-  private List<Agent> agents;
-  private boolean[][] visited;
   private int totalCost = 0;
   private int cellsVisited = 0;
-  private List<Location> chargers;
+  private int saved = 0;
+
+  public Simulation()
+  {
+    for(int i = 0; i < NUM_TEAMS; i++)
+      for(int j = 0; j < NUM_AGENTS; j++)
+        agents.set(i, new Agent(new AgentID(j+1, i+1), new Location(-1,-1), -1));
+  }
+
+  public void setSelf(AgentID id)
+  {
+    this.self = agents.get(getIndex(id)).getAgentID();
+  }
 
   public int getRound()
   {
@@ -34,17 +53,17 @@ public class Simulation
 
   public Agent getAgent(AgentID id)
   {
-    for(Agent agnt : agents)
-    {
-      if(agnt.getAgentID().equals(id))
-        return agnt;
-    }
-    return null;
+    return agents.get(getIndex(id));
   }
 
   public List<Location> getChargers()
   {
     return chargers;
+  }
+
+  private int getIndex(AgentID id)
+  {
+    return (id.getGID() * id.getID()) - 1;
   }
 
 /* ----------------------------------------------------------------------------
@@ -54,11 +73,13 @@ public class Simulation
  * --------------------------------------------------------------------------*/
   public int getRowCount()
   {
+    if(world == null) return -1;
     return world.getRows();
   }
 
   public int getColCount()
   {
+    if(world == null) return -1;
     return world.getCols();
   }
 
@@ -69,6 +90,7 @@ public class Simulation
 
   public Cell getCell(Location location)
   {
+    if(world == null) return null;
     return world.getCell(location);
   }
 
@@ -79,6 +101,7 @@ public class Simulation
 
   public boolean isKiller(Location location)
   {
+    if(world == null) return false;
     Cell cell = world.getCell(location);
     if(cell == null) return false;
     return cell.isOnFire() || cell.isKiller();
@@ -91,6 +114,7 @@ public class Simulation
 
   public int getMoveCost(Location location)
   {
+    if(world == null) return Integer.MAX_VALUE;
     Cell cell = world.getCell(location);
     if(cell == null) return Integer.MAX_VALUE;
     return cell.getMoveCost();
@@ -103,6 +127,7 @@ public class Simulation
 
   public int getPercentage(Location location)
   {
+    if(world == null) return 0;
     Cell cell = world.getCell(location);
     if(cell == null) return 0;
     return cell.getPercentChance();
@@ -115,6 +140,7 @@ public class Simulation
 
   public WorldObject getTopLayer(Location location)
   {
+    if(world == null) return null;
     Cell cell = world.getCell(location);
     if(cell == null) return null;
     return cell.getTopLayer();
@@ -127,6 +153,7 @@ public class Simulation
 
   public LifeSignals getLifeSignals(Location location)
   {
+    if(world == null) return null;
     Cell cell = world.getCell(location);
     if(cell == null) return null;
     return cell.getLifeSignals();
@@ -174,6 +201,7 @@ public class Simulation
 
   public void update(AgentID id, Location location)
   {
+    if(world == null) return;
     Agent agent = getAgent(id);
     world.getCell(agent.getLocation()).removeAgent(id);
     world.getCell(location).addAgent(id);
@@ -192,6 +220,7 @@ public class Simulation
 
   public void update(CellInfo info)
   {
+    if(world == null) return;
     if(!visited[info.getLocation().getRow()][info.getLocation().getCol()])
     {
       visited[info.getLocation().getRow()][info.getLocation().getCol()] = true;
@@ -207,6 +236,7 @@ public class Simulation
 
   public void update(Location location, LifeSignals info)
   {
+    if(world == null) return;
     Cell cell = world.getCell(location);
     if(cell == null) return;
     cell.setLifeSignals(info);
@@ -214,6 +244,7 @@ public class Simulation
 
   public void update(Location location, WorldObjectInfo info)
   {
+    if(world == null) return;
     WorldObject layer = null;
     if(info instanceof SurvivorInfo)
     {
