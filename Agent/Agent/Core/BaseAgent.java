@@ -1,5 +1,6 @@
 package Agent.Core;
 
+import Agent.Brain;
 import Ares.*;
 import Ares.Commands.*;
 import Ares.Commands.AgentCommands.*;
@@ -90,7 +91,6 @@ public class BaseAgent {
     public void start(String host, String group_name, Brain brain) {
         if (agent_state == AgentStates.CONNECTING) {
             this.brain = brain;
-            brain.setBaseAgent(this);
             if (connectToARES(host, group_name)) {
                 runBaseAgentStates();
             } else {

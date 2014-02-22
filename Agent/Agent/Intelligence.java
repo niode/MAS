@@ -1,11 +1,16 @@
 package Agent;
 
-public class Intelligence
+import Ares.Commands.AgentCommand;
+import java.util.Queue;
+
+public abstract class Intelligence
 {
   Simulation sim;
+  Communicator com;
 
-  public Intelligence(Simulation sim)
+  public Intelligence(Simulation sim, Communicator com)
   {
+    this.com = com;
     this.sim = sim;
   }
 
@@ -13,4 +18,6 @@ public class Intelligence
   {
     return sim;
   }
+
+  public abstract void think();
 }

@@ -33,6 +33,12 @@ public class Communicator
     
   }
 
+  public void send(AgentCommand command)
+  {
+    base.send(command);
+    BaseAgent.log(LogLevels.Always, "Sending " + command);
+  }
+
   // Send to target.
   public void send(AgentID id, WorldObject obj)
   {

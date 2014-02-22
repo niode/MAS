@@ -12,6 +12,10 @@ public class Simulation
   private World world;
   private int saved = 0;
   private List<Agent> agents;
+  private boolean[][] visited;
+  private int totalCost = 0;
+  private int cellsVisited = 0;
+  private List<Location> chargers;
 
   public int getRound()
   {
@@ -21,6 +25,11 @@ public class Simulation
   public int getSaved()
   {
     return saved;
+  }
+
+  public float getAverageCost()
+  {
+    return (float)totalCost/cellsVisited;
   }
 
   public Agent getAgent(AgentID id)
@@ -33,11 +42,26 @@ public class Simulation
     return null;
   }
 
+  public List<Location> getChargers()
+  {
+    return chargers;
+  }
+
 /* ----------------------------------------------------------------------------
  * Wrapper functions around the world.get... functions to make it
  * easier to quickly access information about the world without
  * going through the Cell object.
  * --------------------------------------------------------------------------*/
+  public int getRowCount()
+  {
+    return world.getRows();
+  }
+
+  public int getColCount()
+  {
+    return world.getCols();
+  }
+
   public Cell getCell(int x, int y)
   {
     return getCell(new Location(x, y));
@@ -128,6 +152,7 @@ public class Simulation
   public void update(World world)
   {
     this.world = world;
+    visited = new boolean[world.getRows()][world.getCols()];
   }
 
   // Update an agent's energy level.
@@ -154,19 +179,20 @@ public class Simulation
     for(Direction d : Direction.All())
     {
       CellInfo ci = info.getSurroundInfo(d);
-      Cell cell = getCell(ci.getLocation());
     }
   }
 
   public void update(CellInfo info)
   {
-
+    visited[info.getLocation().getRow()][info.getLocation().getCol()] = true;
+    cellsVisited++;
+    totalCost += info.getMoveCost();
   }
 
   public void update(Location location, LifeSignals info)
   {
     Cell cell = world.getCell(location);
     if(cell == null) return;
-    cell.setStoredLifeSignals(info);
+    cell.setLifeSignals(info);
   }
 }

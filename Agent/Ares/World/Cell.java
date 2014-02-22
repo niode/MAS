@@ -233,11 +233,11 @@ public class Cell{
         return new CellInfo(type == Type.NORMAL_CELL, location.clone(), on_fire, move_cost, agent_id_list.clone(), topLayerInfo());
     }
 
-    public void setStoredLifeSignals(LifeSignals stored_life_signals) {
+    public void setLifeSignals(LifeSignals stored_life_signals) {
         this.stored_life_signals = stored_life_signals;
     }
 
-    public LifeSignals getStoredLifeSignals() {
+    public LifeSignals getLifeSignals() {
         return stored_life_signals;
     }
 

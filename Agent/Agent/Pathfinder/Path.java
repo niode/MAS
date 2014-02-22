@@ -7,13 +7,30 @@ import java.util.*;
 
 public class Path
 {
+  private int moveCost;
+  public static compare(Path a, Path b, PathOptions opt)
+  {
+    if(opt.cheapest)
+    {
+      return a.getMoveCost() - b.getMoveCost();
+    } else if(opt.shortest)
+    {
+      return a.getLength() - b.getLength();
+    } else
+    {
+      // Default behavior.
+      return a.getLength() - b.getLength();
+    }
+  }
+
   private LinkedList<Location> path;
   
   // Protected as only the Pathfinder should be calling
   // the constructor.
-  protected Path(LinkedList<Location> path)
+  protected Path(LinkedList<Location> path, int cost)
   {
-
+    this.path = path;
+    this.moveCost = cost;
   }
 
   public long getMoveCost()
