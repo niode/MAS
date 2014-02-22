@@ -27,9 +27,9 @@ public class Simulation
     return saved;
   }
 
-  public float getAverageCost()
+  public int getAverageCost()
   {
-    return (float)totalCost/cellsVisited;
+    return totalCost/cellsVisited;
   }
 
   public Agent getAgent(AgentID id)
