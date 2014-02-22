@@ -153,6 +153,13 @@ public class Simulation
   {
     this.world = world;
     visited = new boolean[world.getRows()][world.getCols()];
+    for(int i = 0; i < world.getRows(); i++)
+      for(int j = 0; j < world.getCols(); j++)
+      {
+        Cell cell = world.getCell(new Location(i, j));
+        if(cell.isChargingCell())
+          chargers.add(new Location(i, j));
+      }
   }
 
   // Update an agent's energy level.
@@ -179,14 +186,23 @@ public class Simulation
     for(Direction d : Direction.All())
     {
       CellInfo ci = info.getSurroundInfo(d);
+      update(ci);
     }
   }
 
   public void update(CellInfo info)
   {
-    visited[info.getLocation().getRow()][info.getLocation().getCol()] = true;
-    cellsVisited++;
-    totalCost += info.getMoveCost();
+    if(!visited[info.getLocation().getRow()][info.getLocation().getCol()])
+    {
+      visited[info.getLocation().getRow()][info.getLocation().getCol()] = true;
+      cellsVisited++;
+      totalCost += info.getMoveCost();
+    }
+    for(AgentID id : info.getAgentIDList())
+    {
+      update(id, info.getLocation());
+    }
+    update(info.getLocation(), info.getTopLayerInfo());
   }
 
   public void update(Location location, LifeSignals info)
@@ -194,5 +210,32 @@ public class Simulation
     Cell cell = world.getCell(location);
     if(cell == null) return;
     cell.setLifeSignals(info);
+  }
+
+  public void update(Location location, WorldObjectInfo info)
+  {
+    WorldObject layer = null;
+    if(info instanceof SurvivorInfo)
+    {
+      SurvivorInfo si = (SurvivorInfo)info;
+      layer = new Survivor(si.getEnergyLevel(),
+                           si.getDamageFactor(),
+                           si.getBodyMass(),
+                           si.getMentalState());
+    } else if(info instanceof SurvivorGroupInfo)
+    {
+      SurvivorGroupInfo sgi = (SurvivorGroupInfo)info;
+      layer = new SurvivorGroup(sgi.getEnergyLevel(),
+                                sgi.getNumberOfSurvivors());
+    } else if(info instanceof RubbleInfo)
+    {
+      RubbleInfo ri = (RubbleInfo)info;
+      layer = new Rubble(ri.getRemoveEnergy(),
+                         ri.getRemoveAgents());
+    } else
+    {
+      layer = new BottomLayer();
+    }
+    world.getCell(location).setTopLayer(layer);
   }
 }
