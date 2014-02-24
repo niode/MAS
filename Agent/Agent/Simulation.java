@@ -10,8 +10,10 @@ import java.util.ArrayList;
 
 public class Simulation
 {
-  private static final int NUM_AGENTS = 7;
-  private static final int NUM_TEAMS = 2;
+  public static final int NUM_AGENTS = 7;
+  public static final int NUM_TEAMS = 2;
+  public static final int MAX_ENERGY = 1000;
+  public static final int MAX_LENGTH = 50*50;
 
   private World world = null;
   private List<Agent> agents = new ArrayList<Agent>(NUM_AGENTS * NUM_TEAMS);
