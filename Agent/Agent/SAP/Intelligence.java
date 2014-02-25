@@ -1,11 +1,21 @@
 package Agent.SAP;
 
 import Agent.*;
+import Agent.Pathfinder.*;
+import Ares.*;
+import Ares.Commands.*;
+import Ares.Commands.AgentCommands.*;
 
 public class Intelligence extends Agent.Intelligence
 {
+  public Intelligence(Simulation sim, Communicator com)
+  {
+    super(sim, com);
+  }
+
   public void think()
   {
+    Simulation sim = getSimulation();
     Action act = Data.getAction(sim);
     Location current = sim.getAgent(sim.getSelf()).getLocation();
     act.opt.start = current;
@@ -16,24 +26,24 @@ public class Intelligence extends Agent.Intelligence
     {
       switch(act.type)
       {
-        case Type.SLEEP:
+        case SLEEP:
           cmd = new SLEEP();
           break;
-        case Type.SAVE_SURV:
+        case SAVE:
           cmd = new SAVE_SURV();
           break;
-        case Type.OBSERVE:
+        case OBSERVE:
           cmd = new OBSERVE(act.target);
           break;
-        case Type.TEAM_DIG:
+        case TEAM_DIG:
           cmd = new TEAM_DIG();
           break;
       }
     } else
     {
-      cmd = new MOVE(Pathfinder.getDirection(path.getNext()));
+      cmd = new MOVE(Pathfinder.getDirection(current, path.getNext()));
     }
 
-    com.send(cmd);
+    getCommunicator().send(cmd);
   }
 }

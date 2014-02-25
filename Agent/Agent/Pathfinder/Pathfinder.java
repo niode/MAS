@@ -9,7 +9,7 @@ import java.util.*;
 public class Pathfinder
 {
   private static final int MAX = Integer.MAX_VALUE;
-  public Direction getDirection(Location a, Location b)
+  public static Direction getDirection(Location a, Location b)
   {
     int SOUTH = 1;
     int NORTH = 1 << 1;
@@ -21,14 +21,14 @@ public class Pathfinder
     if(a.getCol() < b.getCol()) pos |= WEST;
     if(a.getCol() > b.getCol()) pos |= EAST;
 
-    if     (pos ^ SOUTH == 0)          return Direction.SOUTH;
-    else if(pos ^ NORTH == 0)          return Direction.NORTH;
-    else if(pos ^ WEST == 0)           return Direction.WEST;
-    else if(pos ^ EAST == 0)           return Direction.EAST;
-    else if(pos ^ (NORTH | EAST) == 0) return Direction.NORTH_EAST;
-    else if(pos ^ (NORTH | WEST) == 0) return Direction.NORTH_WEST;
-    else if(pos ^ (SOUTH | EAST) == 0) return Direction.SOUTH_EAST;
-    else if(pos ^ (SOUTH | WEST) == 0) return Direction.SOUTH_WEST;
+    if     ((pos ^ SOUTH) == 0)          return Direction.SOUTH;
+    else if((pos ^ NORTH) == 0)          return Direction.NORTH;
+    else if((pos ^ WEST) == 0)           return Direction.WEST;
+    else if((pos ^ EAST) == 0)           return Direction.EAST;
+    else if((pos ^ (NORTH | EAST)) == 0) return Direction.NORTH_EAST;
+    else if((pos ^ (NORTH | WEST)) == 0) return Direction.NORTH_WEST;
+    else if((pos ^ (SOUTH | EAST)) == 0) return Direction.SOUTH_EAST;
+    else if((pos ^ (SOUTH | WEST)) == 0) return Direction.SOUTH_WEST;
     else return Direction.STAY_PUT;
   }
 

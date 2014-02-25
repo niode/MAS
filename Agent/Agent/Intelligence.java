@@ -19,5 +19,10 @@ public abstract class Intelligence
     return sim;
   }
 
+  public Communicator getCommunicator()
+  {
+    return com;
+  }
+
   public abstract void think();
 }

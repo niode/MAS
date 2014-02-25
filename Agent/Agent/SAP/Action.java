@@ -10,7 +10,7 @@ public class Action
     MOVE,
     OBSERVE,
     SLEEP,
-    SAVE_GROUP,
+    SAVE,
     TEAM_DIG
   }
 
