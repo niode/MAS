@@ -18,6 +18,7 @@ public class Communicator
 {
   // Internal message prefixes.
   private static final String PREFIX_WO = "WO::";
+  private static final String PREFIX_CELL = "CELL::";
 
   private BaseAgent base;
   private Simulation sim;
@@ -51,6 +52,11 @@ public class Communicator
     send(format(obj));
   }
 
+  public void send(Cell cell)
+  {
+    send(format(cell));
+  }
+
   public void send(AgentID id, String str)
   {
     AgentIDList idList = new AgentIDList();
@@ -62,6 +68,11 @@ public class Communicator
   {
     AgentIDList idList = new AgentIDList();
     base.send(new SEND_MESSAGE(idList, str));
+  }
+
+  private String format(Cell cell)
+  {
+    return PREFIX_CELL + cell.toString();
   }
 
   private String format(WorldObject obj)
