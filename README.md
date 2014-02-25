@@ -1,5 +1,7 @@
 MAS
 ===
+
+Updates:
 ----
 I added a basic intelligence to the SAP package, and filled in the Action class. The SAP intelligence is pretty close to functioning I think, the goal is that it should be really easy to insert new pairs to define the behaviors.
 
