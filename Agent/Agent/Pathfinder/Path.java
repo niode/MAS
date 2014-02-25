@@ -54,4 +54,9 @@ public class Path
   {
     return path.peek();
   }
+
+  public Location getLast()
+  {
+    return path.getLast();
+  }
 }

@@ -1,27 +1,10 @@
 package Agent.SAP;
 
-import Ares.*;
+import Agent.*;
 import Agent.Pathfinder.*;
+import Ares.Commands.AgentCommand;
 
-public class Action
+public interface Action
 {
-  public enum Type
-  {
-    MOVE,
-    OBSERVE,
-    SLEEP,
-    SAVE,
-    TEAM_DIG
-  }
-
-  public Location target;
-  public Type type;
-  public PathOptions opt;
-
-  public Action(Location target, Type type, PathOptions opt)
-  {
-    this.target = target;
-    this.type = type;
-    this.opt = opt;
-  }
+  public abstract AgentCommand getCommand(Simulation sim);
 }

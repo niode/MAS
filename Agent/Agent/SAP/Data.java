@@ -1,18 +1,19 @@
 package Agent.SAP;
 
-import java.util.*;
 import Agent.*;
+import java.util.List;
+import java.util.ArrayList;
 
-public class Data
+public abstract class Data
 {
-  private static ArrayList<Pair> map = new ArrayList<>();
-  
-  public static Action getAction(Simulation sim)
+  protected List<Pair> list = new ArrayList<Pair>();
+
+  public Action getAction(Simulation sim)
   {
     Coordinate sit = new Coordinate(sim);
     long min = Long.MAX_VALUE;
     Pair current = null;
-    for(Pair pair : map)
+    for(Pair pair : list)
     {
       long tmp = sit.getDistance(pair.coord);
       if(tmp < min)
@@ -22,16 +23,5 @@ public class Data
       }
     }
     return current.action;
-  }
-
-  private static class Pair
-  {
-    public Coordinate coord;
-    public Action action;
-    public Pair(Coordinate coord, Action action)
-    {
-      this.coord = coord;
-      this.action = action;
-    }
   }
 }

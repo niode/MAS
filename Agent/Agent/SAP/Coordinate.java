@@ -11,6 +11,11 @@ public class Coordinate
 
   private long[] dimensions = new long[5];
 
+  public Coordinate(long[] dimensions)
+  {
+    this.dimensions = dimensions;
+  }
+
   public Coordinate(Simulation sim)
   {
     Agent self = sim.getAgent(sim.getSelf());
