@@ -18,7 +18,7 @@ public class Coordinate
 
   public Coordinate(Simulation sim)
   {
-    Agent self = sim.getAgent(sim.getSelf());
+    Agent self = sim.getSelf();
 
     // Energy level.
     dimensions[0] = (100*self.getEnergyLevel())/Simulation.MAX_ENERGY;

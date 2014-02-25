@@ -38,9 +38,14 @@ public class Simulation
     this.self = agents.get(getIndex(id)).getAgentID();
   }
 
-  public AgentID getSelf()
+  public AgentID getSelfID()
   {
     return self;
+  }
+
+  public Agent getSelf()
+  {
+    return getAgent(self);
   }
 
   public int getRound()

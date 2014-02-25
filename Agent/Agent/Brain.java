@@ -36,7 +36,7 @@ public class Brain{
     
     public void handleSleepResult(SLEEP_RESULT msg)
     {
-      sim.update(sim.getSelf(), msg.getChargeEnergy());
+      sim.update(sim.getSelfID(), msg.getChargeEnergy());
     }
 
     public void handleDisconnect() {
@@ -60,7 +60,7 @@ public class Brain{
         BaseAgent.log(LogLevels.Always, "MOVE_RESULT:" + move_result);
         BaseAgent.log(LogLevels.Test, "" + move_result);
         sim.update(move_result.getSurroundInfo());
-        sim.update(sim.getSelf(), move_result.getEnergyLevel());
+        sim.update(sim.getSelfID(), move_result.getEnergyLevel());
     }
 
     
@@ -73,14 +73,14 @@ public class Brain{
         CellInfo info = observe_result.getTopLayerInfo();
         sim.update(info);
         sim.update(info.getLocation(), observe_result.getLifeSignals());
-        sim.update(sim.getSelf(), observe_result.getEnergyLevel());
+        sim.update(sim.getSelfID(), observe_result.getEnergyLevel());
     }
 
     
     public void handleSaveSurvResult(SAVE_SURV_RESULT save_surv_result) {
         BaseAgent.log(LogLevels.Always, "SSAVE_SURV_RESULT:" + save_surv_result);
         BaseAgent.log(LogLevels.Test, "" + save_surv_result);
-        sim.update(sim.getSelf(), save_surv_result.getEnergyLevel());
+        sim.update(sim.getSelfID(), save_surv_result.getEnergyLevel());
         sim.update(save_surv_result.getSurroundInfo());
     }
 
@@ -88,7 +88,7 @@ public class Brain{
     public void handleTeamDigResult(TEAM_DIG_RESULT team_dig_result) {
         BaseAgent.log(LogLevels.Always, "TEAM_DIG_RESULT:" + team_dig_result);
         BaseAgent.log(LogLevels.Test, "" + team_dig_result);
-        sim.update(sim.getSelf(), team_dig_result.getEnergyLevel());
+        sim.update(sim.getSelfID(), team_dig_result.getEnergyLevel());
         sim.update(team_dig_result.getSurroundInfo());
     }
 
