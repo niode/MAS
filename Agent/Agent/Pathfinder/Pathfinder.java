@@ -1,14 +1,14 @@
 package Agent.Pathfinder;
 
+import Agent.*;
 import Ares.*;
 import Ares.World.*;
 import Ares.World.Info.*;
-import java.util.ArrayList;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class Pathfinder
 {
-  public static final MAX = Integer.MAX_VALUE;
+  public static final int MAX = Integer.MAX_VALUE;
   public static Path getPath(Simulation sim, PathOptions opt)
   {
     return getPathFromTree(spanningTree(sim, opt), opt);
@@ -24,7 +24,7 @@ public class Pathfinder
   {
     Path result = null;
     Node[][] G = spanningTree(sim, opt);
-    for(Location loc : sim.getChargers()
+    for(Location loc : sim.getChargers())
     {
       opt.end = loc;
       Path tmp = getPathFromTree(G, opt);
@@ -58,17 +58,17 @@ public class Pathfinder
   {
     PriorityQueue<Node> Q = new PriorityQueue<Node>();
     Node[][] G = new Node[sim.getRowCount()][sim.getColCount()];
-    for(int i = 0; i < sim.getRowCount())
-      for(int j = 0; j < sim.getColCount())
+    for(int i = 0; i < sim.getRowCount(); i++)
+      for(int j = 0; j < sim.getColCount(); j++)
         G[i][j] = new Node(null, new Location(i,j), MAX, MAX, MAX);
     
-    Node currentNode = G[sim.start.getRow()][sim.start.getCol()];
+    Node currentNode = G[opt.start.getRow()][opt.start.getCol()];
     currentNode.distance = currentNode.cost = currentNode.delta = 0;
     Q.add(currentNode);
     while(Q.size() > 0)
     {
       currentNode = Q.remove();
-      int tmpDist, tmpCost, tmpNext;
+      int tmpDist, tmpCost, tmpNext, tmpDelta;
 
       for(Direction d : Direction.All())
       {
@@ -83,7 +83,7 @@ public class Pathfinder
             if(tmpDist < tmpDelta && tmpDist < opt.maxLength && tmpCost < opt.maxCost)
             {
               Q.add(G[next.getRow()][next.getCol()]);
-              G[next.getRow()][next.getCol()].predecessor = current;
+              G[next.getRow()][next.getCol()].predecessor = currentNode;
               G[next.getRow()][next.getCol()].distance = tmpDist;
               G[next.getRow()][next.getCol()].cost = tmpCost;
               G[next.getRow()][next.getCol()].delta = tmpDist;
@@ -94,7 +94,7 @@ public class Pathfinder
             if(tmpCost < tmpDelta && tmpDist < opt.maxLength && tmpCost < opt.maxCost)
             {
               Q.add(G[next.getRow()][next.getCol()]);
-              G[next.getRow()][next.getCol()].predecessor = current;
+              G[next.getRow()][next.getCol()].predecessor = currentNode;
               G[next.getRow()][next.getCol()].distance = tmpDist;
               G[next.getRow()][next.getCol()].cost = tmpCost;
               G[next.getRow()][next.getCol()].delta = tmpCost;
@@ -106,7 +106,7 @@ public class Pathfinder
     return G;
   }
 
-  private static Node implements Comparable
+  private static class Node implements Comparable
   {
     public int distance;
     public int cost;
@@ -121,9 +121,9 @@ public class Pathfinder
       this.cost = cost;
       this.delta = delta;
     }
-    public int compareTo(Node node)
+    public int compareTo(Object obj)
     {
-      return delta = node.delta;
+      return delta = ((Node)obj).delta;
     }
     public boolean equals(Object obj)
     {

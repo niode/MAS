@@ -1,6 +1,7 @@
-package SAP;
+package Agent.SAP;
 
 import Agent.*;
+import Agent.Pathfinder.*;
 import Ares.*;
 import Ares.World.*;
 
@@ -8,7 +9,7 @@ public class Coordinate
 {
   // All dimensions should be normalized to [0,100] so that distances can be calculated uniformly.
 
-  private int[] dimensions = new int[5];
+  private long[] dimensions = new long[5];
 
   public Coordinate(Simulation sim)
   {
@@ -26,14 +27,14 @@ public class Coordinate
 
   }
 
-  public int getDistance(Coordinate other)
+  public long getDistance(Coordinate other)
   {
     long tmp = 0;
     for(int i = 0; i < dimensions.length; i++)
     {
-      int diff = dimensions[i] - other.dimensions[i];
+      long diff = dimensions[i] - other.dimensions[i];
       tmp += diff*diff;
     }
-    return Math.sqrt(tmp);
+    return (long)Math.sqrt(tmp);
   }
 }

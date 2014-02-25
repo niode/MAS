@@ -1,4 +1,4 @@
-package SAP;
+package Agent.SAP;
 
 import java.util.*;
 import Agent.*;
@@ -10,11 +10,11 @@ public class Data
   public static Action getAction(Simulation sim)
   {
     Coordinate sit = new Coordinate(sim);
-    int min = Integer.MAX_VALUE;
+    long min = Long.MAX_VALUE;
     Pair current = null;
     for(Pair pair : map)
     {
-      int tmp = sit.getDistance(pair.coord);
+      long tmp = sit.getDistance(pair.coord);
       if(tmp < min)
       {
         min = tmp;

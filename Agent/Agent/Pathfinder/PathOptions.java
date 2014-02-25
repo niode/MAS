@@ -2,12 +2,13 @@ package Agent.Pathfinder;
 
 import Ares.*;
 import java.util.List;
+import java.util.LinkedList;
 
 public class PathOptions
 {
   public Location start;
   public Location end;
-  public List<Location> midpoints = new List<Location>();
+  public List<Location> midpoints = new LinkedList<Location>();
   public boolean cheapest;
   public boolean shortest;
   public boolean withinRange;
