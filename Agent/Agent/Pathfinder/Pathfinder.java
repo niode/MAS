@@ -8,7 +8,30 @@ import java.util.*;
 
 public class Pathfinder
 {
-  public static final int MAX = Integer.MAX_VALUE;
+  private static final int MAX = Integer.MAX_VALUE;
+  public Direction getDirection(Location a, Location b)
+  {
+    int SOUTH = 1;
+    int NORTH = 1 << 1;
+    int WEST = 1 << 2;
+    int EAST = 1 << 3;
+    int pos = 0;
+    if(a.getRow() < b.getRow()) pos |= NORTH;
+    if(a.getRow() > b.getRow()) pos |= SOUTH;
+    if(a.getCol() < b.getCol()) pos |= WEST;
+    if(a.getCol() > b.getCol()) pos |= EAST;
+
+    if     (pos ^ SOUTH == 0)          return Direction.SOUTH;
+    else if(pos ^ NORTH == 0)          return Direction.NORTH;
+    else if(pos ^ WEST == 0)           return Direction.WEST;
+    else if(pos ^ EAST == 0)           return Direction.EAST;
+    else if(pos ^ (NORTH | EAST) == 0) return Direction.NORTH_EAST;
+    else if(pos ^ (NORTH | WEST) == 0) return Direction.NORTH_WEST;
+    else if(pos ^ (SOUTH | EAST) == 0) return Direction.SOUTH_EAST;
+    else if(pos ^ (SOUTH | WEST) == 0) return Direction.SOUTH_WEST;
+    else return Direction.STAY_PUT;
+  }
+
   public static Path getPath(Simulation sim, PathOptions opt)
   {
     return getPathFromTree(spanningTree(sim, opt), opt);

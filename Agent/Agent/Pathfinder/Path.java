@@ -19,7 +19,7 @@ public class Path
     {
       if(a.getLength() - b.getLength() < 0) return -1;
       if(a.getLength() == b.getLength()) return 0;
-      return 0;
+      return 1;
     }
   }
 
@@ -35,9 +35,7 @@ public class Path
 
   public long getMoveCost()
   {
-  
-    // Placeholder.
-    return 0;
+    return moveCost;
   }
 
   public long getTurnCount()
