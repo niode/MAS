@@ -1,0 +1,38 @@
+package Agent;
+
+import Agent.*;
+import Agent.Core.*;
+import Ares.*;
+import Ares.Commands.*;
+import Ares.Commands.AgentCommands.*;
+import java.util.List;
+import java.util.ArrayList;
+
+public class TestIntelligence extends Intelligence
+{
+  private List<AgentCommand> list = new ArrayList<AgentCommand>();
+
+  public TestIntelligence(Simulation sim, Communicator com)
+  {
+    super(sim, com);
+    list.add(new SLEEP());
+    list.add(new OBSERVE(new Location(0, 0)));
+    list.add(new SAVE_SURV());
+    list.add(new TEAM_DIG());
+    list.add(new MOVE(Direction.SOUTH_WEST));
+    AgentIDList idList = new AgentIDList();
+    idList.add(new AgentID(0, BaseAgent.getBaseAgent().getAgentID().getGID()));
+    list.add(new SEND_MESSAGE(idList, "This is a test"));
+  }
+
+  public void think()
+  {
+    BaseAgent agent = BaseAgent.getBaseAgent();
+    BaseAgent.log(LogLevels.Always, "Thinking");
+    AgentCommand command = list.get(sim.getRound() % list.size());
+    BaseAgent.log(LogLevels.Always, "Sending " + command);
+    com.send(command);
+    com.send(new END_TURN());
+    sim.advance();
+  }
+}
