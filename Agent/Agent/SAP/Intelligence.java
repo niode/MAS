@@ -18,6 +18,6 @@ public class Intelligence extends Agent.Intelligence
   public void think()
   {
     Simulation sim = getSimulation();
-    getCommunicator().send(data.getAction(sim).getCommand(sim));
+    getCommunicator().send(data.getAction(sim, sim.getSelfID()).getCommand(sim));
   }
 }
