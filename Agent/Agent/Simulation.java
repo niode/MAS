@@ -16,7 +16,7 @@ public class Simulation
   public static final int MAX_LENGTH = 50*50;
 
   private World world = null;
-  private List<Agent> agents = new ArrayList<Agent>(NUM_AGENTS * NUM_TEAMS);
+  private List<Agent> agents;
   private List<Location> chargers = new LinkedList<Location>();
   private boolean[][] visited = null;
   private AgentID self = null;
@@ -28,9 +28,10 @@ public class Simulation
 
   public Simulation()
   {
+    agents = new ArrayList<Agent>(NUM_AGENTS * NUM_TEAMS);
     for(int i = 0; i < NUM_TEAMS; i++)
       for(int j = 0; j < NUM_AGENTS; j++)
-        agents.set(i, new Agent(new AgentID(j+1, i+1), new Location(-1,-1), -1));
+        agents.add(new Agent(new AgentID(j+1, i+1), new Location(-1,-1), -1));
   }
 
   public void setSelf(AgentID id)
