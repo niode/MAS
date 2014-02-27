@@ -27,10 +27,13 @@ public class Brain{
     
     public void setStartState(World world, AgentID id, Location location, int energy)
     {
-      sim.setSelf(id);
+      System.out.println("PRINTING THE THINGS HERE " +world+" "+id+" "+location);
+    	sim.setSelf(id);
+
       sim.update(world);
       sim.update(id, energy);
       sim.update(id, location);
+      
     }
 
     

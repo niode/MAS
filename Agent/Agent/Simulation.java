@@ -214,6 +214,13 @@ public class Simulation
 
   public void update(AgentID id, Location location)
   {
+	  System.out.println("ID: "+id);
+	  System.out.println("Location: "+location);
+	  System.out.println("get agent: "+getAgent(id));
+	  System.out.println("agent get location: "+getAgent(id).getLocation());
+	  System.out.println("world is "+world);
+	  System.out.println("world get location: "+world.getCell( getAgent(id).getLocation() ) );
+	  System.out.println("and go");
     if(world == null) return;
     Agent agent = getAgent(id);
     if(world.getCell(agent.getLocation()) != null)

@@ -1,0 +1,407 @@
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replay.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( TRUE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: true 
+Ares  : Parsing Save_Surv from Save_Surv = ( COUNT , C_ALL ); in "SysFiles/Config.ares"
+Ares  : Points for largest group saving survivors
+Ares  : Points for all groups when tied saving survivors
+Ares  : Starting viewer.
+Ares  : Simulation Over.
+Ares  : Simulation Over.
+Ares: Done.
+=================================================
+Results for each Group
+(Number Saved,Number Alive,Number Dead)
+=================================================
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replay.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Added agent [ ID 2 , GID 1 ]
+Ares  : Added agent [ ID 3 , GID 1 ]
+Ares  : Added agent [ ID 4 , GID 1 ]
+Ares  : Added agent [ ID 5 , GID 1 ]
+Ares  : Added agent [ ID 6 , GID 1 ]
+Ares  : Added agent [ ID 7 , GID 1 ]
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replay.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Added agent [ ID 2 , GID 1 ]
+Ares  : Added agent [ ID 3 , GID 1 ]
+Ares  : Added agent [ ID 4 , GID 1 ]
+Ares  : Added agent [ ID 5 , GID 1 ]
+Ares  : Added agent [ ID 6 , GID 1 ]
+Ares  : Added agent [ ID 7 , GID 1 ]
+Ares  : Running simulation.
+Running for 100 rounds
+Ares  : Round: 1
+Ares  : Round: 2
+Ares  : Group 1 saved 1 survivors dead.
+Ares  : Round: 3
+Ares  : Round: 4
+Ares  : Round: 5
+Ares  : Round: 6
+Ares  : Round: 7
+Ares  : Round: 8
+Ares  : Round: 9
+Ares  : Round: 10
+Ares  : Round: 11
+Ares  : Round: 12
+Ares  : Round: 13
+Ares  : Round: 14
+Ares  : Group 1 saved 100 survivors alive.
+Ares  : Round: 15
+Ares  : Round: 16
+Ares  : Agent [ ID 2 , GID 1 ] ran into killer grid and died.
+Ares  : Agent [ ID 3 , GID 1 ] ran into killer grid and died.
+Ares  : Agent [ ID 4 , GID 1 ] ran into killer grid and died.
+Ares  : Agent [ ID 6 , GID 1 ] ran into killer grid and died.
+Ares  : Round: 17
+Ares  : Round: 18
+Ares  : Round: 19
+Ares  : Round: 20
+Ares  : Round: 21
+Ares  : Round: 22
+Ares  : Round: 23
+Ares  : Round: 24
+Ares  : Round: 25
+Ares  : Round: 26
+Ares  : Round: 27
+Ares  : Round: 28
+Ares  : Agent [ ID 1 , GID 1 ] ran into killer grid and died.
+Ares  : Round: 29
+Ares  : Round: 30
+Ares  : Round: 31
+Ares  : Round: 32
+Ares  : Round: 33
+Ares  : Round: 34
+Ares  : Round: 35
+Ares  : Round: 36
+Ares  : Round: 37
+Ares  : Round: 38
+Ares  : Round: 39
+Ares  : Round: 40
+Ares  : Agent [ ID 5 , GID 1 ] ran into the fire and died.
+Ares  : Agent [ ID 7 , GID 1 ] ran into the fire and died.
+Ares  : Round: 41
+Ares  : All Agents are Dead !!!
+Ares  : Simulation Over.
+Ares: Done.
+=================================================
+Results for each Group
+(Number Saved,Number Alive,Number Dead)
+=================================================
+( GID 1 ) NAME Test = ( 101 , 100 , 1 );
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replay.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Added agent [ ID 2 , GID 1 ]
+Ares  : Added agent [ ID 3 , GID 1 ]
+Ares  : Added agent [ ID 4 , GID 1 ]
+Ares  : Added agent [ ID 5 , GID 1 ]
+Ares  : Added agent [ ID 6 , GID 1 ]
+Ares  : Added agent [ ID 7 , GID 1 ]
+Ares  : Running simulation.
+Running for 100 rounds
+Ares  : Round: 1
+Ares  : Round: 2
+Ares  : Simulation Over.
+Ares  : Ares is shutdown.
+Ares  : Simulation Over.
+Ares: Done.
+=================================================
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replay.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Added agent [ ID 2 , GID 1 ]
+Ares  : Added agent [ ID 3 , GID 1 ]
+Ares  : Added agent [ ID 4 , GID 1 ]
+Ares  : Added agent [ ID 5 , GID 1 ]
+Ares  : Added agent [ ID 6 , GID 1 ]
+Ares  : Added agent [ ID 7 , GID 1 ]
+Ares  : Running simulation.
+Running for 100 rounds
+Ares  : Round: 1
+Ares  : Round: 2
+Ares  : Group 1 saved 1 survivors dead.
+Ares  : Round: 3
+Ares  : Simulation Over.
+Ares  : Ares is shutdown.
+Ares  : Simulation Over.
+Ares: Done.
+=================================================
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replay.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Simulation Over.
+Ares  : Simulation Over.
+Ares: Done.
+=================================================
+Results for each Group
+(Number Saved,Number Alive,Number Dead)
+=================================================
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replay.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Added agent [ ID 2 , GID 1 ]
+Ares  : Added agent [ ID 3 , GID 1 ]
+Ares  : Added agent [ ID 4 , GID 1 ]
+Ares  : Added agent [ ID 5 , GID 1 ]
+Ares  : Added agent [ ID 6 , GID 1 ]
+Ares  : Added agent [ ID 7 , GID 1 ]
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Can't create server socket at port: 6001
+Ares  : Unable to start up.
+Ares  : Added agent [ ID 8 , GID 1 ]
+Ares  : Added agent [ ID 9 , GID 1 ]
+Ares  : Added agent [ ID 10 , GID 1 ]
+Ares  : Added agent [ ID 11 , GID 1 ]
+Ares  : Added agent [ ID 12 , GID 1 ]
+Ares  : Added agent [ ID 13 , GID 1 ]
+Ares  : Added agent [ ID 14 , GID 1 ]
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Can't create server socket at port: 6001
+Ares  : Unable to start up.
+Ares  : Added agent [ ID 15 , GID 1 ]
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Can't create server socket at port: 6001
+Ares  : Unable to start up.
+Ares  : Added agent [ ID 16 , GID 1 ]
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Can't create server socket at port: 6001
+Ares  : Unable to start up.
+Ares  : Added agent [ ID 17 , GID 1 ]
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Can't create server socket at port: 6001
+Ares  : Unable to start up.
+Ares  : Added agent [ ID 18 , GID 1 ]
+Ares  : Added agent [ ID 19 , GID 1 ]
+Ares  : Added agent [ ID 20 , GID 1 ]
+Ares  : Added agent [ ID 21 , GID 1 ]
+Ares  : Added agent [ ID 22 , GID 1 ]
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replay.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Simulation Over.
+Ares  : Simulation Over.
+Ares: Done.
+=================================================
+Results for each Group
+(Number Saved,Number Alive,Number Dead)
+=================================================
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replay.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Can't create server socket at port: 6001
+Ares  : Unable to start up.
+Ares  : Simulation Over.
+Ares  : Simulation Over.
+Ares: Done.
+=================================================
+Results for each Group
+(Number Saved,Number Alive,Number Dead)
+=================================================
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replay.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Added agent [ ID 2 , GID 1 ]
+Ares  : Added agent [ ID 3 , GID 1 ]
+Ares  : Added agent [ ID 4 , GID 1 ]
+Ares  : Added agent [ ID 5 , GID 1 ]
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replay.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Added agent [ ID 2 , GID 1 ]
+Ares  : Added agent [ ID 3 , GID 1 ]
+Ares  : Added agent [ ID 4 , GID 1 ]
+Ares  : Added agent [ ID 5 , GID 1 ]
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replay.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Can't create server socket at port: 6001
+Ares  : Unable to start up.
+Ares  : Added agent [ ID 2 , GID 1 ]
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replay.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Can't create server socket at port: 6001
+Ares  : Unable to start up.
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replay.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replay.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replay.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replay.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replay.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
