@@ -216,7 +216,8 @@ public class Simulation
   {
     if(world == null) return;
     Agent agent = getAgent(id);
-    world.getCell(agent.getLocation()).removeAgent(id);
+    if(world.getCell(agent.getLocation()) != null)
+      world.getCell(agent.getLocation()).removeAgent(id);
     world.getCell(location).addAgent(id);
     agent.setLocation(location);
   }
