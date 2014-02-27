@@ -405,3 +405,11 @@ Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
 Ares  : Points for all groups saving survivors
 Ares  : Starting viewer.
 Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Simulation Over.
+Ares  : Simulation Over.
+Ares: Done.
+=================================================
+Results for each Group
+(Number Saved,Number Alive,Number Dead)
+=================================================
+( GID 1 ) NAME Test = ( 0 , 0 , 0 );
