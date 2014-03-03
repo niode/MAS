@@ -1,0 +1,6 @@
+Config
+{
+  Send_Message = (  TRUE ,  ALL_GROUPS  );
+  Sleep_On_Every = (  FALSE  );
+  Save_Surv = (  ALL  );
+}
