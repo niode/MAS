@@ -219,12 +219,19 @@ public class Simulation
 	  System.out.println("get agent: "+getAgent(id));
 	  System.out.println("agent get location: "+getAgent(id).getLocation());
 	  System.out.println("world is "+world);
-	  System.out.println("world get location: "+world.getCell( getAgent(id).getLocation() ) );
+	  
+	  //Temp fix. New agent has a default location of (-1,-1) before server gives location!
+	  if (getAgent(id).getLocation().getRow() != -1 && getAgent(id).getLocation().getCol() != -1)
+		  System.out.println("world get location: "+world.getCell( getAgent(id).getLocation() ) );
+	  
 	  System.out.println("and go");
     if(world == null) return;
     Agent agent = getAgent(id);
-    if(world.getCell(agent.getLocation()) != null)
+    
+    //Temp fix. Ensure getcell isn't done with new agent's default (-1,-1) location.
+    if(agent.getLocation().getRow() != -1 && agent.getLocation().getCol() != -1 && world.getCell(agent.getLocation()) != null)
       world.getCell(agent.getLocation()).removeAgent(id);
+    
     world.getCell(location).addAgent(id);
     agent.setLocation(location);
   }
