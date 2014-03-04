@@ -51,7 +51,7 @@ public class Pathfinder
     {
       opt.end = loc;
       Path tmp = getPathFromTree(G, opt);
-      if(tmp != null && Path.compare(result, tmp, opt) < 0)
+      if(result == null || (tmp != null && Path.compare(result, tmp, opt) < 0))
         result = tmp;
     }
     return result;
@@ -96,7 +96,7 @@ public class Pathfinder
       for(Direction d : Direction.All())
       {
         Location next = currentNode.location.add(d.getRowInc(), d.getColInc());
-        if(!sim.isKiller(next) && sim.getCell(next) != null)
+        if(sim.getCell(next) != null && !sim.isKiller(next))
         {
           tmpDelta = G[next.getRow()][next.getCol()].delta;
           tmpDist = currentNode.distance + 1;

@@ -1,6 +1,7 @@
 package Agent;
 
 import Agent.Core.*;
+import Agent.SAP.*;
 
 public class Main {
 
@@ -10,7 +11,8 @@ public class Main {
 
             Simulation sim = new Simulation();
             Communicator com = new Communicator(BaseAgent.getBaseAgent(), sim);
-            Intelligence ai = new TestIntelligence(sim, com);
+            //Intelligence ai = new TestIntelligence(sim, com);
+            Intelligence ai = new Agent.SAP.Intelligence(sim, com);
             Brain brain = new Brain(BaseAgent.getBaseAgent(), ai, sim, com);
 
             BaseAgent.getBaseAgent().start(args[0], args[1], brain);

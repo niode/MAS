@@ -99,6 +99,8 @@ public class Brain{
     public void think() {
         BaseAgent.log(LogLevels.Always, "Thinking");
         ai.think();
+        com.send(new END_TURN());
+        sim.advance();
     }
 
     public void handleAresCommand(AresCommand ares_command) throws AresParserException {

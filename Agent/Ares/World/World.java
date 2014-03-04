@@ -27,10 +27,6 @@ public class World {
         }
     }
 
-    public Cell[][] getCell() {
-        return world;
-    }
-
     public void setCell(Cell[][] world) {
         this.rows = world.length;
         this.cols = world[0].length;
@@ -55,10 +51,6 @@ public class World {
     }
 
     public Cell getCell(Location location) {
-    	System.out.println("WORLD.GETCELL: location is "+location);
-    	System.out.println("WORLD.GETCELL: world is "+world);
-    	System.out.println("valid? : " +location.valid(rows, cols));
-    	System.out.println("returning: "+ world[location.getRow()][location.getCol()]);
         if (world == null || location == null) {
             return null;
         }

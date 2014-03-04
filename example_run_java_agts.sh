@@ -1,1 +1,0 @@
-./run_java_agts.sh ExampleWorld.world 100 1 Agents.jar Agent.Main replay.txt output.txt

@@ -70,5 +70,6 @@ Stacks
 
 }
 
-System Run date: Thu Feb 27 14:37:42 MST 2014
-ADD_AGT; Info(ID 1, GID 1, Eng 500):Loc(Row 0, Col 0);
+System Run date: Thu Feb 27 15:38:11 MST 2014
+MSG;System Run ended on: Thu Feb 27 15:38:32 MST 2014
+MSG;Kernel Shutting Down;

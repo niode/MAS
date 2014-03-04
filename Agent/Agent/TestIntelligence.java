@@ -30,9 +30,5 @@ public class TestIntelligence extends Intelligence
     BaseAgent agent = BaseAgent.getBaseAgent();
     BaseAgent.log(LogLevels.Always, "Thinking");
     AgentCommand command = list.get(sim.getRound() % list.size());
-    BaseAgent.log(LogLevels.Always, "Sending " + command);
-    com.send(command);
-    com.send(new END_TURN());
-    sim.advance();
   }
 }

@@ -10,6 +10,7 @@ public class Path
   private int moveCost;
   public static int compare(Path a, Path b, PathOptions opt)
   {
+    System.out.println("comparing:" + a.toString() + " | " + b.toString());
     if(opt.cheapest)
     {
       if(a.getMoveCost() - b.getMoveCost() < 0) return -1;
@@ -58,5 +59,19 @@ public class Path
   public Location getLast()
   {
     return path.getLast();
+  }
+
+  public String toString()
+  {
+    StringBuilder builder = new StringBuilder();
+    int i = 0;
+    for(Location l : path)
+    {
+      builder.append(l.toString());
+      if(i + 1 < path.size())
+        builder.append(" -> ");
+      i++;
+    }
+    return builder.toString();
   }
 }

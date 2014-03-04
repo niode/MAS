@@ -9,7 +9,7 @@ public class Coordinate
 {
   // All dimensions should be normalized to [0,100] so that distances can be calculated uniformly.
 
-  private long[] dimensions = new long[5];
+  private long[] dimensions = new long[3];
 
   public Coordinate(long[] dimensions)
   {
@@ -25,11 +25,14 @@ public class Coordinate
 
     // Nearest charger.
     PathOptions opt = new PathOptions(self.getLocation());
-    dimensions[1] = (100*(Pathfinder.getNearestCharger(sim, opt).getLength()))/Simulation.MAX_LENGTH;
+    Path path = Pathfinder.getNearestCharger(sim, opt);
+    if(path == null) dimensions[1] = Long.MAX_VALUE;
+    else             dimensions[1] = (100 * path.getLength())/Simulation.MAX_LENGTH;
 
     // Nearest survivor that can be saved individually.
-    dimensions[2] = (100*(Pathfinder.getNearestSurvivor(sim, opt).getLength()))/Simulation.MAX_LENGTH;
-
+    path = Pathfinder.getNearestCharger(sim, opt);
+    if(path == null) dimensions[2] = Long.MAX_VALUE;
+    else             dimensions[2] = (100 * path.getLength())/Simulation.MAX_LENGTH;
   }
 
   public long getDistance(Coordinate other)
