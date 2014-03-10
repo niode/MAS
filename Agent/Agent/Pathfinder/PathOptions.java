@@ -6,6 +6,11 @@ import java.util.LinkedList;
 
 public class PathOptions
 {
+  public static final int CHEAPEST      = 1;
+  public static final int SHORTEST      = 1 << 1;
+  public static final int WITHIN_RANGE  = 1 << 2;
+  public static final int VISIT_CHARGER = 1 << 3;
+
   public Location start;
   public Location end;
   public List<Location> midpoints = new LinkedList<Location>();
@@ -16,7 +21,7 @@ public class PathOptions
   public long maxCost;
   public long maxTurns;
   public boolean visitCharger;
-  public int unknownCellCost = -1;
+  public long unknownCellCost = -1;
 
   // Allow only start location for use in functions like
   // getNearestWhatever.
@@ -28,5 +33,27 @@ public class PathOptions
   {
     this.start = start;
     this.end = end;
+  }
+
+  public PathOptions(long opt)
+  {
+    setupOptions(opt);
+  }
+
+  public PathOptions(long opt, long length, long cost, long turns, long unknown)
+  {
+    setupOptions(opt);
+    maxLength = length;
+    maxCost = cost;
+    maxTurns = turns;
+    unknownCellCost = unknown;
+  }
+
+  private void setupOptions(long opt)
+  {
+    if((opt & CHEAPEST) > 0) cheapest = true;
+    if((opt & SHORTEST) > 0) shortest = true;
+    if((opt & WITHIN_RANGE) > 0) withinRange = true;
+    if((opt & VISIT_CHARGER) > 0) visitCharger = true;
   }
 }

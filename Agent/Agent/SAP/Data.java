@@ -25,4 +25,9 @@ public abstract class Data
     }
     return current.action;
   }
+
+  public void add(long[] coord, Action act)
+  {
+    list.add(new Pair(new Coordinate(coord), act));
+  }
 }
