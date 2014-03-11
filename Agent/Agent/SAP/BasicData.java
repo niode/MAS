@@ -10,6 +10,6 @@ public class BasicData extends Data
   {
     super();
     add(new long[]{0, 0, 0  }, new SleepAction());
-    add(new long[]{0, 1, MAX}, new MoveAction(MoveAction.Option.NEAREST_CHARGER, new PathOptions(PathOptions.CHEAPEST)));
+    add(new long[]{0, 1, -1 }, new MoveAction(MoveAction.Option.NEAREST_CHARGER, new PathOptions(PathOptions.CHEAPEST)));
   }
 }

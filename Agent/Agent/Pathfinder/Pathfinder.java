@@ -16,10 +16,10 @@ public class Pathfinder
     int WEST = 1 << 2;
     int EAST = 1 << 3;
     int pos = 0;
-    if(a.getRow() < b.getRow()) pos |= NORTH;
-    if(a.getRow() > b.getRow()) pos |= SOUTH;
-    if(a.getCol() < b.getCol()) pos |= WEST;
-    if(a.getCol() > b.getCol()) pos |= EAST;
+    if(a.getRow() < b.getRow()) pos |= SOUTH;
+    if(a.getRow() > b.getRow()) pos |= NORTH;
+    if(a.getCol() < b.getCol()) pos |= EAST;
+    if(a.getCol() > b.getCol()) pos |= WEST;
 
     if     ((pos ^ SOUTH) == 0)          return Direction.SOUTH;
     else if((pos ^ NORTH) == 0)          return Direction.NORTH;
@@ -67,9 +67,10 @@ public class Pathfinder
   {
     LinkedList<Location> list = new LinkedList<Location>();
     Node current = G[opt.end.getRow()][opt.end.getCol()];
-    int cost = current.cost;
-    while(current != null)
+    int cost = 0;
+    while(current != null && !current.location.equals(opt.start))
     {
+      cost += current.cost;
       list.addFirst(current.location);
       current = current.predecessor;
     }
@@ -101,6 +102,7 @@ public class Pathfinder
           tmpDelta = G[next.getRow()][next.getCol()].delta;
           tmpDist = currentNode.distance + 1;
           tmpCost = currentNode.cost + sim.getMoveCost(next);
+
           if(opt.shortest)
           {
             if(tmpDist < tmpDelta && tmpDist < opt.maxLength && tmpCost < opt.maxCost)
@@ -126,6 +128,7 @@ public class Pathfinder
         }
       }
     }
+
     return G;
   }
 
@@ -146,7 +149,7 @@ public class Pathfinder
     }
     public int compareTo(Object obj)
     {
-      return delta = ((Node)obj).delta;
+      return delta - ((Node)obj).delta;
     }
     public boolean equals(Object obj)
     {

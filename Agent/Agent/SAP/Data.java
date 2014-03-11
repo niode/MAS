@@ -12,11 +12,11 @@ public abstract class Data
   public Action getAction(Simulation sim, AgentID id)
   {
     Coordinate sit = new Coordinate(sim, id);
-    long min = Long.MAX_VALUE;
+    double min = Double.MAX_VALUE;
     Pair current = null;
     for(Pair pair : list)
     {
-      long tmp = sit.getDistance(pair.coord);
+      double tmp = sit.getDistance(pair.coord);
       if(tmp < min)
       {
         min = tmp;

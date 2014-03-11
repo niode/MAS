@@ -205,6 +205,7 @@ public class Simulation
   // Update an agent's energy level.
   public void update(AgentID id, int energy)
   {
+    System.out.printf("Agent %d, energy %d\n", id.getID(), energy);
     for(Agent agnt : agents)
     {
       if(agnt.getAgentID().equals(id))
@@ -214,11 +215,6 @@ public class Simulation
 
   public void update(AgentID id, Location location)
   {
-	  System.out.println("ID: "+id);
-	  System.out.println("Location: "+location);
-	  System.out.println("get agent: "+getAgent(id));
-	  System.out.println("agent get location: "+getAgent(id).getLocation());
-	  System.out.println("world is "+world);
 	  
 	  //Temp fix. New agent has a default location of (-1,-1) before server gives location!
 	  if (getAgent(id).getLocation().getRow() != -1 && getAgent(id).getLocation().getCol() != -1)
@@ -281,13 +277,6 @@ public class Simulation
                            si.getDamageFactor(),
                            si.getBodyMass(),
                            si.getMentalState());
-    } else if(info instanceof SurvivorGroupInfo)
-    {
-      SurvivorGroupInfo sgi = (SurvivorGroupInfo)info;
-      layer = new SurvivorGroup(sgi.getEnergyLevel(),
-                                sgi.getNumberOfSurvivors());
-    } else if(info instanceof RubbleInfo)
-    {
       RubbleInfo ri = (RubbleInfo)info;
       layer = new Rubble(ri.getRemoveEnergy(),
                          ri.getRemoveAgents());

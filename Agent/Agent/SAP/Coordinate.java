@@ -21,28 +21,54 @@ public class Coordinate
     Agent self = sim.getAgent(id);
 
     // Energy level.
-    dimensions[0] = (100*self.getEnergyLevel())/Simulation.MAX_ENERGY;
+    dimensions[0] = normalize(self.getEnergyLevel(), 0, 100);
 
     // Nearest charger.
     PathOptions opt = new PathOptions(self.getLocation());
     Path path = Pathfinder.getNearestCharger(sim, opt);
     if(path == null) dimensions[1] = Long.MAX_VALUE;
-    else             dimensions[1] = (100 * path.getLength())/Simulation.MAX_LENGTH;
+    else             dimensions[1] = normalize(path.getLength(), 0, 10);
+
 
     // Nearest survivor that can be saved individually.
     path = Pathfinder.getNearestCharger(sim, opt);
     if(path == null) dimensions[2] = Long.MAX_VALUE;
-    else             dimensions[2] = (100 * path.getLength())/Simulation.MAX_LENGTH;
+    else             dimensions[2] = normalize(path.getLength(), 0, 10);
   }
 
-  public long getDistance(Coordinate other)
+  private long normalize(long value, long min, long max)
+  {
+    value -= min;
+    max -= min;
+
+    return (long)Math.ceil((double)value/(double)max);
+  }
+
+  public double getDistance(Coordinate other)
   {
     long tmp = 0;
     for(int i = 0; i < dimensions.length; i++)
     {
-      long diff = dimensions[i] - other.dimensions[i];
-      tmp += diff*diff;
+      if(dimensions[i] >= 0 && other.dimensions[i] >= 0)
+      {
+        long diff = dimensions[i] - other.dimensions[i];
+        tmp += diff*diff;
+      }
     }
-    return (long)Math.sqrt(tmp);
+
+    return Math.sqrt(tmp);
+  }
+
+  public String toString()
+  {
+    StringBuilder builder = new StringBuilder();
+    builder.append("(");
+    for(int i = 0; i < dimensions.length; i++)
+    {
+      builder.append(dimensions[i]);
+      if(i + 1 < dimensions.length) builder.append(", ");
+    }
+    builder.append(")");
+    return builder.toString();
   }
 }

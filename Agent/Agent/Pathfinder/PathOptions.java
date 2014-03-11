@@ -17,9 +17,9 @@ public class PathOptions
   public boolean cheapest;
   public boolean shortest;
   public boolean withinRange;
-  public long maxLength;
-  public long maxCost;
-  public long maxTurns;
+  public long maxLength = Long.MAX_VALUE;
+  public long maxCost = Long.MAX_VALUE;
+  public long maxTurns = Long.MAX_VALUE;
   public boolean visitCharger;
   public long unknownCellCost = -1;
 
