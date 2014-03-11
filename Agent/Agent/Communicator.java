@@ -37,7 +37,7 @@ public class Communicator
   public void send(AgentCommand command)
   {
     base.send(command);
-    BaseAgent.log(LogLevels.Always, "Sending " + command);
+    base.log(LogLevels.Always, "Sending " + command);
   }
 
   // Send to target.

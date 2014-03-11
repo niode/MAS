@@ -1,5 +1,6 @@
 package Agent;
 
+import Agent.Core.BaseAgent;
 import Ares.Commands.AgentCommand;
 import java.util.Queue;
 
@@ -7,11 +8,13 @@ public abstract class Intelligence
 {
   Simulation sim;
   Communicator com;
+  public BaseAgent base;
 
-  public Intelligence(Simulation sim, Communicator com)
+  public Intelligence(Simulation sim, Communicator com,BaseAgent base)
   {
     this.com = com;
     this.sim = sim;
+    this.base = base;
   }
 
   public Simulation getSimulation()
@@ -23,6 +26,9 @@ public abstract class Intelligence
   {
     return com;
   }
+    public BaseAgent getBase(){
+        return base;
+    }
 
   public abstract void think();
 }

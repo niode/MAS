@@ -41,36 +41,36 @@ public class Brain{
     }
 
     public void handleDisconnect() {
-        BaseAgent.log(LogLevels.Always, "DISCONNECT");
+        base.log(LogLevels.Always, "DISCONNECT");
     }
 
     
     public void handleDead() {
-        BaseAgent.log(LogLevels.Always, "DEAD");
+        base.log(LogLevels.Always, "DEAD");
     }
 
     
     public void handleFwdMessage(FWD_MESSAGE fwd_message) {
-        BaseAgent.log(LogLevels.Always, "FWD MESSAGE:" + fwd_message);
-        BaseAgent.log(LogLevels.Test, "" + fwd_message);
+        base.log(LogLevels.Always, "FWD MESSAGE:" + fwd_message);
+        base.log(LogLevels.Test, "" + fwd_message);
         com.receive(fwd_message);
     }
 
     
     public void handleMoveResult(MOVE_RESULT move_result) {
-        BaseAgent.log(LogLevels.Always, "MOVE_RESULT:" + move_result);
-        BaseAgent.log(LogLevels.Test, "" + move_result);
+        base.log(LogLevels.Always, "MOVE_RESULT:" + move_result);
+        base.log(LogLevels.Test, "" + move_result);
         sim.update(move_result.getSurroundInfo());
         sim.update(sim.getSelfID(), move_result.getEnergyLevel());
     }
 
     
     public void handleObserveResult(OBSERVE_RESULT observe_result) {
-        BaseAgent.log(LogLevels.Always, "OBSERVE_RESULT:" + observe_result);
-        BaseAgent.log(LogLevels.Always, observe_result.getEnergyLevel() + "");
-        BaseAgent.log(LogLevels.Always, observe_result.getLifeSignals() + "");
-        BaseAgent.log(LogLevels.Always, observe_result.getTopLayerInfo() + "");
-        BaseAgent.log(LogLevels.Test, "" + observe_result);
+        base.log(LogLevels.Always, "OBSERVE_RESULT:" + observe_result);
+        base.log(LogLevels.Always, observe_result.getEnergyLevel() + "");
+        base.log(LogLevels.Always, observe_result.getLifeSignals() + "");
+        base.log(LogLevels.Always, observe_result.getTopLayerInfo() + "");
+        base.log(LogLevels.Test, "" + observe_result);
         CellInfo info = observe_result.getTopLayerInfo();
         sim.update(info);
         sim.update(info.getLocation(), observe_result.getLifeSignals());
@@ -79,23 +79,23 @@ public class Brain{
 
     
     public void handleSaveSurvResult(SAVE_SURV_RESULT save_surv_result) {
-        BaseAgent.log(LogLevels.Always, "SAVE_SURV_RESULT:" + save_surv_result);
-        BaseAgent.log(LogLevels.Test, "" + save_surv_result);
+        base.log(LogLevels.Always, "SAVE_SURV_RESULT:" + save_surv_result);
+        base.log(LogLevels.Test, "" + save_surv_result);
         sim.update(sim.getSelfID(), save_surv_result.getEnergyLevel());
         sim.update(save_surv_result.getSurroundInfo());
     }
 
     
     public void handleTeamDigResult(TEAM_DIG_RESULT team_dig_result) {
-        BaseAgent.log(LogLevels.Always, "TEAM_DIG_RESULT:" + team_dig_result);
-        BaseAgent.log(LogLevels.Test, "" + team_dig_result);
+        base.log(LogLevels.Always, "TEAM_DIG_RESULT:" + team_dig_result);
+        base.log(LogLevels.Test, "" + team_dig_result);
         sim.update(sim.getSelfID(), team_dig_result.getEnergyLevel());
         sim.update(team_dig_result.getSurroundInfo());
     }
 
     
     public void think() {
-        BaseAgent.log(LogLevels.Always, "Thinking");
+        base.log(LogLevels.Always, "Thinking");
         ai.think();
         com.send(new END_TURN());
         sim.advance();
@@ -114,7 +114,7 @@ public class Brain{
                           connect_ok.getLocation(),
                           connect_ok.getEnergyLevel());
             agent.setAgentState(AgentStates.CONNECTED);
-            BaseAgent.log(LogLevels.Test, "Connected successfully");
+            base.log(LogLevels.Test, "Connected successfully");
         } else if (ares_command instanceof DEATH_CARD) {
             agent.setAgentState(AgentStates.SHUTTING_DOWN);
             handleDead();
@@ -152,11 +152,11 @@ public class Brain{
             TEAM_DIG_RESULT command = (TEAM_DIG_RESULT) ares_command;
             handleTeamDigResult((TEAM_DIG_RESULT) ares_command);
         } else if (ares_command instanceof ARES_UNKNOWN) {
-            BaseAgent.log(LogLevels.Always, "Brain: Got Unknown command reply from ARES");
+            base.log(LogLevels.Always, "Brain: Got Unknown command reply from ARES");
         } else if (ares_command instanceof CMD_RESULT_START) {
         } else if (ares_command instanceof CMD_RESULT_END) {
         } else {
-            BaseAgent.log(LogLevels.Always, "Brain: Got unrecognized reply from ARES " + ares_command.getClass());
+            base.log(LogLevels.Always, "Brain: Got unrecognized reply from ARES " + ares_command.getClass());
         }
     }
 }

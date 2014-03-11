@@ -12,9 +12,9 @@ public class TestIntelligence extends Intelligence
 {
   private List<AgentCommand> list = new ArrayList<AgentCommand>();
 
-  public TestIntelligence(Simulation sim, Communicator com)
+  public TestIntelligence(Simulation sim, Communicator com, BaseAgent base)
   {
-    super(sim, com);
+    super(sim, com,base);
     list.add(new SLEEP());
     list.add(new OBSERVE(new Location(0, 0)));
     list.add(new SAVE_SURV());
@@ -28,7 +28,7 @@ public class TestIntelligence extends Intelligence
   public void think()
   {
     BaseAgent agent = BaseAgent.getBaseAgent();
-    BaseAgent.log(LogLevels.Always, "Thinking");
+    base.log(LogLevels.Always, "Thinking");
     AgentCommand command = list.get(sim.getRound() % list.size());
   }
 }

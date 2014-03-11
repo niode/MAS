@@ -217,10 +217,10 @@ public class Simulation
   {
 	  
 	  //Temp fix. New agent has a default location of (-1,-1) before server gives location!
-	  if (getAgent(id).getLocation().getRow() != -1 && getAgent(id).getLocation().getCol() != -1)
-		  System.out.println("world get location: "+world.getCell( getAgent(id).getLocation() ) );
-	  
-	  System.out.println("and go");
+	  if (getAgent(id).getLocation().getRow() != -1 && getAgent(id).getLocation().getCol() != -1){
+		//  System.out.println("world get location: "+world.getCell( getAgent(id).getLocation() ) );
+      }
+
     if(world == null) return;
     Agent agent = getAgent(id);
     
@@ -245,6 +245,9 @@ public class Simulation
   public void update(CellInfo info)
   {
     if(world == null) return;
+
+    try{
+
     if(!visited[info.getLocation().getRow()][info.getLocation().getCol()])
     {
       visited[info.getLocation().getRow()][info.getLocation().getCol()] = true;
@@ -256,6 +259,14 @@ public class Simulation
       update(id, info.getLocation());
     }
     update(info.getLocation(), info.getTopLayerInfo());
+
+    }catch(Exception e){
+        System.out.println("visited is : "+visited.length +" by "+visited[0].length);
+        System.out.println("info.getLocation().getRow() : "+ info.getLocation().getRow());
+        System.out.println("info.getLocation().getCol() : "+ info.getLocation().getCol());
+        e.printStackTrace();
+        return;
+    }
   }
 
   public void update(Location location, LifeSignals info)
@@ -268,6 +279,7 @@ public class Simulation
 
   public void update(Location location, WorldObjectInfo info)
   {
+
     if(world == null) return;
     WorldObject layer = null;
     if(info instanceof SurvivorInfo)
@@ -277,10 +289,18 @@ public class Simulation
                            si.getDamageFactor(),
                            si.getBodyMass(),
                            si.getMentalState());
-      RubbleInfo ri = (RubbleInfo)info;
-      layer = new Rubble(ri.getRemoveEnergy(),
-                         ri.getRemoveAgents());
-    } else
+    }
+    else if( info instanceof SurvivorGroupInfo){
+        SurvivorGroupInfo sig = (SurvivorGroupInfo)info;
+        layer = new SurvivorGroup(sig.getID(),sig.getEnergyLevel(),sig.getNumberOfSurvivors());
+    }
+    else if(info instanceof RubbleInfo){
+        RubbleInfo ri = (RubbleInfo)info;
+        layer = new Rubble(ri.getRemoveEnergy(),
+                ri.getRemoveAgents());
+    }
+
+    else
     {
       layer = new BottomLayer();
     }

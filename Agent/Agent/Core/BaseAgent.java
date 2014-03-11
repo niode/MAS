@@ -184,13 +184,15 @@ public class BaseAgent {
         BaseAgent.log_test = log_test;
     }
 
-    public static void log(LogLevels lev, String message) {
+    public void log(LogLevels lev, String message) {
+
+
         if (lev == LogLevels.Test) {
             if (log_test) {
                 System.out.println("Agent: " + lev + " : " + message);
             }
         } else if (lev == LogLevels.Always) {
-            System.out.println("Agent: " + message);
+            System.out.println("Agent " + id.getID() +": " + message);
         } else if (lev == LogLevels.Warning) {
             System.out.println("Agent: WARNING " + message);
         } else if (lev == LogLevels.Error) {
