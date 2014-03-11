@@ -174,7 +174,7 @@ public class AresParser {
                 Text(scanner, "ENG_LEV");
                 int energy_level = Int(scanner);
                 Comma(scanner);
-                Text(scanner, "CELL_INFO");
+                Text(scanner, "GRID_INFO");
                 OpenRoundBracket(scanner);
                 CellInfo top_layer_info = CellInfo(scanner);
                 CloseRoundBracket(scanner);
@@ -325,7 +325,7 @@ public class AresParser {
 
     public static SurroundInfo SurroundInfo(StringTokenizer scanner) throws AresParserException {
         SurroundInfo Info = new SurroundInfo();
-        Text(scanner, "CURR_CELL");
+        Text(scanner, "CURR_GRID");
         OpenRoundBracket(scanner);
         Info.setCurrentInfo(CellInfo(scanner));
         CloseRoundBracket(scanner);
@@ -384,12 +384,12 @@ public class AresParser {
         String type = String(scanner);
         boolean normal_cell = true;
         switch (type) {
-            case "NO_CELL":
+            case "NO_GRID":
                 return new CellInfo();
-            case "NORMAL_CELL":
+            case "NORMAL_GRID":
                 normal_cell = true;
                 break;
-            case "CHARGING_CELL":
+            case "CHARGING_GRID":
                 normal_cell = false;
                 break;
             default:
