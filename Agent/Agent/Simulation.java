@@ -205,7 +205,6 @@ public class Simulation
   // Update an agent's energy level.
   public void update(AgentID id, int energy)
   {
-    System.out.printf("Agent %d, energy %d\n", id.getID(), energy);
     for(Agent agnt : agents)
     {
       if(agnt.getAgentID().equals(id))
@@ -215,17 +214,12 @@ public class Simulation
 
   public void update(AgentID id, Location location)
   {
-	  
-	  //Temp fix. New agent has a default location of (-1,-1) before server gives location!
-	  if (getAgent(id).getLocation().getRow() != -1 && getAgent(id).getLocation().getCol() != -1){
-		//  System.out.println("world get location: "+world.getCell( getAgent(id).getLocation() ) );
-      }
-
     if(world == null) return;
     Agent agent = getAgent(id);
-    
-    //Temp fix. Ensure getcell isn't done with new agent's default (-1,-1) location.
-    if(agent.getLocation().getRow() != -1 && agent.getLocation().getCol() != -1 && world.getCell(agent.getLocation()) != null)
+
+    // Check if the agent is in a valid location (e.g. ensure it
+    // has been initialized.
+    if(agent.getLocation().valid(world.getRows(), world.getCols()))
       world.getCell(agent.getLocation()).removeAgent(id);
     
     world.getCell(location).addAgent(id);
@@ -244,9 +238,7 @@ public class Simulation
 
   public void update(CellInfo info)
   {
-    if(world == null) return;
-
-    try{
+    if(world == null || info.getLocation().getRow() < 0 || info.getLocation().getCol() < 0) return;
 
     if(!visited[info.getLocation().getRow()][info.getLocation().getCol()])
     {
@@ -259,14 +251,6 @@ public class Simulation
       update(id, info.getLocation());
     }
     update(info.getLocation(), info.getTopLayerInfo());
-
-    }catch(Exception e){
-        System.out.println("visited is : "+visited.length +" by "+visited[0].length);
-        System.out.println("info.getLocation().getRow() : "+ info.getLocation().getRow());
-        System.out.println("info.getLocation().getCol() : "+ info.getLocation().getCol());
-        e.printStackTrace();
-        return;
-    }
   }
 
   public void update(Location location, LifeSignals info)
@@ -299,7 +283,6 @@ public class Simulation
         layer = new Rubble(ri.getRemoveEnergy(),
                 ri.getRemoveAgents());
     }
-
     else
     {
       layer = new BottomLayer();

@@ -96,6 +96,7 @@ public class Brain{
     
     public void think() {
         base.log(LogLevels.Always, "Thinking");
+        base.log(LogLevels.Always, "Location: " + sim.getSelf().getLocation().toString());
         ai.think();
         com.send(new END_TURN());
         sim.advance();
