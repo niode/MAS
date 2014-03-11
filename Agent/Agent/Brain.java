@@ -61,6 +61,7 @@ public class Brain{
         base.log(LogLevels.Always, "MOVE_RESULT:" + move_result);
         base.log(LogLevels.Test, "" + move_result);
         sim.update(move_result.getSurroundInfo());
+        sim.update(sim.getSelfID(), move_result.getSurroundInfo().getCurrentInfo().getLocation());
         sim.update(sim.getSelfID(), move_result.getEnergyLevel());
     }
 
