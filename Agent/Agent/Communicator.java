@@ -16,9 +16,11 @@ import java.util.List;
 
 public class Communicator
 {
+  private static final String DELIM = ",";
   // Internal message prefixes.
-  private static final String PREFIX_WO = "WO::";
   private static final String PREFIX_CELL = "CELL::";
+  private static final String PREFIX_AGENT = "AGENT::";
+  private static final String PREFIX_BEACON = "BEACON::";
 
   private BaseAgent base;
   private Simulation sim;
@@ -31,7 +33,19 @@ public class Communicator
 
   public void receive(FWD_MESSAGE msg)
   {
-    
+    if(msg.getFromAgentID().getGID() != sim.getSelfID().getGID())
+      return;
+    String[] split = msg.getMessage().split("::");
+    if(split[0].equals(PREFIX_CELL))
+    {
+
+    } else if(split[0].equals(PREFIX_AGENT))
+    {
+      parseAgent(split[1]);
+    } else if(split[0].equals(PREFIX_BEACON))
+    {
+      parseBeacon(split[1]);
+    }
   }
 
   public void send(AgentCommand command)
@@ -40,16 +54,9 @@ public class Communicator
     base.log(LogLevels.Always, "Sending " + command);
   }
 
-  // Send to target.
-  public void send(AgentID id, WorldObject obj)
+  public void send(AgentID id, Cell cell)
   {
-    send(id, format(obj));
-  }
-
-  // Send all.
-  public void send(WorldObject obj)
-  {
-    send(format(obj));
+    send(id, format(cell));
   }
 
   public void send(Cell cell)
@@ -70,13 +77,55 @@ public class Communicator
     base.send(new SEND_MESSAGE(idList, str));
   }
 
-  private String format(Cell cell)
+  private String format(Agent agent)
   {
-    return PREFIX_CELL + cell.toString();
+    Location loc = agent.getLocation();
+    AgentID id = agent.getAgentID();
+    long energy = agent.getEnergyLevel();
+    int alive = agent.isAlive() ? 1 : 0;
+    return String.format("%s%d,%d,%d,%d,%d,%d", PREFIX_AGENT, id.getGID(), id.getID(),
+                                                energy, alive, loc.getRow(), loc.getCol());
   }
 
-  private String format(WorldObject obj)
+  private void parseAgent(String string)
   {
-    return PREFIX_WO + obj.toString();
+    long[] numbers = mapLong(string.split(DELIM));
+    AgentID id = new AgentID((int)numbers[0], (int)numbers[1]);
+    long energy = numbers[2];
+    boolean alive = numbers[3] == 1;
+    Location loc = new Location((int)numbers[4], (int)numbers[5]);
+    sim.update(id, loc);
+    sim.update(id, (int)energy);
+  }
+
+  private String format(Beacon beacon)
+  {
+    Location loc = beacon.getLocation();
+    long type = beacon.getType();
+    return String.format("%s%d,%d,%d", PREFIX_BEACON, type, loc.getRow(), loc.getCol());
+  }
+
+  private void parseBeacon(String string)
+  {
+    long[] numbers = mapLong(string.split(DELIM));
+    long type = numbers[0];
+    Location loc = new Location((int)numbers[1], (int)numbers[2]);
+    Beacon beacon = new Beacon(type, loc);
+    sim.update(beacon);
+  }
+
+  private String format(Cell cell)
+  {
+    return PREFIX_CELL + cell.getCellInfo().toString();
+  }
+
+  // Pretend this is a functional language and use map.
+  private long[] mapLong(String[] list)
+  {
+    long[] result = new long[list.length];
+    for(int i = 0; i < list.length; i++)
+      result[i] = Long.parseLong(list[i]);
+
+    return result;
   }
 }

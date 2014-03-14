@@ -4,9 +4,8 @@ import Ares.*;
 import Ares.World.*;
 import Ares.World.Info.*;
 import Ares.World.Objects.*;
-import java.util.List;
-import java.util.LinkedList;
-import java.util.ArrayList;
+import Agent.*;
+import java.util.*;
 
 public class Simulation
 {
@@ -18,6 +17,7 @@ public class Simulation
   private World world = null;
   private List<Agent> agents;
   private List<Location> chargers = new LinkedList<Location>();
+  private Set<Beacon> beacons = new HashSet<Beacon>();
   private boolean[][] visited = null;
   private AgentID self = null;
 
@@ -288,5 +288,10 @@ public class Simulation
       layer = new BottomLayer();
     }
     world.getCell(location).setTopLayer(layer);
+  }
+
+  public void update(Beacon beacon)
+  {
+    beacons.add(beacon);
   }
 }

@@ -22,6 +22,7 @@ public class PathOptions
   public long maxTurns = Long.MAX_VALUE;
   public boolean visitCharger;
   public long unknownCellCost = -1;
+  public int cutoff;
 
   // Allow only start location for use in functions like
   // getNearestWhatever.
@@ -40,13 +41,14 @@ public class PathOptions
     setupOptions(opt);
   }
 
-  public PathOptions(long opt, long length, long cost, long turns, long unknown)
+  public PathOptions(long opt, long length, long cost, long turns, long unknown, int cutoff)
   {
     setupOptions(opt);
     maxLength = length;
     maxCost = cost;
     maxTurns = turns;
     unknownCellCost = unknown;
+    this.cutoff = cutoff;
   }
 
   private void setupOptions(long opt)

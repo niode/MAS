@@ -59,7 +59,19 @@ public class Pathfinder
 
   public static Path getNearestSurvivor(Simulation sim, PathOptions opt)
   {
-    // Placeholder.
+    Path result = null;
+    Node[][] G = spanningTree(sim, opt);
+    for(int i = 0; i < sim.getRowCount(); i++)
+      for(int j = 0; j < sim.getColCount(); j++)
+      {
+        if(sim.getPercentage(i, j) >= opt.cutoff)
+        {
+          opt.end = new Location(i, j);
+          Path tmp = getPathFromTree(G, opt);
+          if(result == null || (tmp != null && Path.compare(result, tmp, opt) < 0))
+            result = tmp;
+        }
+      }
     return null;
   }
 
