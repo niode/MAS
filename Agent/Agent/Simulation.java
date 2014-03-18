@@ -341,6 +341,9 @@ public class Simulation
     if(beacon.getType() == Beacon.MOVE)
     {
       update(beacon.getSenderID(), beacon.getRound(), beacon.getLocation());
+    } else if(beacon.agents == 0)
+    {
+      beacons.remove(beacon);
     } else
     {
       beacons.add(beacon);
