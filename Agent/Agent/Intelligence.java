@@ -17,12 +17,12 @@ public abstract class Intelligence
     this.base = base;
   }
 
-  public Simulation getSimulation()
+  public Simulation getSim()
   {
     return sim;
   }
 
-  public Communicator getCommunicator()
+  public Communicator getCom()
   {
     return com;
   }
