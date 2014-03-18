@@ -4,14 +4,14 @@ import Ares.*;
 
 public class Beacon
 {
-  public final long HELP_RESCUE = 0;
-  public final long HELP_OBSERVE = 1;
-  public final long HELP_DIG = 2;
-  public final long HELP_MOVE = 3;
-  public final long RESCUE = 4;
-  public final long OBSERVE = 5;
-  public final long DIG = 6;
-  public final long MOVE = 7;
+  public static final long HELP_RESCUE = 0;
+  public static final long HELP_OBSERVE = 1;
+  public static final long HELP_DIG = 2;
+  public static final long HELP_MOVE = 3;
+  public static final long RESCUE = 4;
+  public static final long OBSERVE = 5;
+  public static final long DIG = 6;
+  public static final long MOVE = 7;
 
   private long type;
   private Location location;
