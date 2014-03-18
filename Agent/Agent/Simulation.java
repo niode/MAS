@@ -374,6 +374,10 @@ public class Simulation
       mid = start + (end - start)/2;
     }
     list.add(mid, new TimeLocation(round, loc));
+
+    // Test
+    System.out.printf("Agent %d thinks agent %d is at (%d, %d) on round %d.\n",
+      self.getID(), id.getID(), loc.getRow(), loc.getCol(), round);
   }
 
   private class TimeLocation
