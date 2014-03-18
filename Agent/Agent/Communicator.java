@@ -102,15 +102,22 @@ public class Communicator
   {
     Location loc = beacon.getLocation();
     long type = beacon.getType();
-    return String.format("%s%d,%d,%d", PREFIX_BEACON, type, loc.getRow(), loc.getCol());
+    long round = beacon.getRound();
+    AgentID id = beacon.getSenderID();
+    long agents = beacon.getAgentCount();
+    return String.format("%s%d,%d,%d,%d,%d,%d,%d",
+        PREFIX_BEACON, id.getID(), id.getGID(), type, round, agents, loc.getRow(), loc.getCol());
   }
 
   private void parseBeacon(String string)
   {
     long[] numbers = mapLong(string.split(DELIM));
-    long type = numbers[0];
-    Location loc = new Location((int)numbers[1], (int)numbers[2]);
-    Beacon beacon = new Beacon(type, loc);
+    AgentID id = new AgentID((int)numbers[0], (int)numbers[1]);
+    long type = numbers[2];
+    long round = numbers[3];
+    long agents = numbers[4];
+    Location loc = new Location((int)numbers[5], (int)numbers[6]);
+    Beacon beacon = new Beacon(type, id, loc, round, agents);
     sim.update(beacon);
   }
 

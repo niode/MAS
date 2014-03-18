@@ -74,6 +74,11 @@ public class Simulation
     return chargers;
   }
 
+  public Set<Beacon> getBeacons()
+  {
+    return beacons;
+  }
+
   private int getIndex(AgentID id)
   {
     return (id.getGID() * id.getID()) - 1;
