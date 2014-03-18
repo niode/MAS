@@ -222,9 +222,10 @@ public class Simulation
     {
       if(list.size() == 0) continue;
       TimeLocation head = list.get(0);
-      while(head.round < round)
+      while(list.size() > 0 && head.round < round)
       {
         list.remove(0);
+        if(list.size() == 0) break;
         head = list.get(0);
       }
     }

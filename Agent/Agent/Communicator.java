@@ -18,9 +18,10 @@ public class Communicator
 {
   private static final String DELIM = ",";
   // Internal message prefixes.
-  private static final String PREFIX_CELL = "CELL::";
-  private static final String PREFIX_AGENT = "AGENT::";
-  private static final String PREFIX_BEACON = "BEACON::";
+  private static final String PREFIX_CELL = "CELL";
+  private static final String PREFIX_AGENT = "AGENT";
+  private static final String PREFIX_BEACON = "BEACON";
+  private static final String PREFIX_DELIM = "::";
 
   private BaseAgent base;
   private Simulation sim;
@@ -33,6 +34,8 @@ public class Communicator
 
   public void receive(FWD_MESSAGE msg)
   {
+    // Test
+    System.out.printf("Message Text:%s\n", msg.getMessage());
     if(msg.getFromAgentID().getGID() != sim.getSelfID().getGID())
       return;
     String[] split = msg.getMessage().split("::");
@@ -44,6 +47,8 @@ public class Communicator
       parseAgent(split[1]);
     } else if(split[0].equals(PREFIX_BEACON))
     {
+      //Test
+      System.out.println("Received beacon.");
       parseBeacon(split[1]);
     }
   }
@@ -88,7 +93,7 @@ public class Communicator
     AgentID id = agent.getAgentID();
     long energy = agent.getEnergyLevel();
     int alive = agent.isAlive() ? 1 : 0;
-    return String.format("%s%d,%d,%d,%d,%d,%d", PREFIX_AGENT, id.getGID(), id.getID(),
+    return String.format("%s%d,%d,%d,%d,%d,%d", PREFIX_AGENT + PREFIX_DELIM, id.getGID(), id.getID(),
                                                 energy, alive, loc.getRow(), loc.getCol());
   }
 
@@ -111,7 +116,8 @@ public class Communicator
     AgentID id = beacon.getSenderID();
     long agents = beacon.getAgentCount();
     return String.format("%s%d,%d,%d,%d,%d,%d,%d",
-        PREFIX_BEACON, id.getID(), id.getGID(), type, round, agents, loc.getRow(), loc.getCol());
+        PREFIX_BEACON + PREFIX_DELIM, id.getID(), id.getGID(),
+        type, round, agents, loc.getRow(), loc.getCol());
   }
 
   private void parseBeacon(String string)
@@ -128,7 +134,7 @@ public class Communicator
 
   private String format(Cell cell)
   {
-    return PREFIX_CELL + cell.getCellInfo().toString();
+    return PREFIX_CELL + PREFIX_DELIM + cell.getCellInfo().toString();
   }
 
   // Pretend this is a functional language and use map.
