@@ -6,9 +6,9 @@ import java.util.Queue;
 
 public abstract class Intelligence
 {
-  Simulation sim;
-  Communicator com;
-  public BaseAgent base;
+  private Simulation sim;
+  private Communicator com;
+  private BaseAgent base;
 
   public Intelligence(Simulation sim, Communicator com,BaseAgent base)
   {
