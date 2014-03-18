@@ -71,6 +71,11 @@ public class Communicator
     base.send(new SEND_MESSAGE(idList, str));
   }
 
+  public void send(Beacon beacon)
+  {
+    send(format(beacon));
+  }
+
   public void send(String str)
   {
     AgentIDList idList = new AgentIDList();
