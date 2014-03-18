@@ -13,6 +13,7 @@ public class Simulation
   public static final int NUM_TEAMS = 2;
   public static final int MAX_ENERGY = 1000;
   public static final int MAX_LENGTH = 50*50;
+  public static final int DEFAULT_COST = 10;
 
   private World world = null;
   private List<Agent> agents;
@@ -108,6 +109,15 @@ public class Simulation
     return beacons;
   }
 
+  public Set<Beacon> getBeaconType(long type)
+  {
+    HashSet<Beacon> result = new HashSet<Beacon>();
+    for(Beacon beacon : beacons)
+      if(beacon.getType() == type) result.add(beacon);
+
+    return result;
+  }
+
   private int getIndex(AgentID id)
   {
     return (id.getGID() * id.getID()) - 1;
@@ -154,6 +164,16 @@ public class Simulation
     return cell.isOnFire() || cell.isKiller();
   }
 
+  public boolean getVisited(int x, int y)
+  {
+    return visited[x][y];
+  }
+
+  public boolean getVisited(Location loc)
+  {
+    return getVisited(loc.getRow(), loc.getCol());
+  }
+
   public int getMoveCost(int x, int y)
   {
     return getMoveCost(new Location(x, y));
@@ -164,6 +184,8 @@ public class Simulation
     if(world == null) return Integer.MAX_VALUE;
     Cell cell = world.getCell(location);
     if(cell == null) return Integer.MAX_VALUE;
+    if(!visited[location.getRow()][location.getCol()])
+      return DEFAULT_COST;
     return cell.getMoveCost();
   }
 
@@ -375,10 +397,6 @@ public class Simulation
       mid = start + (end - start)/2;
     }
     list.add(mid, new TimeLocation(round, loc));
-
-    // Test
-    System.out.printf("Agent %d thinks agent %d is at (%d, %d) on round %d.\n",
-      self.getID(), id.getID(), loc.getRow(), loc.getCol(), round);
   }
 
   private class TimeLocation

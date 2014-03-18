@@ -51,7 +51,7 @@ public class Pathfinder
     {
       opt.end = loc;
       Path tmp = getPathFromTree(G, opt);
-      if(result == null || (tmp != null && Path.compare(result, tmp, opt) < 0))
+      if(result == null || (tmp != null && Path.compare(result, tmp, opt) > 0))
         result = tmp;
     }
     return result;

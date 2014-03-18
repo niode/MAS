@@ -34,8 +34,6 @@ public class Communicator
 
   public void receive(FWD_MESSAGE msg)
   {
-    // Test
-    System.out.printf("Message Text:%s\n", msg.getMessage());
     if(msg.getFromAgentID().getGID() != sim.getSelfID().getGID())
       return;
     String[] split = msg.getMessage().split("::");
@@ -47,8 +45,6 @@ public class Communicator
       parseAgent(split[1]);
     } else if(split[0].equals(PREFIX_BEACON))
     {
-      //Test
-      System.out.println("Received beacon.");
       parseBeacon(split[1]);
     }
   }
