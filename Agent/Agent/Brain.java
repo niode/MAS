@@ -108,7 +108,6 @@ public class Brain{
     }
 
     public void handleAresCommand(AresCommand ares_command) throws AresParserException {
-        //System.out.println("RECEIVED COMMAND " + ares_command.toString());
         BaseAgent agent = BaseAgent.getBaseAgent();
         if (ares_command instanceof CONNECT_OK) {
             CONNECT_OK connect_ok = (CONNECT_OK) ares_command;
