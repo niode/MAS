@@ -28,7 +28,7 @@ public class TestIntelligence extends Intelligence
   public void think()
   {
     BaseAgent agent = BaseAgent.getBaseAgent();
-    base.log(LogLevels.Always, "Thinking");
-    AgentCommand command = list.get(sim.getRound() % list.size());
+    getBase().log(LogLevels.Always, "Thinking");
+    AgentCommand command = list.get(getSimulation().getRound() % list.size());
   }
 }
