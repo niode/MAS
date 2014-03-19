@@ -43,7 +43,7 @@ public class RoleIntelligence extends Intelligence
 	public void think()
 		{
 		//Always stay put on first turn.
-		if (sim.getRound() == 0)
+		if (getSimulation().getRound() == 0)
 			{
 			AgentCommand stay = new MOVE(Direction.STAY_PUT);
 			getCommunicator().send(stay);
