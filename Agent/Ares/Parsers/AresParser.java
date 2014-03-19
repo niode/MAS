@@ -13,6 +13,11 @@ public class AresParser {
 
     public static final String delim = "[ \n\r\\(\\)\\[\\]\\{\\};,]+";
 
+    public static StringTokenizer getTokenizer(String s)
+    {
+      return new StringTokenizer(s, delim, true);
+    }
+
     public static Cell[][] buildWorld(String file_location) throws AresParserException {
         String line;
         Cell[][] world = null;
@@ -566,7 +571,7 @@ public class AresParser {
     public static void OpenRoundBracket(StringTokenizer scanner) throws AresParserException {
         String s;
         if (!(s = next(scanner)).equals("(")) {
-            throw new AresParserException("Expected \"" + s + "\" to be \")\"");
+            throw new AresParserException("Expected \"" + s + "\" to be \"(\"");
         }
     }
 

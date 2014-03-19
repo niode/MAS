@@ -47,19 +47,19 @@ public class Cell{
 
     public void setupCell(String cell_state_type) {
         cell_state_type = cell_state_type.toUpperCase().trim();
-        if (cell_state_type.compareTo("NORMAL_CELLS") == 0) {
+        if (cell_state_type.compareTo("NORMAL_GRIDS") == 0) {
             type = Type.NORMAL_CELL;
             on_fire = false;
             state = State.STABLE_CELL;
-        } else if (cell_state_type.compareTo("CHARGING_CELLS") == 0) {
+        } else if (cell_state_type.compareTo("CHARGING_GRIDS") == 0) {
             type = Type.CHARGING_CELL;
             on_fire = false;
             state = State.STABLE_CELL;
-        } else if (cell_state_type.compareTo("FIRE_CELLS") == 0) {
+        } else if (cell_state_type.compareTo("FIRE_GRIDS") == 0) {
             type = Type.NORMAL_CELL;
             on_fire = true;
             state = State.KILLER_CELL;
-        } else if (cell_state_type.compareTo("KILLER_CELLS") == 0) {
+        } else if (cell_state_type.compareTo("KILLER_GRIDS") == 0) {
             type = Type.NORMAL_CELL;
             on_fire = false;
             state = State.KILLER_CELL;

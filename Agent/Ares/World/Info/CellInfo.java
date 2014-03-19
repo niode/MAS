@@ -6,7 +6,7 @@ public class CellInfo {
 
     private enum Type {
 
-        NO_CELL, NORMAL_CELL, CHARGING_CELL;
+        NO_GRID, NORMAL_GRID, CHARGING_GRID;
     }
     private Type type;
     private Location location;
@@ -16,7 +16,7 @@ public class CellInfo {
     private WorldObjectInfo top_layer_info;
 
     public CellInfo() {
-        type = Type.NO_CELL;
+        type = Type.NO_GRID;
         location = new Location(-1, -1);
         on_fire = false;
         move_cost = 0;
@@ -26,9 +26,9 @@ public class CellInfo {
 
     public CellInfo(boolean normal_cell, Location location, boolean on_fire, int move_cost, AgentIDList agent_id_list, WorldObjectInfo top_layer_info) {
         if (normal_cell) {
-            this.type = Type.NORMAL_CELL;
+            this.type = Type.NORMAL_GRID;
         } else {
-            this.type = Type.CHARGING_CELL;
+            this.type = Type.CHARGING_GRID;
         }
         this.location = location;
         this.on_fire = on_fire;
@@ -42,27 +42,27 @@ public class CellInfo {
     }
 
     public boolean isNoCell() {
-        return getType() == Type.NO_CELL;
+        return getType() == Type.NO_GRID;
     }
 
     public boolean isNormalCell() {
-        return getType() == Type.NORMAL_CELL;
+        return getType() == Type.NORMAL_GRID;
     }
 
     public boolean isChargingCell() {
-        return getType() == Type.CHARGING_CELL;
+        return getType() == Type.CHARGING_GRID;
     }
 
     public void setNoCell() {
-        setType(Type.NO_CELL);
+        setType(Type.NO_GRID);
     }
 
     public void setNormalCell() {
-        setType(Type.NORMAL_CELL);
+        setType(Type.NORMAL_GRID);
     }
 
     public void setChargingCell() {
-        setType(Type.CHARGING_CELL);
+        setType(Type.CHARGING_GRID);
     }
 
     private void setType(Type cell_type) {
@@ -115,7 +115,7 @@ public class CellInfo {
 
     @Override
     public String toString() {
-        if (type == Type.NO_CELL) {
+        if (type == Type.NO_GRID) {
             return type.toString();
         }
         return String.format("%s ( ROW_ID %s , COL_ID %s , ON_FIRE %s , MV_COST %s , NUM_AGT %s , ID_List %s , TOP_LAYER ( %s ) )", type.toString(), location.getRow(), location.getCol(), on_fire.toString().toUpperCase(), move_cost, agent_id_list.size(), agent_id_list, top_layer_info);

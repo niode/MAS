@@ -7,7 +7,9 @@ package Agent;
 import Agent.Core.*;
 import Ares.*;
 import Ares.World.*;
+import Ares.World.Info.*;
 import Ares.World.Objects.*;
+import Ares.Parsers.*;
 import Ares.Commands.*;
 import Ares.Commands.AresCommands.*;
 import Ares.Commands.AgentCommands.*;
@@ -19,6 +21,7 @@ public class Communicator
   private static final String DELIM = ",";
   // Internal message prefixes.
   private static final String PREFIX_CELL = "CELL";
+  private static final String PREFIX_SURROUND = "SURROUND";
   private static final String PREFIX_AGENT = "AGENT";
   private static final String PREFIX_BEACON = "BEACON";
   private static final String PREFIX_DELIM = "::";
@@ -39,7 +42,10 @@ public class Communicator
     String[] split = msg.getMessage().split("::");
     if(split[0].equals(PREFIX_CELL))
     {
-
+      parseCell(split[1]);
+    } else if(split[0].equals(PREFIX_SURROUND))
+    {
+      parseSurroundInfo(split[1]);
     } else if(split[0].equals(PREFIX_AGENT))
     {
       parseAgent(split[1]);
@@ -58,6 +64,16 @@ public class Communicator
   public void send(AgentID id, Cell cell)
   {
     send(id, format(cell));
+  }
+
+  public void send(SurroundInfo info)
+  {
+    send(format(info));
+  }
+
+  public void send(CellInfo info)
+  {
+    send(format(info));
   }
 
   public void send(Cell cell)
@@ -93,6 +109,28 @@ public class Communicator
                                                 energy, alive, loc.getRow(), loc.getCol());
   }
 
+  private void parseSurroundInfo(String string)
+  {
+    try{
+      SurroundInfo info = AresParser.SurroundInfo(AresParser.getTokenizer(string));
+      sim.update(info);
+    } catch(AresParserException e)
+    {
+      base.log(LogLevels.Always, "Parser exception at parseSurroundInfo: " + e.getMessage());
+    }
+  }
+
+  private void parseCell(String string)
+  {
+    try{
+      CellInfo info = AresParser.CellInfo(AresParser.getTokenizer(string));
+      sim.update(info);
+    } catch (AresParserException e)
+    {
+      System.out.println("Parser exception at parseCell.");
+    }
+  }
+
   private void parseAgent(String string)
   {
     long[] numbers = mapLong(string.split(DELIM));
@@ -126,6 +164,16 @@ public class Communicator
     Location loc = new Location((int)numbers[5], (int)numbers[6]);
     Beacon beacon = new Beacon(type, id, loc, round, agents);
     sim.update(beacon);
+  }
+
+  private String format(SurroundInfo info)
+  {
+    return PREFIX_SURROUND + PREFIX_DELIM + info.toString();
+  }
+
+  private String format(CellInfo cell)
+  {
+    return PREFIX_CELL + PREFIX_DELIM + cell.toString();
   }
 
   private String format(Cell cell)

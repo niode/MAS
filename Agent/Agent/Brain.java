@@ -48,7 +48,7 @@ public class Brain{
     
     public void handleFwdMessage(FWD_MESSAGE fwd_message) {
         base.log(LogLevels.Always, "FWD MESSAGE:" + fwd_message);
-        base.log(LogLevels.Test, "" + fwd_message);
+        base.log(LogLevels.Always, "" + fwd_message);
         com.receive(fwd_message);
     }
     
@@ -56,6 +56,7 @@ public class Brain{
         sim.update(move_result.getSurroundInfo());
         sim.update(sim.getSelfID(), move_result.getSurroundInfo().getCurrentInfo().getLocation());
         sim.update(sim.getSelfID(), move_result.getEnergyLevel());
+        com.send(move_result.getSurroundInfo());
     }
 
     public void handleObserveResult(OBSERVE_RESULT observe_result) {
@@ -68,6 +69,7 @@ public class Brain{
         sim.update(info);
         sim.update(info.getLocation(), observe_result.getLifeSignals());
         sim.update(sim.getSelfID(), observe_result.getEnergyLevel());
+        com.send(info);
     }
 
     

@@ -38,6 +38,6 @@ public class SurroundInfo {
 
     @Override
     public String toString() {
-        return String.format("CURR_CELL ( %s ) , NUM_SIG %s , LIFE_SIG %s , NORTH_WEST ( %s ) , NORTH ( %s ) , NORTH_EAST ( %s ) , EAST ( %s ) , SOUTH_EAST ( %s ) , SOUTH ( %s ) , SOUTH_WEST ( %s ) , WEST ( %s )", getCurrentInfo(), life_signals.size(), life_signals, getSurroundInfo(Direction.NORTH_WEST), getSurroundInfo(Direction.NORTH), getSurroundInfo(Direction.NORTH_EAST), getSurroundInfo(Direction.EAST), getSurroundInfo(Direction.SOUTH_EAST), getSurroundInfo(Direction.SOUTH), getSurroundInfo(Direction.SOUTH_WEST), getSurroundInfo(Direction.WEST));
+        return String.format("CURR_GRID ( %s ) , NUM_SIG %s , LIFE_SIG %s , NORTH_WEST ( %s ) , NORTH ( %s ) , NORTH_EAST ( %s ) , EAST ( %s ) , SOUTH_EAST ( %s ) , SOUTH ( %s ) , SOUTH_WEST ( %s ) , WEST ( %s )", getCurrentInfo(), life_signals.size(), life_signals, getSurroundInfo(Direction.NORTH_WEST), getSurroundInfo(Direction.NORTH), getSurroundInfo(Direction.NORTH_EAST), getSurroundInfo(Direction.EAST), getSurroundInfo(Direction.SOUTH_EAST), getSurroundInfo(Direction.SOUTH), getSurroundInfo(Direction.SOUTH_WEST), getSurroundInfo(Direction.WEST));
     }
 }
