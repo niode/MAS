@@ -3,12 +3,14 @@
  */
 package Agent.Role;
 
+import java.util.ArrayList;
 import Agent.Communicator;
 import Agent.Simulation;
 import Agent.Core.BaseAgent;
 import Agent.Pathfinder.Path;
 import Agent.Pathfinder.PathOptions;
 import Agent.Pathfinder.Pathfinder;
+import Agent.Role.Rules.Rule;
 import Ares.Direction;
 import Ares.Location;
 import Ares.Commands.AgentCommand;
@@ -42,12 +44,17 @@ public class ExplorerRole extends Role
 		}
 
 	/* (non-Javadoc)
-	 * @see Agent.Intelligence#think()
+	 * @see Agent.Role.Role#setupRules(java.util.ArrayList)
 	 */
 	@Override
-	public void think()
+	public void setupRules(ArrayList<Rule> rules)
 		{
-		//If on the first move, stay put to get neighbor info.
+		// TODO Auto-generated method stub
+		}
+
+	@Override
+	public void noRuleMatch()
+		{
 		if (onFirstMove)
 			{
 			onFirstMove = false;
@@ -100,5 +107,4 @@ public class ExplorerRole extends Role
 		AgentCommand move = new MOVE(Pathfinder.getDirection(currentLoc, moveTo));
 		getCommunicator().send(move);
 		}
-
 	}
