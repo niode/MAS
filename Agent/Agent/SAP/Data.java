@@ -17,6 +17,9 @@ public abstract class Data
     for(Pair pair : list)
     {
       double tmp = sit.getDistance(pair.coord);
+      
+      // Test
+      System.out.printf("Distance: %f\n", tmp);
       if(tmp < min)
       {
         min = tmp;

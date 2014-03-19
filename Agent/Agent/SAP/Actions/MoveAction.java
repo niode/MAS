@@ -25,11 +25,14 @@ public class MoveAction implements Action
 
   public AgentCommand getCommand(Simulation sim)
   {
+    // Test
+    System.out.println("Cutoff: " + path.cutoff);
     Location loc = null;
     path.start = sim.getSelf().getLocation();
     switch(opt)
     {
       case BEST_SURVIVOR:
+        System.out.println("Best Survivor action.");
         loc = Pathfinder.getNearestSurvivor(sim, path).getNext();
         break;
       case NEAREST_CHARGER:

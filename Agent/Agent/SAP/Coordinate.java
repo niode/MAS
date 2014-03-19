@@ -29,11 +29,14 @@ public class Coordinate
     if(path == null) dimensions[1] = Long.MAX_VALUE;
     else             dimensions[1] = normalize(path.getLength(), 0, 10);
 
-
+    opt.cutoff = 5;
     // Nearest survivor that can be saved individually.
-    path = Pathfinder.getNearestCharger(sim, opt);
+    path = Pathfinder.getNearestSurvivor(sim, opt);
     if(path == null) dimensions[2] = Long.MAX_VALUE;
     else             dimensions[2] = normalize(path.getLength(), 0, 10);
+
+    // Test
+    System.out.printf("Coordinate: %d, %d, %d\n", dimensions[0], dimensions[1], dimensions[2]);
   }
 
   private long normalize(long value, long min, long max)

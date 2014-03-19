@@ -72,7 +72,7 @@ public class Pathfinder
             result = tmp;
         }
       }
-    return null;
+    return result;
   }
 
   private static Path getPathFromTree(Node[][] G, PathOptions opt)
