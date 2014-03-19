@@ -4,17 +4,27 @@ import Ares.*;
 
 public class Beacon
 {
-  public final long RESCUE = 0;
-  public final long OBSERVE = 1;
-  public final long HELP = 2;
-  public final long MOVE = 3;
+  public static final long HELP_RESCUE = 0;
+  public static final long HELP_OBSERVE = 1;
+  public static final long HELP_DIG = 2;
+  public static final long HELP_MOVE = 3;
+  public static final long RESCUE = 4;
+  public static final long OBSERVE = 5;
+  public static final long DIG = 6;
+  public static final long MOVE = 7;
 
   private long type;
   private Location location;
-  public Beacon(long type, Location location)
+  private long agents;
+  private long round;
+  private AgentID sender;
+  public Beacon(long type, AgentID sender, Location location, long round, long agents)
   {
     this.type = type;
+    this.sender = sender;
     this.location = location;
+    this.round = round;
+    this.agents = agents;
   }
 
   public long getType()
@@ -27,19 +37,36 @@ public class Beacon
     return location;
   }
 
+  public long getAgentCount()
+  {
+    return this.agents;
+  }
+
+  public AgentID getSenderID()
+  {
+    return this.sender;
+  }
+
+  public long getRound()
+  {
+    return this.round;
+  }
+
   public String toString()
   {
-    return String.format("(%d,%s)", type, location.toString());
+    return String.format("(%d,%d,%d,%s)", type, round, agents, location.toString());
   }
 
   public boolean equals(Object obj)
   {
     Beacon other = null;
-    if(obj instanceof Beacon)
-      other = (Beacon)obj;
-    else
+    if(!(obj instanceof Beacon))
       return false;
-    
-    return type == other.type && location.equals(other.location);
+
+    other = (Beacon)obj;
+    return type == other.type &&
+           round == other.round &&
+           sender.equals(other.sender) &&
+           location.equals(other.location);
   }
 }

@@ -31,9 +31,7 @@ public class Brain{
       sim.update(world);
       sim.update(id, energy);
       sim.update(id, location);
-      
     }
-
     
     public void handleSleepResult(SLEEP_RESULT msg)
     {
@@ -43,29 +41,23 @@ public class Brain{
     public void handleDisconnect() {
         base.log(LogLevels.Always, "DISCONNECT");
     }
-
     
     public void handleDead() {
         base.log(LogLevels.Always, "DEAD");
     }
-
     
     public void handleFwdMessage(FWD_MESSAGE fwd_message) {
         base.log(LogLevels.Always, "FWD MESSAGE:" + fwd_message);
         base.log(LogLevels.Test, "" + fwd_message);
         com.receive(fwd_message);
     }
-
     
     public void handleMoveResult(MOVE_RESULT move_result) {
-        base.log(LogLevels.Always, "MOVE_RESULT:" + move_result);
-        base.log(LogLevels.Test, "" + move_result);
         sim.update(move_result.getSurroundInfo());
         sim.update(sim.getSelfID(), move_result.getSurroundInfo().getCurrentInfo().getLocation());
         sim.update(sim.getSelfID(), move_result.getEnergyLevel());
     }
 
-    
     public void handleObserveResult(OBSERVE_RESULT observe_result) {
         base.log(LogLevels.Always, "OBSERVE_RESULT:" + observe_result);
         base.log(LogLevels.Always, observe_result.getEnergyLevel() + "");
@@ -97,14 +89,24 @@ public class Brain{
     
     public void think() {
         base.log(LogLevels.Always, "Thinking");
-        base.log(LogLevels.Always, "Location: " + sim.getSelf().getLocation().toString());
+        System.out.println("The world looks like:");
+        for(int i = 0; i < sim.getRowCount(); i++)
+        {
+          for(int j = 0; j < sim.getColCount(); j++)
+          {
+            String cost = String.format("%3d", sim.getMoveCost(i, j)).substring(0, 3);
+            String percent = String.format("%3d", sim.getPercentage(i, j)).substring(0, 3);
+            System.out.printf("(%s, %s) ", cost, percent);
+          }
+          System.out.println();
+        }
         ai.think();
         com.send(new END_TURN());
         sim.advance();
     }
 
     public void handleAresCommand(AresCommand ares_command) throws AresParserException {
-        System.out.println("RECEIVED COMMAND " + ares_command.toString());
+        //System.out.println("RECEIVED COMMAND " + ares_command.toString());
         BaseAgent agent = BaseAgent.getBaseAgent();
         if (ares_command instanceof CONNECT_OK) {
             CONNECT_OK connect_ok = (CONNECT_OK) ares_command;

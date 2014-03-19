@@ -18,9 +18,10 @@ public class Communicator
 {
   private static final String DELIM = ",";
   // Internal message prefixes.
-  private static final String PREFIX_CELL = "CELL::";
-  private static final String PREFIX_AGENT = "AGENT::";
-  private static final String PREFIX_BEACON = "BEACON::";
+  private static final String PREFIX_CELL = "CELL";
+  private static final String PREFIX_AGENT = "AGENT";
+  private static final String PREFIX_BEACON = "BEACON";
+  private static final String PREFIX_DELIM = "::";
 
   private BaseAgent base;
   private Simulation sim;
@@ -71,6 +72,11 @@ public class Communicator
     base.send(new SEND_MESSAGE(idList, str));
   }
 
+  public void send(Beacon beacon)
+  {
+    send(format(beacon));
+  }
+
   public void send(String str)
   {
     AgentIDList idList = new AgentIDList();
@@ -83,7 +89,7 @@ public class Communicator
     AgentID id = agent.getAgentID();
     long energy = agent.getEnergyLevel();
     int alive = agent.isAlive() ? 1 : 0;
-    return String.format("%s%d,%d,%d,%d,%d,%d", PREFIX_AGENT, id.getGID(), id.getID(),
+    return String.format("%s%d,%d,%d,%d,%d,%d", PREFIX_AGENT + PREFIX_DELIM, id.getGID(), id.getID(),
                                                 energy, alive, loc.getRow(), loc.getCol());
   }
 
@@ -102,21 +108,29 @@ public class Communicator
   {
     Location loc = beacon.getLocation();
     long type = beacon.getType();
-    return String.format("%s%d,%d,%d", PREFIX_BEACON, type, loc.getRow(), loc.getCol());
+    long round = beacon.getRound();
+    AgentID id = beacon.getSenderID();
+    long agents = beacon.getAgentCount();
+    return String.format("%s%d,%d,%d,%d,%d,%d,%d",
+        PREFIX_BEACON + PREFIX_DELIM, id.getID(), id.getGID(),
+        type, round, agents, loc.getRow(), loc.getCol());
   }
 
   private void parseBeacon(String string)
   {
     long[] numbers = mapLong(string.split(DELIM));
-    long type = numbers[0];
-    Location loc = new Location((int)numbers[1], (int)numbers[2]);
-    Beacon beacon = new Beacon(type, loc);
+    AgentID id = new AgentID((int)numbers[0], (int)numbers[1]);
+    long type = numbers[2];
+    long round = numbers[3];
+    long agents = numbers[4];
+    Location loc = new Location((int)numbers[5], (int)numbers[6]);
+    Beacon beacon = new Beacon(type, id, loc, round, agents);
     sim.update(beacon);
   }
 
   private String format(Cell cell)
   {
-    return PREFIX_CELL + cell.getCellInfo().toString();
+    return PREFIX_CELL + PREFIX_DELIM + cell.getCellInfo().toString();
   }
 
   // Pretend this is a functional language and use map.

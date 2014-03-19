@@ -12,12 +12,12 @@ public class Path
   {
     if(opt.cheapest)
     {
-      if(a.getMoveCost() - b.getMoveCost() < 0) return -1;
+      if(a.getMoveCost() - b.getMoveCost() > 0) return -1;
       else if(a.getMoveCost() == b.getMoveCost()) return 0;
       else return 1;
     } else
     {
-      if(a.getLength() - b.getLength() < 0) return -1;
+      if(a.getLength() - b.getLength() > 0) return -1;
       if(a.getLength() == b.getLength()) return 0;
       return 1;
     }

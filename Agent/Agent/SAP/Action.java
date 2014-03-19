@@ -6,5 +6,5 @@ import Ares.Commands.AgentCommand;
 
 public interface Action
 {
-  public abstract AgentCommand getCommand(Simulation sim);
+  public abstract AgentCommand getCommand(Simulation sim, Coordinate coord);
 }

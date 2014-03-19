@@ -89,6 +89,7 @@ public enum Direction {
       result.add(SOUTH_WEST);
       result.add(WEST);
       result.add(NORTH_WEST);
+      result.add(STAY_PUT);
       return result;
     }
 

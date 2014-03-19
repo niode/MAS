@@ -79,7 +79,7 @@ public class ExplorerRole extends Role
 		//Get path to nearest survivor.
 		//We could save this, but we'll recalculate each turn.
 		PathOptions opt = new PathOptions(currentLoc);
-		Path nearestSurvPath = Pathfinder.getNearestSurvivor(getSimulation(), opt);
+		Path nearestSurvPath = Pathfinder.getNearestSurvivor(getSimulation(), opt, 0);
 		
 		//Get next location in path and move to it.
 		Location moveTo = nearestSurvPath.getNext();

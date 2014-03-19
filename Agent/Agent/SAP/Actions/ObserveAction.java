@@ -22,7 +22,7 @@ public class ObserveAction implements Action
     this.path = path;
   }
 
-  public AgentCommand getCommand(Simulation sim)
+  public AgentCommand getCommand(Simulation sim, Coordinate coord)
   {
     Location loc;
     path.start = sim.getSelf().getLocation();

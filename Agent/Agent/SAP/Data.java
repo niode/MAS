@@ -2,6 +2,7 @@ package Agent.SAP;
 
 import Agent.*;
 import Ares.*;
+import Ares.Commands.*;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -9,7 +10,7 @@ public abstract class Data
 {
   protected List<Pair> list = new ArrayList<Pair>();
 
-  public Action getAction(Simulation sim, AgentID id)
+  public AgentCommand getCommand(Simulation sim, AgentID id)
   {
     Coordinate sit = new Coordinate(sim, id);
     double min = Double.MAX_VALUE;
@@ -23,7 +24,7 @@ public abstract class Data
         current = pair;
       }
     }
-    return current.action;
+    return current.action.getCommand(sim, sit);
   }
 
   public void add(long[] coord, Action act)

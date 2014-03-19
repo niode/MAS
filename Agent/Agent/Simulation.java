@@ -13,9 +13,12 @@ public class Simulation
   public static final int NUM_TEAMS = 2;
   public static final int MAX_ENERGY = 1000;
   public static final int MAX_LENGTH = 50*50;
+  public static final int DEFAULT_COST = 10;
 
   private World world = null;
   private List<Agent> agents;
+  private Map<AgentID, ArrayList<TimeLocation>> locations =
+      new HashMap<AgentID, ArrayList<TimeLocation>>();
   private List<Location> chargers = new LinkedList<Location>();
   private Set<Beacon> beacons = new HashSet<Beacon>();
   private boolean[][] visited = null;
@@ -28,6 +31,10 @@ public class Simulation
 
   public Simulation()
   {
+    for(int i = 1; i <= NUM_TEAMS; i++)
+      for(int j = 1; j <= NUM_AGENTS; j++)
+        locations.put(new AgentID(j, i), new ArrayList<TimeLocation>());
+        
     agents = new ArrayList<Agent>(NUM_AGENTS * NUM_TEAMS);
     for(int i = 0; i < NUM_TEAMS; i++)
       for(int j = 0; j < NUM_AGENTS; j++)
@@ -69,9 +76,46 @@ public class Simulation
     return agents.get(getIndex(id));
   }
 
+  public Location getAgentLocation(AgentID id)
+  {
+    return getAgentLocation(id, round); 
+  }
+
+  public Location getAgentLocation(AgentID id, long round)
+  {
+    // Binary search for the location.
+    List<TimeLocation> list = locations.get(id);
+    if(list.size() == 0) return null;
+    int start = 0;
+    int end = list.size() - 1;
+    while(start < end)
+    {
+      int mid = start + (end - start)/2;
+      TimeLocation current = list.get(mid);
+      if(current.round == round) return current.location;
+      if(current.round < round) start = mid;
+      else end = mid;
+    }
+    return list.get(start).location;
+  }
+
   public List<Location> getChargers()
   {
     return chargers;
+  }
+
+  public Set<Beacon> getBeacons()
+  {
+    return beacons;
+  }
+
+  public Set<Beacon> getBeaconType(long type)
+  {
+    HashSet<Beacon> result = new HashSet<Beacon>();
+    for(Beacon beacon : beacons)
+      if(beacon.getType() == type) result.add(beacon);
+
+    return result;
   }
 
   private int getIndex(AgentID id)
@@ -120,6 +164,16 @@ public class Simulation
     return cell.isOnFire() || cell.isKiller();
   }
 
+  public boolean getVisited(int x, int y)
+  {
+    return visited[x][y];
+  }
+
+  public boolean getVisited(Location loc)
+  {
+    return getVisited(loc.getRow(), loc.getCol());
+  }
+
   public int getMoveCost(int x, int y)
   {
     return getMoveCost(new Location(x, y));
@@ -130,6 +184,8 @@ public class Simulation
     if(world == null) return Integer.MAX_VALUE;
     Cell cell = world.getCell(location);
     if(cell == null) return Integer.MAX_VALUE;
+    if(!visited[location.getRow()][location.getCol()])
+      return DEFAULT_COST;
     return cell.getMoveCost();
   }
 
@@ -155,6 +211,11 @@ public class Simulation
   {
     if(world == null) return null;
     Cell cell = world.getCell(location);
+
+    System.out.println("Location: " + location);
+    if(cell == null) System.out.println("Cell is null");
+    System.out.println("Top Layer:" + cell.getTopLayer());
+
     if(cell == null) return null;
     return cell.getTopLayer();
   }
@@ -182,6 +243,19 @@ public class Simulation
   public void advance()
   {
     round++;
+
+    // Delete anything that happened before this round.
+    for(List<TimeLocation> list : locations.values())
+    {
+      if(list.size() == 0) continue;
+      TimeLocation head = list.get(0);
+      while(list.size() > 0 && head.round < round)
+      {
+        list.remove(0);
+        if(list.size() == 0) break;
+        head = list.get(0);
+      }
+    }
   }
 
   public void addSaved(int saved)
@@ -238,7 +312,8 @@ public class Simulation
 
   public void update(CellInfo info)
   {
-    if(world == null || info.getLocation().getRow() < 0 || info.getLocation().getCol() < 0) return;
+    if(world == null || info.getLocation().getRow() < 0 || info.getLocation().getCol() < 0)
+      return;
 
     if(!visited[info.getLocation().getRow()][info.getLocation().getCol()])
     {
@@ -263,11 +338,16 @@ public class Simulation
 
   public void update(Location location, WorldObjectInfo info)
   {
+    // Test
+    System.out.println("Updating world object info.");
 
     if(world == null) return;
     WorldObject layer = null;
     if(info instanceof SurvivorInfo)
     {
+      // Test
+      System.out.println("Adding Survivor.");
+
       SurvivorInfo si = (SurvivorInfo)info;
       layer = new Survivor(si.getEnergyLevel(),
                            si.getDamageFactor(),
@@ -279,6 +359,9 @@ public class Simulation
         layer = new SurvivorGroup(sig.getID(),sig.getEnergyLevel(),sig.getNumberOfSurvivors());
     }
     else if(info instanceof RubbleInfo){
+        // Test
+        System.out.println("Adding Rubble.");
+
         RubbleInfo ri = (RubbleInfo)info;
         layer = new Rubble(ri.getRemoveEnergy(),
                 ri.getRemoveAgents());
@@ -288,10 +371,59 @@ public class Simulation
       layer = new BottomLayer();
     }
     world.getCell(location).setTopLayer(layer);
+
+    // Test
+    System.out.printf("New top layer at %s: %s\n", location, world.getCell(location).getTopLayer());
   }
 
   public void update(Beacon beacon)
   {
-    beacons.add(beacon);
+    if(beacon.getType() == Beacon.MOVE)
+    {
+      update(beacon.getSenderID(), beacon.getRound(), beacon.getLocation());
+    } else if(beacon.getAgentCount() == 0)
+    {
+      beacons.remove(beacon);
+    } else
+    {
+      beacons.add(beacon);
+    }
+  }
+
+  public void update(AgentID id, long round, Location loc)
+  {
+    List<TimeLocation> list = locations.get(id);
+    // Binary search the list.
+    int start = 0; 
+    int end = list.size() - 1;
+    int mid = start + (end - start)/2;
+    while(start < end)
+    {
+      TimeLocation current = list.get(mid);
+      if(current.round == round)
+      {
+        current.location = loc;
+        return;
+      } else if(current.round > round)
+      {
+        end = mid;
+      } else
+      {
+        start = mid;
+      }
+      mid = start + (end - start)/2;
+    }
+    list.add(mid, new TimeLocation(round, loc));
+  }
+
+  private class TimeLocation
+  {
+    public Location location;
+    public long round;
+    public TimeLocation(long round, Location location)
+    {
+      this.round = round;
+      this.location = location;
+    }
   }
 }
