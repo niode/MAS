@@ -19,7 +19,6 @@ import Ares.Commands.AgentCommands.MOVE;
 public class RoleIntelligence extends Intelligence
 	{
 	private Role currentRole = null;
-	boolean onFirstMove = true;
 
 	/**
 	 * Main intelligence for a role based agent.
@@ -44,9 +43,8 @@ public class RoleIntelligence extends Intelligence
 	public void think()
 		{
 		//Always stay put on first turn.
-		if (onFirstMove)
+		if (sim.getRound() == 0)
 			{
-			onFirstMove = false;
 			AgentCommand stay = new MOVE(Direction.STAY_PUT);
 			getCommunicator().send(stay);
 			return;
