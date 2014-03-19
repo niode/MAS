@@ -9,9 +9,9 @@ import Agent.Intelligence;
 import Agent.Simulation;
 import Agent.Core.BaseAgent;
 import Agent.Core.LogLevels;
-import Ares.Direction;
+import Ares.*;
 import Ares.Commands.AgentCommand;
-import Ares.Commands.AgentCommands.MOVE;
+import Ares.Commands.AgentCommands.*;
 
 /**
  * @author Daniel
@@ -47,6 +47,9 @@ public class RoleIntelligence extends Intelligence
 			{
 			AgentCommand stay = new MOVE(Direction.STAY_PUT);
 			getCommunicator().send(stay);
+
+      // Test
+      getCommunicator().send(new OBSERVE(getSimulation().getSelf().getLocation()));
 			return;
 			}
 		
