@@ -9,9 +9,11 @@ import Agent.Simulation;
 import Agent.Core.BaseAgent;
 import Agent.Pathfinder.*;
 import Agent.Role.Rules.*;
-import Ares.Location;
+import Ares.*;
+import Ares.World.*;
+import Ares.World.Objects.*;
 import Ares.Commands.AgentCommand;
-import Ares.Commands.AgentCommands.MOVE;
+import Ares.Commands.AgentCommands.*;
 
 /**
  * Basic role for exploration. The agent will not cooperate, but encountering situations that
@@ -59,9 +61,21 @@ public class ExplorerRole extends Role
 		 * later today.
 		 */
 		
-		//Get next location in path and move to it.
-		Location moveTo = nearestSurvPath.getNext();
-		AgentCommand move = new MOVE(Pathfinder.getDirection(currentLoc, moveTo));
-		getCommunicator().send(move);
+    if(nearestSurvPath.getLength() > 0)
+    {
+      //Get next location in path and move to it.
+      Location moveTo = nearestSurvPath.getNext();
+      AgentCommand move = new MOVE(Pathfinder.getDirection(currentLoc, moveTo));
+      getCommunicator().send(move);
+    } else
+    {
+      if(getSimulation().getTopLayer(getSimulation().getSelf().getLocation()) instanceof Rubble)
+      {
+        getCommunicator().send(new TEAM_DIG());
+      } else
+      {
+        getCommunicator().send(new SAVE_SURV());
+      }
+    }
 		}
 	}
