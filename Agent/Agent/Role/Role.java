@@ -7,6 +7,7 @@ import Agent.Intelligence;
 import Agent.Simulation;
 import Agent.Core.BaseAgent;
 import Agent.Role.Rules.Rule;
+import Ares.Commands.AgentCommand;
 
 /**
  * Class for Roles. A Role is essentially an intelligence with a few extra methods enabling
@@ -95,7 +96,8 @@ public abstract class Role extends Intelligence
 			if (nextRule.checkConditions(getSimulation()))
 				{
 				//Rule conditions met. Do rule actions.
-				getCommunicator().send(nextRule.getAction());
+				AgentCommand nextAction = nextRule.doAction(getCommunicator());
+				getCommunicator().send(nextAction);
 				setNextRole(nextRule.getRoleChange());
 				ruleUsed = true;
 				}
