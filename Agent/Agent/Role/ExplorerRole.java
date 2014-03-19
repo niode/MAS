@@ -68,13 +68,27 @@ public class ExplorerRole extends Role
 			return;
 			}
 		
-		//If already on rubble pile, dig.
+		//If already on rubble pile or with an agent, dig.
 		if (topLayer instanceof Rubble)
 			{
-			getCommunicator().send(new TEAM_DIG());
-			return;
+			Rubble rubble = (Rubble)topLayer;
+			
+			if (rubble.getRemoveAgents() == 1)
+				{
+				//Dig if only one agent needed.
+				getCommunicator().send(new TEAM_DIG());
+				return;
+				}
+			else
+				{
+				//Rubble must require 2 agents, dig if another there.
+				if (currentCell.getCellInfo().getAgentIDList().size() > 1)
+					{
+					getCommunicator().send(new TEAM_DIG());
+					return;
+					}
+				}
 			}
-		
 		
 		//Get path to nearest survivor.
 		//We could save this, but we'll recalculate each turn.
