@@ -30,7 +30,6 @@ import Ares.World.Objects.WorldObject;
  */
 public class ExplorerRole extends Role
 	{
-	boolean onFirstMove = true;
 
 	/**
 	 * @param sim object representing agent world knowledge
@@ -55,15 +54,6 @@ public class ExplorerRole extends Role
 	@Override
 	public void noRuleMatch()
 		{
-		if (onFirstMove)
-			{
-			onFirstMove = false;
-			AgentCommand stay = new MOVE(Direction.STAY_PUT);
-			getCommunicator().send(stay);
-			return;
-			}
-		
-		//First move done, get current location, cell and top layer.
 		Location currentLoc = getSimulation().getSelf().getLocation();
 		Cell currentCell = getSimulation().getCell(currentLoc);
 		WorldObject topLayer = currentCell.getTopLayer();

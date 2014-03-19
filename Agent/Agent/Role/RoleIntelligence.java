@@ -9,6 +9,9 @@ import Agent.Intelligence;
 import Agent.Simulation;
 import Agent.Core.BaseAgent;
 import Agent.Core.LogLevels;
+import Ares.Direction;
+import Ares.Commands.AgentCommand;
+import Ares.Commands.AgentCommands.MOVE;
 
 /**
  * @author Daniel
@@ -16,6 +19,7 @@ import Agent.Core.LogLevels;
 public class RoleIntelligence extends Intelligence
 	{
 	private Role currentRole = null;
+	boolean onFirstMove = true;
 
 	/**
 	 * Main intelligence for a role based agent.
@@ -39,6 +43,15 @@ public class RoleIntelligence extends Intelligence
 	@Override
 	public void think()
 		{
+		//Always stay put on first turn.
+		if (onFirstMove)
+			{
+			onFirstMove = false;
+			AgentCommand stay = new MOVE(Direction.STAY_PUT);
+			getCommunicator().send(stay);
+			return;
+			}
+		
 		//Get current role to make the next move.
 		currentRole.think();
 		
