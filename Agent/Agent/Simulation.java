@@ -312,7 +312,8 @@ public class Simulation
 
   public void update(CellInfo info)
   {
-    if(world == null || info.getLocation().getRow() < 0 || info.getLocation().getCol() < 0) return;
+    if(world == null || info.getLocation().getRow() < 0 || info.getLocation().getCol() < 0)
+      return;
 
     if(!visited[info.getLocation().getRow()][info.getLocation().getCol()])
     {
@@ -337,11 +338,16 @@ public class Simulation
 
   public void update(Location location, WorldObjectInfo info)
   {
+    // Test
+    System.out.println("Updating world object info.");
 
     if(world == null) return;
     WorldObject layer = null;
     if(info instanceof SurvivorInfo)
     {
+      // Test
+      System.out.println("Adding Survivor.");
+
       SurvivorInfo si = (SurvivorInfo)info;
       layer = new Survivor(si.getEnergyLevel(),
                            si.getDamageFactor(),
@@ -353,6 +359,9 @@ public class Simulation
         layer = new SurvivorGroup(sig.getID(),sig.getEnergyLevel(),sig.getNumberOfSurvivors());
     }
     else if(info instanceof RubbleInfo){
+        // Test
+        System.out.println("Adding Rubble.");
+
         RubbleInfo ri = (RubbleInfo)info;
         layer = new Rubble(ri.getRemoveEnergy(),
                 ri.getRemoveAgents());
@@ -362,6 +371,9 @@ public class Simulation
       layer = new BottomLayer();
     }
     world.getCell(location).setTopLayer(layer);
+
+    // Test
+    System.out.printf("New top layer at %s: %s\n", location, world.getCell(location).getTopLayer());
   }
 
   public void update(Beacon beacon)
