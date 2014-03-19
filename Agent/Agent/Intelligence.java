@@ -6,9 +6,9 @@ import java.util.Queue;
 
 public abstract class Intelligence
 {
-  private Simulation sim;
-  private Communicator com;
-  private BaseAgent base;
+  Simulation sim;
+  Communicator com;
+  public BaseAgent base;
 
   public Intelligence(Simulation sim, Communicator com,BaseAgent base)
   {
@@ -17,12 +17,12 @@ public abstract class Intelligence
     this.base = base;
   }
 
-  public Simulation getSim()
+  public Simulation getSimulation()
   {
     return sim;
   }
 
-  public Communicator getCom()
+  public Communicator getCommunicator()
   {
     return com;
   }

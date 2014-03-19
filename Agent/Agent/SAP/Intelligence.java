@@ -18,9 +18,9 @@ public class Intelligence extends Agent.Intelligence
 
   public void think()
   {
-    Simulation sim = getSim();
+    Simulation sim = getSimulation();
     AgentCommand cmd = data.getAction(sim, sim.getSelfID()).getCommand(sim);
-    getBase().log(LogLevels.Always, "Sending: " + cmd.toString());
-    getCom().send(cmd);
+    base.log(LogLevels.Always, "Sending: " + cmd.toString());
+    getCommunicator().send(cmd);
   }
 }

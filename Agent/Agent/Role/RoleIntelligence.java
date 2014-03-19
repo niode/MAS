@@ -3,10 +3,12 @@
  */
 package Agent.Role;
 
+import Agent.Brain;
 import Agent.Communicator;
 import Agent.Intelligence;
 import Agent.Simulation;
 import Agent.Core.BaseAgent;
+import Agent.Core.LogLevels;
 
 /**
  * @author Daniel
@@ -43,6 +45,28 @@ public class RoleIntelligence extends Intelligence
 		//If agent wants to change roles, change.
 		if (currentRole.checkChangeRoles())
 			currentRole = currentRole.getNextRole();
+		}
+
+	public static void main(String[] args)
+		{
+		if (args.length >= 2)
+			{
+			BaseAgent.setLogLevel(LogLevels.All);
+			
+			//Set up agent objects
+			Simulation sim = new Simulation();
+			Communicator com = new Communicator(BaseAgent.getBaseAgent(), sim);
+			RoleIntelligence ai = new Agent.Role.RoleIntelligence(sim, com, BaseAgent.getBaseAgent());
+			Brain brain = new Brain(BaseAgent.getBaseAgent(), ai, sim, com);
+
+			//Start agent
+			BaseAgent.getBaseAgent().start(args[0], args[1], brain);
+			}
+		else
+			{
+			System.out.println("Agent: usage java TestAgent <hostname> <groupname>");
+			}
+
 		}
 
 	}
