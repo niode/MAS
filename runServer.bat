@@ -1,0 +1,1 @@
+java -jar Ares-System.jar -WorldFile TestWorld1.world -NumRound 100 -ProcFile replay.txt >> output.txt
