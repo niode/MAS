@@ -1,7 +1,7 @@
 package Agent.SAP.Actions;
 
 import Agent.*;
-import Agent.SAP.Action;
+import Agent.SAP.*;
 import Agent.Pathfinder.*;
 import Ares.*;
 import Ares.Commands.AgentCommand;
@@ -23,20 +23,17 @@ public class MoveAction implements Action
     this.path = path;
   }
 
-  public AgentCommand getCommand(Simulation sim)
+  public AgentCommand getCommand(Simulation sim, Coordinate coord)
   {
-    // Test
-    System.out.println("Cutoff: " + path.cutoff);
-    Location loc = null;
+    Location loc = sim.getSelf().getLocation();
     path.start = sim.getSelf().getLocation();
     switch(opt)
     {
       case BEST_SURVIVOR:
-        System.out.println("Best Survivor action.");
-        loc = Pathfinder.getNearestSurvivor(sim, path).getNext();
+        if(coord.getSurvivorPath().getLength() > 0) loc = coord.getSurvivorPath().getNext();
         break;
       case NEAREST_CHARGER:
-        loc = Pathfinder.getNearestCharger(sim, path).getNext();
+        if(coord.getChargerPath().getLength() > 0) loc = coord.getChargerPath().getNext();
         break;
       default:
         loc = new Location(0,0);

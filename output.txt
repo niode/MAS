@@ -3931,3 +3931,559 @@ Results for each Group
 (Number Saved,Number Alive,Number Dead)
 =================================================
 ( GID 1 ) NAME Test = ( 0 , 0 , 0 );
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replace.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Added agent [ ID 2 , GID 1 ]
+Ares  : Added agent [ ID 3 , GID 1 ]
+Ares  : Added agent [ ID 4 , GID 1 ]
+Ares  : Added agent [ ID 5 , GID 1 ]
+Ares  : Added agent [ ID 6 , GID 1 ]
+Ares  : Added agent [ ID 7 , GID 1 ]
+Ares  : Running simulation.
+Running for 100 rounds
+Ares  : Round: 1
+Agent [ ID 1 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 4 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 5 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 7 , GID 1 ] sent no action (non-send) command this round.
+Ares  : Round: 2
+Agent [ ID 2 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 3 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 6 , GID 1 ] sent no action (non-send) command this round.
+Ares  : Round: 3
+Ares  : All Agents are Dead !!!
+Ares  : Simulation Over.
+Ares: Done.
+=================================================
+Results for each Group
+(Number Saved,Number Alive,Number Dead)
+=================================================
+( GID 1 ) NAME Test = ( 0 , 0 , 0 );
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replace.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Added agent [ ID 2 , GID 1 ]
+Ares  : Added agent [ ID 3 , GID 1 ]
+Ares  : Added agent [ ID 4 , GID 1 ]
+Ares  : Added agent [ ID 5 , GID 1 ]
+Ares  : Added agent [ ID 6 , GID 1 ]
+Ares  : Added agent [ ID 7 , GID 1 ]
+Ares  : Running simulation.
+Running for 100 rounds
+Ares  : Round: 1
+Agent [ ID 1 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 4 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 5 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 7 , GID 1 ] sent no action (non-send) command this round.
+Ares  : Round: 2
+Ares  : Simulation Over.
+Ares  : Ares is shutdown.
+Ares  : Simulation Over.
+Ares: Done.
+=================================================
+Results for each Group
+(Number Saved,Number Alive,Number Dead)
+=================================================
+( GID 1 ) NAME Test = ( 0 , 0 , 0 );
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replace.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Added agent [ ID 2 , GID 1 ]
+Ares  : Added agent [ ID 3 , GID 1 ]
+Ares  : Added agent [ ID 4 , GID 1 ]
+Ares  : Added agent [ ID 5 , GID 1 ]
+Ares  : Added agent [ ID 6 , GID 1 ]
+Ares  : Added agent [ ID 7 , GID 1 ]
+Ares  : Running simulation.
+Running for 100 rounds
+Ares  : Round: 1
+Agent [ ID 1 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 3 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 4 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 5 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 7 , GID 1 ] sent no action (non-send) command this round.
+Ares  : Round: 2
+Ares  : Simulation Over.
+Ares  : Ares is shutdown.
+Ares  : Simulation Over.
+Ares: Done.
+=================================================
+Results for each Group
+(Number Saved,Number Alive,Number Dead)
+=================================================
+( GID 1 ) NAME Test = ( 0 , 0 , 0 );
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replace.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Added agent [ ID 2 , GID 1 ]
+Ares  : Added agent [ ID 3 , GID 1 ]
+Ares  : Added agent [ ID 4 , GID 1 ]
+Ares  : Added agent [ ID 5 , GID 1 ]
+Ares  : Added agent [ ID 6 , GID 1 ]
+Ares  : Added agent [ ID 7 , GID 1 ]
+Ares  : Running simulation.
+Running for 100 rounds
+Ares  : Round: 1
+Agent [ ID 1 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 3 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 4 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 5 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 7 , GID 1 ] sent no action (non-send) command this round.
+Ares  : Round: 2
+Ares  : Simulation Over.
+Ares  : Ares is shutdown.
+Ares  : Simulation Over.
+Ares: Done.
+=================================================
+Results for each Group
+(Number Saved,Number Alive,Number Dead)
+=================================================
+( GID 1 ) NAME Test = ( 0 , 0 , 0 );
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replace.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Added agent [ ID 2 , GID 1 ]
+Ares  : Added agent [ ID 3 , GID 1 ]
+Ares  : Added agent [ ID 4 , GID 1 ]
+Ares  : Added agent [ ID 5 , GID 1 ]
+Ares  : Added agent [ ID 6 , GID 1 ]
+Ares  : Added agent [ ID 7 , GID 1 ]
+Ares  : Running simulation.
+Running for 100 rounds
+Ares  : Round: 1
+Agent [ ID 1 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 3 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 4 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 5 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 7 , GID 1 ] sent no action (non-send) command this round.
+Ares  : Round: 2
+Ares  : Simulation Over.
+Ares  : Ares is shutdown.
+Ares  : Simulation Over.
+Ares: Done.
+=================================================
+Results for each Group
+(Number Saved,Number Alive,Number Dead)
+=================================================
+( GID 1 ) NAME Test = ( 0 , 0 , 0 );
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replace.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Added agent [ ID 2 , GID 1 ]
+Ares  : Added agent [ ID 3 , GID 1 ]
+Ares  : Added agent [ ID 4 , GID 1 ]
+Ares  : Added agent [ ID 5 , GID 1 ]
+Ares  : Added agent [ ID 6 , GID 1 ]
+Ares  : Added agent [ ID 7 , GID 1 ]
+Ares  : Running simulation.
+Running for 100 rounds
+Ares  : Round: 1
+Agent [ ID 1 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 3 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 4 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 5 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 7 , GID 1 ] sent no action (non-send) command this round.
+Ares  : Round: 2
+Ares  : Simulation Over.
+Ares  : Ares is shutdown.
+Ares  : Simulation Over.
+Ares: Done.
+=================================================
+Results for each Group
+(Number Saved,Number Alive,Number Dead)
+=================================================
+( GID 1 ) NAME Test = ( 0 , 0 , 0 );
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replace.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Added agent [ ID 2 , GID 1 ]
+Ares  : Added agent [ ID 3 , GID 1 ]
+Ares  : Added agent [ ID 4 , GID 1 ]
+Ares  : Added agent [ ID 5 , GID 1 ]
+Ares  : Added agent [ ID 6 , GID 1 ]
+Ares  : Added agent [ ID 7 , GID 1 ]
+Ares  : Running simulation.
+Running for 100 rounds
+Ares  : Round: 1
+Agent [ ID 3 , GID 1 ] sent no action (non-send) command this round.
+Ares  : Round: 2
+Ares  : Round: 3
+Ares  : Round: 4
+Ares  : Simulation Over.
+Ares  : Ares is shutdown.
+Ares  : Simulation Over.
+Ares: Done.
+=================================================
+Results for each Group
+(Number Saved,Number Alive,Number Dead)
+=================================================
+( GID 1 ) NAME Test = ( 0 , 0 , 0 );
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replace.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Added agent [ ID 2 , GID 1 ]
+Ares  : Added agent [ ID 3 , GID 1 ]
+Ares  : Added agent [ ID 4 , GID 1 ]
+Ares  : Added agent [ ID 5 , GID 1 ]
+Ares  : Added agent [ ID 6 , GID 1 ]
+Ares  : Added agent [ ID 7 , GID 1 ]
+Ares  : Running simulation.
+Running for 100 rounds
+Ares  : Round: 1
+Ares  : Round: 2
+Ares  : Round: 3
+Ares  : Round: 4
+Ares  : Round: 5
+Ares  : Round: 6
+Ares  : Round: 7
+Ares  : Round: 8
+Ares  : Round: 9
+Ares  : Round: 10
+Ares  : Round: 11
+Ares  : Round: 12
+Ares  : Round: 13
+Ares  : Round: 14
+Ares  : Round: 15
+Ares  : Round: 16
+Ares  : Round: 17
+Ares  : Round: 18
+Ares  : Simulation Over.
+Ares  : Ares is shutdown.
+Ares  : Simulation Over.
+Ares: Done.
+=================================================
+Results for each Group
+(Number Saved,Number Alive,Number Dead)
+=================================================
+( GID 1 ) NAME Test = ( 0 , 0 , 0 );
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replace.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Added agent [ ID 2 , GID 1 ]
+Ares  : Added agent [ ID 3 , GID 1 ]
+Ares  : Added agent [ ID 4 , GID 1 ]
+Ares  : Added agent [ ID 5 , GID 1 ]
+Ares  : Added agent [ ID 6 , GID 1 ]
+Ares  : Added agent [ ID 7 , GID 1 ]
+Ares  : Running simulation.
+Running for 100 rounds
+Ares  : Round: 1
+Ares  : Round: 2
+Ares  : Round: 3
+Ares  : Round: 4
+Ares  : Round: 5
+Ares  : Round: 6
+Ares  : Round: 7
+Ares  : Round: 8
+Ares  : Round: 9
+Ares  : Round: 10
+Ares  : Round: 11
+Ares  : Round: 12
+Ares  : Round: 13
+Ares  : Round: 14
+Ares  : Round: 15
+Ares  : Round: 16
+Ares  : Simulation Over.
+Ares  : Ares is shutdown.
+Ares  : Simulation Over.
+Ares: Done.
+=================================================
+Results for each Group
+(Number Saved,Number Alive,Number Dead)
+=================================================
+( GID 1 ) NAME Test = ( 0 , 0 , 0 );
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replace.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Added agent [ ID 2 , GID 1 ]
+Ares  : Added agent [ ID 3 , GID 1 ]
+Ares  : Added agent [ ID 4 , GID 1 ]
+Ares  : Added agent [ ID 5 , GID 1 ]
+Ares  : Added agent [ ID 6 , GID 1 ]
+Ares  : Added agent [ ID 7 , GID 1 ]
+Ares  : Running simulation.
+Running for 100 rounds
+Ares  : Round: 1
+Ares  : Round: 2
+Ares  : Round: 3
+Ares  : Simulation Over.
+Ares  : Ares is shutdown.
+Ares  : Simulation Over.
+Ares: Done.
+=================================================
+Results for each Group
+(Number Saved,Number Alive,Number Dead)
+=================================================
+( GID 1 ) NAME Test = ( 0 , 0 , 0 );
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replace.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Added agent [ ID 2 , GID 1 ]
+Ares  : Added agent [ ID 3 , GID 1 ]
+Ares  : Added agent [ ID 4 , GID 1 ]
+Ares  : Added agent [ ID 5 , GID 1 ]
+Ares  : Added agent [ ID 6 , GID 1 ]
+Ares  : Added agent [ ID 7 , GID 1 ]
+Ares  : Running simulation.
+Running for 100 rounds
+Ares  : Round: 1
+Ares  : Round: 2
+Ares  : Round: 3
+Ares  : Simulation Over.
+Ares  : Ares is shutdown.
+Ares  : Simulation Over.
+Ares: Done.
+=================================================
+Results for each Group
+(Number Saved,Number Alive,Number Dead)
+=================================================
+( GID 1 ) NAME Test = ( 0 , 0 , 0 );
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replace.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Added agent [ ID 2 , GID 1 ]
+Ares  : Added agent [ ID 3 , GID 1 ]
+Ares  : Added agent [ ID 4 , GID 1 ]
+Ares  : Added agent [ ID 5 , GID 1 ]
+Ares  : Added agent [ ID 6 , GID 1 ]
+Ares  : Added agent [ ID 7 , GID 1 ]
+Ares  : Running simulation.
+Running for 100 rounds
+Ares  : Round: 1
+Ares  : Round: 2
+Ares  : Simulation Over.
+Ares  : Ares is shutdown.
+Ares  : Simulation Over.
+Ares: Done.
+=================================================
+Results for each Group
+(Number Saved,Number Alive,Number Dead)
+=================================================
+( GID 1 ) NAME Test = ( 0 , 0 , 0 );
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replace.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Added agent [ ID 2 , GID 1 ]
+Ares  : Added agent [ ID 3 , GID 1 ]
+Ares  : Added agent [ ID 4 , GID 1 ]
+Ares  : Added agent [ ID 5 , GID 1 ]
+Ares  : Added agent [ ID 6 , GID 1 ]
+Ares  : Added agent [ ID 7 , GID 1 ]
+Ares  : Running simulation.
+Running for 100 rounds
+Ares  : Round: 1
+Ares  : Round: 2
+Ares  : Simulation Over.
+Ares  : Ares is shutdown.
+Ares  : Simulation Over.
+Ares: Done.
+=================================================
+Results for each Group
+(Number Saved,Number Alive,Number Dead)
+=================================================
+( GID 1 ) NAME Test = ( 0 , 0 , 0 );
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replace.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Added agent [ ID 2 , GID 1 ]
+Ares  : Added agent [ ID 3 , GID 1 ]
+Ares  : Added agent [ ID 4 , GID 1 ]
+Ares  : Added agent [ ID 5 , GID 1 ]
+Ares  : Added agent [ ID 6 , GID 1 ]
+Ares  : Added agent [ ID 7 , GID 1 ]
+Ares  : Running simulation.
+Running for 100 rounds
+Ares  : Round: 1
+Ares  : Round: 2
+Ares  : Round: 3
+Ares  : Round: 4
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replace.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Added agent [ ID 2 , GID 1 ]
+Ares  : Added agent [ ID 3 , GID 1 ]
+Ares  : Added agent [ ID 4 , GID 1 ]
+Ares  : Added agent [ ID 5 , GID 1 ]
+Ares  : Added agent [ ID 6 , GID 1 ]
+Ares  : Added agent [ ID 7 , GID 1 ]
+Ares  : Running simulation.
+Running for 100 rounds
+Ares  : Round: 1
+Ares  : Round: 2
+Ares  : Simulation Over.
+Ares  : Ares is shutdown.
+Ares  : Simulation Over.
+Ares: Done.
+=================================================
+Results for each Group
+(Number Saved,Number Alive,Number Dead)
+=================================================
+( GID 1 ) NAME Test = ( 0 , 0 , 0 );
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: replace.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( ALL ); in "SysFiles/Config.ares"
+Ares  : Points for all groups saving survivors
+Ares  : Starting viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Added agent [ ID 2 , GID 1 ]
+Ares  : Added agent [ ID 3 , GID 1 ]
+Ares  : Added agent [ ID 4 , GID 1 ]
+Ares  : Added agent [ ID 5 , GID 1 ]
+Ares  : Added agent [ ID 6 , GID 1 ]
+Ares  : Added agent [ ID 7 , GID 1 ]
+Ares  : Running simulation.
+Running for 100 rounds
+Ares  : Round: 1
+Ares  : Round: 2
+Ares  : Round: 3
+Ares  : Simulation Over.
+Ares  : Ares is shutdown.
+Ares  : Simulation Over.
+Ares: Done.
+=================================================
+Results for each Group
+(Number Saved,Number Alive,Number Dead)
+=================================================
+( GID 1 ) NAME Test = ( 0 , 0 , 0 );

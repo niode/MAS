@@ -4,12 +4,14 @@ import Agent.*;
 import Agent.Pathfinder.*;
 import Ares.*;
 import Ares.World.*;
+import java.util.*;
 
 public class Coordinate
 {
   // All dimensions should be normalized to [0,100] so that distances can be calculated uniformly.
-
   private long[] dimensions = new long[3];
+  private Path chargerPath;
+  private Path survivorPath;
 
   public Coordinate(long[] dimensions)
   {
@@ -25,18 +27,32 @@ public class Coordinate
 
     // Nearest charger.
     PathOptions opt = new PathOptions(self.getLocation());
-    Path path = Pathfinder.getNearestCharger(sim, opt);
-    if(path == null) dimensions[1] = Long.MAX_VALUE;
-    else             dimensions[1] = normalize(path.getLength(), 0, 10);
+    chargerPath = Pathfinder.getNearestCharger(sim, opt);
 
-    opt.cutoff = 5;
+    System.out.println("Setting charger path: " + chargerPath);
+
+    if(chargerPath == null) dimensions[1] = Long.MAX_VALUE;
+    else                    dimensions[1] = normalize(chargerPath.getLength(), 0, 10);
+
     // Nearest survivor that can be saved individually.
-    path = Pathfinder.getNearestSurvivor(sim, opt);
-    if(path == null) dimensions[2] = Long.MAX_VALUE;
-    else             dimensions[2] = normalize(path.getLength(), 0, 10);
+    int cutoff = 5;
+    survivorPath = Pathfinder.getNearestSurvivor(sim, opt, cutoff);
+
+    if(survivorPath == null) dimensions[2] = Long.MAX_VALUE;
+    else                     dimensions[2] = normalize(survivorPath.getLength(), 0, 10);
 
     // Test
     System.out.printf("Coordinate: %d, %d, %d\n", dimensions[0], dimensions[1], dimensions[2]);
+  }
+
+  public Path getChargerPath()
+  {
+    return chargerPath;
+  }
+
+  public Path getSurvivorPath()
+  {
+    return survivorPath;
   }
 
   private long normalize(long value, long min, long max)

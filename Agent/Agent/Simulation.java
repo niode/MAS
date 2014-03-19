@@ -211,6 +211,11 @@ public class Simulation
   {
     if(world == null) return null;
     Cell cell = world.getCell(location);
+
+    System.out.println("Location: " + location);
+    if(cell == null) System.out.println("Cell is null");
+    System.out.println("Top Layer:" + cell.getTopLayer());
+
     if(cell == null) return null;
     return cell.getTopLayer();
   }

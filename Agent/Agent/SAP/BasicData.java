@@ -16,6 +16,7 @@ public class BasicData extends Data
 
     add(new long[]{0, 0, 0  }, new SleepAction());
     add(new long[]{0, 1, 1 }, new MoveAction(MoveAction.Option.NEAREST_CHARGER, new PathOptions(PathOptions.CHEAPEST)));
-    add(new long[]{1, 0, 0}, new MoveAction(MoveAction.Option.BEST_SURVIVOR, rescue1));
+    add(new long[]{1, 0, 1}, new MoveAction(MoveAction.Option.BEST_SURVIVOR, rescue1));
+    add(new long[]{1, 0, 0}, new SaveAction());
   }
 }
