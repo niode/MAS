@@ -12,6 +12,8 @@ import Agent.Role.Rules.Rule;
 public class ChargingRole extends Role
 	{
 
+  public static final String CODE = "ChargingRole";
+
 	/**
 	 * @param sim
 	 * @param com
@@ -45,7 +47,7 @@ public class ChargingRole extends Role
 
   public String toString()
   {
-    return "ChargingRole";
+    return CODE;
   }
 
 	}

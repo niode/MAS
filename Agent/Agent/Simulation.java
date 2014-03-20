@@ -79,6 +79,11 @@ public class Simulation
     return agents.get(getIndex(id));
   }
 
+  public int getAgentEnergy(AgentID id)
+  {
+    return agents.get(getIndex(id)).getEnergyLevel();
+  }
+
   public Location getAgentLocation(AgentID id)
   {
     return getAgentLocation(id, round); 
@@ -100,6 +105,23 @@ public class Simulation
       else end = mid;
     }
     return list.get(start).location;
+  }
+
+  public List<AgentID> getAgentsAt(Location location)
+  {
+    return getAgentsAt(location, round);
+  }
+
+  public List<AgentID> getAgentsAt(Location location, long round)
+  {
+    List<AgentID> result = new LinkedList<AgentID>();
+    for(Agent agt : agents)
+    {
+      AgentID id = agt.getAgentID();
+      Location loc = getAgentLocation(id, round);
+      if(loc.equals(location)) result.add(id);
+    }
+    return result;
   }
 
   public Role.ID getAgentRole(AgentID id)

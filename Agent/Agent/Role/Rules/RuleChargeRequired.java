@@ -61,7 +61,7 @@ public class RuleChargeRequired implements Rule
 	 * @see Agent.Role.Rules.Rule#doAction(Agent.Communicator)
 	 */
 	@Override
-	public AgentCommand doAction(Communicator com)
+	public AgentCommand doAction(Simulation sim)
 		{
 		//If already on a charger, sleep.
 		if (toNearestCharger.getLength() == 0)

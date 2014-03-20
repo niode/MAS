@@ -11,6 +11,8 @@ import Agent.Role.Rules.Rule;
  */
 public class ObserverRole extends Role
 	{
+  
+  public static final String CODE = "ObserverRole";
 
 	/**
 	 * @param sim
@@ -45,6 +47,6 @@ public class ObserverRole extends Role
 
   public String toString()
   {
-    return "ObserverRole";
+    return CODE;
   }
 	}

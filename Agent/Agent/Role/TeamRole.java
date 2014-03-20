@@ -4,13 +4,17 @@ import java.util.ArrayList;
 import Agent.Communicator;
 import Agent.Simulation;
 import Agent.Core.BaseAgent;
-import Agent.Role.Rules.Rule;
+import Agent.Role.Rules.*;
+import Agent.Role.TeamRules.*;
+import Ares.AgentID;
 
 /**
  *
  */
 public class TeamRole extends Role
 {
+  public static final String CODE = "TeamRole";
+
   private AgentID teammate;
 
   /**
@@ -30,7 +34,7 @@ public class TeamRole extends Role
   @Override
   public void setupRules(ArrayList<Rule> rules)
   {
-     
+    rules.add(new DigRule());
   }
 
   /* (non-Javadoc)
@@ -44,6 +48,6 @@ public class TeamRole extends Role
 
   public String toString()
   {
-    return "TeamRole";
+    return CODE;
   }
 }

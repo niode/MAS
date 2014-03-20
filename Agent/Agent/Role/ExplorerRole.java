@@ -24,6 +24,7 @@ import Ares.Commands.AgentCommands.*;
  */
 public class ExplorerRole extends Role
 	{
+    public static final String CODE = "ExplorerRole";
 
 	/**
 	 * @param sim object representing agent world knowledge
@@ -77,7 +78,7 @@ public class ExplorerRole extends Role
 
   public String toString()
   {
-    return "ExplorerRole";
+    return CODE;
   }
 
 }

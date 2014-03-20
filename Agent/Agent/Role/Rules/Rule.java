@@ -27,10 +27,10 @@ public interface Rule
 	 * conditions are true. Access to the communicator is ensured in case the rule requires that
 	 * additional communication be sent before returning the agent command.
 	 * 
-	 * @param com communicator
+	 * @param sim simulation
 	 * @return the action
 	 */
-	public AgentCommand doAction(Communicator com);
+	public AgentCommand doAction(Simulation sim);
 	
 	/**
 	 * Returns the role the agent should change to if the rule evaluates to true.

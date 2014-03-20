@@ -33,10 +33,10 @@ public abstract class Role extends Intelligence
       {
         switch(name)
         {
-        case "ObserverRole": return OBSERVER;
-        case "ExplorerRole": return EXPLORER;
-        case "ChargingRole": return CHARGER;
-        case "TeamRole": return TEAM;
+        case ObserverRole.CODE: return OBSERVER;
+        case ExplorerRole.CODE: return EXPLORER;
+        case ChargingRole.CODE: return CHARGER;
+        case TeamRole.CODE: return TEAM;
         default: return UNKNOWN;
         }
       }
@@ -123,7 +123,7 @@ public abstract class Role extends Intelligence
 				{
 				//Rule conditions met. Do rule actions.
 				base.log(LogLevels.Always, "DOING RULE: "+nextRule.getClass().getSimpleName());
-				AgentCommand nextAction = nextRule.doAction(getCommunicator());
+				AgentCommand nextAction = nextRule.doAction(getSimulation());
 				getCommunicator().send(nextAction);
 				setNextRole(nextRule.getRoleChange(getSimulation(), getCommunicator(), getBase()));
 				ruleUsed = true;
