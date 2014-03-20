@@ -97,6 +97,7 @@ public class Brain{
           System.out.println();
         }
         ai.think();
+        com.send(sim.getSelf());
         com.send(new END_TURN());
         sim.advance();
     }

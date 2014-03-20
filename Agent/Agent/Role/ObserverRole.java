@@ -43,4 +43,8 @@ public class ObserverRole extends Role
 
 		}
 
+  public String toString()
+  {
+    return "ObserverRole";
+  }
 	}

@@ -88,6 +88,8 @@ public class RoleIntelligence extends Intelligence
 
 		// If agent wants to change roles, change.
 		if (currentRole.checkChangeRoles()) currentRole = currentRole.getNextRole();
+
+    getCommunicator().send(currentRole);
 		}
 
 	public static void main(String[] args)

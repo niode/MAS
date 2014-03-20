@@ -5,6 +5,7 @@
 package Agent;
 
 import Agent.Core.*;
+import Agent.Role.*;
 import Ares.*;
 import Ares.World.*;
 import Ares.World.Info.*;
@@ -24,6 +25,7 @@ public class Communicator
   private static final String PREFIX_SURROUND = "SURROUND";
   private static final String PREFIX_AGENT = "AGENT";
   private static final String PREFIX_BEACON = "BEACON";
+  private static final String PREFIX_ROLE = "ROLE";
   private static final String PREFIX_DELIM = "::";
 
   private BaseAgent base;
@@ -52,6 +54,9 @@ public class Communicator
     } else if(split[0].equals(PREFIX_BEACON))
     {
       parseBeacon(split[1]);
+    } else if(split[0].equals(PREFIX_ROLE))
+    {
+      parseRole(split[1]);
     }
   }
 
@@ -81,6 +86,11 @@ public class Communicator
     send(format(cell));
   }
 
+  public void send(Role role)
+  {
+    send(format(role));
+  }
+
   public void send(AgentID id, String str)
   {
     AgentIDList idList = new AgentIDList();
@@ -93,6 +103,11 @@ public class Communicator
     send(format(beacon));
   }
 
+  public void send(Agent agent)
+  {
+    send(format(agent));
+  }
+
   public void send(String str)
   {
     AgentIDList idList = new AgentIDList();
@@ -101,12 +116,11 @@ public class Communicator
 
   private String format(Agent agent)
   {
-    Location loc = agent.getLocation();
     AgentID id = agent.getAgentID();
     long energy = agent.getEnergyLevel();
     int alive = agent.isAlive() ? 1 : 0;
-    return String.format("%s%d,%d,%d,%d,%d,%d", PREFIX_AGENT + PREFIX_DELIM, id.getGID(), id.getID(),
-                                                energy, alive, loc.getRow(), loc.getCol());
+    return String.format("%s%d,%d,%d,%d", PREFIX_AGENT + PREFIX_DELIM, id.getGID(), id.getID(),
+                                          energy, alive);
   }
 
   private void parseSurroundInfo(String string)
@@ -137,9 +151,10 @@ public class Communicator
     AgentID id = new AgentID((int)numbers[0], (int)numbers[1]);
     long energy = numbers[2];
     boolean alive = numbers[3] == 1;
-    Location loc = new Location((int)numbers[4], (int)numbers[5]);
-    sim.update(id, loc);
-    sim.update(id, (int)energy);
+    if(alive)
+      sim.update(id, (int)energy);
+    else
+      sim.update(id, 0);  // 0 energy means dead.
   }
 
   private String format(Beacon beacon)
@@ -166,6 +181,14 @@ public class Communicator
     sim.update(beacon);
   }
 
+  private void parseRole(String string)
+  {
+    System.out.println("Parsing role: " + string);
+    String[] split = string.split(DELIM);
+    AgentID id = new AgentID(Integer.parseInt(split[0]), Integer.parseInt(split[1]));
+    sim.update(id, Role.ID.getRoleID(split[2]));
+  }
+
   private String format(SurroundInfo info)
   {
     return PREFIX_SURROUND + PREFIX_DELIM + info.toString();
@@ -179,6 +202,14 @@ public class Communicator
   private String format(Cell cell)
   {
     return PREFIX_CELL + PREFIX_DELIM + cell.getCellInfo().toString();
+  }
+
+  private String format(Role role)
+  {
+    AgentID id = sim.getSelfID();
+    return String.format("%s%d,%d,%s",
+        PREFIX_ROLE + PREFIX_DELIM, id.getID(), id.getGID(),
+        role.toString());
   }
 
   // Pretend this is a functional language and use map.

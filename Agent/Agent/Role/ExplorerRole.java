@@ -74,4 +74,10 @@ public class ExplorerRole extends Role
       }
     }
 		}
-	}
+
+  public String toString()
+  {
+    return "ExplorerRole";
+  }
+
+}

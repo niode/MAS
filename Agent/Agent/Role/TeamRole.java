@@ -42,4 +42,8 @@ public class TeamRole extends Role
 
   }
 
+  public String toString()
+  {
+    return "TeamRole";
   }
+}

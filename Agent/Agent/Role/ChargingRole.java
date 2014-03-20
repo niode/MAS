@@ -43,4 +43,9 @@ public class ChargingRole extends Role
 
 		}
 
+  public String toString()
+  {
+    return "ChargingRole";
+  }
+
 	}

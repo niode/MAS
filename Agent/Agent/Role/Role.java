@@ -18,6 +18,31 @@ import Ares.Commands.AgentCommand;
  */
 public abstract class Role extends Intelligence
 	{
+    public static enum ID
+    {
+      UNKNOWN(0),
+      OBSERVER(1),
+      EXPLORER(2),
+      TEAM(3),
+      CHARGER(4);
+
+      private int id;
+      ID(int id){this.id = id;}
+
+      public static ID getRoleID(String name)
+      {
+        switch(name)
+        {
+        case "ObserverRole": return OBSERVER;
+        case "ExplorerRole": return EXPLORER;
+        case "ChargingRole": return CHARGER;
+        case "TeamRole": return TEAM;
+        default: return UNKNOWN;
+        }
+      }
+    }
+
+
 	private Role			nextRole	= null;
 	private ArrayList<Rule>	rules		= new ArrayList<Rule>();
 

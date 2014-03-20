@@ -5,6 +5,7 @@ import Ares.World.*;
 import Ares.World.Info.*;
 import Ares.World.Objects.*;
 import Agent.*;
+import Agent.Role.*;
 import java.util.*;
 
 public class Simulation
@@ -23,6 +24,7 @@ public class Simulation
   private Set<Beacon> beacons = new HashSet<Beacon>();
   private boolean[][] visited = null;
   private long[][] turnVisited = null;
+  private Map<AgentID, Role.ID> roles = new HashMap<AgentID, Role.ID>();
   private AgentID self = null;
 
   private int round = 0;
@@ -35,7 +37,7 @@ public class Simulation
     for(int i = 1; i <= NUM_TEAMS; i++)
       for(int j = 1; j <= NUM_AGENTS; j++)
         locations.put(new AgentID(j, i), new ArrayList<TimeLocation>());
-        
+
     agents = new ArrayList<Agent>(NUM_AGENTS * NUM_TEAMS);
     for(int i = 0; i < NUM_TEAMS; i++)
       for(int j = 0; j < NUM_AGENTS; j++)
@@ -98,6 +100,14 @@ public class Simulation
       else end = mid;
     }
     return list.get(start).location;
+  }
+
+  public Role.ID getAgentRole(AgentID id)
+  {
+    if(roles.containsKey(id))
+      return roles.get(id);
+    else
+      return Role.ID.UNKNOWN;
   }
 
   public List<Location> getChargers()
@@ -431,6 +441,11 @@ public class Simulation
       mid = start + (end - start)/2;
     }
     list.add(mid, new TimeLocation(round, loc));
+  }
+
+  public void update(AgentID id, Role.ID roleID)
+  {
+    roles.put(id, roleID);   
   }
 
   private class TimeLocation
