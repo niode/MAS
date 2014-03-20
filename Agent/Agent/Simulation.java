@@ -22,6 +22,7 @@ public class Simulation
   private List<Location> chargers = new LinkedList<Location>();
   private Set<Beacon> beacons = new HashSet<Beacon>();
   private boolean[][] visited = null;
+  private long[][] turnVisited = null;
   private AgentID self = null;
 
   private int round = 0;
@@ -115,6 +116,24 @@ public class Simulation
     for(Beacon beacon : beacons)
       if(beacon.getType() == type) result.add(beacon);
 
+    return result;
+  }
+
+  // Get all unvisited locations.
+  public Set<Location> getUnvisited()
+  {
+    return getUnvisited(round);
+  }
+
+  // Get all locations that have never been visited or have not
+  // been visited in the last time turns.
+  public Set<Location> getUnvisited(long time)
+  {
+    HashSet<Location> result = new HashSet<Location>();
+    for(int i = 0; i < getRowCount(); i++)
+      for(int j = 0; i < getColCount(); j++)
+        if(!visited[i][j] || turnVisited[i][j] < round - time)
+          result.add(new Location(i, j));
     return result;
   }
 
@@ -267,6 +286,7 @@ public class Simulation
   {
     this.world = world;
     visited = new boolean[world.getRows()][world.getCols()];
+    turnVisited = new long[world.getRows()][world.getCols()];
     for(int i = 0; i < world.getRows(); i++)
       for(int j = 0; j < world.getCols(); j++)
       {
