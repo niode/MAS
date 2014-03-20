@@ -356,12 +356,13 @@ public class Simulation
     if(cell == null) return;
     cell.setLifeSignals(info);
 
+    int totalSignals = 0;
     for(int i = 0; i < info.size(); i++)
-      if(info.get(i) > 0)
-      {
-        cell.setPercentChance(100);
-        break;
-      }
+      totalSignals += info.get(i);
+    if(totalSignals > 0)
+      cell.setPercentChance(100);
+    else
+      cell.setPercentChance(0);
   }
 
   public void update(Location location, WorldObjectInfo info)
