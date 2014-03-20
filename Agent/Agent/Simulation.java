@@ -341,6 +341,9 @@ public class Simulation
       cellsVisited++;
       totalCost += info.getMoveCost();
     }
+
+    turnVisited[info.getLocation().getRow()][info.getLocation().getCol()] = round - 1;
+
     update(info.getLocation(), info.getTopLayerInfo());
   }
 
