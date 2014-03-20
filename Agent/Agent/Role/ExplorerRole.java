@@ -57,12 +57,6 @@ public class ExplorerRole extends Role
 		PathOptions opt = new PathOptions(currentLoc);
 		Path nearestSurvPath = Pathfinder.getNearestSurvivor(getSimulation(), opt, 0);
 		
-		/*
-		 * TODO this crashes right now because the nearest survivor will be where the agent is already
-		 * standing (just under rubble), and so the path is empty. Will make this something better
-		 * later today.
-		 */
-		
     if(nearestSurvPath.getLength() > 0)
     {
       //Get next location in path and move to it.
