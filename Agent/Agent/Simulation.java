@@ -328,6 +328,8 @@ public class Simulation
       CellInfo ci = info.getSurroundInfo(d);
       update(ci);
     }
+
+    update(info.getSurroundInfo(Direction.STAY_PUT).getLocation(), info.getLifeSignals());
   }
 
   public void update(CellInfo info)
