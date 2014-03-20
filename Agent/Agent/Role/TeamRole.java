@@ -11,6 +11,7 @@ import Agent.Role.Rules.Rule;
  */
 public class TeamRole extends Role
 {
+  private AgentID teammate;
 
   /**
    * @param sim
@@ -29,8 +30,7 @@ public class TeamRole extends Role
   @Override
   public void setupRules(ArrayList<Rule> rules)
   {
-    
-
+     
   }
 
   /* (non-Javadoc)
@@ -39,7 +39,7 @@ public class TeamRole extends Role
   @Override
   public void noRuleMatch()
   {
-
+    setNextRole(new ExplorerRole(getSimulation(), getCommunicator(), getBase()));
   }
 
   public String toString()

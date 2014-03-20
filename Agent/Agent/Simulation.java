@@ -231,6 +231,33 @@ public class Simulation
     return cell.getPercentChance();
   }
 
+  public int getAgentsRequired(int x, int y)
+  {
+    return getAgentsRequired(new Location(x, y));
+  }
+
+  public int getAgentsRequired(Location location)
+  {
+    WorldObject layer = getTopLayer(location);
+    if(layer instanceof Rubble)
+      return ((Rubble)layer).getRemoveAgents();
+    else
+      return 1;
+  }
+
+  public int getEnergyRequired(int x, int y)
+  {
+    return getEnergyRequired(new Location(x, y));
+  }
+
+  public int getEnergyRequired(Location location)
+  {
+    WorldObject layer = getTopLayer(location);
+    if(layer instanceof Rubble)
+      return ((Rubble)layer).getRemoveEnergy();
+    else return 0;
+  }
+
   public WorldObject getTopLayer(int x, int y)
   {
     return getTopLayer(new Location(x, y));
