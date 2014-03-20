@@ -47,12 +47,12 @@ public class Brain{
     }
     
     public void handleFwdMessage(FWD_MESSAGE fwd_message) {
-        base.log(LogLevels.Always, "FWD MESSAGE:" + fwd_message);
-        base.log(LogLevels.Always, "" + fwd_message);
+        base.log(LogLevels.Always, "FWD_MESSAGE");
         com.receive(fwd_message);
     }
     
     public void handleMoveResult(MOVE_RESULT move_result) {
+        base.log(LogLevels.Always, "MOVE_RESULT");
         sim.update(move_result.getSurroundInfo());
         sim.update(sim.getSelfID(), move_result.getSurroundInfo().getCurrentInfo().getLocation());
         sim.update(sim.getSelfID(), move_result.getEnergyLevel());
@@ -60,11 +60,7 @@ public class Brain{
     }
 
     public void handleObserveResult(OBSERVE_RESULT observe_result) {
-        base.log(LogLevels.Always, "OBSERVE_RESULT:" + observe_result);
-        base.log(LogLevels.Always, observe_result.getEnergyLevel() + "");
-        base.log(LogLevels.Always, observe_result.getLifeSignals() + "");
-        base.log(LogLevels.Always, observe_result.getTopLayerInfo() + "");
-        base.log(LogLevels.Test, "" + observe_result);
+        base.log(LogLevels.Always, "OBSERVE_RESULT");
         CellInfo info = observe_result.getTopLayerInfo();
         sim.update(info);
         sim.update(info.getLocation(), observe_result.getLifeSignals());
@@ -74,16 +70,14 @@ public class Brain{
 
     
     public void handleSaveSurvResult(SAVE_SURV_RESULT save_surv_result) {
-        base.log(LogLevels.Always, "SAVE_SURV_RESULT:" + save_surv_result);
-        base.log(LogLevels.Test, "" + save_surv_result);
+        base.log(LogLevels.Always, "SAVE_SURV_RESULT");
         sim.update(sim.getSelfID(), save_surv_result.getEnergyLevel());
         sim.update(save_surv_result.getSurroundInfo());
     }
 
     
     public void handleTeamDigResult(TEAM_DIG_RESULT team_dig_result) {
-        base.log(LogLevels.Always, "TEAM_DIG_RESULT:" + team_dig_result);
-        base.log(LogLevels.Test, "" + team_dig_result);
+        base.log(LogLevels.Always, "TEAM_DIG_RESULT");
         sim.update(sim.getSelfID(), team_dig_result.getEnergyLevel());
         sim.update(team_dig_result.getSurroundInfo());
     }
