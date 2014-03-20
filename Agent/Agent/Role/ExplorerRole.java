@@ -43,13 +43,13 @@ public class ExplorerRole extends Role
 	public void setupRules(ArrayList<Rule> rules)
 		{
 		rules.add(new RuleSaveSurvivor());
+		rules.add(new RuleChargeRequired());
 		rules.add(new RuleCanDig());
 		}
 
 	@Override
 	public void noRuleMatch()
 		{
-		base.log(LogLevels.Always, "NO MATCHING RULES");
 		Location currentLoc = getSimulation().getSelf().getLocation();
 		
 		//Get path to nearest survivor.

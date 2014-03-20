@@ -2,6 +2,7 @@ package Agent.Role.Rules;
 
 import Agent.Communicator;
 import Agent.Simulation;
+import Agent.Core.BaseAgent;
 import Agent.Role.Role;
 import Ares.Location;
 import Ares.Commands.AgentCommand;
@@ -47,7 +48,7 @@ public class RuleSaveSurvivor implements Rule
 	 * @see Agent.Role.Rules.Rule#getRoleChange()
 	 */
 	@Override
-	public Role getRoleChange()
+	public Role getRoleChange(Simulation sim, Communicator com, BaseAgent base)
 		{
 		//No role change needed.
 		return null;

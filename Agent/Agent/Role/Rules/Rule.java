@@ -2,6 +2,7 @@ package Agent.Role.Rules;
 
 import Agent.Communicator;
 import Agent.Simulation;
+import Agent.Core.BaseAgent;
 import Agent.Role.Role;
 import Ares.Commands.AgentCommand;
 
@@ -36,6 +37,6 @@ public interface Rule
 	 * 
 	 * @return the next agent role, or null if no role change is needed.
 	 */
-	public Role getRoleChange();
+	public Role getRoleChange(Simulation sim, Communicator com, BaseAgent base);
 	
 	}

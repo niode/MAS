@@ -100,13 +100,14 @@ public abstract class Role extends Intelligence
 				base.log(LogLevels.Always, "DOING RULE: "+nextRule.getClass().getSimpleName());
 				AgentCommand nextAction = nextRule.doAction(getCommunicator());
 				getCommunicator().send(nextAction);
-				setNextRole(nextRule.getRoleChange());
+				setNextRole(nextRule.getRoleChange(getSimulation(), getCommunicator(), getBase()));
 				ruleUsed = true;
 				}
 			}
 		
 		if (!ruleUsed)
 			{
+			base.log(LogLevels.Always, "NO MATCHING RULES");
 			noRuleMatch();
 			}
 		//If on the first move, stay put to get neighbor info.
