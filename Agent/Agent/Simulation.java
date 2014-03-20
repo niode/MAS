@@ -334,6 +334,13 @@ public class Simulation
     Cell cell = world.getCell(location);
     if(cell == null) return;
     cell.setLifeSignals(info);
+
+    for(int i = 0; i < info.size(); i++)
+      if(info.get(i) > 0)
+      {
+        cell.setPercentChance(100);
+        break;
+      }
   }
 
   public void update(Location location, WorldObjectInfo info)
