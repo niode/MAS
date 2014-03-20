@@ -6,6 +6,7 @@ import Agent.Communicator;
 import Agent.Intelligence;
 import Agent.Simulation;
 import Agent.Core.BaseAgent;
+import Agent.Core.LogLevels;
 import Agent.Role.Rules.Rule;
 import Ares.Commands.AgentCommand;
 
@@ -96,6 +97,7 @@ public abstract class Role extends Intelligence
 			if (nextRule.checkConditions(getSimulation()))
 				{
 				//Rule conditions met. Do rule actions.
+				base.log(LogLevels.Always, "DOING RULE: "+nextRule.getClass().getSimpleName());
 				AgentCommand nextAction = nextRule.doAction(getCommunicator());
 				getCommunicator().send(nextAction);
 				setNextRole(nextRule.getRoleChange());

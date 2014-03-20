@@ -13,7 +13,7 @@ import Ares.World.Objects.WorldObject;
 
 /**
  * Simple rule to save a survivor if currently on a cell where a survivor is
- * the top group.
+ * the top layer.
  * 
  * @author Daniel
  */

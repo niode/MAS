@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import Agent.Communicator;
 import Agent.Simulation;
 import Agent.Core.BaseAgent;
+import Agent.Core.LogLevels;
 import Agent.Pathfinder.*;
 import Agent.Role.Rules.*;
 import Ares.*;
@@ -48,6 +49,7 @@ public class ExplorerRole extends Role
 	@Override
 	public void noRuleMatch()
 		{
+		base.log(LogLevels.Always, "NO MATCHING RULES");
 		Location currentLoc = getSimulation().getSelf().getLocation();
 		
 		//Get path to nearest survivor.
