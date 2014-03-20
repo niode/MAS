@@ -341,10 +341,6 @@ public class Simulation
       cellsVisited++;
       totalCost += info.getMoveCost();
     }
-    for(AgentID id : info.getAgentIDList())
-    {
-      update(id, info.getLocation());
-    }
     update(info.getLocation(), info.getTopLayerInfo());
   }
 
