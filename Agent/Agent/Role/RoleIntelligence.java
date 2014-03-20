@@ -80,9 +80,6 @@ public class RoleIntelligence extends Intelligence
 			{
 			AgentCommand stay = new MOVE(Direction.STAY_PUT);
 			getCommunicator().send(stay);
-
-			// Test
-			getCommunicator().send(new OBSERVE(getSimulation().getSelf().getLocation()));
 			return;
 			}
 
