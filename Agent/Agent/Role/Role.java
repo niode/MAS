@@ -112,30 +112,37 @@ public abstract class Role extends Intelligence
 	 */
 	@Override
 	public void think()
-		{
+  {
 		boolean ruleUsed = false;
     for(Rule nextRule : getRuleList())
-			{
+    {
 			
 			if (nextRule.checkConditions(getSimulation()))
-				{
+      {
 				//Rule conditions met. Do rule actions.
 				base.log(LogLevels.Always, "DOING RULE: "+nextRule.getClass().getSimpleName());
 				AgentCommand nextAction = nextRule.doAction(getSimulation(), getCommunicator());
-				getCommunicator().send(nextAction);
-				setNextRole(nextRule.getRoleChange(getSimulation(), getCommunicator(), getBase()));
-				ruleUsed = true;
-        break; // Use the first rule that matches.
-				}
+
+        setNextRole(nextRule.getRoleChange(getSimulation(), getCommunicator(), getBase()));
+        ruleUsed = true;
+
+        // Go on to the next rule if this includes no actions. This allows agents
+        // to match multiple rules.
+        if(nextAction != null)
+        {
+          getCommunicator().send(nextAction);
+          break;
+        }
 			}
-		
-		if (!ruleUsed)
-			{
-			base.log(LogLevels.Always, "NO MATCHING RULES");
-			noRuleMatch();
-			}
-		//If on the first move, stay put to get neighbor info.
-		}
+    }
+  
+    if (!ruleUsed)
+    {
+      base.log(LogLevels.Always, "NO MATCHING RULES");
+      noRuleMatch();
+    }
+    //If on the first move, stay put to get neighbor info.
+  }
 	
 	/**
 	 * Method that will be run if no existing rules had their conditions met.

@@ -45,7 +45,7 @@ public class TeamRole extends Role
   @Override
   public void noRuleMatch()
   {
-    setNextRole(new ExplorerRole(getSimulation(), getCommunicator(), getBase()));
+    //setNextRole(new ExplorerRole(getSimulation(), getCommunicator(), getBase()));
   }
 
   public String toString()

@@ -16,6 +16,7 @@ public class NotifyRule implements Rule
 {
   public boolean checkConditions(Simulation sim)
   {
+    System.out.println("Evaluating NotifyRule.");
     int energy = sim.getAgentEnergy(sim.getSelfID());
     Location loc = sim.getSelf().getLocation();
 
@@ -40,6 +41,7 @@ public class NotifyRule implements Rule
 
   public AgentCommand doAction(Simulation sim, Communicator com)
   {
+    System.out.println("Doing NotifyRule.");
     Location loc = sim.getSelf().getLocation();
 
     com.send(new Beacon(Beacon.HELP_DIG, sim.getSelfID(), loc, Long.MAX_VALUE, 2));
@@ -49,6 +51,6 @@ public class NotifyRule implements Rule
 
   public Role getRoleChange(Simulation sim, Communicator com, BaseAgent base)
   {
-    return new ExplorerRole(sim, com, base);
+    return null;
   }
 }

@@ -18,26 +18,33 @@ public class MoveRule implements Rule
 
   public boolean checkConditions(Simulation sim)
   {
+    System.out.println("Evaluating MoveRule.");
     int energy = sim.getAgentEnergy(sim.getSelfID());
     Location loc = sim.getSelf().getLocation();
     PathOptions opt = new PathOptions(loc);
 
-    Path shortest = null;
+    path = null;
     for(Beacon beacon : sim.getBeaconType(Beacon.HELP_DIG))
     {
+      System.out.printf("Evaluating beacon at %s\n", beacon.getLocation().toString());
+      
+      // Don't consider your own location because it is the shortest path obviously.
+      if(beacon.getLocation().equals(loc)) continue;
+
       opt.end = beacon.getLocation();
       Path tmp = Pathfinder.getPath(sim, opt);
-      if(shortest == null
-          || (tmp.getLength() < shortest.getLength()
+      if(path == null
+          || tmp != null && (tmp.getLength() < path.getLength()
           && sim.getRound() + tmp.getLength() < beacon.getRound()))
-        shortest = tmp;
+        path = tmp;
     }
-    if(shortest != null) return true;
+    if(path != null) return true;
     else return false;
   }
 
   public AgentCommand doAction(Simulation sim, Communicator com)
   {
+    System.out.println("Doing MoveRule.");
     Location start = sim.getAgentLocation(sim.getSelfID());
     Location end = path.getNext();
     return new MOVE(Pathfinder.getDirection(start, end));

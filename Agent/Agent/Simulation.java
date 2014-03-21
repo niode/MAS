@@ -94,16 +94,18 @@ public class Simulation
     // Binary search for the location.
     List<TimeLocation> list = locations.get(id);
     if(list.size() == 0) return null;
+
     int start = 0;
     int end = list.size() - 1;
     while(start < end)
     {
       int mid = start + (end - start)/2;
       TimeLocation current = list.get(mid);
-      if(current.round == round) return current.location;
+      if(current.round == round) start = end = mid;
       if(current.round < round) start = mid;
       else end = mid;
     }
+
     return list.get(start).location;
   }
 
@@ -121,6 +123,7 @@ public class Simulation
         continue;
       AgentID id = agt.getAgentID();
       Location loc = getAgentLocation(id, round);
+      if(loc == null) continue;
       if(loc.equals(location)) result.add(id);
     }
     return result;
@@ -291,11 +294,6 @@ public class Simulation
   {
     if(world == null) return null;
     Cell cell = world.getCell(location);
-
-    System.out.println("Location: " + location);
-    if(cell == null) System.out.println("Cell is null");
-    System.out.println("Top Layer:" + cell.getTopLayer());
-
     if(cell == null) return null;
     return cell.getTopLayer();
   }
@@ -327,7 +325,9 @@ public class Simulation
     // Delete anything that happened before this round.
     for(List<TimeLocation> list : locations.values())
     {
-      if(list.size() == 0) continue;
+      // If the size is 1, no new location information has
+      // been received; assume the agent is still there.
+      if(list.size() <= 1) continue;
       TimeLocation head = list.get(0);
       while(list.size() > 0 && head.round < round)
       {
@@ -460,7 +460,6 @@ public class Simulation
   {
     if(beacon.getType() == Beacon.MOVE)
     {
-      System.out.println("Updating position.");
       update(beacon.getSenderID(), beacon.getLocation(), beacon.getRound());
     } else if(beacon.getAgentCount() == 0)
     {
@@ -473,6 +472,7 @@ public class Simulation
 
   public void update(AgentID id, Location loc, long round)
   {
+    System.out.printf("Updating %d: (%s, %d)\n", id.getID(), loc.toString(), round);
     List<TimeLocation> list = locations.get(id);
     // Binary search the list.
     int start = 0; 

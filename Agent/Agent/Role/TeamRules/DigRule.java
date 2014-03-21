@@ -16,8 +16,9 @@ public class DigRule implements Rule
 {
   public boolean checkConditions(Simulation sim)
   {
+    System.out.println("Evaluating DigRule.");
     int energy = sim.getAgentEnergy(sim.getSelfID());
-    Location loc = sim.getSelf().getLocation();
+    Location loc = sim.getAgentLocation(sim.getSelfID());
 
     Path charger = Pathfinder.getNearestCharger(sim, new PathOptions(loc));
 
@@ -32,7 +33,7 @@ public class DigRule implements Rule
     for(AgentID id : agents)
       if(sim.getAgentRole(id) == Role.ID.TEAM)
         agentCount++;
-    if(agentCount >= 1) return true;
+    if(agentCount > 1) return true;
 
     if(sim.getTopLayer(loc) instanceof Survivor) return true;
     if(sim.getTopLayer(loc) instanceof SurvivorGroup) return true;
@@ -42,6 +43,7 @@ public class DigRule implements Rule
 
   public AgentCommand doAction(Simulation sim, Communicator com)
   {
+    System.out.println("Doing DigRule.");
     Location loc = sim.getSelf().getLocation();
     if(sim.getTopLayer(loc) instanceof Survivor) return new SAVE_SURV();
     if(sim.getTopLayer(loc) instanceof SurvivorGroup) return new SAVE_SURV();
