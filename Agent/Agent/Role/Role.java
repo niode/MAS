@@ -114,10 +114,8 @@ public abstract class Role extends Intelligence
 	public void think()
 		{
 		boolean ruleUsed = false;
-		Iterator<Rule> rules = getRuleList().iterator();
-		while (rules.hasNext())
+    for(Rule nextRule : getRuleList())
 			{
-			Rule nextRule = rules.next();
 			
 			if (nextRule.checkConditions(getSimulation()))
 				{
@@ -127,6 +125,7 @@ public abstract class Role extends Intelligence
 				getCommunicator().send(nextAction);
 				setNextRole(nextRule.getRoleChange(getSimulation(), getCommunicator(), getBase()));
 				ruleUsed = true;
+        break; // Use the first rule that matches.
 				}
 			}
 		

@@ -117,6 +117,8 @@ public class Simulation
     List<AgentID> result = new LinkedList<AgentID>();
     for(Agent agt : agents)
     {
+      if(agt.getAgentID().getGID() != getSelfID().getGID())
+        continue;
       AgentID id = agt.getAgentID();
       Location loc = getAgentLocation(id, round);
       if(loc.equals(location)) result.add(id);
@@ -377,6 +379,8 @@ public class Simulation
     
     world.getCell(location).addAgent(id);
     agent.setLocation(location);
+
+    update(id, location, round);
   }
 
   public void update(SurroundInfo info)
@@ -456,7 +460,8 @@ public class Simulation
   {
     if(beacon.getType() == Beacon.MOVE)
     {
-      update(beacon.getSenderID(), beacon.getRound(), beacon.getLocation());
+      System.out.println("Updating position.");
+      update(beacon.getSenderID(), beacon.getLocation(), beacon.getRound());
     } else if(beacon.getAgentCount() == 0)
     {
       beacons.remove(beacon);
@@ -466,7 +471,7 @@ public class Simulation
     }
   }
 
-  public void update(AgentID id, long round, Location loc)
+  public void update(AgentID id, Location loc, long round)
   {
     List<TimeLocation> list = locations.get(id);
     // Binary search the list.

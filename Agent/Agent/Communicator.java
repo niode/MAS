@@ -39,6 +39,7 @@ public class Communicator
 
   public void receive(FWD_MESSAGE msg)
   {
+    System.out.println(msg.getMessage());
     if(msg.getFromAgentID().getGID() != sim.getSelfID().getGID())
       return;
     String[] split = msg.getMessage().split("::");
@@ -53,6 +54,7 @@ public class Communicator
       parseAgent(split[1]);
     } else if(split[0].equals(PREFIX_BEACON))
     {
+      System.out.println("Got beacon.");
       parseBeacon(split[1]);
     } else if(split[0].equals(PREFIX_ROLE))
     {
@@ -177,6 +179,7 @@ public class Communicator
     long round = numbers[3];
     long agents = numbers[4];
     Location loc = new Location((int)numbers[5], (int)numbers[6]);
+    System.out.println("Got beacon of type " + type);
     Beacon beacon = new Beacon(type, id, loc, round, agents);
     sim.update(beacon);
   }

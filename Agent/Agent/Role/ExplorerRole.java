@@ -4,8 +4,7 @@
 package Agent.Role;
 
 import java.util.ArrayList;
-import Agent.Communicator;
-import Agent.Simulation;
+import Agent.*;
 import Agent.Core.BaseAgent;
 import Agent.Core.LogLevels;
 import Agent.Pathfinder.*;
@@ -64,6 +63,8 @@ public class ExplorerRole extends Role
       Location moveTo = nearestSurvPath.getNext();
       AgentCommand move = new MOVE(Pathfinder.getDirection(currentLoc, moveTo));
       getCommunicator().send(move);
+      getCommunicator().send(new Beacon(Beacon.MOVE, getSimulation().getSelfID(),
+          moveTo, getSimulation().getRound() + 1, 0));
     } else
     {
       if(getSimulation().getTopLayer(getSimulation().getSelf().getLocation()) instanceof Rubble)

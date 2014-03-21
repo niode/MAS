@@ -32,7 +32,7 @@ public class DigRule implements Rule
     for(AgentID id : agents)
       if(sim.getAgentRole(id) == Role.ID.TEAM)
         agentCount++;
-    if(agentCount > 1) return true;
+    if(agentCount >= 1) return true;
 
     if(sim.getTopLayer(loc) instanceof Survivor) return true;
     if(sim.getTopLayer(loc) instanceof SurvivorGroup) return true;

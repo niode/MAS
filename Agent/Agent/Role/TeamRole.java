@@ -35,6 +35,7 @@ public class TeamRole extends Role
   public void setupRules(ArrayList<Rule> rules)
   {
     rules.add(new DigRule());
+    rules.add(new MoveRule());
   }
 
   /* (non-Javadoc)

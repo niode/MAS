@@ -2,10 +2,7 @@ package Agent.Role;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import Agent.Brain;
-import Agent.Communicator;
-import Agent.Intelligence;
-import Agent.Simulation;
+import Agent.*;
 import Agent.Core.BaseAgent;
 import Agent.Core.LogLevels;
 import Ares.*;
@@ -32,7 +29,8 @@ public class RoleIntelligence extends Intelligence
 		super(sim, com, base);
 
 		// Set default role.
-		currentRole = new ExplorerRole(sim, com, base);
+		//currentRole = new ExplorerRole(sim, com, base);
+    currentRole = new TeamRole(sim, com, base);
 		}
 
 	/**
@@ -80,6 +78,9 @@ public class RoleIntelligence extends Intelligence
 			{
 			AgentCommand stay = new MOVE(Direction.STAY_PUT);
 			getCommunicator().send(stay);
+      getCommunicator().send(new Beacon(Beacon.MOVE, getSimulation().getSelfID(),
+          getSimulation().getAgentLocation(getSimulation().getSelfID()),
+          1, 0));
 			return;
 			}
 
