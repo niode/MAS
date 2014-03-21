@@ -38,7 +38,7 @@ public class RuleSaveSurvivor implements Rule
 	 * @see Agent.Role.Rules.Rule#doAction(Agent.Communicator)
 	 */
 	@Override
-	public AgentCommand doAction(Simulation sim)
+	public AgentCommand doAction(Simulation sim, Communicator com)
 		{
 		//If there is a survivor to save, just save them.
 		return new SAVE_SURV();

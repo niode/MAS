@@ -30,7 +30,7 @@ public interface Rule
 	 * @param sim simulation
 	 * @return the action
 	 */
-	public AgentCommand doAction(Simulation sim);
+	public AgentCommand doAction(Simulation sim, Communicator com);
 	
 	/**
 	 * Returns the role the agent should change to if the rule evaluates to true.

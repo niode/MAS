@@ -36,7 +36,7 @@ public class MoveRule implements Rule
     else return false;
   }
 
-  public AgentCommand doAction(Simulation sim)
+  public AgentCommand doAction(Simulation sim, Communicator com)
   {
     Location start = sim.getAgentLocation(sim.getSelfID());
     Location end = path.getNext();

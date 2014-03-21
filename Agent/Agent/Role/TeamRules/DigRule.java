@@ -40,7 +40,7 @@ public class DigRule implements Rule
     return false;
   }
 
-  public AgentCommand doAction(Simulation sim)
+  public AgentCommand doAction(Simulation sim, Communicator com)
   {
     Location loc = sim.getSelf().getLocation();
     if(sim.getTopLayer(loc) instanceof Survivor) return new SAVE_SURV();

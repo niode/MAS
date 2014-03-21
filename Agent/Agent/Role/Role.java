@@ -121,7 +121,7 @@ public abstract class Role extends Intelligence
 				{
 				//Rule conditions met. Do rule actions.
 				base.log(LogLevels.Always, "DOING RULE: "+nextRule.getClass().getSimpleName());
-				AgentCommand nextAction = nextRule.doAction(getSimulation());
+				AgentCommand nextAction = nextRule.doAction(getSimulation(), getCommunicator());
 				getCommunicator().send(nextAction);
 				setNextRole(nextRule.getRoleChange(getSimulation(), getCommunicator(), getBase()));
 				ruleUsed = true;

@@ -48,7 +48,7 @@ public class RuleCanDig implements Rule
 	 * @see Agent.Role.Rules.Rule#doAction(Agent.Communicator)
 	 */
 	@Override
-	public AgentCommand doAction(Simulation sim)
+	public AgentCommand doAction(Simulation sim, Communicator com)
 		{
 		//Dig conditions met, so dig.
 		return new TEAM_DIG();
