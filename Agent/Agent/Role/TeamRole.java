@@ -36,6 +36,7 @@ public class TeamRole extends Role
   {
     rules.add(new DigRule());
     rules.add(new MoveRule());
+    rules.add(new NotifyRule());
   }
 
   /* (non-Javadoc)

@@ -12,12 +12,14 @@ import Ares.World.*;
 import Ares.World.Objects.*;
 import java.util.*;
 
-public class DigRule implements Rule
+public class NotifyRule implements Rule
 {
   public boolean checkConditions(Simulation sim)
   {
     int energy = sim.getAgentEnergy(sim.getSelfID());
     Location loc = sim.getSelf().getLocation();
+
+    if(!(sim.getTopLayer(loc) instanceof Rubble)) return false;
 
     Path charger = Pathfinder.getNearestCharger(sim, new PathOptions(loc));
 
@@ -32,24 +34,21 @@ public class DigRule implements Rule
     for(AgentID id : agents)
       if(sim.getAgentRole(id) == Role.ID.TEAM)
         agentCount++;
-    if(agentCount >= 1) return true;
-
-    if(sim.getTopLayer(loc) instanceof Survivor) return true;
-    if(sim.getTopLayer(loc) instanceof SurvivorGroup) return true;
-
+    if(agentCount <= 2) return true;
     return false;
   }
 
   public AgentCommand doAction(Simulation sim, Communicator com)
   {
     Location loc = sim.getSelf().getLocation();
-    if(sim.getTopLayer(loc) instanceof Survivor) return new SAVE_SURV();
-    if(sim.getTopLayer(loc) instanceof SurvivorGroup) return new SAVE_SURV();
-    else return new TEAM_DIG();
+
+    com.send(new Beacon(Beacon.HELP_DIG, sim.getSelfID(), loc, Long.MAX_VALUE, 2));
+
+    return new MOVE(Direction.STAY_PUT);
   }
 
   public Role getRoleChange(Simulation sim, Communicator com, BaseAgent base)
   {
-    return null;
+    return new ExplorerRole(sim, com, base);
   }
 }
