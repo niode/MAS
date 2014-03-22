@@ -20,6 +20,8 @@ public class DigRule implements Rule
     int energy = sim.getAgentEnergy(sim.getSelfID());
     Location loc = sim.getAgentLocation(sim.getSelfID());
 
+    System.out.println("Location: " + loc);
+
     Path charger = Pathfinder.getNearestCharger(sim, new PathOptions(loc));
 
     if(charger != null) energy -= charger.getMoveCost();
