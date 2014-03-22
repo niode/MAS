@@ -93,6 +93,8 @@ public class Simulation
   {
     // Binary search for the location.
     List<TimeLocation> list = locations.get(id);
+
+
     if(list.size() == 0) return null;
 
     int start = 0;
@@ -329,7 +331,7 @@ public class Simulation
       // been received; assume the agent is still there.
       if(list.size() <= 1) continue;
       TimeLocation head = list.get(0);
-      while(list.size() > 0 && head.round < round)
+      while(list.size() > 1 && head.round < round)
       {
         list.remove(0);
         if(list.size() == 0) break;
@@ -500,6 +502,25 @@ public class Simulation
   public void update(AgentID id, Role.ID roleID)
   {
     roles.put(id, roleID);   
+  }
+
+  public void printWorld()
+  {
+    System.out.printf("Agent %d's world:------------------------------------\n", self.getID());
+    for(int i = 0; i < getRowCount(); i++)
+    {
+      for(int j = 0; j < getColCount(); j++)
+      {
+        Location loc = new Location(i, j);
+        String selfStr = getAgentLocation(self).equals(loc) ? "*" : " ";
+        String agntStr = String.format("%2d", getAgentsAt(loc).size()).substring(0, 2);
+        String costStr = String.format("%3d", getMoveCost(loc)).substring(0, 3);
+        String percentStr = String.format("%3d", getPercentage(loc)).substring(0, 3) + "%";
+        System.out.printf("(%s, %s, %s, %s) ", selfStr, agntStr, costStr, percentStr);
+      }
+      System.out.println();
+    }
+    System.out.printf("-----------------------------------------------------\n", self.getID());
   }
 
   private class TimeLocation

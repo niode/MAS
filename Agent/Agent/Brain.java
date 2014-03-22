@@ -85,17 +85,7 @@ public class Brain{
     
     public void think() {
         base.log(LogLevels.Always, "Thinking");
-        System.out.println("The world looks like:");
-        for(int i = 0; i < sim.getRowCount(); i++)
-        {
-          for(int j = 0; j < sim.getColCount(); j++)
-          {
-            String cost = String.format("%3d", sim.getMoveCost(i, j)).substring(0, 3);
-            String percent = String.format("%3d", sim.getPercentage(i, j)).substring(0, 3);
-            System.out.printf("(%s, %s) ", cost, percent);
-          }
-          System.out.println();
-        }
+        sim.printWorld();
         ai.think();
         com.send(sim.getSelf());
         com.send(new END_TURN());
