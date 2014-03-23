@@ -50,8 +50,7 @@ public class TeamMoveRule implements Rule
 
   private Location getTarget(Simulation sim, AgentID teammate, Location selfLoc, Location teamLoc, int energy)
   {
-    //PathOptions opt = new PathOptions(PathOptions.CHEAPEST & PathOptions.WITHIN_RANGE);
-    PathOptions opt = new PathOptions(PathOptions.SHORTEST);
+    PathOptions opt = new PathOptions(PathOptions.SHORTEST & PathOptions.WITHIN_RANGE);
 
     for(Beacon beacon : sim.getBeaconType(Beacon.TEAM_MOVE))
     {
@@ -75,8 +74,7 @@ public class TeamMoveRule implements Rule
 
   private boolean setTarget(Simulation sim, AgentID teammate, Location selfLoc, Location teamLoc, int energy)
   {
-    //PathOptions opt = new PathOptions(PathOptions.SHORTEST & PathOptions.WITHIN_RANGE);
-    PathOptions opt = new PathOptions(PathOptions.SHORTEST);
+    PathOptions opt = new PathOptions(PathOptions.SHORTEST & PathOptions.WITHIN_RANGE);
 
     long bestCost = 0;
     int sender = 0;

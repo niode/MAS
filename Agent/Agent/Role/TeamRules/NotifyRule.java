@@ -28,14 +28,9 @@ public class NotifyRule implements Rule
       if(sim.getTopLayer(loc) instanceof Rubble &&
          sim.getAgentsRequired(loc) >= 2 &&
          sim.getPercentage(loc) > 0 &&
-         sim.getAgentsAt(loc).size() < 0) return true;
+         sim.getAgentsAt(loc).size() < 2) return true;
     }
 
-    Location loc = sim.getAgentLocation(sim.getSelfID());
-    if(sim.getTopLayer(loc) instanceof Rubble &&
-       sim.getAgentsRequired(loc) >= 2 &&
-       sim.getPercentage(loc) > 0)
-      return true;
     return false;
   }
 
@@ -49,12 +44,6 @@ public class NotifyRule implements Rule
          sim.getAgentsAt(loc).size() < 2)
         com.send(new Beacon(Beacon.HELP_DIG, sim.getSelfID(), loc, Long.MAX_VALUE, 2));
     }
-
-    Location loc = sim.getAgentLocation(sim.getSelfID());
-    if(sim.getTopLayer(loc) instanceof Rubble &&
-       sim.getAgentsRequired(loc) >= 2 &&
-       sim.getPercentage(loc) > 0)
-      com.send(new Beacon(Beacon.HELP_DIG, sim.getSelfID(), loc, Long.MAX_VALUE, 2));
 
     return null;
   }

@@ -14,6 +14,12 @@ public class Beacon implements Comparable
   public static final long MOVE = 7;
   public static final long TEAM_MOVE = 8;
 
+  public static Beacon deleteBeacon(Beacon beacon)
+  {
+    return new Beacon(beacon.getType(), beacon.getSenderID(),
+        beacon.getLocation(), beacon.getRound(), 0);
+  }
+
   private long type;
   private Location location;
   private long agents;
