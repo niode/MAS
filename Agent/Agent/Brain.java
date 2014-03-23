@@ -47,7 +47,7 @@ public class Brain{
     }
     
     public void handleFwdMessage(FWD_MESSAGE fwd_message) {
-        base.log(LogLevels.Always, "FWD_MESSAGE");
+        //base.log(LogLevels.Always, "FWD_MESSAGE");
         com.receive(fwd_message);
     }
     

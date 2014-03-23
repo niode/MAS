@@ -193,7 +193,6 @@ public class Communicator
 
   private void parseRole(String string)
   {
-    System.out.println("Parsing role: " + string);
     String[] split = string.split(DELIM);
     AgentID id = new AgentID(Integer.parseInt(split[0]), Integer.parseInt(split[1]));
     sim.update(id, Role.ID.getRoleID(split[2]));
