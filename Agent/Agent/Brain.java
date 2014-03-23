@@ -73,6 +73,7 @@ public class Brain{
         base.log(LogLevels.Always, "SAVE_SURV_RESULT");
         sim.update(sim.getSelfID(), save_surv_result.getEnergyLevel());
         sim.update(save_surv_result.getSurroundInfo());
+        com.send(save_surv_result.getSurroundInfo());
     }
 
     
@@ -80,6 +81,7 @@ public class Brain{
         base.log(LogLevels.Always, "TEAM_DIG_RESULT");
         sim.update(sim.getSelfID(), team_dig_result.getEnergyLevel());
         sim.update(team_dig_result.getSurroundInfo());
+        com.send(team_dig_result.getSurroundInfo());
     }
 
     
