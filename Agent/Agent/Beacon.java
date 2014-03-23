@@ -12,6 +12,7 @@ public class Beacon implements Comparable
   public static final long OBSERVE = 5;
   public static final long DIG = 6;
   public static final long MOVE = 7;
+  public static final long TEAM_MOVE = 8;
 
   private long type;
   private Location location;

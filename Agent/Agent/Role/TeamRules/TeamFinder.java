@@ -59,43 +59,26 @@ public class TeamFinder
       }
     }
 
-    // Brute-force the best possible teammate.
-    long minCost = Long.MAX_VALUE;
-
-    // Initialize cache.
-    long[] cache = new long[1 << team.size()];
-    for(int i = 0; i < cache.length; i++)
-      cache[i] = -1;
-
-    // Precalculate the best solution.
-    long min = cost(cache, 0, dist, team.size());
-
-    // Check which partner produces the best solution.
-    int teamIndex = -1;
-    for(int i = 0; i < team.size(); i++)
+    TeamCost[] cache = new TeamCost[1 << team.size()];
+    TeamCost test = cost(cache, 0, dist, team.size());
+    for(Team t: test.team)
     {
-      if(cache[(1 << selfIndex) | (1 << i)] < 0) continue;
-      if(i != selfIndex && dist[selfIndex][i] + cache[(1 << selfIndex) | (1 << i)] == min)
-      {
-        teamIndex = i;
-        break;
-      }
+      if(t.a == selfIndex)
+        teammate = team.get(t.b);
+      else if(t.b == selfIndex)
+        teammate = team.get(t.a);
     }
 
-    if(teamIndex == -1) return null;
-
-    teammate = team.get(teamIndex);
-    System.out.println("Teammate: " + teammate.getID());
     return teammate;
   }
  
   // Recursively find the cost of selecting a pair to be a team.
-  private long cost(long[] cache, int picked, long[][] dist, int num)
+  private TeamCost cost(TeamCost[] cache, int picked, long[][] dist, int num)
   {
-    if(num == 1 || num == 0) return 0;
-    if(cache[picked] >= 0) return cache[picked];
+    if(num == 1 || num == 0) return new TeamCost(0);
+    if(cache[picked] != null) return cache[picked];
 
-    long min = Integer.MAX_VALUE;
+    TeamCost min = new TeamCost(Long.MAX_VALUE);
     for(int i = 0; i < dist.length; i++)
     {
       if(((1 << i) & picked) == (1 << i)) continue;
@@ -104,16 +87,50 @@ public class TeamFinder
       {
         if(((1 << j) & picked) == (1 << j)) continue;
 
-        if(i != j && dist[i][j] < min)
+        if(i != j && dist[i][j] < min.cost)
         {
-          long tmp = cost(cache, picked | (1 << i) | (1 << j), dist, num - 2);
+          TeamCost tmp = cost(cache, picked | (1 << i) | (1 << j), dist, num - 2);
 
-          if(dist[i][j] + tmp < 0) continue;
-          else if(dist[i][j] + tmp < min) min = dist[i][j] + tmp;
+          if(dist[i][j] + tmp.cost < 0) continue;
+          else if(dist[i][j] + tmp.cost < min.cost)
+          {
+            min = tmp;
+            tmp = new TeamCost(dist[i][j]);
+            tmp.team.add(new Team(i,j));
+            min.add(tmp);
+          }
         }
       }
     }
     cache[picked] = min;
     return min;
+  }
+
+  private static class TeamCost
+  {
+    public long cost;
+    public LinkedList<Team> team;
+    public TeamCost(long c)
+    {
+      team = new LinkedList<Team>();
+      cost = c;
+    }
+
+    public void add(TeamCost other)
+    {
+      team.addAll(other.team);
+      cost += other.cost;
+    }
+  }
+
+  private static class Team
+  {
+    public int a;
+    public int b;
+    public Team(int a, int b)
+    {
+      this.a = a;
+      this.b = b;
+    }
   }
 }

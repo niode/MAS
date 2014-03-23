@@ -64,6 +64,15 @@ public class DigRule implements Rule
       }
     }
 
+    for(Beacon beacon : sim.getBeaconType(Beacon.TEAM_MOVE))
+    {
+      if(beacon.getLocation().equals(loc))
+      {
+        // Update the beacon, it now needs no more agents.
+        com.send(new Beacon(beacon.getType(), beacon.getSenderID(), loc, beacon.getRound(), 0));
+      }
+    }
+
     if(sim.getTopLayer(loc) instanceof Survivor) return new SAVE_SURV();
     if(sim.getTopLayer(loc) instanceof SurvivorGroup) return new SAVE_SURV();
     else return new TEAM_DIG();
