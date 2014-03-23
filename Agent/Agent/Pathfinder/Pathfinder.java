@@ -31,6 +31,38 @@ public class Pathfinder
     else if((pos ^ (SOUTH | WEST)) == 0) return Direction.SOUTH_WEST;
     else return Direction.STAY_PUT;
   }
+  
+  public static Set<Location> getValidNeighbors(Simulation sim, Location location)
+  {
+  	int locRow = location.getRow();
+  	int locCol = location.getCol();
+  	
+  	HashSet<Location> result = new HashSet<Location>();
+  	for (int i = locRow - 1; i <= locRow; i++)
+  	  for (int j = locCol - 1; j <= locCol; j++)
+  	  {
+		//Reject current loc.
+		if (i == location.getRow() && j == location.getCol())
+		  continue;
+		
+  	    //Reject out of bounds.
+  		if (i < 0 || j < 0 ||
+  			i > sim.getRowCount() - 1 || j > sim.getColCount() - 1)
+  		  continue;
+  		
+  		Location newLoc = new Location(i, j);
+  		//Reject killer
+  		if (sim.isKiller(newLoc))
+  		  continue;
+  		
+  		//Location is good, add to result.
+  		result.add(newLoc);
+  	  }
+  	
+  	if (result.isEmpty())
+  	  return null;
+  	return result;
+  }
 
   public static Path getPath(Simulation sim, PathOptions opt)
   {
