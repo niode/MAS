@@ -1,6 +1,3 @@
-/**
- * 
- */
 package Agent.Role.Rules;
 
 import java.util.ArrayList;
@@ -67,6 +64,11 @@ public class RuleGoToNearSurv implements Rule
 		return null;
 		}
 	
+	/**
+	 * Save locations of neighboring survivors.
+	 * 
+	 * @param sim
+	 */
 	private void getNearSurvivors(Simulation sim)
 		{
 		survLocs = new ArrayList<Location>();
@@ -79,7 +81,5 @@ public class RuleGoToNearSurv implements Rule
 			if (top instanceof Survivor || top instanceof SurvivorGroup)
 				survLocs.add(near);
 			}
-		
 		}
-
 	}
