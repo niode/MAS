@@ -181,8 +181,23 @@ public class Simulation
   {
     HashSet<Location> result = new HashSet<Location>();
     for(int i = 0; i < getRowCount(); i++)
-      for(int j = 0; i < getColCount(); j++)
+      for(int j = 0; j < getColCount(); j++)
         if(!visited[i][j] || turnVisited[i][j] < round - time)
+          result.add(new Location(i, j));
+    return result;
+  }
+
+  public Set<Location> getVisited()
+  {
+    return getVisited(round);
+  }
+
+  public Set<Location> getVisited(long time)
+  {
+    HashSet<Location> result = new HashSet<Location>();
+    for(int i = 0; i < getRowCount(); i++)
+      for(int j = 0; j < getColCount(); j++)
+        if(visited[i][j] && turnVisited[i][j] >= round - time)
           result.add(new Location(i, j));
     return result;
   }

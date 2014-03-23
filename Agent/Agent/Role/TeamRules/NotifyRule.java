@@ -23,28 +23,39 @@ public class NotifyRule implements Rule
 
   public boolean checkConditions(Simulation sim)
   {
+    for(Location loc : sim.getVisited())
+    {
+      if(sim.getTopLayer(loc) instanceof Rubble &&
+         sim.getAgentsRequired(loc) >= 2 &&
+         sim.getPercentage(loc) > 0 &&
+         sim.getAgentsAt(loc).size() < 0) return true;
+    }
+
     Location loc = sim.getAgentLocation(sim.getSelfID());
-
-    if(!(sim.getTopLayer(loc) instanceof Rubble)) return false;
-
-    if(sim.getAgentsRequired(loc) < 2) return false;
-    if(sim.getPercentage(loc) == 0) return false;
-
-    // Check if there are other Team agents on this cell.
-    int agentCount = 0;
-    List<AgentID> agents = sim.getAgentsAt(loc);
-    for(AgentID id : agents)
-      if(sim.getAgentRole(id) == Role.ID.TEAM)
-        agentCount++;
-    if(agentCount < 2) return true;
+    if(sim.getTopLayer(loc) instanceof Rubble &&
+       sim.getAgentsRequired(loc) >= 2 &&
+       sim.getPercentage(loc) > 0)
+      return true;
     return false;
   }
 
   public AgentCommand doAction(Simulation sim, Communicator com)
   {
-    Location loc = sim.getAgentLocation(sim.getSelfID());
+    for(Location loc : sim.getVisited())
+    {
+      if(sim.getTopLayer(loc) instanceof Rubble &&
+         sim.getAgentsRequired(loc) >= 2 &&
+         sim.getPercentage(loc) > 0 &&
+         sim.getAgentsAt(loc).size() < 2)
+        com.send(new Beacon(Beacon.HELP_DIG, sim.getSelfID(), loc, Long.MAX_VALUE, 2));
+    }
 
-    com.send(new Beacon(Beacon.HELP_DIG, sim.getSelfID(), loc, Long.MAX_VALUE, 2));
+    Location loc = sim.getAgentLocation(sim.getSelfID());
+    if(sim.getTopLayer(loc) instanceof Rubble &&
+       sim.getAgentsRequired(loc) >= 2 &&
+       sim.getPercentage(loc) > 0)
+      com.send(new Beacon(Beacon.HELP_DIG, sim.getSelfID(), loc, Long.MAX_VALUE, 2));
+
     return null;
   }
 

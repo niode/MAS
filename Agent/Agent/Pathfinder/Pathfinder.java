@@ -64,6 +64,7 @@ public class Pathfinder
     for(int i = 0; i < sim.getRowCount(); i++)
       for(int j = 0; j < sim.getColCount(); j++)
       {
+        if(i == opt.start.getRow() && j == opt.start.getCol()) continue;
         if(sim.getPercentage(i, j) >= cutoff)
         {
           opt.end = new Location(i, j);
