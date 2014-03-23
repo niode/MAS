@@ -50,7 +50,7 @@ public class ExplorerRole extends Role
 	@Override
 	public void noRuleMatch()
 		{
-		Location currentLoc = getSimulation().getSelf().getLocation();
+		Location currentLoc = getSimulation().getAgentLocation(getSimulation().getSelfID());
 		
 		//Get path to nearest survivor.
 		//We could save this, but we'll recalculate each turn.
@@ -65,7 +65,7 @@ public class ExplorerRole extends Role
       getCommunicator().send(move);
     } else
     {
-      if(getSimulation().getTopLayer(getSimulation().getSelf().getLocation()) instanceof Rubble)
+      if(getSimulation().getTopLayer(getSimulation().getAgentLocation(getSimulation().getSelfID())) instanceof Rubble)
       {
         getCommunicator().send(new TEAM_DIG());
       } else

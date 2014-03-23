@@ -27,7 +27,7 @@ public class RuleSaveSurvivor implements Rule
 	@Override
 	public boolean checkConditions(Simulation sim)
 		{
-		Location currentLoc = sim.getSelf().getLocation();
+		Location currentLoc = sim.getAgentLocation(sim.getSelfID());
 		Cell currentCell = sim.getCell(currentLoc);
 		WorldObject topLayer = currentCell.getTopLayer();
 		

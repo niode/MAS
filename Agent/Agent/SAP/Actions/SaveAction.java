@@ -12,7 +12,7 @@ public class SaveAction implements Action
 {
   public AgentCommand getCommand(Simulation sim, Coordinate coord)
   {
-    Location loc = sim.getSelf().getLocation();
+    Location loc = sim.getAgentLocation(sim.getSelfID());
     if(sim.getTopLayer(loc) instanceof Rubble)
       return new TEAM_DIG();
     else if(sim.getTopLayer(loc) == null)

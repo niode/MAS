@@ -43,7 +43,7 @@ public class RuleChargeRequired implements Rule
 		int currentEnergy = sim.getSelf().getEnergyLevel();
 
 		// Get energy required to move to nearest charger.
-		currentLoc = sim.getSelf().getLocation();
+		currentLoc = sim.getAgentLocation(sim.getSelfID());
     PathOptions opt = new PathOptions(currentLoc);
     opt.shortest = true;
 		toNearestCharger = Pathfinder.getNearestCharger(sim, opt);

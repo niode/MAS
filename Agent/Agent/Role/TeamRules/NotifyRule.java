@@ -25,14 +25,14 @@ public class NotifyRule implements Rule
   {
     System.out.println("Evaluating NotifyRule.");
     int energy = sim.getAgentEnergy(sim.getSelfID());
-    Location loc = sim.getSelf().getLocation();
+    Location loc = sim.getAgentLocation(sim.getSelfID());
 
     if(!(sim.getTopLayer(loc) instanceof Rubble)) return false;
 
     Path charger = Pathfinder.getNearestCharger(sim, new PathOptions(loc));
 
     if(charger != null) energy -= charger.getMoveCost();
-    int energyCost = sim.getEnergyRequired(sim.getSelf().getLocation());
+    int energyCost = sim.getEnergyRequired(sim.getAgentLocation(sim.getSelfID()));
 
     if(energy < energyCost) return false;
 
@@ -49,7 +49,7 @@ public class NotifyRule implements Rule
   public AgentCommand doAction(Simulation sim, Communicator com)
   {
     System.out.println("Doing NotifyRule.");
-    Location loc = sim.getSelf().getLocation();
+    Location loc = sim.getAgentLocation(sim.getSelfID());
 
     com.send(new Beacon(Beacon.HELP_DIG, sim.getSelfID(), loc, Long.MAX_VALUE, 2));
 

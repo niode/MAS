@@ -27,7 +27,7 @@ public class MoveRule implements Rule
   {
     System.out.println("Evaluating MoveRule.");
     int energy = sim.getAgentEnergy(sim.getSelfID());
-    Location loc = sim.getSelf().getLocation();
+    Location loc = sim.getAgentLocation(sim.getSelfID());
     PathOptions opt = new PathOptions(loc);
 
     path = null;

@@ -382,17 +382,6 @@ public class Simulation
 
   public void update(AgentID id, Location location)
   {
-    if(world == null) return;
-    Agent agent = getAgent(id);
-
-    // Check if the agent is in a valid location (e.g. ensure it
-    // has been initialized.
-    if(agent.getLocation().valid(world.getRows(), world.getCols()))
-      world.getCell(agent.getLocation()).removeAgent(id);
-    
-    world.getCell(location).addAgent(id);
-    agent.setLocation(location);
-
     update(id, location, round);
   }
 

@@ -25,7 +25,7 @@ public class ObserveAction implements Action
   public AgentCommand getCommand(Simulation sim, Coordinate coord)
   {
     Location loc;
-    path.start = sim.getSelf().getLocation();
+    path.start = sim.getAgentLocation(sim.getSelfID());
     switch(opt)
     {
       case BEST_SURVIVOR:

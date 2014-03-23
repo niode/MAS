@@ -25,8 +25,8 @@ public class MoveAction implements Action
 
   public AgentCommand getCommand(Simulation sim, Coordinate coord)
   {
-    Location loc = sim.getSelf().getLocation();
-    path.start = sim.getSelf().getLocation();
+    Location loc = sim.getAgentLocation(sim.getSelfID());
+    path.start = sim.getAgentLocation(sim.getSelfID());
     switch(opt)
     {
       case BEST_SURVIVOR:
@@ -39,6 +39,6 @@ public class MoveAction implements Action
         loc = new Location(0,0);
     }
 
-    return new MOVE(Pathfinder.getDirection(sim.getSelf().getLocation(), loc));
+    return new MOVE(Pathfinder.getDirection(sim.getAgentLocation(sim.getSelfID()), loc));
   }
 }
