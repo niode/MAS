@@ -34,6 +34,7 @@ public class TeamRole extends Role
   public void setupRules(ArrayList<Rule> rules)
   {
     finder = new TeamFinder(getSimulation());
+    rules.add(new FindTeamRule(finder));
     rules.add(new NotifyRule(finder));
     rules.add(new DismissRule(finder));
     //rules.add(new RuleChargeRequired());
@@ -48,7 +49,7 @@ public class TeamRole extends Role
   @Override
   public void noRuleMatch()
   {
-    //setNextRole(new ExplorerRole(getSimulation(), getCommunicator(), getBase()));
+    setNextRole(new ExplorerRole(getSimulation(), getCommunicator(), getBase()));
     getCommunicator().send(new MOVE(Direction.STAY_PUT));
   }
 
