@@ -32,7 +32,7 @@ public class Pathfinder
     else return Direction.STAY_PUT;
   }
   
-  public Set<Location> getValidNeighbors(Simulation sim, Location location)
+  public static Set<Location> getValidNeighbors(Simulation sim, Location location)
   {
   	int locRow = location.getRow();
   	int locCol = location.getCol();
