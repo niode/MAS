@@ -40,7 +40,6 @@ public class TeamRole extends Role
     rules.add(new DigRule(finder));
     rules.add(new TeamMoveRule(finder));
     rules.add(new WaitRule(finder));
-    rules.add(new MoveRule(finder));
   }
 
   /* (non-Javadoc)
