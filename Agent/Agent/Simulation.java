@@ -101,14 +101,14 @@ public class Simulation
     int end = list.size() - 1;
     while(start < end)
     {
-      int mid = start + (end - start)/2;
+      int mid = (start + end)/2;
       TimeLocation current = list.get(mid);
       if(current.round == round) start = end = mid;
-      if(current.round < round) start = mid;
+      if(current.round < round) start = mid + 1;
       else end = mid;
     }
 
-    return list.get(start).location;
+    return list.get(end).location;
   }
 
   public List<AgentID> getTeammates()
@@ -338,12 +338,19 @@ public class Simulation
     // Delete anything that happened before this round.
     for(List<TimeLocation> list : locations.values())
     {
+      // Test
+      for(TimeLocation tl : list)
+        System.out.printf("%s ", tl.toString());
+      System.out.println();
+
       // If the size is 1, no new location information has
       // been received; assume the agent is still there.
       if(list.size() <= 1) continue;
       TimeLocation head = list.get(0);
       while(list.size() > 1 && head.round < round)
       {
+        // Test
+        System.out.println("Removing " + head.toString());
         list.remove(0);
         if(list.size() == 0) break;
         head = list.get(0);
@@ -487,12 +494,19 @@ public class Simulation
   {
     System.out.printf("Updating %d: (%s, %d)\n", id.getID(), loc.toString(), round);
     List<TimeLocation> list = locations.get(id);
+
+    // Test
+    System.out.printf("Before: ");
+    for(TimeLocation tl : list)
+      System.out.printf("%s ", tl.toString());
+    System.out.println();
+
     // Binary search the list.
     int start = 0; 
-    int end = list.size() - 1;
-    int mid = start + (end - start)/2;
+    int end = list.size();
     while(start < end)
     {
+      int mid = (end + start)/2;
       TimeLocation current = list.get(mid);
       if(current.round == round)
       {
@@ -503,11 +517,16 @@ public class Simulation
         end = mid;
       } else
       {
-        start = mid;
+        start = mid + 1;
       }
-      mid = start + (end - start)/2;
     }
-    list.add(mid, new TimeLocation(round, loc));
+    list.add(end, new TimeLocation(round, loc));
+
+    // Test
+    System.out.printf("After: ");
+    for(TimeLocation tl : list)
+      System.out.printf("%s ", tl.toString());
+    System.out.println();
   }
 
   public void update(AgentID id, Role.ID roleID)
@@ -517,7 +536,9 @@ public class Simulation
 
   public void printWorld()
   {
-    System.out.printf("Agent %d's world:------------------------------------\n", self.getID());
+    System.out.printf("-----------------------------------------------------\n", self.getID());
+    System.out.printf("AGENT %d -- ENERGY: %d ------------------------------\n", self.getID(), getAgentEnergy(self));
+    System.out.printf("-----------------------------------------------------\n", self.getID());
     for(int i = 0; i < getRowCount(); i++)
     {
       for(int j = 0; j < getColCount(); j++)
@@ -542,6 +563,11 @@ public class Simulation
     {
       this.round = round;
       this.location = location;
+    }
+
+    public String toString()
+    {
+      return "(" + location.toString() + ", " + round + ")";
     }
   }
 }

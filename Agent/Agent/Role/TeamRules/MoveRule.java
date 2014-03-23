@@ -33,8 +33,6 @@ public class MoveRule implements Rule
     path = null;
     for(Beacon beacon : sim.getBeaconType(Beacon.HELP_DIG))
     {
-      System.out.printf("Evaluating beacon at %s\n", beacon.getLocation().toString());
-      
       // Don't consider your own location because it is the shortest path obviously.
       if(beacon.getLocation().equals(loc)) continue;
 
