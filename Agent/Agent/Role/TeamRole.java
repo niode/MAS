@@ -6,7 +6,8 @@ import Agent.Pathfinder.*;
 import Agent.Core.BaseAgent;
 import Agent.Role.Rules.*;
 import Agent.Role.TeamRules.*;
-import Ares.AgentID;
+import Ares.*;
+import Ares.Commands.AgentCommands.*;
 
 /**
  *
@@ -45,6 +46,7 @@ public class TeamRole extends Role
   public void noRuleMatch()
   {
     //setNextRole(new ExplorerRole(getSimulation(), getCommunicator(), getBase()));
+    getCommunicator().send(new MOVE(Direction.STAY_PUT));
   }
 
   public String toString()

@@ -53,7 +53,7 @@ public class NotifyRule implements Rule
 
     com.send(new Beacon(Beacon.HELP_DIG, sim.getSelfID(), loc, Long.MAX_VALUE, 2));
 
-    return new MOVE(Direction.STAY_PUT);
+    return null;
   }
 
   public Role getRoleChange(Simulation sim, Communicator com, BaseAgent base)

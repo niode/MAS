@@ -64,6 +64,16 @@ public class Communicator
   {
     base.send(command);
     base.log(LogLevels.Always, "Sending " + command);
+
+    if(command instanceof MOVE)
+    {
+      Direction dir = ((MOVE)command).getDirection();
+      // Send a beacon.
+      Location loc = sim.getAgentLocation(sim.getSelfID());
+      Location next =
+        new Location(loc.getRow() + dir.getRowInc(), loc.getCol() + dir.getColInc());
+      send(new Beacon(Beacon.MOVE, sim.getSelfID(), next, sim.getRound() + 1, 0));
+    }
   }
 
   public void send(AgentID id, Cell cell)

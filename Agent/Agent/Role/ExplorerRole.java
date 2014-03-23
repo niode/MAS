@@ -63,8 +63,6 @@ public class ExplorerRole extends Role
       Location moveTo = nearestSurvPath.getNext();
       AgentCommand move = new MOVE(Pathfinder.getDirection(currentLoc, moveTo));
       getCommunicator().send(move);
-      getCommunicator().send(new Beacon(Beacon.MOVE, getSimulation().getSelfID(),
-          moveTo, getSimulation().getRound() + 1, 0));
     } else
     {
       if(getSimulation().getTopLayer(getSimulation().getSelf().getLocation()) instanceof Rubble)

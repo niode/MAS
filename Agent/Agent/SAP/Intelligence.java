@@ -22,10 +22,5 @@ public class Intelligence extends Agent.Intelligence
     AgentCommand cmd = data.getCommand(sim, sim.getSelfID());
     base.log(LogLevels.Always, "Sending: " + cmd.toString());
     getCommunicator().send(cmd);
-
-    //Test
-    int round = sim.getRound();
-    getCommunicator().send(new Beacon(Beacon.MOVE, sim.getSelfID(),
-        new Location(round, round), round, 0));
   }
 }

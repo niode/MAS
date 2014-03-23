@@ -21,6 +21,7 @@ public class TeamFinder
 
   public AgentID getTeammate()
   {
+    // Check if the teammate has been calculated already.
     if(teammate != null) return teammate;
 
     Path path;
@@ -29,6 +30,7 @@ public class TeamFinder
     int selfIndex = 0;
     long[][] dist = new long[team.size()][team.size()];
 
+    // Find the move costs from each Team agent to each other Team agent.
     for(int i = 0; i < team.size(); i++)
     {
       if(team.get(i).equals(sim.getSelfID())) selfIndex = i;
@@ -50,32 +52,35 @@ public class TeamFinder
       }
     }
 
+    // Brute-force the best possible teammate.
     long minCost = Long.MAX_VALUE;
-    int teamIndex = 0;
+
+    // Initialize cache.
+    long[] cache = new long[1 << team.size()];
+    for(int i = 0; i < cache.length; i++)
+      cache[i] = -1;
+
+    // Precalculate the best solution.
+    long min = cost(cache, 0, dist, team.size());
+
+    // Check which partner produces the best solution.
+    int teamIndex = -1;
     for(int i = 0; i < team.size(); i++)
     {
-      if(i == selfIndex) continue;
-      long tmp = getTeamCost(dist, team.size(), selfIndex, i);
-      if(tmp < minCost)
+      if(i != selfIndex && cache[selfIndex | (1 << i)] == min)
       {
-        minCost = tmp;
         teamIndex = i;
+        break;
       }
     }
+
+    if(teamIndex == -1) return null;
 
     teammate = team.get(teamIndex);
     return teammate;
   }
-
-  private long getTeamCost(long[][] dist, int num, int a, int b)
-  {
-    int picked = (1 << a) | (1 << b);
-    long[] cache = new long[1 << num];
-    for(int i = 0; i < cache.length; i++)
-      cache[i] = -1;
-    return cost(cache, picked, dist, num - 2);
-  }
  
+  // Recursively find the cost of selecting a pair to be a team.
   private long cost(long[] cache, int picked, long[][] dist, int num)
   {
     if(num == 1 || num == 0) return 0;

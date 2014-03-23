@@ -78,9 +78,6 @@ public class RoleIntelligence extends Intelligence
 			{
 			AgentCommand stay = new MOVE(Direction.STAY_PUT);
 			getCommunicator().send(stay);
-      getCommunicator().send(new Beacon(Beacon.MOVE, getSimulation().getSelfID(),
-          getSimulation().getAgentLocation(getSimulation().getSelfID()),
-          1, 0));
 			return;
 			}
 
