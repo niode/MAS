@@ -338,19 +338,12 @@ public class Simulation
     // Delete anything that happened before this round.
     for(List<TimeLocation> list : locations.values())
     {
-      // Test
-      for(TimeLocation tl : list)
-        System.out.printf("%s ", tl.toString());
-      System.out.println();
-
       // If the size is 1, no new location information has
       // been received; assume the agent is still there.
       if(list.size() <= 1) continue;
       TimeLocation head = list.get(0);
       while(list.size() > 1 && head.round < round)
       {
-        // Test
-        System.out.println("Removing " + head.toString());
         list.remove(0);
         if(list.size() == 0) break;
         head = list.get(0);
@@ -492,14 +485,7 @@ public class Simulation
 
   public void update(AgentID id, Location loc, long round)
   {
-    System.out.printf("Updating %d: (%s, %d)\n", id.getID(), loc.toString(), round);
     List<TimeLocation> list = locations.get(id);
-
-    // Test
-    System.out.printf("Before: ");
-    for(TimeLocation tl : list)
-      System.out.printf("%s ", tl.toString());
-    System.out.println();
 
     // Binary search the list.
     int start = 0; 
@@ -522,11 +508,6 @@ public class Simulation
     }
     list.add(end, new TimeLocation(round, loc));
 
-    // Test
-    System.out.printf("After: ");
-    for(TimeLocation tl : list)
-      System.out.printf("%s ", tl.toString());
-    System.out.println();
   }
 
   public void update(AgentID id, Role.ID roleID)
