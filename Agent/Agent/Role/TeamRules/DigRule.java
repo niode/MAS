@@ -23,9 +23,11 @@ public class DigRule implements Rule
 
   public boolean checkConditions(Simulation sim)
   {
-    System.out.println("Evaluating DigRule.");
     int energy = sim.getAgentEnergy(sim.getSelfID());
     Location loc = sim.getAgentLocation(sim.getSelfID());
+
+    // Don't dig if there aren't any life signals.
+    if(sim.getPercentage(loc) == 0) return false;
 
     Path charger = Pathfinder.getNearestCharger(sim, new PathOptions(loc));
 
@@ -52,6 +54,16 @@ public class DigRule implements Rule
   {
     System.out.println("Doing DigRule.");
     Location loc = sim.getAgentLocation(sim.getSelfID());
+
+    for(Beacon beacon : sim.getBeaconType(Beacon.HELP_DIG))
+    {
+      if(beacon.getLocation().equals(loc))
+      {
+        // Update the beacon, it now needs no more agents.
+        com.send(new Beacon(beacon.getType(), beacon.getSenderID(), loc, beacon.getRound(), 0));
+      }
+    }
+
     if(sim.getTopLayer(loc) instanceof Survivor) return new SAVE_SURV();
     if(sim.getTopLayer(loc) instanceof SurvivorGroup) return new SAVE_SURV();
     else return new TEAM_DIG();

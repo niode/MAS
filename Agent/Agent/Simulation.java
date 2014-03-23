@@ -21,7 +21,7 @@ public class Simulation
   private Map<AgentID, ArrayList<TimeLocation>> locations =
       new HashMap<AgentID, ArrayList<TimeLocation>>();
   private List<Location> chargers = new LinkedList<Location>();
-  private Set<Beacon> beacons = new HashSet<Beacon>();
+  private Set<Beacon> beacons = new TreeSet<Beacon>();
   private boolean[][] visited = null;
   private long[][] turnVisited = null;
   private Map<AgentID, Role.ID> roles = new HashMap<AgentID, Role.ID>();

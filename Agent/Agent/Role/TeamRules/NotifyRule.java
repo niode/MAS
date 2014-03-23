@@ -23,18 +23,12 @@ public class NotifyRule implements Rule
 
   public boolean checkConditions(Simulation sim)
   {
-    System.out.println("Evaluating NotifyRule.");
-    int energy = sim.getAgentEnergy(sim.getSelfID());
     Location loc = sim.getAgentLocation(sim.getSelfID());
 
     if(!(sim.getTopLayer(loc) instanceof Rubble)) return false;
 
-    Path charger = Pathfinder.getNearestCharger(sim, new PathOptions(loc));
-
-    if(charger != null) energy -= charger.getMoveCost();
-    int energyCost = sim.getEnergyRequired(sim.getAgentLocation(sim.getSelfID()));
-
-    if(energy < energyCost) return false;
+    if(sim.getAgentsRequired(loc) < 2) return false;
+    if(sim.getPercentage(loc) == 0) return false;
 
     // Check if there are other Team agents on this cell.
     int agentCount = 0;
@@ -42,17 +36,15 @@ public class NotifyRule implements Rule
     for(AgentID id : agents)
       if(sim.getAgentRole(id) == Role.ID.TEAM)
         agentCount++;
-    if(agentCount <= 2) return true;
+    if(agentCount < 2) return true;
     return false;
   }
 
   public AgentCommand doAction(Simulation sim, Communicator com)
   {
-    System.out.println("Doing NotifyRule.");
     Location loc = sim.getAgentLocation(sim.getSelfID());
 
     com.send(new Beacon(Beacon.HELP_DIG, sim.getSelfID(), loc, Long.MAX_VALUE, 2));
-
     return null;
   }
 
