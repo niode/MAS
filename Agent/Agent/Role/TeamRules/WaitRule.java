@@ -28,31 +28,20 @@ public class WaitRule implements Rule
 
     AgentID teammate = finder.getTeammate();
     if(teammate == null) return false;
-
-    if(sim.getAgentLocation(teammate).equals(loc) && sim.getSelfID().compareTo(teammate) < 0)
-    {
-      if(sim.getTopLayer(loc) instanceof Survivor) return true;
-      if(sim.getTopLayer(loc) instanceof SurvivorGroup) return true;
-      return false;
-    } else if(sim.getTopLayer(loc) instanceof Rubble)
-    {
-      return true;
-    }
-
-    return false;
+    return true;
   }
 
   public AgentCommand doAction(Simulation sim, Communicator com)
   {
-    Location loc = sim.getAgentLocation(sim.getSelfID());
+    for(Location loc : sim.getUnvisited())
+    {
+      if(sim.getPercentage(loc) > 0)
+      {
+        return new OBSERVE(loc);
+      }
+    }
 
-    PathOptions opt = new PathOptions(PathOptions.SHORTEST);
-    opt.start = loc;
-
-    Path path = Pathfinder.getNearestSurvivor(sim, opt, 1);
-
-    if(path != null) return new OBSERVE(path.getLast());
-    else return new MOVE(Direction.STAY_PUT);
+    return new MOVE(Direction.STAY_PUT);
   }
 
   public Role getRoleChange(Simulation sim, Communicator com, BaseAgent base)

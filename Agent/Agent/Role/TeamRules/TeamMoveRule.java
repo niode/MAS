@@ -32,10 +32,10 @@ public class TeamMoveRule implements Rule
     AgentID teammate = finder.getTeammate();
     if(teammate == null) return false;
 
-    // Test
-    System.out.println("Teammate: " + teammate);
-
     Location teamLoc = sim.getAgentLocation(teammate);
+
+    // Don't move if there are still survivors here to save.
+    if(selfLoc.equals(teamLoc) && sim.getPercentage(selfLoc) > 0) return false;
 
     path = null;
     target = null;
@@ -119,8 +119,6 @@ public class TeamMoveRule implements Rule
       // Set the target beacon.
       com.send(new Beacon(Beacon.TEAM_MOVE, sim.getSelfID(), t, Long.MAX_VALUE, 2));
 
-      System.out.println("Set a target beacon at " + t);
-
       // Remove all dig beacons at the target so that other teams don't go there.
       for(Beacon beacon : sim.getBeaconType(Beacon.HELP_DIG))
       {
@@ -130,6 +128,15 @@ public class TeamMoveRule implements Rule
                    beacon.getRound(), 0));
         }
       }
+    }
+
+    // Observe if the agent is already at the destination and is therefore
+    // waiting for its teammate.
+    if(end.equals(start))
+    {
+      for(Location loc : sim.getUnvisited())
+        if(sim.getPercentage(loc) > 0)
+          return new OBSERVE(loc);
     }
 
     return new MOVE(Pathfinder.getDirection(start, end));

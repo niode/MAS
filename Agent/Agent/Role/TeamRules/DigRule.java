@@ -25,9 +25,14 @@ public class DigRule implements Rule
   {
     int energy = sim.getAgentEnergy(sim.getSelfID());
     Location loc = sim.getAgentLocation(sim.getSelfID());
+    WorldObject topLayer = sim.getTopLayer(loc);
 
     // Don't dig if there aren't any life signals.
     if(sim.getPercentage(loc) == 0) return false;
+
+    // Only dig if the teammate is in the same spot.
+    if(finder.getTeammate() == null) return false;
+    if(!sim.getAgentLocation(finder.getTeammate()).equals(loc)) return false;
 
     Path charger = Pathfinder.getNearestCharger(sim, new PathOptions(loc));
 
@@ -38,15 +43,20 @@ public class DigRule implements Rule
 
     // Check if there are other Team agents on this cell.
     int agentCount = 0;
+    int minID = sim.getSelfID().getID();
     List<AgentID> agents = sim.getAgentsAt(loc);
     for(AgentID id : agents)
       if(sim.getAgentRole(id) == Role.ID.TEAM)
+      {
         agentCount++;
-    if(agentCount > 1) return true;
-
-    if(sim.getTopLayer(loc) instanceof Survivor) return true;
-    if(sim.getTopLayer(loc) instanceof SurvivorGroup) return true;
-
+        if(id.getID() < minID) minID = id.getID();
+      }
+    if(agentCount > 1 && topLayer instanceof Rubble) return true;
+    else if(minID == sim.getSelfID().getID())
+    {
+      if(sim.getTopLayer(loc) instanceof Survivor) return true;
+      if(sim.getTopLayer(loc) instanceof SurvivorGroup) return true;
+    }
     return false;
   }
 
