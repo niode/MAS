@@ -2,6 +2,7 @@ package Agent.SAP.Actions;
 
 import Agent.*;
 import Agent.SAP.Action;
+import Agent.SAP.Coordinate;
 import Agent.Pathfinder.*;
 import Ares.*;
 import Ares.Commands.AgentCommand;
@@ -29,7 +30,8 @@ public class ObserveAction implements Action
     switch(opt)
     {
       case BEST_SURVIVOR:
-        loc = Pathfinder.getNearestSurvivor(sim, path).getLast();
+      	//Added 0 as cutoff so class compiles. May need better cutoff?
+        loc = Pathfinder.getNearestSurvivor(sim, path, 0).getLast();
         break;
       default:
         loc = new Location(0,0);
