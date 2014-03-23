@@ -19,18 +19,25 @@ public class TeamFinder
     teammate = null;
   }
 
+  /*
+   * This function will calculate the best allocation of teams
+   * based on which agents are currently in a TeamRole.
+   * The function relies on the fact that all agents will
+   * come up with the exact same result when they run the
+   * algorithm, so distance is used instead of move cost.
+   */
   public AgentID getTeammate()
   {
     // Check if the teammate has been calculated already.
     if(teammate != null) return teammate;
 
     Path path;
-    PathOptions opt = new PathOptions(PathOptions.CHEAPEST & PathOptions.WITHIN_RANGE);
+    PathOptions opt = new PathOptions(PathOptions.SHORTEST & PathOptions.WITHIN_RANGE);
     List<AgentID> team = sim.getTeammates();
     int selfIndex = 0;
     long[][] dist = new long[team.size()][team.size()];
 
-    // Find the move costs from each Team agent to each other Team agent.
+    // Find the distances between each two agents.
     for(int i = 0; i < team.size(); i++)
     {
       if(team.get(i).equals(sim.getSelfID())) selfIndex = i;
@@ -47,7 +54,7 @@ public class TeamFinder
           if(path == null)
             dist[i][j] = Integer.MAX_VALUE;
           else
-            dist[i][j] = path.getMoveCost();
+            dist[i][j] = path.getLength();
         }
       }
     }
@@ -67,7 +74,8 @@ public class TeamFinder
     int teamIndex = -1;
     for(int i = 0; i < team.size(); i++)
     {
-      if(i != selfIndex && cache[selfIndex | (1 << i)] == min)
+      if(cache[(1 << selfIndex) | (1 << i)] < 0) continue;
+      if(i != selfIndex && dist[selfIndex][i] + cache[(1 << selfIndex) | (1 << i)] == min)
       {
         teamIndex = i;
         break;
@@ -77,6 +85,7 @@ public class TeamFinder
     if(teamIndex == -1) return null;
 
     teammate = team.get(teamIndex);
+    System.out.println("Teammate: " + teammate.getID());
     return teammate;
   }
  
@@ -98,11 +107,13 @@ public class TeamFinder
         if(i != j && dist[i][j] < min)
         {
           long tmp = cost(cache, picked | (1 << i) | (1 << j), dist, num - 2);
+
           if(dist[i][j] + tmp < 0) continue;
           else if(dist[i][j] + tmp < min) min = dist[i][j] + tmp;
         }
       }
     }
+    cache[picked] = min;
     return min;
   }
 }

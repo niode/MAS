@@ -25,7 +25,6 @@ public class TeamRole extends Role
   public TeamRole(Simulation sim, Communicator com, BaseAgent base)
   {
     super(sim, com, base);
-    finder = new TeamFinder(sim);
   }
 
   /* (non-Javadoc)
@@ -34,8 +33,10 @@ public class TeamRole extends Role
   @Override
   public void setupRules(ArrayList<Rule> rules)
   {
+    finder = new TeamFinder(getSimulation());
     rules.add(new NotifyRule(finder));
     rules.add(new DigRule(finder));
+    rules.add(new TeamMoveRule(finder));
     rules.add(new MoveRule(finder));
   }
 
