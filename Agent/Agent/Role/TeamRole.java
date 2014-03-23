@@ -1,8 +1,8 @@
 package Agent.Role;
 
-import java.util.ArrayList;
-import Agent.Communicator;
-import Agent.Simulation;
+import java.util.*;
+import Agent.*;
+import Agent.Pathfinder.*;
 import Agent.Core.BaseAgent;
 import Agent.Role.Rules.*;
 import Agent.Role.TeamRules.*;
@@ -15,8 +15,7 @@ public class TeamRole extends Role
 {
   public static final String CODE = "TeamRole";
 
-  private AgentID teammate;
-
+  private TeamFinder finder;
   /**
    * @param sim
    * @param com
@@ -25,7 +24,7 @@ public class TeamRole extends Role
   public TeamRole(Simulation sim, Communicator com, BaseAgent base)
   {
     super(sim, com, base);
-    
+    finder = new TeamFinder(sim);
   }
 
   /* (non-Javadoc)
@@ -34,9 +33,9 @@ public class TeamRole extends Role
   @Override
   public void setupRules(ArrayList<Rule> rules)
   {
-    rules.add(new DigRule());
-    rules.add(new MoveRule());
-    rules.add(new NotifyRule());
+    rules.add(new NotifyRule(finder));
+    rules.add(new DigRule(finder));
+    rules.add(new MoveRule(finder));
   }
 
   /* (non-Javadoc)

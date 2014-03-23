@@ -111,6 +111,17 @@ public class Simulation
     return list.get(start).location;
   }
 
+  public List<AgentID> getTeammates()
+  {
+    List<AgentID> result = new LinkedList<AgentID>();
+    for(Agent agnt : agents)
+    {
+      if(agnt.getAgentID().getGID() == self.getGID())
+        result.add(agnt.getAgentID());
+    }
+    return result;
+  }
+
   public List<AgentID> getAgentsAt(Location location)
   {
     return getAgentsAt(location, round);

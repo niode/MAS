@@ -14,6 +14,13 @@ import java.util.*;
 
 public class DigRule implements Rule
 {
+  private TeamFinder finder;
+  public DigRule(TeamFinder finder)
+  {
+    super();
+    this.finder = finder;
+  }
+
   public boolean checkConditions(Simulation sim)
   {
     System.out.println("Evaluating DigRule.");

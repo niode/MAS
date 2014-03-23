@@ -14,6 +14,13 @@ import java.util.*;
 
 public class NotifyRule implements Rule
 {
+  private TeamFinder finder;
+  public NotifyRule(TeamFinder finder)
+  {
+    super();
+    this.finder = finder;
+  }
+
   public boolean checkConditions(Simulation sim)
   {
     System.out.println("Evaluating NotifyRule.");

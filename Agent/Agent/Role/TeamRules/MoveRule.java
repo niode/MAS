@@ -16,6 +16,13 @@ public class MoveRule implements Rule
 {
   Path path = null;
 
+  private TeamFinder finder;
+  public MoveRule(TeamFinder finder)
+  {
+    super();
+    this.finder = finder;
+  }
+
   public boolean checkConditions(Simulation sim)
   {
     System.out.println("Evaluating MoveRule.");
