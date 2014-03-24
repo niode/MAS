@@ -13,8 +13,11 @@ import Agent.Role.Rules.Rule;
  */
 public class ChargingRole extends Role
 	{
-
-  public static final String CODE = "ChargingRole";
+	/**
+	 * The amount of energy the agent must be equal to or above to stop charging.
+	 */
+	public static final int REQUIRED_ENERGY = 400;
+	public static final String CODE = "ChargingRole";
 
 	/**
 	 * @param sim object representing agent world knowledge

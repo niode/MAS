@@ -30,10 +30,17 @@ public class RuleExploreIfAlone implements Rule
 	@Override
 	public boolean checkConditions(Simulation sim)
 		{
-		//Check that no other agents are here.
+		//Check that no other charging agents are here.
 		Location loc = sim.getAgentLocation(sim.getSelfID());
 		List<AgentID> agents = sim.getAgentsAt(loc);
-		return agents.size() == 1;
+		int count = 0;
+		for (AgentID id : agents)
+			{
+			if (sim.getAgentRole(id) == Role.ID.CHARGER)
+				count++;
+			}
+		
+		return count == 1;
 		}
 
 	/* (non-Javadoc)

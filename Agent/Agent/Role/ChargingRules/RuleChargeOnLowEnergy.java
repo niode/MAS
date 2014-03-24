@@ -9,6 +9,7 @@ import Agent.Core.BaseAgent;
 import Agent.Pathfinder.Path;
 import Agent.Pathfinder.PathOptions;
 import Agent.Pathfinder.Pathfinder;
+import Agent.Role.ChargingRole;
 import Agent.Role.Role;
 import Agent.Role.Rules.Rule;
 import Ares.Location;
@@ -23,10 +24,6 @@ import Ares.Commands.AgentCommands.SLEEP;
  */
 public class RuleChargeOnLowEnergy implements Rule
 	{
-	/**
-	 * The amount of energy the agent must be equal to or above to stop charging.
-	 */
-	private static final int REQUIRED_ENERGY = 400;
 
 	/* (non-Javadoc)
 	 * @see Agent.Role.Rules.Rule#checkConditions(Agent.Simulation)
@@ -34,7 +31,7 @@ public class RuleChargeOnLowEnergy implements Rule
 	@Override
 	public boolean checkConditions(Simulation sim)
 		{
-		if (sim.getAgent(sim.getSelfID()).getEnergyLevel() < REQUIRED_ENERGY)
+		if (sim.getAgent(sim.getSelfID()).getEnergyLevel() < ChargingRole.REQUIRED_ENERGY)
 			return true;
 		
 		return false;
