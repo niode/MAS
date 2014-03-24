@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import Agent.Communicator;
 import Agent.Simulation;
 import Agent.Core.BaseAgent;
+import Agent.Role.ChargingRules.RuleChargeOnLowEnergy;
 import Agent.Role.Rules.Rule;
 
 /**
@@ -22,7 +23,6 @@ public class ChargingRole extends Role
 	public ChargingRole(Simulation sim, Communicator com, BaseAgent base)
 		{
 		super(sim, com, base);
-		// TODO Auto-generated constructor stub
 		}
 
 	/* (non-Javadoc)
@@ -31,8 +31,7 @@ public class ChargingRole extends Role
 	@Override
 	public void setupRules(ArrayList<Rule> rules)
 		{
-		// TODO Auto-generated method stub
-
+		rules.add(new RuleChargeOnLowEnergy());
 		}
 
 	/* (non-Javadoc)
@@ -42,7 +41,6 @@ public class ChargingRole extends Role
 	public void noRuleMatch()
 		{
 		// TODO Auto-generated method stub
-
 		}
 
   public String toString()
