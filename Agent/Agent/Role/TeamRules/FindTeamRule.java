@@ -30,6 +30,8 @@ public class FindTeamRule implements Rule
 
     int diff = sim.getRound() - rounds;
     System.out.println("Rounds without teammate: " + diff);
+    if(finder.getTeammate() != null)
+      System.out.println("Teammate: " + finder.getTeammate().getID());
 
     return diff < 5;
   }

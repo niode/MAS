@@ -112,20 +112,31 @@ public class TeamMoveRule implements Rule
     Location end = path.getLength() > 0 ? path.getNext() : start;
     Location t = path.getLength() > 0 ? path.getLast() : start;
 
-    System.out.println("Following path: " + path);
+
 
     if(target == null)
     {
+      Beacon msg = new Beacon(Beacon.TEAM_MOVE, sim.getSelfID(), t, Long.MAX_VALUE, 2);
+
+      // Clear other TEAM_MOVES.
+      for(Beacon beacon : sim.getBeaconType(Beacon.TEAM_MOVE))
+      {
+        if(beacon.getSenderID().equals(sim.getSelfID()) || beacon.getSenderID().equals(finder.getTeammate()))
+        {
+          com.send(Beacon.deleteBeacon(beacon));
+          com.send(new Beacon(Beacon.HELP_DIG, sim.getSelfID(), beacon.getLocation(), beacon.getRound(), 2));
+        }
+      }
+
       // Set the target beacon.
-      com.send(new Beacon(Beacon.TEAM_MOVE, sim.getSelfID(), t, Long.MAX_VALUE, 2));
+      com.send(msg);
 
       // Remove all dig beacons at the target so that other teams don't go there.
       for(Beacon beacon : sim.getBeaconType(Beacon.HELP_DIG))
       {
         if(beacon.getLocation().equals(t))
         {
-          com.send(new Beacon(beacon.getType(), beacon.getSenderID(), beacon.getLocation(),
-                   beacon.getRound(), 0));
+          com.send(Beacon.deleteBeacon(beacon));
         }
       }
     }

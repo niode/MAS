@@ -34,10 +34,10 @@ public class TeamRole extends Role
   public void setupRules(ArrayList<Rule> rules)
   {
     finder = new TeamFinder(getSimulation());
+    rules.add(new RuleChargeRequired());
     rules.add(new FindTeamRule(finder));
     rules.add(new NotifyRule(finder));
     rules.add(new DismissRule(finder));
-    //rules.add(new RuleChargeRequired());
     rules.add(new DigRule(finder));
     rules.add(new TeamMoveRule(finder));
     rules.add(new WaitRule(finder));

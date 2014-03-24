@@ -1,7 +1,7 @@
 Settings
 {
 	World_Info{ Size (10,5) Seed (842476) World_File_Levels( High 15, Mid 6, Low 3 )
-Agent_Energy ( 500 ) } 
+Agent_Energy ( 75 ) } 
 }
 
 

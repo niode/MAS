@@ -6,12 +6,14 @@ import Agent.Pathfinder.*;
 import Agent.Core.BaseAgent;
 import Agent.Role.Rules.*;
 import Agent.Role.TeamRules.*;
+import Agent.Role.*;
 import Ares.AgentID;
 
 public class TeamFinder
 {
   Simulation sim;
   AgentID teammate;
+  long round;
 
   public TeamFinder(Simulation sim)
   {
@@ -29,11 +31,12 @@ public class TeamFinder
   public AgentID getTeammate()
   {
     // Check if the teammate has been calculated already.
-    if(teammate != null) return teammate;
+    if(teammate != null && round == sim.getRound()) return teammate;
+    teammate = null;
 
     Path path;
     PathOptions opt = new PathOptions(PathOptions.SHORTEST & PathOptions.WITHIN_RANGE);
-    List<AgentID> team = sim.getTeammates();
+    List<AgentID> team = sim.getTeammates(Role.ID.TEAM);
     int selfIndex = 0;
     long[][] dist = new long[team.size()][team.size()];
 
@@ -68,7 +71,7 @@ public class TeamFinder
       else if(t.b == selfIndex)
         teammate = team.get(t.a);
     }
-
+    round = sim.getRound();
     return teammate;
   }
  

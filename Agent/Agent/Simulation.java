@@ -122,6 +122,18 @@ public class Simulation
     return result;
   }
 
+  public List<AgentID> getTeammates(Role.ID role)
+  {
+    List<AgentID> result = new LinkedList<AgentID>();
+    for(Agent agnt : agents)
+    {
+      if(agnt.getAgentID().getGID() == self.getGID()
+      && roles.get(agnt.getAgentID()) == role)
+        result.add(agnt.getAgentID());
+    }
+    return result;
+  }
+
   public List<AgentID> getAgentsAt(Location location)
   {
     return getAgentsAt(location, round);
@@ -522,7 +534,8 @@ public class Simulation
   public void printWorld()
   {
     System.out.printf("-----------------------------------------------------\n", self.getID());
-    System.out.printf("AGENT %d -- ENERGY: %d ------------------------------\n", self.getID(), getAgentEnergy(self));
+    System.out.printf("AGENT %d -- ENERGY: %d -- ROLE: %s ------------------\n", self.getID(),
+      getAgentEnergy(self), getAgentRole(self));
     System.out.printf("-----------------------------------------------------\n", self.getID());
     for(int i = 0; i < getRowCount(); i++)
     {
