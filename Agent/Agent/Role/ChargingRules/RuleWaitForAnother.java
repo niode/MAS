@@ -3,11 +3,12 @@
  */
 package Agent.Role.ChargingRules;
 
+import java.util.LinkedList;
 import java.util.List;
 import Agent.Communicator;
 import Agent.Simulation;
 import Agent.Core.BaseAgent;
-import Agent.Role.ExplorerRole;
+import Agent.Role.ChargingRole;
 import Agent.Role.Role;
 import Agent.Role.Rules.Rule;
 import Ares.AgentID;
@@ -16,12 +17,12 @@ import Ares.Commands.AgentCommand;
 import Ares.Commands.AgentCommands.SLEEP;
 
 /**
- * This should only run if the agent no longer needs to charge.
- * If alone, switch to Explorer.
+ * If done charging, but another agent is still charging
+ * wait for them.
  * 
  * @author Daniel
  */
-public class RuleExploreIfAlone implements Rule
+public class RuleWaitForAnother implements Rule
 	{
 
 	/* (non-Javadoc)
@@ -30,17 +31,32 @@ public class RuleExploreIfAlone implements Rule
 	@Override
 	public boolean checkConditions(Simulation sim)
 		{
-		//Check that no other charging agents are here.
+		//Get charging agents at own location.
 		Location loc = sim.getAgentLocation(sim.getSelfID());
 		List<AgentID> agents = sim.getAgentsAt(loc);
-		int count = 0;
+		LinkedList<AgentID> chargingAgents = new LinkedList<AgentID>();
 		for (AgentID id : agents)
 			{
 			if (sim.getAgentRole(id) == Role.ID.CHARGER)
-				count++;
+				chargingAgents.add(id);
 			}
 		
-		return count == 1;
+		//If only one, no others to wait for.
+		if (chargingAgents.size() == 1)
+			return false;
+		
+		//Check if agent is the only one charged.
+		int chargedCount = 0;
+		for (AgentID id : chargingAgents)
+			{
+			if (sim.getAgentEnergy(id) >= ChargingRole.REQUIRED_ENERGY)
+				chargedCount++;
+			}
+		if (chargedCount > 1)
+			return false;
+		
+		//There must be others still charging.
+		return true;
 		}
 
 	/* (non-Javadoc)
@@ -49,7 +65,7 @@ public class RuleExploreIfAlone implements Rule
 	@Override
 	public AgentCommand doAction(Simulation sim, Communicator com)
 		{
-		//Might as well sleep one more turn as we switch to Explorer.
+		//If waiting, may as well sleep for more energy.
 		return new SLEEP();
 		}
 
@@ -59,7 +75,7 @@ public class RuleExploreIfAlone implements Rule
 	@Override
 	public Role getRoleChange(Simulation sim, Communicator com, BaseAgent base)
 		{
-		return new ExplorerRole(sim, com, base);
+		return null;
 		}
 
 	}
