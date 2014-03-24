@@ -5,6 +5,7 @@ import Agent.Communicator;
 import Agent.Simulation;
 import Agent.Core.BaseAgent;
 import Agent.Role.ChargingRules.RuleChargeOnLowEnergy;
+import Agent.Role.ChargingRules.RuleExploreIfAlone;
 import Agent.Role.Rules.Rule;
 
 /**
@@ -16,9 +17,9 @@ public class ChargingRole extends Role
   public static final String CODE = "ChargingRole";
 
 	/**
-	 * @param sim
-	 * @param com
-	 * @param base
+	 * @param sim object representing agent world knowledge
+	 * @param com object allowing for communication with server and other agents
+	 * @param base object containing basic agent data
 	 */
 	public ChargingRole(Simulation sim, Communicator com, BaseAgent base)
 		{
@@ -32,6 +33,7 @@ public class ChargingRole extends Role
 	public void setupRules(ArrayList<Rule> rules)
 		{
 		rules.add(new RuleChargeOnLowEnergy());
+		rules.add(new RuleExploreIfAlone());
 		}
 
 	/* (non-Javadoc)
