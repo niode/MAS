@@ -47,6 +47,7 @@ public class ExplorerRole extends Role
 		rules.add(new RuleChargeRequired());
 		rules.add(new RuleGoToNearSurv());
 		rules.add(new RuleCanDig());
+		rules.add(new RuleGoToNearSoloDig());
 		rules.add(new RuleGoToUnvisited());
 		}
 

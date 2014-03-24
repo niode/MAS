@@ -18,7 +18,7 @@ public class ChargingRole extends Role
 	/**
 	 * The amount of energy the agent must be equal to or above to stop charging.
 	 */
-	public static final int REQUIRED_ENERGY = 400;
+	public static final int REQUIRED_ENERGY = 200;
 	public static final String CODE = "ChargingRole";
 
 	/**

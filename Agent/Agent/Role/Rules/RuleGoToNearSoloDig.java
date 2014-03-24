@@ -11,18 +11,17 @@ import Agent.Role.Role;
 import Ares.Location;
 import Ares.Commands.AgentCommand;
 import Ares.Commands.AgentCommands.MOVE;
-import Ares.World.Objects.Survivor;
-import Ares.World.Objects.SurvivorGroup;
+import Ares.World.Objects.Rubble;
 import Ares.World.Objects.WorldObject;
 
 /**
- * If a survivor is in a neighboring top layer, go there.
+ * If a nearby layer can be dug by one agent, go there.
  * 
  * @author Daniel
  */
-public class RuleGoToNearSurv implements Rule
+public class RuleGoToNearSoloDig implements Rule
 	{
-	ArrayList<Location> survLocs = null;
+	ArrayList<Location> digLocs = null;
 
 	/* (non-Javadoc)
 	 * @see Agent.Role.Rules.Rule#checkConditions(Agent.Simulation)
@@ -30,9 +29,9 @@ public class RuleGoToNearSurv implements Rule
 	@Override
 	public boolean checkConditions(Simulation sim)
 		{
-		getNearSurvivors(sim);
+		getNearDig(sim);
 		
-		return !survLocs.isEmpty();
+		return !digLocs.isEmpty();
 		}
 
 	/* (non-Javadoc)
@@ -41,15 +40,15 @@ public class RuleGoToNearSurv implements Rule
 	@Override
 	public AgentCommand doAction(Simulation sim, Communicator com)
 		{
-		if (survLocs == null || survLocs.isEmpty())
-			getNearSurvivors(sim);
+		if (digLocs == null || digLocs.isEmpty())
+			getNearDig(sim);
 		
-		if (survLocs.isEmpty())
+		if (digLocs.isEmpty())
 			return null;
 		
 		//Pick a random survivor location to move to.
 		Random rand = new Random();
-		Location target = survLocs.get(rand.nextInt(survLocs.size()));
+		Location target = digLocs.get(rand.nextInt(digLocs.size()));
 		Location current = sim.getAgentLocation(sim.getSelfID());
 		
 		return new MOVE(Pathfinder.getDirection(current, target));
@@ -69,20 +68,20 @@ public class RuleGoToNearSurv implements Rule
 	 * 
 	 * @param sim
 	 */
-	private void getNearSurvivors(Simulation sim)
+	private void getNearDig(Simulation sim)
 		{
-		survLocs = new ArrayList<Location>();
+		digLocs = new ArrayList<Location>();
 		
 		Set<Location> neighbors = Pathfinder.getValidNeighbors(sim, sim.getAgentLocation(sim.getSelfID()));
 		if (neighbors == null)
-			return; //No valid nearby.
+			return;
 		
 		for (Location near : neighbors)
 			{
 			//Get location top layer.
 			WorldObject top = sim.getCell(near).getTopLayer();
-			if (top instanceof Survivor || top instanceof SurvivorGroup)
-				survLocs.add(near);
+			if (top instanceof Rubble && ((Rubble)top).getRemoveAgents() == 1)
+				digLocs.add(near);
 			}
 		}
 	}

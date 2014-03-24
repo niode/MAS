@@ -38,13 +38,13 @@ public class Pathfinder
   	int locCol = location.getCol();
   	
   	HashSet<Location> result = new HashSet<Location>();
-  	for (int i = locRow - 1; i <= locRow; i++)
-  	  for (int j = locCol - 1; j <= locCol; j++)
+  	for (int i = locRow - 1; i <= locRow + 1; i++)
+  	  for (int j = locCol - 1; j <= locCol + 1; j++)
   	  {
 		//Reject current loc.
 		if (i == location.getRow() && j == location.getCol())
 		  continue;
-		
+
   	    //Reject out of bounds.
   		if (i < 0 || j < 0 ||
   			i > sim.getRowCount() - 1 || j > sim.getColCount() - 1)
