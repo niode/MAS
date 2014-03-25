@@ -28,6 +28,14 @@ public class WaitRule implements Rule
 
     AgentID teammate = finder.getTeammate();
     if(teammate == null) return false;
+
+    if(sim.getPercentage(loc) == 0) return false;
+
+    int count = 0;
+    for(AgentID id : sim.getAgentsAt(loc))
+      if(sim.getAgentRole(id) == Role.ID.TEAM)
+        count++;
+    if(count > 2) return false;
     return true;
   }
 

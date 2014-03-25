@@ -13,12 +13,22 @@ public class TeamFinder
 {
   Simulation sim;
   AgentID teammate;
+  List<Team> teams;
   long round;
 
   public TeamFinder(Simulation sim)
   {
     this.sim = sim;
     teammate = null;
+    teams = null;
+    round = -1;
+  }
+
+  public List<Team> getTeams()
+  {
+    if(round == sim.getRound()) return teams;
+    else getTeammate();
+    return teams;
   }
 
   /*
@@ -31,8 +41,9 @@ public class TeamFinder
   public AgentID getTeammate()
   {
     // Check if the teammate has been calculated already.
-    if(teammate != null && round == sim.getRound()) return teammate;
+    if(round == sim.getRound()) return teammate;
     teammate = null;
+    teams = null;
 
     Path path;
     PathOptions opt = new PathOptions(PathOptions.SHORTEST & PathOptions.WITHIN_RANGE);
@@ -55,7 +66,7 @@ public class TeamFinder
           opt.end = sim.getAgentLocation(team.get(j));
           path = Pathfinder.getPath(sim, opt);
           if(path == null)
-            dist[i][j] = Integer.MAX_VALUE;
+            dist[i][j] = Long.MAX_VALUE;
           else
             dist[i][j] = path.getLength();
         }
@@ -64,14 +75,26 @@ public class TeamFinder
 
     TeamCost[] cache = new TeamCost[1 << team.size()];
     TeamCost test = cost(cache, 0, dist, team.size());
-    for(Team t: test.team)
+    teams = new LinkedList<Team>();
+    for(PartialTeam t: test.team)
     {
+      if(t.a < t.b)
+        teams.add(new Team(team.get(t.a), team.get(t.b)));
+      else
+        teams.add(new Team(team.get(t.b), team.get(t.a)));
+
       if(t.a == selfIndex)
         teammate = team.get(t.b);
       else if(t.b == selfIndex)
         teammate = team.get(t.a);
     }
     round = sim.getRound();
+
+    // Test
+    for(Team t : teams)
+      System.out.printf("%s ", t);
+    System.out.println();
+
     return teammate;
   }
  
@@ -79,32 +102,37 @@ public class TeamFinder
   private TeamCost cost(TeamCost[] cache, int picked, long[][] dist, int num)
   {
     if(num == 1 || num == 0) return new TeamCost(0);
-    if(cache[picked] != null) return cache[picked];
+    //if(cache[picked] != null) return cache[picked];
 
     TeamCost min = new TeamCost(Long.MAX_VALUE);
     for(int i = 0; i < dist.length; i++)
     {
-      if(((1 << i) & picked) == (1 << i)) continue;
+      if(((1 << i) & picked) > 0) continue;
 
       for(int j = 0; j < dist[i].length; j++)
       {
-        if(((1 << j) & picked) == (1 << j)) continue;
+        if(((1 << j) & picked) > 0) continue;
 
         if(i != j && dist[i][j] < min.cost)
         {
-          TeamCost tmp = cost(cache, picked | (1 << i) | (1 << j), dist, num - 2);
+          if(dist[i][j] == Long.MAX_VALUE) continue;
 
-          if(dist[i][j] + tmp.cost < 0) continue;
+          int next = picked | (1 << i) | (1 << j);
+          TeamCost tmp = cost(cache, next, dist, num - 2);
+
+          if(dist[i][j] == Long.MAX_VALUE || dist[i][j] + tmp.cost < 0) continue;
           else if(dist[i][j] + tmp.cost < min.cost)
           {
             min = tmp;
             tmp = new TeamCost(dist[i][j]);
-            tmp.team.add(new Team(i,j));
+            tmp.team.add(new PartialTeam(i,j));
             min.add(tmp);
           }
         }
       }
     }
+
+    min = min.cost < Long.MAX_VALUE ? min : new TeamCost(0);
     cache[picked] = min;
     return min;
   }
@@ -112,10 +140,10 @@ public class TeamFinder
   private static class TeamCost
   {
     public long cost;
-    public LinkedList<Team> team;
+    public LinkedList<PartialTeam> team;
     public TeamCost(long c)
     {
-      team = new LinkedList<Team>();
+      team = new LinkedList<PartialTeam>();
       cost = c;
     }
 
@@ -126,14 +154,30 @@ public class TeamFinder
     }
   }
 
-  private static class Team
+  private static class PartialTeam
   {
     public int a;
     public int b;
-    public Team(int a, int b)
+    public PartialTeam(int a, int b)
     {
       this.a = a;
       this.b = b;
+    }
+  }
+
+  public static class Team
+  {
+    public AgentID low;
+    public AgentID high;
+    public Team(AgentID low, AgentID high)
+    {
+      this.low = low;
+      this.high = high;
+    }
+
+    public String toString()
+    {
+      return "(" + low.getID() + ", " + high.getID() + ")";
     }
   }
 }

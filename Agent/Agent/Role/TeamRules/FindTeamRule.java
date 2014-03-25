@@ -25,15 +25,8 @@ public class FindTeamRule implements Rule
 
   public boolean checkConditions(Simulation sim)
   {
-    if(rounds == 0 || finder.getTeammate() != null)
-      rounds = sim.getRound();
-
-    int diff = sim.getRound() - rounds;
-    System.out.println("Rounds without teammate: " + diff);
-    if(finder.getTeammate() != null)
-      System.out.println("Teammate: " + finder.getTeammate().getID());
-
-    return diff < 5;
+    if(finder.getTeammate() == null) rounds++;
+    return true;
   }
 
   public AgentCommand doAction(Simulation sim, Communicator com)
@@ -43,6 +36,9 @@ public class FindTeamRule implements Rule
 
   public Role getRoleChange(Simulation sim, Communicator com, BaseAgent base)
   {
-    return null;
+    if(finder.getTeammate() == null && rounds < 5)
+      return null;
+    else
+      return new ExplorerRole(sim, com, base);
   }
 }

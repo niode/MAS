@@ -26,36 +26,62 @@ public class TeamMoveRule implements Rule
 
   public boolean checkConditions(Simulation sim)
   {
+    boolean move = true;
     int energy = sim.getAgentEnergy(sim.getSelfID());
     Location selfLoc = sim.getAgentLocation(sim.getSelfID());
 
     AgentID teammate = finder.getTeammate();
     if(teammate == null) return false;
 
+    System.out.println("Teammate: " + teammate.getID());
+
     Location teamLoc = sim.getAgentLocation(teammate);
 
     // Don't move if there are still survivors here to save.
-    if(selfLoc.equals(teamLoc) && sim.getPercentage(selfLoc) > 0) return false;
+    if(move && selfLoc.equals(teamLoc) && sim.getPercentage(selfLoc) > 0)
+      move = false;
 
-    path = null;
-    target = null;
+    // Move if there are too many agents here.
+    int thisTeam = 0;
+    int otherTeam = 0;
+    int minID = sim.getSelfID().getID();
+    for(AgentID id : sim.getAgentsAt(selfLoc))
+    {
+      if(sim.getAgentRole(id) == Role.ID.TEAM)
+      {
+        if(id.equals(finder.getTeammate()) || id.equals(sim.getSelfID()))
+          thisTeam++;
+        else
+          otherTeam++;
+        if(id.getID() < minID) minID = id.getID();
+      }
+    }
+    if(otherTeam > thisTeam)
+      move = true;
+    else if(otherTeam == thisTeam && minID != sim.getSelfID().getID()
+    && minID != finder.getTeammate().getID())
+      move = true;
 
-    target = getTarget(sim, teammate, selfLoc, teamLoc, energy);
-
-    System.out.println("Target: " + target);
-
-    if(target == null) return setTarget(sim, teammate, selfLoc, teamLoc, energy);
-    else return true;
+    if(move)
+    {
+      path = null;
+      target = getTarget(sim);
+      if(target == null) return setTarget(sim);
+      else return true;
+    }
+    return false;
   }
 
-  private Location getTarget(Simulation sim, AgentID teammate, Location selfLoc, Location teamLoc, int energy)
+  private Location getTarget(Simulation sim)
   {
     PathOptions opt = new PathOptions(PathOptions.SHORTEST & PathOptions.WITHIN_RANGE);
+    Location teamLoc = sim.getAgentLocation(finder.getTeammate());
+    Location selfLoc = sim.getAgentLocation(sim.getSelfID());
 
     for(Beacon beacon : sim.getBeaconType(Beacon.TEAM_MOVE))
     {
       if(beacon.getSenderID().equals(sim.getSelfID()) ||
-         beacon.getSenderID().equals(teammate))
+         beacon.getSenderID().equals(finder.getTeammate()))
       {
         opt.start = teamLoc;
         opt.end = beacon.getLocation();
@@ -72,34 +98,60 @@ public class TeamMoveRule implements Rule
     return null;
   }
 
-  private boolean setTarget(Simulation sim, AgentID teammate, Location selfLoc, Location teamLoc, int energy)
+  private boolean setTarget(Simulation sim)
   {
     PathOptions opt = new PathOptions(PathOptions.SHORTEST & PathOptions.WITHIN_RANGE);
 
-    long bestCost = 0;
-    int sender = 0;
+    Location selfLoc = sim.getAgentLocation(sim.getSelfID());
+    Location teamLoc = sim.getAgentLocation(finder.getTeammate());
+
+    long bestCost = Integer.MAX_VALUE;
+    int bestSender = 0;
     path = null;
     for(Beacon beacon : sim.getBeaconType(Beacon.HELP_DIG))
     {
-      long pathCost = 0;
-      opt.end = beacon.getLocation();
-
-      opt.start = teamLoc;
-      Path teamPath = Pathfinder.getPath(sim, opt);
-      if(teamPath == null) continue;
-      pathCost += teamPath.getLength();
-
-      opt.start = selfLoc;
-      Path selfPath = Pathfinder.getPath(sim, opt);
-      if(selfPath == null) continue;
-      pathCost += selfPath.getLength();
-
-      // Break ties with sender ID.
-      if(path == null || pathCost < bestCost || (pathCost == bestCost && beacon.getSenderID().getID() < sender))
+      TeamFinder.Team minTeam = null;
+      long minCost = 0;
+      for(TeamFinder.Team team : finder.getTeams())
       {
-        bestCost = pathCost;
-        path = selfPath;
-        sender = beacon.getSenderID().getID();
+        if(!team.low.equals(sim.getSelfID()) && !team.high.equals(sim.getSelfID()))
+        {
+          if(sim.getPercentage(sim.getAgentLocation(team.low)) > 0
+          || sim.getPercentage(sim.getAgentLocation(team.high)) > 0)
+            continue;
+        }
+        opt.end = beacon.getLocation();
+        opt.start = sim.getAgentLocation(team.low);
+        Path a = Pathfinder.getPath(sim, opt);
+        if(a == null) continue;
+        long cost = a.getLength();
+        
+        opt.end = beacon.getLocation();
+        opt.start = sim.getAgentLocation(team.high);
+        Path b = Pathfinder.getPath(sim, opt);
+        if(b == null) continue;
+        cost += a.getLength();
+
+        if(minTeam == null || cost < minCost)
+        {
+          minTeam = team;
+          minCost = cost;
+        }
+      }
+
+      if(minTeam != null
+      && (minTeam.low.equals(sim.getSelfID()) || minTeam.high.equals(sim.getSelfID())))
+      {
+        if(path == null
+        || minCost < bestCost
+        || (minCost == bestCost && beacon.getSenderID().getID() < bestSender))
+        {
+          opt.end = beacon.getLocation();
+          opt.start = selfLoc;
+          path = Pathfinder.getPath(sim, opt);
+          bestCost = minCost;
+          bestSender = beacon.getSenderID().getID();
+        }
       }
     }
     if(path != null) return true;
@@ -112,9 +164,8 @@ public class TeamMoveRule implements Rule
     Location end = path.getLength() > 0 ? path.getNext() : start;
     Location t = path.getLength() > 0 ? path.getLast() : start;
 
-
-
-    if(target == null)
+    // Send the message if the agent has the lower id in the team.
+    if(target == null && sim.getSelfID().getID() < finder.getTeammate().getID())
     {
       Beacon msg = new Beacon(Beacon.TEAM_MOVE, sim.getSelfID(), t, Long.MAX_VALUE, 2);
 

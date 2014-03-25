@@ -32,8 +32,7 @@ public class DismissRule implements Rule
     for(Beacon beacon : sim.getBeaconType(Beacon.HELP_DIG))
     {
       if(sim.getPercentage(beacon.getLocation()) == 0)
-        com.send(new Beacon(Beacon.HELP_DIG, beacon.getSenderID(), beacon.getLocation(),
-          beacon.getRound(), 0));
+        com.send(Beacon.deleteBeacon(beacon));
     }
 
     // Clear up conflicting team movements.

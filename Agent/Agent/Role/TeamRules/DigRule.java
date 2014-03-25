@@ -51,7 +51,7 @@ public class DigRule implements Rule
         agentCount++;
         if(id.getID() < minID) minID = id.getID();
       }
-    if(agentCount > 1 && topLayer instanceof Rubble) return true;
+    if(agentCount > 1 && agentCount <= 2 && topLayer instanceof Rubble) return true;
     else if(minID == sim.getSelfID().getID())
     {
       if(sim.getTopLayer(loc) instanceof Survivor) return true;
