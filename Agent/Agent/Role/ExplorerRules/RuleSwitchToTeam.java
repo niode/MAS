@@ -9,10 +9,13 @@ import Agent.Beacon;
 import Agent.Communicator;
 import Agent.Simulation;
 import Agent.Core.BaseAgent;
+import Agent.Pathfinder.Path;
+import Agent.Pathfinder.PathOptions;
 import Agent.Pathfinder.Pathfinder;
 import Agent.Role.Role;
 import Agent.Role.TeamRole;
 import Agent.Role.Rules.Rule;
+import Ares.AgentID;
 import Ares.Direction;
 import Ares.Location;
 import Ares.Commands.AgentCommand;
@@ -28,7 +31,7 @@ import Ares.Commands.AgentCommands.MOVE;
  */
 public class RuleSwitchToTeam implements Rule
 	{
-	Location digLocation = null;
+	private Location digLocation = null;
 
 	/* (non-Javadoc)
 	 * @see Agent.Role.Rules.Rule#checkConditions(Agent.Simulation)
@@ -53,12 +56,30 @@ public class RuleSwitchToTeam implements Rule
 					loccol >= colmin && loccol <= colmax)
 				{
 				digLocation = beaconLoc;
-				return true;
+				break; //Only need to know if at least 1 exists.
 				}
 			}
 		
-		digLocation = null;
-		return false;
+		//Ensure the closest other agent is also Explorer.
+		long closestDistance = Long.MAX_VALUE;
+		AgentID closestAgent = null;
+		for (AgentID id : sim.getTeammates())
+			{
+			Location otherLoc = sim.getAgentLocation(id);
+			PathOptions opt = new PathOptions(loc, otherLoc);
+			Path path = Pathfinder.getPath(sim, opt);
+			
+			if (path != null && path.getLength() < closestDistance)
+				{
+				closestDistance = path.getLength();
+				closestAgent = id;
+				}
+			}
+		
+		if (closestAgent == null)
+			return false;
+		
+		return sim.getAgentRole(closestAgent) == Role.ID.EXPLORER;
 		}
 
 	/* (non-Javadoc)
