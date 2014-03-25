@@ -65,6 +65,9 @@ public class RuleSwitchToTeam implements Rule
 		AgentID closestAgent = null;
 		for (AgentID id : sim.getTeammates())
 			{
+			if (id.equals(sim.getSelfID()))
+				continue; //Skip self.
+			
 			Location otherLoc = sim.getAgentLocation(id);
 			if (otherLoc == null)
 				continue; //Other agent doesn't have a location?
