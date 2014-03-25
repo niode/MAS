@@ -568,4 +568,181 @@ public class Simulation
       return "(" + location.toString() + ", " + round + ")";
     }
   }
+  
+  
+
+
+
+/* ----------------------------------------------------------------------------
+ * helper functions intended for observer "navigation", and whatever else if you find these useful
+ * These provide descriptive navigation functionality
+ --------------------------------------------------------------------------- */
+
+    public enum Direction{ NORTH, EAST, SOUTH, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST }
+
+    public Location navGet(Direction direction, int stepSize){ return navGet(direction,self,stepSize); }
+    public Location navGet(Direction direction)              { return navGet(direction,self,1); }
+    public Location navGet(Direction direction, AgentID id, int stepSize){
+
+        Location origin = getAgentLocation( id );
+
+        switch (direction){
+
+            case NORTH :
+                if( origin.getRow() - stepSize < 1 )
+                    return new Location( origin.getRow() - stepSize, origin.getCol() );
+                break;
+
+            case SOUTH :
+                if( origin.getRow() + stepSize > getRowCount() )
+                    return new Location( origin.getRow() + stepSize, origin.getCol() );
+                break;
+
+            case WEST :
+                if( origin.getCol() - stepSize < 1  )
+                    return new Location( origin.getRow(), origin.getCol() - stepSize );
+                break;
+
+            case EAST :
+                if( origin.getCol() + stepSize > getColCount() )
+                    return new Location( origin.getRow(), origin.getCol() + stepSize );
+                break;
+
+            case NORTHEAST :
+                if( navGet( Direction.NORTH, id, stepSize ) != null  &&
+                        navGet( Direction.EAST , id, stepSize ) != null  )
+                    return new Location( origin.getRow() - stepSize, origin.getCol() + stepSize );
+                break;
+
+            case NORTHWEST :
+                if( navGet( Direction.NORTH, id, stepSize ) != null  &&
+                        navGet( Direction.WEST , id, stepSize ) != null  )
+                    return new Location( origin.getRow() - stepSize, origin.getCol() - stepSize );
+                break;
+
+            case SOUTHEAST :
+                if( navGet( Direction.SOUTH, id, stepSize ) != null  &&
+                        navGet( Direction.EAST , id, stepSize ) != null  )
+                    return new Location( origin.getRow() + stepSize, origin.getCol() + stepSize );
+                break;
+
+            case SOUTHWEST :
+                if( navGet( Direction.SOUTH, id, stepSize ) != null  &&
+                        navGet( Direction.WEST , id, stepSize ) != null  )
+                    return new Location( origin.getRow() + stepSize, origin.getCol() - stepSize );
+                break;
+
+        } // close switch body
+        return null;
+
+    }
+
+
+    public List<Location> navGetArea(int radius)                       { return navGetArea(self, radius, radius); }
+    public List<Location> navGetArea(int width, int height)            { return navGetArea(self, width , height); }
+    public List<Location> navGetArea(AgentID id, int radius)           { return navGetArea(id  , radius, radius); }
+    public List<Location> navGetArea(AgentID id, int width, int height){
+
+        assert( width >= 0 && height >= 0 && id.getID() > 0 && id.getID() <= NUM_AGENTS );
+
+        List<Location> locList = new LinkedList<Location>();
+        Location origin = getAgentLocation( id );
+
+        for( int i = origin.getCol() - width ; i <= origin.getCol() + width ; i++ ){
+            for( int j = origin.getRow() - height ; j <= origin.getRow() + height ; j++){
+
+                Location newLoc =  new Location(j,i);
+                if(newLoc.valid(j,i)){ locList.add(newLoc); }
+
+            }
+        }
+        return locList;
+    }
+
+    /*
+        perimeters of different radius' : 0, 1, 2, 3
+        3 3 3 3 3 3 3
+        3 2 2 2 2 2 3   Say our origin is at 0, then calling navGetPerimeter with a radius of 0 will only give us the origin.
+        3 2 1 1 1 2 3   Calling navGetPerimeter with 1 will return the list of locations represented by 1's ( if they exist )
+        3 2 1 0 1 2 3   And so on... You can specify width and height separately instead of radius as well.
+        3 2 1 1 1 2 3   You can also decide which agent to use as origin.
+        3 2 2 2 2 2 3
+        3 3 3 3 3 3 3
+    */
+
+    public List<Location> navGetPerimeter(int radius)                       { return navGetPerimeter(self, radius, radius); }
+    public List<Location> navGetPerimeter(int width, int height)            { return navGetPerimeter(self, width , height); }
+    public List<Location> navGetPerimeter(AgentID id, int radius)           { return navGetPerimeter(id, radius  , radius); }
+    public List<Location> navGetPerimeter(AgentID id, int width, int height){
+
+        assert( width >= 0 && height >= 0 && id.getID() > 0 && id.getID() <= NUM_AGENTS );
+
+
+        List<Location> L_BIG = navGetArea(id, width, height);
+
+        int innerWidth;
+        int innerHeight;
+
+        if(width - 1 < 0 ) innerWidth = 0;
+        else innerWidth = width - 1;
+
+        if(height - 1 < 0 ) innerHeight = 0;
+        else innerHeight = height - 1;
+
+        List<Location> L_SMALL = navGetArea( id , innerWidth , innerHeight );
+
+        for( Location LOC_S : L_SMALL ){
+            for( Location LOC_B : L_BIG ){
+                if( LOC_S.getCol() == LOC_B.getCol() && LOC_S.getRow() == LOC_B.getRow() ){
+                    L_BIG.remove(LOC_B);
+                }
+            }
+        }
+
+        return L_BIG;
+
+
+         /* // this is a quicker way to do it but more complicated.
+        for( int i = origin.getCol() - width ; i <= origin.getCol() + width ; i++ ){
+
+            // add top row
+            Location newLoc =  new Location( origin.getRow() - height , i );
+            if(newLoc.valid( origin.getRow() - height , i )){ locList.add(newLoc); }
+
+            if(height > 0) {
+                // add bottom row
+                newLoc = new Location(origin.getRow() + height, i);
+                if (newLoc.valid(origin.getRow() + height, i)) {
+                    locList.add(newLoc);
+                }
+            }
+
+        }
+
+        // adding the remaining left and right column only necessary if height is greater than 1, otherwise row got them already
+        if( height > 1 ) {
+
+            // add left column
+            for (int i = origin.getRow() - height + 1 ; i <= origin.getRow() + height - 1 ; i++) {
+
+                Location newLoc = new Location(i, origin.getCol() - width);
+                if (newLoc.valid(i, origin.getCol() - width)) {
+                    locList.add(newLoc);
+                }
+            }
+
+            // add right column
+            for (int i = origin.getRow() - height + 1 ; i <= origin.getRow() + height - 1 ; i++) {
+
+                Location newLoc = new Location(i, origin.getCol() + width);
+                if (newLoc.valid(i, origin.getCol() + width)) {
+                    locList.add(newLoc);
+                }
+            }
+
+        }
+       */
+
+    }
+  
 }
