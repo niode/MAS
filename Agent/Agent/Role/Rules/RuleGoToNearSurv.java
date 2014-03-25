@@ -81,7 +81,7 @@ public class RuleGoToNearSurv implements Rule
 			{
 			//Get location top layer.
 			WorldObject top = sim.getCell(near).getTopLayer();
-			if (top instanceof Survivor || top instanceof SurvivorGroup)
+			if((top instanceof Survivor || top instanceof SurvivorGroup) && sim.getAgentsAt(near).size() == 0)
 				survLocs.add(near);
 			}
 		}
