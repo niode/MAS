@@ -66,6 +66,9 @@ public class RuleSwitchToTeam implements Rule
 		for (AgentID id : sim.getTeammates())
 			{
 			Location otherLoc = sim.getAgentLocation(id);
+			if (otherLoc == null)
+				continue; //Other agent doesn't have a location?
+			
 			PathOptions opt = new PathOptions(loc, otherLoc);
 			Path path = Pathfinder.getPath(sim, opt);
 			
