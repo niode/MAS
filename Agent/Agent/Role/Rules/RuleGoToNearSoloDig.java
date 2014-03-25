@@ -80,7 +80,7 @@ public class RuleGoToNearSoloDig implements Rule
 			{
 			//Get location top layer.
 			WorldObject top = sim.getCell(near).getTopLayer();
-			if (top instanceof Rubble && ((Rubble)top).getRemoveAgents() == 1)
+			if (top instanceof Rubble && ((Rubble)top).getRemoveAgents() == 1 && sim.getPercentage(near) > 0)
 				digLocs.add(near);
 			}
 		}
