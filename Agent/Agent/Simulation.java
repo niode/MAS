@@ -578,11 +578,11 @@ public class Simulation
  * These provide descriptive navigation functionality
  --------------------------------------------------------------------------- */
 
-    public enum Direction{ NORTH, EAST, SOUTH, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST }
+    public enum Direc{ NORTH, EAST, SOUTH, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST }
 
-    public Location navGet(Direction direction, int stepSize){ return navGet(direction,self,stepSize); }
-    public Location navGet(Direction direction)              { return navGet(direction,self,1); }
-    public Location navGet(Direction direction, AgentID id, int stepSize){
+    public Location navGet(Direc direction, int stepSize){ return navGet(direction,self,stepSize); }
+    public Location navGet(Direc direction)              { return navGet(direction,self,1); }
+    public Location navGet(Direc direction, AgentID id, int stepSize){
 
         Location origin = getAgentLocation( id );
 
@@ -609,26 +609,26 @@ public class Simulation
                 break;
 
             case NORTHEAST :
-                if( navGet( Direction.NORTH, id, stepSize ) != null  &&
-                        navGet( Direction.EAST , id, stepSize ) != null  )
+                if( navGet( Direc.NORTH, id, stepSize ) != null  &&
+                        navGet( Direc.EAST , id, stepSize ) != null  )
                     return new Location( origin.getRow() - stepSize, origin.getCol() + stepSize );
                 break;
 
             case NORTHWEST :
-                if( navGet( Direction.NORTH, id, stepSize ) != null  &&
-                        navGet( Direction.WEST , id, stepSize ) != null  )
+                if( navGet( Direc.NORTH, id, stepSize ) != null  &&
+                        navGet( Direc.WEST , id, stepSize ) != null  )
                     return new Location( origin.getRow() - stepSize, origin.getCol() - stepSize );
                 break;
 
             case SOUTHEAST :
-                if( navGet( Direction.SOUTH, id, stepSize ) != null  &&
-                        navGet( Direction.EAST , id, stepSize ) != null  )
+                if( navGet( Direc.SOUTH, id, stepSize ) != null  &&
+                        navGet( Direc.EAST , id, stepSize ) != null  )
                     return new Location( origin.getRow() + stepSize, origin.getCol() + stepSize );
                 break;
 
             case SOUTHWEST :
-                if( navGet( Direction.SOUTH, id, stepSize ) != null  &&
-                        navGet( Direction.WEST , id, stepSize ) != null  )
+                if( navGet( Direc.SOUTH, id, stepSize ) != null  &&
+                        navGet( Direc.WEST , id, stepSize ) != null  )
                     return new Location( origin.getRow() + stepSize, origin.getCol() - stepSize );
                 break;
 
