@@ -30,15 +30,15 @@ public class RuleCanDig implements Rule
 		Cell currentCell = sim.getCell(currentLoc);
 		WorldObject topLayer = currentCell.getTopLayer();
 		
-		if (topLayer instanceof Rubble)
+		if (topLayer instanceof Rubble && sim.getPercentage(currentLoc) > 0)
 			{
 			Rubble rubble = (Rubble)topLayer;
 			
 			if (rubble.getRemoveAgents() == 1)
 				return true;
 			
-			if (currentCell.getCellInfo().getAgentIDList().size() > 1)
-				return true;
+      if(sim.getAgentsAt(currentLoc).size() > 1)
+        return true;
 			}
 		
 		return false;
