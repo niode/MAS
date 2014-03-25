@@ -11,6 +11,7 @@ import Agent.Role.ExplorerRules.RuleGoToUnknownPercent;
 import Agent.Role.ExplorerRules.RuleGoToUnvisited;
 import Agent.Role.ExplorerRules.RuleHelpTeam;
 import Agent.Role.ExplorerRules.RulePlaceDigBeacon;
+import Agent.Role.ExplorerRules.RuleSwitchToTeam;
 import Agent.Role.Rules.*;
 import Ares.*;
 import Ares.World.Objects.*;
@@ -54,6 +55,7 @@ public class ExplorerRole extends Role
 		rules.add(new RuleHelpTeam());
 		rules.add(new RuleGoToUnknownPercent());
 		rules.add(new RuleGoToNearSoloDig());
+		rules.add(new RuleSwitchToTeam());
 		rules.add(new RuleGoToUnvisited());
 		}
 
