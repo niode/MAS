@@ -3,7 +3,6 @@
  */
 package Agent.Role.ExplorerRules;
 
-import java.util.LinkedList;
 import java.util.Set;
 import Agent.Beacon;
 import Agent.Communicator;
@@ -46,6 +45,7 @@ public class RuleSwitchToTeam implements Rule
 		int colmax = loc.getCol() + 1;
 		
 		Set<Beacon> beacons = sim.getBeaconType(Beacon.HELP_DIG);
+		digLocation = null;
 		for (Beacon beacon : beacons)
 			{
 			Location beaconLoc = beacon.getLocation();
@@ -59,6 +59,10 @@ public class RuleSwitchToTeam implements Rule
 				break; //Only need to know if at least 1 exists.
 				}
 			}
+		
+		//Check fails if no nearby dig location.
+		if (digLocation == null)
+			return false;
 		
 		//Ensure the closest other agent is also Explorer.
 		long closestDistance = Long.MAX_VALUE;
