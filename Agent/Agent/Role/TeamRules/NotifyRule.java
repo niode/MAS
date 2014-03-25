@@ -44,7 +44,9 @@ public class NotifyRule implements Rule
          sim.getAgentsRequired(loc) >= 2 &&
          sim.getPercentage(loc) > 0 &&
          sim.getAgentsAt(loc).size() < 2)
+      {
         com.send(new Beacon(Beacon.HELP_DIG, sim.getSelfID(), loc, Long.MAX_VALUE, 2));
+      }
     }
 
     return null;
