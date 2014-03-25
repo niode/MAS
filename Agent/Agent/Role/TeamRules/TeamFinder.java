@@ -102,7 +102,7 @@ public class TeamFinder
   private TeamCost cost(TeamCost[] cache, int picked, long[][] dist, int num)
   {
     if(num == 1 || num == 0) return new TeamCost(0);
-    //if(cache[picked] != null) return cache[picked];
+    if(cache[picked] != null) return cache[picked];
 
     TeamCost min = new TeamCost(Long.MAX_VALUE);
     for(int i = 0; i < dist.length; i++)
