@@ -9,6 +9,7 @@ import Agent.Core.BaseAgent;
 import Agent.Pathfinder.*;
 import Agent.Role.ExplorerRules.RuleGoToUnknownPercent;
 import Agent.Role.ExplorerRules.RuleGoToUnvisited;
+import Agent.Role.ExplorerRules.RuleHelpTeam;
 import Agent.Role.ExplorerRules.RulePlaceDigBeacon;
 import Agent.Role.Rules.*;
 import Ares.*;
@@ -50,6 +51,7 @@ public class ExplorerRole extends Role
 		rules.add(new RuleChargeRequired());
 		rules.add(new RuleGoToNearSurv());
 		rules.add(new RuleCanDig());
+		rules.add(new RuleHelpTeam());
 		rules.add(new RuleGoToUnknownPercent());
 		rules.add(new RuleGoToNearSoloDig());
 		rules.add(new RuleGoToUnvisited());
