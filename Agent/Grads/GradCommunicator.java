@@ -1,6 +1,7 @@
 package Grads;
 
 import Ares.World.Info.*;
+import com.google.gson.*;
 
 public class GradCommunicator
 {
