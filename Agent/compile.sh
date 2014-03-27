@@ -1,1 +1,1 @@
-javac -d build ./*/*.java
+javac -d build ./Agent/Main.java
