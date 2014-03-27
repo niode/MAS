@@ -50,7 +50,7 @@ public class RuleChargeRequired implements Rule
 		if(toNearestCharger == null) return false;
 
 		long pathCost = toNearestCharger.getMoveCost();
-		return currentEnergy < (pathCost + (sim.getAverageCost() * EXTRA_MOVES));
+		return currentEnergy < pathCost + (sim.getAverageCost() * EXTRA_MOVES);
 		}
 
 	/*
