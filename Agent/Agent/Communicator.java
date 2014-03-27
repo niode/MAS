@@ -16,7 +16,6 @@ import Ares.Commands.AresCommands.*;
 import Ares.Commands.AgentCommands.*;
 import java.util.List;
 
-
 public class Communicator
 {
   private static final String DELIM = ",";
@@ -160,6 +159,10 @@ public class Communicator
   {
     long[] numbers = mapLong(string.split(DELIM));
     AgentID id = new AgentID((int)numbers[1], (int)numbers[0]);
+
+    // Agents should not parse information about themself, from themself.
+    if(id.equals(sim.getSelfID())) return;
+
     long energy = numbers[2];
     boolean alive = numbers[3] == 1;
     if(alive)
