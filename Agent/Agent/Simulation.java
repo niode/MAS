@@ -84,6 +84,11 @@ public class Simulation
     return agents.get(getIndex(id)).getEnergyLevel();
   }
 
+  public boolean isAlive(AgentID id)
+  {
+    return agents.get(getIndex(id)).getEnergyLevel() > 0;
+  }
+
   public Location getAgentLocation(AgentID id)
   {
     return getAgentLocation(id, round); 
@@ -116,7 +121,7 @@ public class Simulation
     List<AgentID> result = new LinkedList<AgentID>();
     for(Agent agnt : agents)
     {
-      if(agnt.getAgentID().getGID() == self.getGID())
+      if(agnt.getAgentID().getGID() == self.getGID() && isAlive(agnt.getAgentID()))
         result.add(agnt.getAgentID());
     }
     return result;
@@ -127,7 +132,7 @@ public class Simulation
     List<AgentID> result = new LinkedList<AgentID>();
     for(Agent agnt : agents)
     {
-      if(agnt.getAgentID().getGID() == self.getGID()
+      if(agnt.getAgentID().getGID() == self.getGID() && isAlive(agnt.getAgentID())
       && roles.get(agnt.getAgentID()) == role)
         result.add(agnt.getAgentID());
     }
@@ -144,7 +149,7 @@ public class Simulation
     List<AgentID> result = new LinkedList<AgentID>();
     for(Agent agt : agents)
     {
-      if(agt.getAgentID().getGID() != getSelfID().getGID())
+      if(agt.getAgentID().getGID() != getSelfID().getGID() || !isAlive(agt.getAgentID()))
         continue;
       AgentID id = agt.getAgentID();
       Location loc = getAgentLocation(id, round);
