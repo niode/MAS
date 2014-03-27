@@ -31,14 +31,19 @@ public class FindTeamRule implements Rule
 
   public AgentCommand doAction(Simulation sim, Communicator com)
   {
+    sim.addAgentState(sim.getSelfID(), State.TEAM_SEARCH);
     return null;
   }
 
   public Role getRoleChange(Simulation sim, Communicator com, BaseAgent base)
   {
     if(finder.getTeammate() == null && rounds < 5)
+    {
       return null;
-    else
+    } else
+    {
+      sim.removeAgentState(sim.getSelfID(), State.TEAM_SEARCH);
       return new ExplorerRole(sim, com, base);
+    }
   }
 }

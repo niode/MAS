@@ -23,6 +23,7 @@ public class Communicator
   private static final String PREFIX_CELL = "CELL";
   private static final String PREFIX_SURROUND = "SURROUND";
   private static final String PREFIX_ENERGY = "ENERGY";
+  private static final String PREFIX_STATE = "STATE";
   private static final String PREFIX_BEACON = "BEACON";
   private static final String PREFIX_ROLE = "ROLE";
   private static final String PREFIX_DELIM = "::";
@@ -78,6 +79,9 @@ public class Communicator
       parseSurroundInfo(split[1]);
     } else if(split[0].equals(PREFIX_ENERGY))
     {
+      parseEnergy(split[1]);
+    } else if(split[0].equals(PREFIX_STATE))
+    {
       parseState(split[1]);
     } else if(split[0].equals(PREFIX_BEACON))
     {
@@ -109,13 +113,17 @@ public class Communicator
     || command instanceof SLEEP
     || command instanceof TEAM_DIG)
       send(sim.getSelfID(),
-        sim.getAgentEnergy(sim.getSelfID()) - getEnergyCost(command), 
-        sim.getAgentState(sim.getSelfID()));
+        sim.getAgentEnergy(sim.getSelfID()) - getEnergyCost(command));
   }
 
-  public void send(AgentID id, int energy, int state)
+  public void sendState(AgentID id, int state)
   {
-    send(format(id, energy, state));
+    send(formatState(id, state));
+  }
+
+  public void send(AgentID id, int energy)
+  {
+    send(formatEnergy(id, energy));
   }
 
   public void send(AgentID id, Cell cell)
@@ -191,15 +199,32 @@ public class Communicator
     // Do not update the agent's own energy.
     if(id.equals(sim.getSelfID())) return;
 
-    int energy = (int)numbers[2];
-    int state = (int)numbers[3];
-    sim.update(id, energy, state);
+    int state = (int)numbers[2];
+    sim.setAgentState(id, state);
   }
 
-  private String format(AgentID id, int energy, int state)
+  private void parseEnergy(String string)
   {
-    return String.format("%s%d,%d,%d,%d",
-      PREFIX_ENERGY + PREFIX_DELIM, id.getID(), id.getGID(), energy, state);
+    long[] numbers = mapLong(string.split(DELIM));
+    AgentID id = new AgentID((int)numbers[0], (int)numbers[1]);
+
+    // Do not update the agent's own energy.
+    if(id.equals(sim.getSelfID())) return;
+
+    int energy = (int)numbers[2];
+    sim.update(id, energy);
+  }
+
+  private String formatState(AgentID id, int state)
+  {
+    return String.format("%s%d,%d,%d",
+      PREFIX_STATE + PREFIX_DELIM, id.getID(), id.getGID(), state);
+  }
+
+  private String formatEnergy(AgentID id, int energy)
+  {
+    return String.format("%s%d,%d,%d",
+      PREFIX_ENERGY + PREFIX_DELIM, id.getID(), id.getGID(), energy);
   }
 
   private String format(Beacon beacon)

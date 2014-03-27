@@ -88,6 +88,7 @@ public class Brain{
     public void think() {
         base.log(LogLevels.Always, "Thinking");
         ai.think();
+        com.sendState(sim.getSelfID(), sim.getAgentState(sim.getSelfID()));
         com.send(new END_TURN());
         sim.advance();
     }
