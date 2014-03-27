@@ -47,7 +47,8 @@ public class TeamFinder
 
     Path path;
     PathOptions opt = new PathOptions(PathOptions.SHORTEST & PathOptions.WITHIN_RANGE);
-    List<AgentID> team = sim.getTeammates(Role.ID.TEAM);
+    //List<AgentID> team = sim.getTeammates(Role.ID.TEAM);
+    List<AgentID> team = sim.getTeammates((1 << State.TEAM_SEARCH.value()));
     int selfIndex = 0;
     long[][] dist = new long[team.size()][team.size()];
 

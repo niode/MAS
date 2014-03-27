@@ -25,6 +25,7 @@ public class Simulation
   private boolean[][] visited = null;
   private long[][] turnVisited = null;
   private Map<AgentID, Role.ID> roles = new HashMap<AgentID, Role.ID>();
+  private Map<AgentID, Integer> states = new HashMap<AgentID, Integer>();
   private AgentID self = null;
 
   private int round = 0;
@@ -116,6 +117,43 @@ public class Simulation
     return list.get(end).location;
   }
 
+  public int getAgentState(AgentID id)
+  {
+    if(states.containsKey(id))
+      return states.get(id);
+    else
+      return 0;
+  }
+
+  public void setAgentState(AgentID id, int state)
+  {
+    states.put(id, state);
+  }
+
+  public void addAgentState(AgentID id, State state)
+  {
+    int s;
+    if(states.containsKey(id))
+      s = states.get(id);
+    else
+      s = 0;
+    s |= (1 << state.value());
+    states.put(id, s);
+  }
+
+  public void removeAgentState(AgentID id, State state)
+  {
+    if(states.containsKey(id))
+    {
+      int s = states.get(id);
+      if((s & (1 << state.value())) > 0)
+        s ^= (1 << state.value());
+    } else
+    {
+      states.put(id, 0);
+    }
+  }
+
   public List<AgentID> getTeammates()
   {
     List<AgentID> result = new LinkedList<AgentID>();
@@ -135,6 +173,20 @@ public class Simulation
       if(agnt.getAgentID().getGID() == self.getGID() && isAlive(agnt.getAgentID())
       && roles.get(agnt.getAgentID()) == role)
         result.add(agnt.getAgentID());
+    }
+    return result;
+  }
+
+  public List<AgentID> getTeammates(int state)
+  {
+    List<AgentID> result = new LinkedList<AgentID>();
+    for(Agent agnt : agents)
+    {
+      AgentID id = agnt.getAgentID();
+      if(id.getGID() == self.getGID() 
+      && isAlive(id)
+      && ((state & getAgentState(id)) == state))
+        result.add(id);
     }
     return result;
   }
@@ -406,6 +458,12 @@ public class Simulation
   public void update(AgentID id, int energy)
   {
     getAgent(id).setEnergyLevel(energy);
+  }
+
+  public void update(AgentID id, int energy, int state)
+  {
+    getAgent(id).setEnergyLevel(energy);
+    states.put(id, state);
   }
 
   public void update(AgentID id, Location location)
