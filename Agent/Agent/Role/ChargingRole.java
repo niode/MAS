@@ -57,7 +57,7 @@ public class ChargingRole extends Role
 	public static int getRequiredEnergy(Simulation sim)
 		{
 		int multiplier = sim.getRowCount() > sim.getColCount() ? sim.getRowCount() : sim.getColCount();
-		return multiplier * sim.getAverageCost();
+		return (multiplier * sim.getAverageCost() * 3);
 		}
 
   public String toString()
