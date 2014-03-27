@@ -22,13 +22,42 @@ public class Communicator
   // Internal message prefixes.
   private static final String PREFIX_CELL = "CELL";
   private static final String PREFIX_SURROUND = "SURROUND";
-  private static final String PREFIX_AGENT = "AGENT";
+  private static final String PREFIX_ENERGY = "ENERGY";
   private static final String PREFIX_BEACON = "BEACON";
   private static final String PREFIX_ROLE = "ROLE";
   private static final String PREFIX_DELIM = "::";
 
   private BaseAgent base;
   private Simulation sim;
+
+  public int getEnergyCost(AgentCommand cmd)
+  {
+    if(cmd instanceof MOVE)
+    {
+      Direction dir = ((MOVE)cmd).getDirection();
+      Location loc = sim.getAgentLocation(sim.getSelfID());
+      Location next =
+        new Location(loc.getRow() + dir.getRowInc(), loc.getCol() + dir.getColInc());
+      return sim.getMoveCost(next);
+    } else if(cmd instanceof OBSERVE)
+    {
+      return 5;
+    } else if(cmd instanceof SAVE_SURV)
+    {
+
+    } else if(cmd instanceof TEAM_DIG)
+    {
+      Location loc = sim.getAgentLocation(sim.getSelfID());
+      return sim.getEnergyRequired(loc);
+    } else if(cmd instanceof SLEEP)
+    {
+      return -5;
+    } else
+    {
+      return 0;
+    }
+    return 0;
+  }
 
   public Communicator(BaseAgent base, Simulation sim)
   {
@@ -47,9 +76,9 @@ public class Communicator
     } else if(split[0].equals(PREFIX_SURROUND))
     {
       parseSurroundInfo(split[1]);
-    } else if(split[0].equals(PREFIX_AGENT))
+    } else if(split[0].equals(PREFIX_ENERGY))
     {
-      parseAgent(split[1]);
+      parseEnergy(split[1]);
     } else if(split[0].equals(PREFIX_BEACON))
     {
       parseBeacon(split[1]);
@@ -73,6 +102,13 @@ public class Communicator
         new Location(loc.getRow() + dir.getRowInc(), loc.getCol() + dir.getColInc());
       send(new Beacon(Beacon.MOVE, sim.getSelfID(), next, sim.getRound() + 1, 0));
     }
+    
+    send(sim.getSelfID(), sim.getAgentEnergy(sim.getSelfID()) - getEnergyCost(command));
+  }
+
+  public void send(AgentID id, int energy)
+  {
+    send(format(id, energy));
   }
 
   public void send(AgentID id, Cell cell)
@@ -112,25 +148,10 @@ public class Communicator
     send(format(beacon));
   }
 
-  public void send(Agent agent)
-  {
-    System.out.println("Sending agent " + agent.getAgentID());
-    send(format(agent));
-  }
-
   public void send(String str)
   {
     AgentIDList idList = new AgentIDList();
     base.send(new SEND_MESSAGE(idList, str));
-  }
-
-  private String format(Agent agent)
-  {
-    AgentID id = agent.getAgentID();
-    long energy = agent.getEnergyLevel();
-    int alive = agent.isAlive() ? 1 : 0;
-    return String.format("%s%d,%d,%d,%d", PREFIX_AGENT + PREFIX_DELIM, id.getGID(), id.getID(),
-                                          energy, alive);
   }
 
   private void parseSurroundInfo(String string)
@@ -155,20 +176,22 @@ public class Communicator
     }
   }
 
-  private void parseAgent(String string)
+  private void parseEnergy(String string)
   {
     long[] numbers = mapLong(string.split(DELIM));
-    AgentID id = new AgentID((int)numbers[1], (int)numbers[0]);
+    AgentID id = new AgentID((int)numbers[0], (int)numbers[1]);
 
-    // Agents should not parse information about themself, from themself.
+    // Do not update the agent's own energy.
     if(id.equals(sim.getSelfID())) return;
 
-    long energy = numbers[2];
-    boolean alive = numbers[3] == 1;
-    if(alive)
-      sim.update(id, (int)energy);
-    else
-      sim.update(id, 0);  // 0 energy means dead.
+    int energy = (int)numbers[2];
+    sim.update(id, energy);
+  }
+
+  private String format(AgentID id, int energy)
+  {
+    return String.format("%s%d,%d,%d",
+      PREFIX_ENERGY + PREFIX_DELIM, id.getID(), id.getGID(), energy);
   }
 
   private String format(Beacon beacon)
