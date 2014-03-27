@@ -87,7 +87,6 @@ public class Brain{
     
     public void think() {
         base.log(LogLevels.Always, "Thinking");
-        sim.printWorld();
         ai.think();
         com.send(sim.getSelf());
         com.send(new END_TURN());

@@ -400,11 +400,7 @@ public class Simulation
   // Update an agent's energy level.
   public void update(AgentID id, int energy)
   {
-    for(Agent agnt : agents)
-    {
-      if(agnt.getAgentID().equals(id))
-        agnt.setEnergyLevel(energy);
-    }
+    getAgent(id).setEnergyLevel(energy);
   }
 
   public void update(AgentID id, Location location)

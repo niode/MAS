@@ -115,6 +115,7 @@ public class Communicator
 
   public void send(Agent agent)
   {
+    System.out.println("Sending agent " + agent.getAgentID());
     send(format(agent));
   }
 
@@ -158,7 +159,7 @@ public class Communicator
   private void parseAgent(String string)
   {
     long[] numbers = mapLong(string.split(DELIM));
-    AgentID id = new AgentID((int)numbers[0], (int)numbers[1]);
+    AgentID id = new AgentID((int)numbers[1], (int)numbers[0]);
     long energy = numbers[2];
     boolean alive = numbers[3] == 1;
     if(alive)
