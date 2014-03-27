@@ -31,7 +31,7 @@ public class RuleChargeOnLowEnergy implements Rule
 	@Override
 	public boolean checkConditions(Simulation sim)
 		{
-		if (sim.getAgent(sim.getSelfID()).getEnergyLevel() < ChargingRole.REQUIRED_ENERGY)
+		if (sim.getAgent(sim.getSelfID()).getEnergyLevel() < ChargingRole.getRequiredEnergy(sim))
 			return true;
 		
 		return false;

@@ -49,7 +49,7 @@ public class RuleWaitForAnother implements Rule
 		int chargedCount = 0;
 		for (AgentID id : chargingAgents)
 			{
-			if (sim.getAgentEnergy(id) >= ChargingRole.REQUIRED_ENERGY)
+			if (sim.getAgentEnergy(id) >= ChargingRole.getRequiredEnergy(sim))
 				chargedCount++;
 			}
 		if (chargedCount > 1)

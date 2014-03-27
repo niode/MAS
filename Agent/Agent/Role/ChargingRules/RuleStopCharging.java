@@ -44,7 +44,7 @@ public class RuleStopCharging implements Rule
 			if (sim.getAgentRole(id) == Role.ID.CHARGER)
 				{
 				chargingAgents.add(id);
-				if (sim.getAgentEnergy(id) >= ChargingRole.REQUIRED_ENERGY)
+				if (sim.getAgentEnergy(id) >= ChargingRole.getRequiredEnergy(sim))
 					{
 					chargeCount++;
 					chargedAgents.add(id);

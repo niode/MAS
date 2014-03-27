@@ -15,10 +15,6 @@ import Agent.Role.Rules.Rule;
  */
 public class ChargingRole extends Role
 	{
-	/**
-	 * The amount of energy the agent must be equal to or above to stop charging.
-	 */
-	public static final int REQUIRED_ENERGY = 200;
 	public static final String CODE = "ChargingRole";
 
 	/**
@@ -50,6 +46,18 @@ public class ChargingRole extends Role
 	public void noRuleMatch()
 		{
 		// TODO Auto-generated method stub
+		}
+	
+	/**
+	 * Get the energy the role should stop charging at.
+	 * 
+	 * @param sim object representing agent world knowledge
+	 * @return the required energy of the charging role
+	 */
+	public static int getRequiredEnergy(Simulation sim)
+		{
+		int multiplier = sim.getRowCount() > sim.getColCount() ? sim.getRowCount() : sim.getColCount();
+		return multiplier * sim.getAverageCost();
 		}
 
   public String toString()

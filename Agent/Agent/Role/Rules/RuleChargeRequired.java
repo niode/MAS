@@ -22,12 +22,10 @@ import Ares.Commands.AgentCommands.SLEEP;
 public class RuleChargeRequired implements Rule
 	{
 	/**
-	 * Charging is needed if the current agent energy drops below the energy cost to move to the
-	 * nearest charger, plus energy limit. E.g. with an energyLimit of 50, if the nearest charger
-	 * will take 75 energy to move to, the rule will say the agent should switch to ChargingRole if
-	 * below 125 energy.
+	 * Agents will go charge with enough energy to do this
+	 * many extra moves while pathing to the charger.
 	 */
-	private static final int	energyLimit	= 50;
+	private static final int EXTRA_MOVES = 5;
 	private Location currentLoc = null;
 	private Path toNearestCharger = null;
 
@@ -44,15 +42,15 @@ public class RuleChargeRequired implements Rule
 
 		// Get energy required to move to nearest charger.
 		currentLoc = sim.getAgentLocation(sim.getSelfID());
-    PathOptions opt = new PathOptions(currentLoc);
-    opt.shortest = true;
+		PathOptions opt = new PathOptions(currentLoc);
+		opt.cheapest = true;
 		toNearestCharger = Pathfinder.getNearestCharger(sim, opt);
 
-    // Return false if the agent can't reach a charger.
-    if(toNearestCharger == null) return false;
+		// Return false if the agent can't reach a charger.
+		if(toNearestCharger == null) return false;
 
 		long pathCost = toNearestCharger.getMoveCost();
-		return currentEnergy < (pathCost + energyLimit);
+		return currentEnergy < (pathCost + (sim.getAverageCost() * EXTRA_MOVES));
 		}
 
 	/*
