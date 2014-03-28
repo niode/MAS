@@ -110,6 +110,7 @@ public class TeamMoveRule implements Rule
     path = null;
     for(Beacon beacon : sim.getBeaconType(Beacon.HELP_DIG))
     {
+      System.out.println("Evaluating beacon at " + beacon.getLocation());
       TeamFinder.Team minTeam = null;
       long minCost = 0;
       for(TeamFinder.Team team : finder.getTeams())

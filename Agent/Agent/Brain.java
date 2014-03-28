@@ -87,6 +87,14 @@ public class Brain{
     
     public void think() {
         base.log(LogLevels.Always, "Thinking");
+        /*
+        for(AgentID id : sim.getTeammates())
+        {
+          if(id.equals(sim.getSelfID())) continue;
+          sim.update(id, 0);
+        }
+        */
+
         ai.think();
         com.sendState(sim.getSelfID(), sim.getAgentState(sim.getSelfID()));
         com.send(new END_TURN());
