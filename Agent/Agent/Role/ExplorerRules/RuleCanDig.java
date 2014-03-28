@@ -1,4 +1,4 @@
-package Agent.Role.Rules;
+package Agent.Role.ExplorerRules;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -6,6 +6,7 @@ import Agent.Communicator;
 import Agent.Simulation;
 import Agent.Core.BaseAgent;
 import Agent.Role.Role;
+import Agent.Role.Rules.Rule;
 import Ares.AgentID;
 import Ares.Location;
 import Ares.Commands.AgentCommand;

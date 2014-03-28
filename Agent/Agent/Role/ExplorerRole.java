@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import Agent.*;
 import Agent.Core.BaseAgent;
 import Agent.Pathfinder.*;
+import Agent.Role.ExplorerRules.RuleCanDig;
 import Agent.Role.ExplorerRules.RuleGoToUnknownPercent;
 import Agent.Role.ExplorerRules.RuleGoToUnvisited;
 import Agent.Role.ExplorerRules.RuleHelpTeam;
