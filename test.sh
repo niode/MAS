@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./run.sh worlds/TestWorld1.world 100 7 Agent/build Agent.Main replace.txt output.txt
+./run.sh worlds/virtual_kill_2.world 100 4 Agent/build Agent.Main replace.txt output.txt
