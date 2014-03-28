@@ -46,7 +46,7 @@ public class TeamFinder
     teams = null;
 
     System.out.print("Agent Pool: ");
-    for(AgentID id : sim.getTeammates(State.TEAM_SEARCH.value()))
+    for(AgentID id : sim.getTeammates((1 << State.TEAM_SEARCH.value())))
       System.out.printf("%d ", id.getID());
     System.out.println();
 
