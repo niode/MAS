@@ -33,7 +33,8 @@ public class SetTargetRule implements Rule
     if(state.target == null) return true;
 
     // Get a new target if there no survivors left.
-    if(sim.getPercentage(sim.getAgentLocation(sim.getSelfID())) == 0)
+    if(sim.getAgentLocation(sim.getSelfID()).equals(state.target)
+    && sim.getPercentage(sim.getAgentLocation(sim.getSelfID())) == 0)
       return true;
 
     // Get a new target if there are too many agents at this location
@@ -119,7 +120,9 @@ public class SetTargetRule implements Rule
   public AgentCommand doAction(Simulation sim, Communicator com)
   {
     setTarget(sim);
+    System.out.println("Setting target at " + state.target);
     if(state.target == null) return null;
+
 
     Location start = sim.getAgentLocation(sim.getSelfID());
 
