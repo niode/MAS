@@ -27,6 +27,12 @@ public class RuleCanDig implements Rule
 	/* (non-Javadoc)
 	 * @see Agent.Role.Rules.Rule#checkConditions(Agent.Simulation)
 	 */
+	/* (non-Javadoc)
+	 * @see Agent.Role.Rules.Rule#checkConditions(Agent.Simulation)
+	 */
+	/* (non-Javadoc)
+	 * @see Agent.Role.Rules.Rule#checkConditions(Agent.Simulation)
+	 */
 	@Override
 	public boolean checkConditions(Simulation sim)
 		{
@@ -67,7 +73,7 @@ public class RuleCanDig implements Rule
 				if (selfIDint == lowestID)
 					return true;
 				}
-			else
+			else if (explorersHere.size() >= 2)
 				{
 				//Must require two agents to do.
 				//Dig if only one other explorer here.
