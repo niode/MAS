@@ -17,6 +17,7 @@ public class TeamRole extends Role
   public static final String CODE = "TeamRole";
 
   private TeamFinder finder;
+  private TeamState state;
   /**
    * @param sim
    * @param com
@@ -33,13 +34,20 @@ public class TeamRole extends Role
   @Override
   public void setupRules(ArrayList<Rule> rules)
   {
+    // These private variables need to be initialized here
+    // instead of the constructor as the superclass' constructor
+    // calls this function.
     finder = new TeamFinder(getSimulation());
+    state = new TeamState();
+
     rules.add(new RuleChargeRequired());
     rules.add(new NotifyRule(finder));
     rules.add(new DismissRule(finder));
     rules.add(new DigRule(finder));
-    rules.add(new TeamMoveRule(finder));
-    rules.add(new WaitRule(finder));
+    rules.add(new GetTargetRule(finder, state));
+    rules.add(new SetTargetRule(finder, state));
+    rules.add(new TeamMoveRule(finder, state));
+    rules.add(new WaitRule(finder, state));
     rules.add(new FindTeamRule(finder));
   }
 
@@ -50,6 +58,7 @@ public class TeamRole extends Role
   public void noRuleMatch()
   {
     setNextRole(new ExplorerRole(getSimulation(), getCommunicator(), getBase()));
+    getSimulation().removeAgentState(getSimulation().getSelfID(), State.TEAM_SEARCH);
     getCommunicator().send(new MOVE(Direction.STAY_PUT));
   }
 

@@ -23,7 +23,7 @@ public class NotifyRule implements Rule
 
   public boolean checkConditions(Simulation sim)
   {
-    if(finder.getTeammate() == null) return false;
+    //if(finder.getTeammate() == null) return false;
 
     for(Location loc : sim.getVisited())
     {

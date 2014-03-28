@@ -89,6 +89,9 @@ public class Brain{
         base.log(LogLevels.Always, "Thinking");
         ai.think();
         com.sendState(sim.getSelfID(), sim.getAgentState(sim.getSelfID()));
+
+        System.out.println("Sending state " + Integer.toBinaryString(sim.getAgentState(sim.getSelfID())));
+
         com.send(new END_TURN());
         sim.advance();
     }

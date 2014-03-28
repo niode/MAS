@@ -15,21 +15,21 @@ import java.util.*;
 public class WaitRule implements Rule
 {
   private TeamFinder finder;
-  public WaitRule(TeamFinder finder)
+  private TeamState state;
+  public WaitRule(TeamFinder finder, TeamState state)
   {
     super();
     this.finder = finder;
+    this.state = state;
   }
 
   public boolean checkConditions(Simulation sim)
   {
-    int energy = sim.getAgentEnergy(sim.getSelfID());
     Location loc = sim.getAgentLocation(sim.getSelfID());
-
-    AgentID teammate = finder.getTeammate();
-    if(teammate == null) return false;
-
+    if(finder.getTeammate() == null) return false;
     if(sim.getPercentage(loc) == 0) return false;
+    if(state.target == null) return false;
+    if(state.target.equals(loc)) return true;
 
     int count = 0;
     for(AgentID id : sim.getAgentsAt(loc))

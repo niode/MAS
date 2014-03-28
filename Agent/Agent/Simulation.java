@@ -147,7 +147,10 @@ public class Simulation
     {
       int s = states.get(id);
       if((s & (1 << state.value())) > 0)
+      {
         s ^= (1 << state.value());
+        states.put(id, s);
+      }
     } else
     {
       states.put(id, 0);
