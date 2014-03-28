@@ -15,6 +15,7 @@ import Agent.Role.Role;
 import Agent.Role.TeamRole;
 import Agent.Role.Rules.Rule;
 import Ares.AgentID;
+import Ares.Direction;
 import Ares.Location;
 import Ares.Commands.AgentCommand;
 import Ares.Commands.AgentCommands.MOVE;
@@ -93,6 +94,10 @@ public class RuleHelpTeam implements Rule
 	@Override
 	public AgentCommand doAction(Simulation sim, Communicator com)
 		{
+		//If path length is zero, already on cell of nearest team agent. Stay put.
+		if (closestPath.getLength() == 0)
+			return new MOVE(Direction.STAY_PUT);
+		
 		//Move towards the closest team agent.
 		return new MOVE(Pathfinder.getDirection(sim.getAgentLocation(sim.getSelfID()), closestPath.getNext()));
 		}
