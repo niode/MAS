@@ -19,13 +19,13 @@ public class Simulation
   private World world = null;
   private List<Agent> agents;
   private Map<AgentID, ArrayList<TimeLocation>> locations =
-      new HashMap<AgentID, ArrayList<TimeLocation>>();
+      new TreeMap<AgentID, ArrayList<TimeLocation>>();
   private List<Location> chargers = new LinkedList<Location>();
   private Set<Beacon> beacons = new TreeSet<Beacon>();
   private boolean[][] visited = null;
   private long[][] turnVisited = null;
-  private Map<AgentID, Role.ID> roles = new HashMap<AgentID, Role.ID>();
-  private Map<AgentID, Integer> states = new HashMap<AgentID, Integer>();
+  private Map<AgentID, Role.ID> roles = new TreeMap<AgentID, Role.ID>();
+  private Map<AgentID, Integer> states = new TreeMap<AgentID, Integer>();
   private AgentID self = null;
 
   private int round = 0;
@@ -119,10 +119,19 @@ public class Simulation
 
   public int getAgentState(AgentID id)
   {
+    System.out.printf("Agent %d: Looking up state\n", id.getID());
     if(states.containsKey(id))
+    {
+      System.out.printf("Agent %d: states contains %s\n", 
+        id.getID(), Integer.toBinaryString(states.get(id)));
       return states.get(id);
+    }
     else
+    {
+      System.out.printf("Agent %d: states does not contain id\n",
+        id.getID());
       return 0;
+    }
   }
 
   public void setAgentState(AgentID id, int state)
@@ -132,29 +141,39 @@ public class Simulation
 
   public void addAgentState(AgentID id, State state)
   {
+    System.out.printf("Agent %d: setting state\n", id.getID());
     int s;
     if(states.containsKey(id))
       s = states.get(id);
     else
       s = 0;
-    s |= (1 << state.value());
+    s |= state.value();
     states.put(id, s);
+
+    // Test
+    System.out.printf("Agent %d: now in state %s\n", 
+      getSelfID().getID(), Integer.toBinaryString(states.get(id)));
   }
 
   public void removeAgentState(AgentID id, State state)
   {
+    System.out.printf("Agent %d: setting state\n", id.getID());
     if(states.containsKey(id))
     {
       int s = states.get(id);
       if((s & (1 << state.value())) > 0)
       {
-        s ^= (1 << state.value());
+        s ^= state.value();
         states.put(id, s);
       }
     } else
     {
       states.put(id, 0);
     }
+
+    // Test
+    System.out.printf("Agent %d: now in state %s\n", 
+      getSelfID().getID(), Integer.toBinaryString(states.get(id)));
   }
 
   public List<AgentID> getTeammates()

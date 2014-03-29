@@ -109,8 +109,7 @@ public class RuleHelpTeam implements Rule
 	public AgentCommand doAction(Simulation sim, Communicator com)
 		{
 		//Change to team search state.
-		sim.setAgentState(sim.getSelfID(), 1 << State.TEAM_SEARCH.value());
-		com.sendState(sim.getSelfID(), 1 << State.TEAM_SEARCH.value());
+    sim.addAgentState(sim.getSelfID(), State.TEAM_SEARCH);
 		
 		//If path length is zero, already on cell of nearest team agent. Stay put.
 		if (moveTo == null)
