@@ -119,17 +119,12 @@ public class Simulation
 
   public int getAgentState(AgentID id)
   {
-    System.out.printf("Agent %d: Looking up state\n", id.getID());
     if(states.containsKey(id))
     {
-      System.out.printf("Agent %d: states contains %s\n", 
-        id.getID(), Integer.toBinaryString(states.get(id)));
       return states.get(id);
     }
     else
     {
-      System.out.printf("Agent %d: states does not contain id\n",
-        id.getID());
       return 0;
     }
   }
@@ -141,7 +136,6 @@ public class Simulation
 
   public void addAgentState(AgentID id, State state)
   {
-    System.out.printf("Agent %d: setting state\n", id.getID());
     int s;
     if(states.containsKey(id))
       s = states.get(id);
@@ -149,15 +143,10 @@ public class Simulation
       s = 0;
     s |= state.value();
     states.put(id, s);
-
-    // Test
-    System.out.printf("Agent %d: now in state %s\n", 
-      getSelfID().getID(), Integer.toBinaryString(states.get(id)));
   }
 
   public void removeAgentState(AgentID id, State state)
   {
-    System.out.printf("Agent %d: setting state\n", id.getID());
     if(states.containsKey(id))
     {
       int s = states.get(id);
@@ -170,10 +159,6 @@ public class Simulation
     {
       states.put(id, 0);
     }
-
-    // Test
-    System.out.printf("Agent %d: now in state %s\n", 
-      getSelfID().getID(), Integer.toBinaryString(states.get(id)));
   }
 
   public List<AgentID> getTeammates()
