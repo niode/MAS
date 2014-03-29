@@ -28,7 +28,8 @@ import Ares.Commands.AgentCommands.MOVE;
  */
 public class RuleHelpTeam implements Rule
 	{
-	private Path closestPath = null;
+	private Location moveTo = null;
+	private Location target = null;
 
 	/* (non-Javadoc)
 	 * @see Agent.Role.Rules.Rule#checkConditions(Agent.Simulation)
@@ -37,12 +38,10 @@ public class RuleHelpTeam implements Rule
 	public boolean checkConditions(Simulation sim)
 		{
 		Location loc = sim.getAgentLocation(sim.getSelfID());
-		LinkedList<AgentID> teamInRange = new LinkedList<AgentID>();
-		LinkedList<AgentID> explorerInRange = new LinkedList<AgentID>();
-		List<AgentID> teamAgents = sim.getTeammates(Role.ID.TEAM);
-		List<AgentID> explorerAgents = sim.getTeammates(Role.ID.EXPLORER);
 		
 		//Get Team in pathing area.
+		int teamSearchInRange = 0;
+		List<AgentID> teamAgents = sim.getTeammates(Role.ID.TEAM);
 		for (AgentID id : teamAgents)
 			{
 			PathOptions opt = new PathOptions(loc, sim.getAgentLocation(id));
@@ -52,19 +51,22 @@ public class RuleHelpTeam implements Rule
 			if (path == null)
 				continue;
 			
-			//Save the path to the closest team agent for later action.
-			if (closestPath == null || path.getLength() < closestPath.getLength())
-				closestPath = path;
-			
-			teamInRange.add(id);
+			//Save agent searching count and the next loc to them.
+			if ((sim.getAgentState(id) & (1 << State.TEAM_SEARCH.value())) > 0)
+				{
+				teamSearchInRange++;
+				target = sim.getAgentLocation(id);
+				}
 			}
 		
-		//If team in range is even number, they should be paired. No help needed.
-		if (teamInRange.size() % 2 == 0)
+		//If team searching in range is >1, some should pair up. Wait until there is 1.
+		if (teamSearchInRange != 1)
 			return false;
-		//There must be a Team agent in range that needs help.
 		
+		//There must be a single Team agent in range that needs help.
 		//Get explorers in range.
+		List<AgentID> explorerAgents = sim.getTeammates(Role.ID.EXPLORER);
+		LinkedList<AgentID> explorerInRange = new LinkedList<AgentID>();
 		for (AgentID id : explorerAgents)
 			{
 			PathOptions opt = new PathOptions(loc, sim.getAgentLocation(id));
@@ -76,14 +78,25 @@ public class RuleHelpTeam implements Rule
 			explorerInRange.add(id);
 			}
 		
-		//Check that agent is lowest ID.
-		int lowest = Integer.MAX_VALUE;
+		//Switch if I'm the closest explorer by path length.
+		//Use cheapest to ensure avoidance of kill grids.
+		AgentID closest = null;
+		long distance = Long.MAX_VALUE;
 		for (AgentID id : explorerInRange)
 			{
-			if (id.getID() < lowest)
-				lowest = id.getID();
+			PathOptions opt = new PathOptions(sim.getAgentLocation(id), target);
+			opt.cheapest = true;
+			Path path = Pathfinder.getPath(sim, opt);
+			
+			if (path.getLength() < distance)
+				{
+				closest = id;
+				distance = path.getLength();
+				moveTo = path.getNext();
+				}
 			}
-		if (lowest == sim.getSelfID().getID())
+		
+		if (sim.getSelfID().equals(closest))
 			return true;
 		
 		return false;
@@ -100,11 +113,11 @@ public class RuleHelpTeam implements Rule
 		com.sendState(sim.getSelfID(), 1 << State.TEAM_SEARCH.value());
 		
 		//If path length is zero, already on cell of nearest team agent. Stay put.
-		if (closestPath.getLength() == 0)
+		if (moveTo == null)
 			return new MOVE(Direction.STAY_PUT);
 		
-		//Move towards the closest team agent.
-		return new MOVE(Pathfinder.getDirection(sim.getAgentLocation(sim.getSelfID()), closestPath.getNext()));
+		//Move towards the team agent that needs help.
+		return new MOVE(Pathfinder.getDirection(sim.getAgentLocation(sim.getSelfID()), moveTo));
 		}
 
 	/* (non-Javadoc)
