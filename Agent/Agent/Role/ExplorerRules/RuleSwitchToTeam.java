@@ -7,6 +7,7 @@ import java.util.Set;
 import Agent.Beacon;
 import Agent.Communicator;
 import Agent.Simulation;
+import Agent.State;
 import Agent.Core.BaseAgent;
 import Agent.Pathfinder.Path;
 import Agent.Pathfinder.PathOptions;
@@ -98,6 +99,10 @@ public class RuleSwitchToTeam implements Rule
 	@Override
 	public AgentCommand doAction(Simulation sim, Communicator com)
 		{
+		//Change to team search state.
+		sim.setAgentState(sim.getSelfID(), 1 << State.TEAM_SEARCH.value());
+		com.sendState(sim.getSelfID(), 1 << State.TEAM_SEARCH.value());
+		
 		//If already at dig beacon, stay put.
 		Location loc = sim.getAgentLocation(sim.getSelfID());
 		if (digLocation.equals(loc))

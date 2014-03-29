@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import Agent.Communicator;
 import Agent.Simulation;
+import Agent.State;
 import Agent.Core.BaseAgent;
 import Agent.Pathfinder.Path;
 import Agent.Pathfinder.PathOptions;
@@ -94,6 +95,10 @@ public class RuleHelpTeam implements Rule
 	@Override
 	public AgentCommand doAction(Simulation sim, Communicator com)
 		{
+		//Change to team search state.
+		sim.setAgentState(sim.getSelfID(), 1 << State.TEAM_SEARCH.value());
+		com.sendState(sim.getSelfID(), 1 << State.TEAM_SEARCH.value());
+		
 		//If path length is zero, already on cell of nearest team agent. Stay put.
 		if (closestPath.getLength() == 0)
 			return new MOVE(Direction.STAY_PUT);
