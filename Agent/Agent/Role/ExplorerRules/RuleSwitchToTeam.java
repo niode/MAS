@@ -50,11 +50,13 @@ public class RuleSwitchToTeam implements Rule
 		for (Beacon beacon : beacons)
 			{
 			Location beaconLoc = beacon.getLocation();
+
 			int locrow = beaconLoc.getRow();
 			int loccol = beaconLoc.getCol();
 			
 			if (locrow >= rowmin && locrow <= rowmax &&
-					loccol >= colmin && loccol <= colmax)
+					loccol >= colmin && loccol <= colmax &&
+          !sim.isKiller(beaconLoc))
 				{
 				digLocation = beaconLoc;
 				break; //Only need to know if at least 1 exists.
@@ -101,6 +103,9 @@ public class RuleSwitchToTeam implements Rule
 		{
 		//Change to team search state.
 		sim.addAgentState(sim.getSelfID(), State.TEAM_SEARCH);
+
+    // Test
+    System.out.printf("Agent %d: digLocation : %s\n", sim.getSelfID().getID(), digLocation);
 		
 		//If already at dig beacon, stay put.
 		Location loc = sim.getAgentLocation(sim.getSelfID());
