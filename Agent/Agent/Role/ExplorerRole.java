@@ -9,12 +9,7 @@ import java.util.Set;
 import Agent.*;
 import Agent.Core.BaseAgent;
 import Agent.Pathfinder.*;
-import Agent.Role.ExplorerRules.RuleCanDig;
-import Agent.Role.ExplorerRules.RuleGoToUnknownPercent;
-import Agent.Role.ExplorerRules.RuleGoToUnvisited;
-import Agent.Role.ExplorerRules.RuleHelpTeam;
-import Agent.Role.ExplorerRules.RulePlaceDigBeacon;
-import Agent.Role.ExplorerRules.RuleSwitchToTeam;
+import Agent.Role.ExplorerRules.*;
 import Agent.Role.Rules.*;
 import Ares.*;
 import Ares.World.Objects.*;
@@ -50,16 +45,21 @@ public class ExplorerRole extends Role
 	@Override
 	public void setupRules(ArrayList<Rule> rules)
 		{
+    ExplorerState state = new ExplorerState();
 		rules.add(new RulePlaceDigBeacon()); // No ares action.
 		rules.add(new RuleSaveSurvivor()); // Save survivors over charging.
 		rules.add(new RuleChargeRequired());
 		rules.add(new RuleGoToNearSurv());
 		rules.add(new RuleCanDig());
 		rules.add(new RuleHelpTeam());
+    rules.add(new GetTargetRule(state));
+    rules.add(new SetTargetRule(state));
+    rules.add(new ExplorerMoveRule(state));
 		rules.add(new RuleGoToUnknownPercent());
 		rules.add(new RuleGoToNearSoloDig());
 		rules.add(new RuleSwitchToTeam());
 		rules.add(new RuleGoToUnvisited());
+    rules.add(new RuleDefault());
 		}
 
 	@Override
