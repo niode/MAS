@@ -3,6 +3,7 @@
  */
 package Agent.Role.ExplorerRules;
 
+import java.util.List;
 import java.util.Set;
 import Agent.Beacon;
 import Agent.Communicator;
@@ -67,9 +68,7 @@ public class RuleSwitchToTeam implements Rule
 		if (digLocation == null)
 			return false;
 		
-		//Ensure the closest other agent is also Explorer.
-		long closestDistance = Long.MAX_VALUE;
-		AgentID closestAgent = null;
+		//Ensure there are other Explorers in range that could help this one after the switch.
 		for (AgentID id : sim.getTeammates())
 			{
 			if (id.equals(sim.getSelfID()))
@@ -77,22 +76,18 @@ public class RuleSwitchToTeam implements Rule
 			
 			Location otherLoc = sim.getAgentLocation(id);
 			if (otherLoc == null)
-				continue; //Other agent doesn't have a location?
+				continue; //Don't know why but sometimes others didn't have a location.
 			
 			PathOptions opt = new PathOptions(loc, otherLoc);
+			opt.cheapest = true;
 			Path path = Pathfinder.getPath(sim, opt);
 			
-			if (path != null && path.getLength() < closestDistance)
-				{
-				closestDistance = path.getLength();
-				closestAgent = id;
-				}
+			if (path != null)
+				return true;
 			}
-		
-		if (closestAgent == null)
-			return false;
-		
-		return sim.getAgentRole(closestAgent) == Role.ID.EXPLORER;
+
+		//No explorers in range to team with.
+		return false;
 		}
 
 	/* (non-Javadoc)

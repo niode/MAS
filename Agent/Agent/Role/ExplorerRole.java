@@ -14,6 +14,7 @@ import Agent.Role.ExplorerRules.RuleGoToUnknownPercent;
 import Agent.Role.ExplorerRules.RuleGoToUnvisited;
 import Agent.Role.ExplorerRules.RuleHelpTeam;
 import Agent.Role.ExplorerRules.RulePlaceDigBeacon;
+import Agent.Role.ExplorerRules.RuleSaveSurvivor;
 import Agent.Role.ExplorerRules.RuleSwitchToTeam;
 import Agent.Role.Rules.*;
 import Ares.*;

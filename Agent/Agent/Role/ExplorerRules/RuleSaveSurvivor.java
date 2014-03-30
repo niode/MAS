@@ -1,9 +1,12 @@
-package Agent.Role.Rules;
+package Agent.Role.ExplorerRules;
 
+import java.util.List;
 import Agent.Communicator;
 import Agent.Simulation;
 import Agent.Core.BaseAgent;
 import Agent.Role.Role;
+import Agent.Role.Rules.Rule;
+import Ares.AgentID;
 import Ares.Location;
 import Ares.Commands.AgentCommand;
 import Ares.Commands.AgentCommands.SAVE_SURV;
@@ -31,6 +34,17 @@ public class RuleSaveSurvivor implements Rule
 		Cell currentCell = sim.getCell(currentLoc);
 		WorldObject topLayer = currentCell.getTopLayer();
 		
+		//If there are team agents on this cell or a lower id explorer, let them handle it.
+		List<AgentID> agentsHere = sim.getAgentsAt(currentLoc);
+		for (AgentID id : agentsHere)
+			{
+			if (sim.getAgentRole(id) == Role.ID.TEAM)
+				return false;
+			if (sim.getAgentRole(id) == Role.ID.EXPLORER &&
+					id.getID() < sim.getSelfID().getID())
+				return false;
+			}
+
 		return (topLayer instanceof Survivor || topLayer instanceof SurvivorGroup);
 		}
 
