@@ -18,32 +18,36 @@ import Ares.Commands.AgentCommand;
  */
 public abstract class Role extends Intelligence
 	{
-    public static enum ID
-    {
-      UNKNOWN(0),
-      OBSERVER(1),
-      EXPLORER(2),
-      TEAM(3),
-      CHARGER(4);
+	public static enum ID
+		{
+		UNKNOWN(0), OBSERVER(1), EXPLORER(2), TEAM(3), CHARGER(4);
 
-      private int id;
-      ID(int id){this.id = id;}
+		private int	id;
 
-      public static ID getRoleID(String name)
-      {
-        switch(name)
-        {
-        case ObserverRole.CODE: return OBSERVER;
-        case ExplorerRole.CODE: return EXPLORER;
-        case ChargingRole.CODE: return CHARGER;
-        case TeamRole.CODE: return TEAM;
-        default: return UNKNOWN;
-        }
-      }
-    }
+		ID(int id)
+			{
+			this.id = id;
+			}
 
+		public static ID getRoleID(String name)
+			{
+			switch (name)
+				{
+				case ObserverRole.CODE:
+					return OBSERVER;
+				case ExplorerRole.CODE:
+					return EXPLORER;
+				case ChargingRole.CODE:
+					return CHARGER;
+				case TeamRole.CODE:
+					return TEAM;
+				default:
+					return UNKNOWN;
+				}
+			}
+		}
 
-	private Role			nextRole	= null;
+	private Role				nextRole	= null;
 	private ArrayList<Rule>	rules		= new ArrayList<Rule>();
 
 	/**
@@ -107,46 +111,48 @@ public abstract class Role extends Intelligence
 		return rules;
 		}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Agent.Intelligence#think()
 	 */
 	@Override
 	public void think()
-  {
-		boolean ruleUsed = false;
-    for(Rule nextRule : getRuleList())
-    {
-			
+		{
+		boolean actionUsed = false;
+		for (Rule nextRule : getRuleList())
+			{
+
 			if (nextRule.checkConditions(getSimulation()))
-      {
-				//Rule conditions met. Do rule actions.
-				base.log(LogLevels.Always, "DOING RULE: "+nextRule.getClass().getSimpleName());
+				{
+				// Rule conditions met. Do rule actions.
+				base.log(LogLevels.Always, "DOING RULE: " + nextRule.getClass().getSimpleName());
 				AgentCommand nextAction = nextRule.doAction(getSimulation(), getCommunicator());
 
-        setNextRole(nextRule.getRoleChange(getSimulation(), getCommunicator(), getBase()));
-        ruleUsed = true;
+				setNextRole(nextRule.getRoleChange(getSimulation(), getCommunicator(), getBase()));
 
-        // Go on to the next rule if this includes no actions. This allows agents
-        // to match multiple rules.
-        if(nextAction != null)
-        {
-          getCommunicator().send(nextAction);
-          break;
-        }
+				// Go on to the next rule if this includes no actions. This allows agents
+				// to match multiple rules.
+				if (nextAction != null)
+					{
+					actionUsed = true;
+					getCommunicator().send(nextAction);
+					break;
+					}
+				}
 			}
-    }
-  
-    if (!ruleUsed)
-    {
-      base.log(LogLevels.Always, "NO MATCHING RULES");
-      noRuleMatch();
-    }
-    //If on the first move, stay put to get neighbor info.
-  }
-	
+
+		if (!actionUsed)
+			{
+			base.log(LogLevels.Always, "NO ACTION USED");
+			noActionMatch();
+			}
+		// If on the first move, stay put to get neighbor info.
+		}
+
 	/**
 	 * Method that will be run if no existing rules had their conditions met.
 	 */
-	public abstract void noRuleMatch();
-	
+	public abstract void noActionMatch();
+
 	}

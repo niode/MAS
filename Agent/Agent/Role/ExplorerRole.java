@@ -63,7 +63,7 @@ public class ExplorerRole extends Role
 		}
 
 	@Override
-	public void noRuleMatch()
+	public void noActionMatch()
 		{
 		//Observe the cell with the highest % that is still <100.
 		Simulation sim = getSimulation();
