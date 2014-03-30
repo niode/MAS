@@ -50,6 +50,7 @@ public class RuleChargeOnLowEnergy implements Rule
 			return new SLEEP();
 		
 		PathOptions opt = new PathOptions(loc);
+		opt.cheapest = true;
 		Path toCharge = Pathfinder.getNearestCharger(sim, opt);
 		
 		//If no accessible charger, do nothing so next rule can run.
