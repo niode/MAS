@@ -144,8 +144,8 @@ public abstract class Role extends Intelligence
 
 		if (!actionUsed)
 			{
-			base.log(LogLevels.Always, "NO ACTION USED");
-			noActionMatch();
+			base.log(LogLevels.Always, "NO ACTION FROM RULES");
+			noActionSent();
 			}
 		// If on the first move, stay put to get neighbor info.
 		}
@@ -153,6 +153,6 @@ public abstract class Role extends Intelligence
 	/**
 	 * Method that will be run if no existing rules had their conditions met.
 	 */
-	public abstract void noActionMatch();
+	public abstract void noActionSent();
 
 	}

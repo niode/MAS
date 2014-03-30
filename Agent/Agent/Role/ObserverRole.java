@@ -39,7 +39,7 @@ public class ObserverRole extends Role
 	 * @see Agent.Role.Role#noRuleMatch()
 	 */
 	@Override
-	public void noActionMatch()
+	public void noActionSent()
 		{
 		// TODO Auto-generated method stub
 

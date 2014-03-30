@@ -59,11 +59,10 @@ public class ExplorerRole extends Role
 		rules.add(new RuleGoToNearSoloDig());
 		rules.add(new RuleSwitchToTeam());
 		rules.add(new RuleGoToUnvisited());
-    rules.add(new RuleDefault());
 		}
 
 	@Override
-	public void noActionMatch()
+	public void noActionSent()
 		{
 		//Observe the cell with the highest % that is still <100.
 		Simulation sim = getSimulation();

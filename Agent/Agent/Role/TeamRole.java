@@ -55,7 +55,7 @@ public class TeamRole extends Role
    * @see Agent.Role.Role#noRuleMatch()
    */
   @Override
-  public void noActionMatch()
+  public void noActionSent()
   {
     setNextRole(new ExplorerRole(getSimulation(), getCommunicator(), getBase()));
     getSimulation().removeAgentState(getSimulation().getSelfID(), State.TEAM_SEARCH);
