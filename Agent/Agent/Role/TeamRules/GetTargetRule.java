@@ -46,7 +46,7 @@ public class GetTargetRule implements Rule
 
         opt.start = selfLoc;
         Path selfPath = Pathfinder.getPath(sim, opt);
-        if(teamPath == null || teamPath == null) continue;
+        if(selfPath == null || teamPath == null) continue;
         
         return selfPath.getLength() > 0 ? selfPath.getLast() : selfLoc;
       }
