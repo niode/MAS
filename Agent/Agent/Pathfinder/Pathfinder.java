@@ -8,7 +8,6 @@ import java.util.*;
 
 public class Pathfinder
 {
-  private static final int MAX = Integer.MAX_VALUE;
   public static Direction getDirection(Location a, Location b)
   {
     int SOUTH = 1;
@@ -129,7 +128,8 @@ public class Pathfinder
     Node[][] G = new Node[sim.getRowCount()][sim.getColCount()];
     for(int i = 0; i < sim.getRowCount(); i++)
       for(int j = 0; j < sim.getColCount(); j++)
-        G[i][j] = new Node(null, new Location(i,j), MAX, MAX, MAX);
+        G[i][j] = new Node(null, new Location(i,j), PathOptions.MAX, 
+        PathOptions.MAX, PathOptions.MAX);
     
     Node currentNode = G[opt.start.getRow()][opt.start.getCol()];
     currentNode.distance = currentNode.cost = currentNode.delta = 0;

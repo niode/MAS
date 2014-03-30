@@ -159,62 +159,62 @@ public static class Algorithm
 		return W;
 	}
 
-private static Node2[][] genDijkstra(Simulation sim, PathOptions opt)
-{
-	int M = sim.getRowCount();
-	int N = sim.getColCount();
-	int[][] W = getAdj(sim, opt.maxCost, opt.unknownCellCost);
-	//int[][] W = clearGraph(sim, opt);
-	PriorityQueue<Node2> Q = new PriorityQueue<Node2>();
-	Node2[][] G = new Node2[M][N];
-	for(int i = 0; i < M; i++)
-    for(int j = 0; j < N; j++)
-      G[i][j] = new Node2(new Location(i,j), null, null);
-  BitSet[] isMarked = new BitSet(M*N);
-  Node2 currentNode = G[opt.start.getRow()][opt.start.getCol()];
-  currentNode.delta.list.add(new Path2(0,0,new ArrayList<Location>
-  (new Location(opt.start.getRow(),opt.start.getCol()))));
-  currentNode.list.list.add(new Path2(0,0,new ArrayList<Location>
-  (new Location(opt.start.getRow(),opt.start.getCol()))));
-  Q.add(currentNode);
-  while(Q.size() > 0 && isMarked.cardinality() != M*N)
-  {
-  	currentNode = Q.remove();
-  	int i = currentNode.location.getRow();
-  	int j = currentNode.location.getCol();
-  	isMarked.set(i*N+j);
-  	if(isMarked.cardinality() != M*N)
-  	{
-			for (Direction d : Direction.All())
+	private static Node2[][] genDijkstra(Simulation sim, PathOptions opt)
+	{
+		int M = sim.getRowCount();
+		int N = sim.getColCount();
+		int[][] W = getAdj(sim, opt.maxCost, opt.unknownCellCost);
+		//int[][] W = clearGraph(sim, opt);
+		PriorityQueue<Node2> Q = new PriorityQueue<Node2>();
+		Node2[][] G = new Node2[M][N];
+		for(int i = 0; i < M; i++)
+		  for(int j = 0; j < N; j++)
+		    G[i][j] = new Node2(new Location(i,j), null, null);
+		BitSet[] isMarked = new BitSet(M*N);
+		Node2 currentNode = G[opt.start.getRow()][opt.start.getCol()];
+		currentNode.delta.list.add(new Path2(0,0,new ArrayList<Location>
+		(new Location(opt.start.getRow(),opt.start.getCol()))));
+		currentNode.list.list.add(new Path2(0,0,new ArrayList<Location>
+		(new Location(opt.start.getRow(),opt.start.getCol()))));
+		Q.add(currentNode);
+		while(Q.size() > 0 && isMarked.cardinality() != M*N)
+		{
+			currentNode = Q.remove();
+			int i = currentNode.location.getRow();
+			int j = currentNode.location.getCol();
+			isMarked.set(i*N+j);
+			if(isMarked.cardinality() != M*N)
 			{
-				int c = W[i*N+j][d.getIndex()];
-				if (c < opt.maxCost) //both option check if there is an edge
+				for (Direction d : Direction.All())
 				{
-					Path2List tmpList = new ArrayList(currentNode.delta);
-					int k = i+d.getRowInc();
-					int l = j+d.getColInc();
-					List<Location> edgeKL = new ArrayList<Location>(new Location(k,l));
-					if (shortest)
-						tmpList.addTo(new Path2(1,c,edgeKL), opt.maxCost);
-					else
-						tmpList.addTo(new Path2(c,1,edgeKL), opt.maxLength);
-					tmpList.addTo(G[k][l].list);
-					Path2List tmpDelta = new ArrayList(tmpList);
-					tmpDelta.removeAll(G[k][l].list);
-					if (!(tmpDelta.isempty()))
+					int c = W[i*N+j][d.getIndex()];
+					if (c < opt.maxCost) //both option check if there is an edge
 					{
-						G[k][l].list = templist;
-						G[k][k].delta.addTo(tmpDelta);
-						Q.add(G[k][l]);
-					}
-				}  			
+						Path2List tmpList = new ArrayList(currentNode.delta);
+						int k = i+d.getRowInc();
+						int l = j+d.getColInc();
+						List<Location> edgeKL = new ArrayList<Location>(new Location(k,l));
+						if (shortest)
+							tmpList.addTo(new Path2(1,c,edgeKL), opt.maxCost);
+						else
+							tmpList.addTo(new Path2(c,1,edgeKL), opt.maxLength);
+						tmpList.addTo(G[k][l].list);
+						Path2List tmpDelta = new ArrayList(tmpList);
+						tmpDelta.removeAll(G[k][l].list);
+						if (!(tmpDelta.isempty()))
+						{
+							G[k][l].list = templist;
+							G[k][k].delta.addTo(tmpDelta);
+							Q.add(G[k][l]);
+						}
+					}  			
+				}
+				currentNode.delta.clear();  
 			}
-	  	currentNode.delta.clear();  
-  	}
-  }
-  
-	return G;
-}
+		}
+		
+		return G;
+	}
 
 //I don't know what are the default values
 	private static Path getPathFromTree(Node2[][] G, PathOptions opt)
@@ -228,6 +228,11 @@ private static Node2[][] genDijkstra(Simulation sim, PathOptions opt)
 		else
 			return new Path(new LinkedList<Location>(), MAX);
 	}
+	
+	public static Path getPath(Simulation sim, PathOptions opt)
+  {
+    return getPathFromTree(genDijkstra(sim, opt), opt);
+  }
 
 	private static class Node implements Comparable
 	{
