@@ -19,12 +19,13 @@ public class Simulation
   private World world = null;
   private List<Agent> agents;
   private Map<AgentID, ArrayList<TimeLocation>> locations =
-      new HashMap<AgentID, ArrayList<TimeLocation>>();
+      new TreeMap<AgentID, ArrayList<TimeLocation>>();
   private List<Location> chargers = new LinkedList<Location>();
   private Set<Beacon> beacons = new TreeSet<Beacon>();
   private boolean[][] visited = null;
   private long[][] turnVisited = null;
-  private Map<AgentID, Role.ID> roles = new HashMap<AgentID, Role.ID>();
+  private Map<AgentID, Role.ID> roles = new TreeMap<AgentID, Role.ID>();
+  private Map<AgentID, Integer> states = new TreeMap<AgentID, Integer>();
   private AgentID self = null;
 
   private int round = 0;
@@ -84,6 +85,11 @@ public class Simulation
     return agents.get(getIndex(id)).getEnergyLevel();
   }
 
+  public boolean isAlive(AgentID id)
+  {
+    return agents.get(getIndex(id)).getEnergyLevel() > 0;
+  }
+
   public Location getAgentLocation(AgentID id)
   {
     return getAgentLocation(id, round); 
@@ -111,12 +117,56 @@ public class Simulation
     return list.get(end).location;
   }
 
+  public int getAgentState(AgentID id)
+  {
+    if(states.containsKey(id))
+    {
+      return states.get(id);
+    }
+    else
+    {
+      return 0;
+    }
+  }
+
+  public void setAgentState(AgentID id, int state)
+  {
+    states.put(id, state);
+  }
+
+  public void addAgentState(AgentID id, State state)
+  {
+    int s;
+    if(states.containsKey(id))
+      s = states.get(id);
+    else
+      s = 0;
+    s |= state.value();
+    states.put(id, s);
+  }
+
+  public void removeAgentState(AgentID id, State state)
+  {
+    if(states.containsKey(id))
+    {
+      int s = states.get(id);
+      if((s & (1 << state.value())) > 0)
+      {
+        s ^= state.value();
+        states.put(id, s);
+      }
+    } else
+    {
+      states.put(id, 0);
+    }
+  }
+
   public List<AgentID> getTeammates()
   {
     List<AgentID> result = new LinkedList<AgentID>();
     for(Agent agnt : agents)
     {
-      if(agnt.getAgentID().getGID() == self.getGID())
+      if(agnt.getAgentID().getGID() == self.getGID() && isAlive(agnt.getAgentID()))
         result.add(agnt.getAgentID());
     }
     return result;
@@ -127,9 +177,23 @@ public class Simulation
     List<AgentID> result = new LinkedList<AgentID>();
     for(Agent agnt : agents)
     {
-      if(agnt.getAgentID().getGID() == self.getGID()
+      if(agnt.getAgentID().getGID() == self.getGID() && isAlive(agnt.getAgentID())
       && roles.get(agnt.getAgentID()) == role)
         result.add(agnt.getAgentID());
+    }
+    return result;
+  }
+
+  public List<AgentID> getTeammates(int state)
+  {
+    List<AgentID> result = new LinkedList<AgentID>();
+    for(Agent agnt : agents)
+    {
+      AgentID id = agnt.getAgentID();
+      if(id.getGID() == self.getGID() 
+      && isAlive(id)
+      && ((state & getAgentState(id)) == state))
+        result.add(id);
     }
     return result;
   }
@@ -144,7 +208,7 @@ public class Simulation
     List<AgentID> result = new LinkedList<AgentID>();
     for(Agent agt : agents)
     {
-      if(agt.getAgentID().getGID() != getSelfID().getGID())
+      if(agt.getAgentID().getGID() != getSelfID().getGID() || !isAlive(agt.getAgentID()))
         continue;
       AgentID id = agt.getAgentID();
       Location loc = getAgentLocation(id, round);
@@ -401,6 +465,12 @@ public class Simulation
   public void update(AgentID id, int energy)
   {
     getAgent(id).setEnergyLevel(energy);
+  }
+
+  public void update(AgentID id, int energy, int state)
+  {
+    getAgent(id).setEnergyLevel(energy);
+    states.put(id, state);
   }
 
   public void update(AgentID id, Location location)

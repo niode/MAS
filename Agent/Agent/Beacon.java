@@ -13,6 +13,7 @@ public class Beacon implements Comparable
   public static final long DIG = 6;
   public static final long MOVE = 7;
   public static final long TEAM_MOVE = 8;
+  public static final long EXPLORER_MOVE = 9;
 
   public static Beacon deleteBeacon(Beacon beacon)
   {

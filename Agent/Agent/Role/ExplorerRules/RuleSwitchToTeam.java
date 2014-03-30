@@ -3,10 +3,12 @@
  */
 package Agent.Role.ExplorerRules;
 
+import java.util.List;
 import java.util.Set;
 import Agent.Beacon;
 import Agent.Communicator;
 import Agent.Simulation;
+import Agent.State;
 import Agent.Core.BaseAgent;
 import Agent.Pathfinder.Path;
 import Agent.Pathfinder.PathOptions;
@@ -49,11 +51,13 @@ public class RuleSwitchToTeam implements Rule
 		for (Beacon beacon : beacons)
 			{
 			Location beaconLoc = beacon.getLocation();
+
 			int locrow = beaconLoc.getRow();
 			int loccol = beaconLoc.getCol();
 			
 			if (locrow >= rowmin && locrow <= rowmax &&
-					loccol >= colmin && loccol <= colmax)
+					loccol >= colmin && loccol <= colmax &&
+          !sim.isKiller(beaconLoc))
 				{
 				digLocation = beaconLoc;
 				break; //Only need to know if at least 1 exists.
@@ -64,9 +68,7 @@ public class RuleSwitchToTeam implements Rule
 		if (digLocation == null)
 			return false;
 		
-		//Ensure the closest other agent is also Explorer.
-		long closestDistance = Long.MAX_VALUE;
-		AgentID closestAgent = null;
+		//Ensure there are other Explorers in range that could help this one after the switch.
 		for (AgentID id : sim.getTeammates())
 			{
 			if (id.equals(sim.getSelfID()))
@@ -74,22 +76,18 @@ public class RuleSwitchToTeam implements Rule
 			
 			Location otherLoc = sim.getAgentLocation(id);
 			if (otherLoc == null)
-				continue; //Other agent doesn't have a location?
+				continue; //Don't know why but sometimes others didn't have a location.
 			
 			PathOptions opt = new PathOptions(loc, otherLoc);
+			opt.cheapest = true;
 			Path path = Pathfinder.getPath(sim, opt);
 			
-			if (path != null && path.getLength() < closestDistance)
-				{
-				closestDistance = path.getLength();
-				closestAgent = id;
-				}
+			if (path != null)
+				return true;
 			}
-		
-		if (closestAgent == null)
-			return false;
-		
-		return sim.getAgentRole(closestAgent) == Role.ID.EXPLORER;
+
+		//No explorers in range to team with.
+		return false;
 		}
 
 	/* (non-Javadoc)
@@ -98,6 +96,12 @@ public class RuleSwitchToTeam implements Rule
 	@Override
 	public AgentCommand doAction(Simulation sim, Communicator com)
 		{
+		//Change to team search state.
+		sim.addAgentState(sim.getSelfID(), State.TEAM_SEARCH);
+
+    // Test
+    System.out.printf("Agent %d: digLocation : %s\n", sim.getSelfID().getID(), digLocation);
+		
 		//If already at dig beacon, stay put.
 		Location loc = sim.getAgentLocation(sim.getSelfID());
 		if (digLocation.equals(loc))

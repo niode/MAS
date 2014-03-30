@@ -4,13 +4,17 @@
 package Agent.Role;
 
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.Set;
 import Agent.*;
 import Agent.Core.BaseAgent;
 import Agent.Pathfinder.*;
+import Agent.Role.ExplorerRules.RuleCanDig;
 import Agent.Role.ExplorerRules.RuleGoToUnknownPercent;
 import Agent.Role.ExplorerRules.RuleGoToUnvisited;
 import Agent.Role.ExplorerRules.RuleHelpTeam;
 import Agent.Role.ExplorerRules.RulePlaceDigBeacon;
+import Agent.Role.ExplorerRules.RuleSaveSurvivor;
 import Agent.Role.ExplorerRules.RuleSwitchToTeam;
 import Agent.Role.Rules.*;
 import Ares.*;
@@ -62,31 +66,37 @@ public class ExplorerRole extends Role
 	@Override
 	public void noRuleMatch()
 		{
-		Location currentLoc = getSimulation().getAgentLocation(getSimulation().getSelfID());
-
-		// Get path to nearest survivor.
-		// We could save this, but we'll recalculate each turn.
-		PathOptions opt = new PathOptions(currentLoc);
-		Path nearestSurvPath = Pathfinder.getNearestSurvivor(getSimulation(), opt, 0);
-
-		if (nearestSurvPath.getLength() > 0)
+		//Observe the cell with the highest % that is still <100.
+		Simulation sim = getSimulation();
+		
+		int highestPercent = 0;
+		Location highestLocation = null; 
+		for (int i = 0; i <= sim.getRowCount(); i++)
+			for (int j = 0; j <= sim.getColCount(); j++)
+				{
+				int percent = sim.getPercentage(i, j);
+				if (percent < 100 && percent > highestPercent)
+					{
+					highestPercent = percent;
+					highestLocation = new Location(i, j);
+					}
+				}
+		
+		if (highestLocation != null)
 			{
-			// Get next location in path and move to it.
-			Location moveTo = nearestSurvPath.getNext();
-			AgentCommand move = new MOVE(Pathfinder.getDirection(currentLoc, moveTo));
-			getCommunicator().send(move);
+			getCommunicator().send(new OBSERVE(highestLocation));
 			}
 		else
 			{
-			if (getSimulation().getTopLayer(
-					getSimulation().getAgentLocation(getSimulation().getSelfID())) instanceof Rubble)
-				{
-				getCommunicator().send(new TEAM_DIG());
-				}
+			//Not sure what to do if no places worth observing. Just move to random nearby cell.
+			Location current = sim.getAgentLocation(sim.getSelfID());
+			Object[] valid = Pathfinder.getValidNeighbors(sim, current).toArray();
+			Random rand = new Random();
+			Location target = (Location)valid[rand.nextInt(valid.length)];
+			if (target.equals(current))
+				getCommunicator().send(new SLEEP());
 			else
-				{
-				getCommunicator().send(new SAVE_SURV());
-				}
+				getCommunicator().send(new MOVE(Pathfinder.getDirection(current, target)));
 			}
 		}
 

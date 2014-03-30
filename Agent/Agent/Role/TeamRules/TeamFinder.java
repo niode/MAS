@@ -45,9 +45,14 @@ public class TeamFinder
     teammate = null;
     teams = null;
 
+    System.out.print("Agent Pool: ");
+    for(AgentID id : sim.getTeammates(State.TEAM_SEARCH.value()))
+      System.out.printf("%d ", id.getID());
+    System.out.println();
+
     Path path;
     PathOptions opt = new PathOptions(PathOptions.SHORTEST & PathOptions.WITHIN_RANGE);
-    List<AgentID> team = sim.getTeammates(Role.ID.TEAM);
+    List<AgentID> team = sim.getTeammates(State.TEAM_SEARCH.value());
     int selfIndex = 0;
     long[][] dist = new long[team.size()][team.size()];
 

@@ -23,7 +23,7 @@ public class NotifyRule implements Rule
 
   public boolean checkConditions(Simulation sim)
   {
-    if(finder.getTeammate() == null) return false;
+    //if(finder.getTeammate() == null) return false;
 
     for(Location loc : sim.getVisited())
     {
@@ -40,10 +40,11 @@ public class NotifyRule implements Rule
   {
     for(Location loc : sim.getVisited())
     {
-      if(sim.getTopLayer(loc) instanceof Rubble &&
-         sim.getAgentsRequired(loc) >= 2 &&
-         sim.getPercentage(loc) > 0 &&
-         sim.getAgentsAt(loc).size() < 2)
+      if(sim.getTopLayer(loc) instanceof Rubble
+      && sim.getAgentsRequired(loc) >= 2
+      && sim.getPercentage(loc) > 0
+      && sim.getAgentsAt(loc).size() < 2
+      && !sim.isKiller(loc))
       {
         com.send(new Beacon(Beacon.HELP_DIG, sim.getSelfID(), loc, Long.MAX_VALUE, 2));
       }
