@@ -23,10 +23,8 @@ import Ares.Commands.AgentCommand;
 import Ares.Commands.AgentCommands.MOVE;
 
 /**
- * If on or near a HELP_DIG beacon, and the nearest agent
- * is an explorer, switch to Team. The assumption here is
- * that the other explorer will switch to Team to help the
- * following turn.
+ * If on or near a HELP_DIG beacon, switch to team if
+ * there is another explorer in range that could help.
  * 
  * @author Daniel
  */
