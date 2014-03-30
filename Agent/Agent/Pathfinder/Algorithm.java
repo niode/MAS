@@ -1,3 +1,4 @@
+package Agent.Pathfinder;
 
 import Agent.*;
 import Ares.*;
@@ -86,7 +87,7 @@ public static class Algorithm
 	
 		public void addTo(Path2List pl)
 		{
-			list.add(pl.list);
+			list.addAll(pl.list);
 			this.minimize();
 		}
 	
@@ -136,16 +137,18 @@ public static class Algorithm
 	{
 		int M = sim.getRowCount();
 		int N = sim.getColCount();
-		int[][]W = new int[M*N][7];
+		int[][]W = new int[M*N][8];
 		  		 
 		for(int i = 0; i < M; i++){
 		for(int j = 0; j < N; j++)
 		{
 			for(Direction d : Direction.All())
 			{
+        if(d == Direction.STAY_PUT) continue;
+
 		  	int k = i+d.getRowInc();
 		  	int l = j+d.getColInc();
-		  	W[i*N+j][d.index()] = MAX;
+		  	W[i*N+j][d.index()] = PathOptions.MAX;
 		  	if (sim.getCell(k,l) != null){
 		  		int c = defval;
 		  		if (sim.getVisited(k,l)) 
@@ -169,13 +172,14 @@ private static Node2[][] genDijkstra(Simulation sim, PathOptions opt)
 	Node2[][] G = new Node2[M][N];
 	for(int i = 0; i < M; i++)
     for(int j = 0; j < N; j++)
-      G[i][j] = new Node2(new Location(i,j), null, null);
-  BitSet[] isMarked = new BitSet(M*N);
+      G[i][j] = new Node2(new Location(i,j),
+        new Path2List(new List<Path2>()), new Path2List(new List<Path2>()));
+  BitSet isMarked = new BitSet(M*N);
   Node2 currentNode = G[opt.start.getRow()][opt.start.getCol()];
   currentNode.delta.list.add(new Path2(0,0,new ArrayList<Location>
-  (new Location(opt.start.getRow(),opt.start.getCol()))));
+    (new Location(opt.start.getRow(),opt.start.getCol()))));
   currentNode.list.list.add(new Path2(0,0,new ArrayList<Location>
-  (new Location(opt.start.getRow(),opt.start.getCol()))));
+    (new Location(opt.start.getRow(),opt.start.getCol()))));
   Q.add(currentNode);
   while(Q.size() > 0 && isMarked.cardinality() != M*N)
   {
@@ -187,19 +191,22 @@ private static Node2[][] genDijkstra(Simulation sim, PathOptions opt)
   	{
 			for (Direction d : Direction.All())
 			{
+        if(d == Direction.STAY_PUT) continue;
+
 				int c = W[i*N+j][d.getIndex()];
 				if (c < opt.maxCost) //both option check if there is an edge
 				{
 					Path2List tmpList = new ArrayList(currentNode.delta);
 					int k = i+d.getRowInc();
 					int l = j+d.getColInc();
-					List<Location> edgeKL = new ArrayList<Location>(new Location(k,l));
-					if (shortest)
+					List<Location> edgeKL = new ArrayList<Location>();
+          edgeKL.add(new Location(k, l));
+					if (opt.shortest)
 						tmpList.addTo(new Path2(1,c,edgeKL), opt.maxCost);
 					else
 						tmpList.addTo(new Path2(c,1,edgeKL), opt.maxLength);
 					tmpList.addTo(G[k][l].list);
-					Path2List tmpDelta = new ArrayList(tmpList);
+					Path2List tmpDelta = new Path2List(new ArrayList<Path2>(tmpList));
 					tmpDelta.removeAll(G[k][l].list);
 					if (!(tmpDelta.isempty()))
 					{
@@ -226,8 +233,13 @@ private static Node2[][] genDijkstra(Simulation sim, PathOptions opt)
 			return new Path(new LinkedList<Location>(p.path), p.cost);
 		}
 		else
-			return new Path(new LinkedList<Location>(), MAX);
+			return new Path(new LinkedList<Location>(), PathOptions.MAX);
 	}
+
+  public static Path getPath(Simulation sim, PathOptions opt)
+  {
+    return getPathFromTree(genDijkstra(sim, opt), opt);
+  }
 
 	private static class Node implements Comparable
 	{
@@ -258,7 +270,11 @@ private static Node2[][] genDijkstra(Simulation sim, PathOptions opt)
 
 
 //don't know if useful since graph is not very dense: E = 8*|V|/2 = 4|V|
-//use node but not with the right semantic : location store a pair of node index (i,j) of the graph; node store all information for a path from i to j; in particulat predecessor gives how to break the path from i to j (gives the first part of the path : i to k --> second part is k to j); cost store the cost of the entire path and distance the one of the distance, even if not used. Delta is a bit redundant...
+//use node but not with the right semantic : location store a pair of node index
+//(i,j) of the graph; node store all information for a path from i to j; in particulat
+//predecessor gives how to break the path from i to j (gives the first part of the path:
+//i to k --> second part is k to j); cost store the cost of the entire path and distance
+//the one of the distance, even if not used. Delta is a bit redundant...
 	private static Node[][] floydWarshall(Simulation sim, boolean costopt, int defval)
 	{
 		int M = sim.getRowCount();
@@ -309,15 +325,19 @@ private static Node2[][] genDijkstra(Simulation sim, PathOptions opt)
 	}
 
 //don't know if it's a good idea because makes the graph very specific (from s to t)
-//return "weight" between two edges (= adjacents cell) no matter what the option is, since in any case we need both weight and distance, and since distances are implicit (= 1 if weight != MAX ; = MAX = infinity = no edge otherwise)
-//rem: the trouble with MAX is that we can't add two values without checking first that there are not infifinity because can cause overflow? --> or maybe just MAX-1 which would not be too bad... TO CHECK (and if ir's ok remove extra conditions)
+//return "weight" between two edges (= adjacents cell) no matter what the option is,
+//since in any case we need both weight and distance, and since distances are implicit
+//(= 1 if weight != MAX ; = MAX = infinity = no edge otherwise)
+//rem: the trouble with MAX is that we can't add two values without checking first
+// that there are not infifinity because can cause overflow? --> or maybe just MAX-1
+// which would not be too bad... TO CHECK (and if ir's ok remove extra conditions)
 	private static int[][] clearGraph(Simulation sim, PathOptions opt){
 		int M = sim.getRowCount();
 		int N = sim.getColCount();
 		int s = opt.start.getRow()*N + opt.start.getCol();
 		int t = opt.end.getRow()*N + opt.end.getCol();
 	
-		//shortest => cost constraint
+		//e, deceive, or intimidate.shortest => cost constraint
 		int max = (opt.shortest)? opt.maxCost:opt.maxLength;  
 		Node[][]C = floydWarshall(sim, opt.shortest, opt.unknownCellCost); 
 		int[][]W = new int[M*N][8];
