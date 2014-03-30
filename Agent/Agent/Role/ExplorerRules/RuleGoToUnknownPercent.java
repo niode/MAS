@@ -30,7 +30,7 @@ public class RuleGoToUnknownPercent implements Rule
 	 * The area around a claimed location to include in that claim.
 	 * E.g. 1 = 3x3 area, 2 = 5x5 area, etc.
 	 */
-	private static final int RADIUS = 2;
+	private static final int RADIUS = 1;
 
 	/* (non-Javadoc)
 	 * @see Agent.Role.Rules.Rule#checkConditions(Agent.Simulation)
@@ -83,11 +83,6 @@ public class RuleGoToUnknownPercent implements Rule
 			if (path != null)
 				expInRange.add(id);
 			}
-		
-		System.out.print("Explorers in range: ");
-		for (AgentID id : expInRange)
-			System.out.print(id.getID() + " ");
-		System.out.print("\n");
 		
 		//Ensure explorers are in sorted order. I think they are, but just in case...
 		Collections.sort(expInRange);
@@ -142,11 +137,6 @@ public class RuleGoToUnknownPercent implements Rule
 		//Sort the paths of the first agent.
 		Collections.sort(allPaths.get(0), pathSorter);
 		
-		System.out.printf("\nAgent %d prefers:\n", expInRange.get(0).getID());
-		for (Path path : allPaths.get(0))
-			System.out.printf("(%d, %d) ", path.getLast().getRow(), path.getLast().getCol());
-		System.out.print("\n\n"); //TODO 
-		
 		//If only one explorer or self is first.
 		Location target = null;
 		if (expInRange.size() == 1 || expInRange.get(0).equals(sim.getSelfID()))
@@ -192,14 +182,7 @@ public class RuleGoToUnknownPercent implements Rule
 			
 			//Sort the path lists of the other agents.
 			for (int i = 1; i < expInRange.size(); i++)
-				{
 				Collections.sort(allPaths.get(i), pathSorter);
-				
-				System.out.printf("\nAgent %d prefers:\n", expInRange.get(i).getID());
-				for (Path path : allPaths.get(i))
-					System.out.printf("(%d, %d) ", path.getLast().getRow(), path.getLast().getCol());
-				System.out.print("\n\n"); //TODO
-				}
 			
 			//Divvy up the targets starting with lowestID.
 			ArrayList<Location> takenLocs = new ArrayList<Location>();
@@ -207,32 +190,20 @@ public class RuleGoToUnknownPercent implements Rule
 			//First agent always gets its first choice.
 			takenLocs.add(allPaths.get(0).get(0).getLast());
 			
-			System.out.printf("Explorer %d will go to (%d, %d)\n",
-					expInRange.get(0).getID(), takenLocs.get(0).getRow(),
-					takenLocs.get(0).getCol()); //TODO
-			
 			//Flip through choices of each agent until finding one that
 			//is not yet taken.
 			for (int i = 1; i < expInRange.size(); i++)
 				{
-				System.out.println("Finding target for Exp "+expInRange.get(i).getID()); //TODO
-				
 				//Look for target in the paths for explorer i
 				for (Path nextPreferred : allPaths.get(i))
 					{
 					//Candidate target for explorer i
 					Location candidateTarget = nextPreferred.getLast();
-					System.out.printf("Considering (%d, %d)\n",
-							candidateTarget.getRow(),
-							candidateTarget.getCol()); //TODO
 					
 					//Ensure the target of this path is not already taken.
 					for (Location taken : takenLocs)
 						if (locCloseTo(candidateTarget, taken))
 							{
-							System.out.printf("- Is Near (%d, %d)\n",
-									taken.getRow(), taken.getCol());//TODO
-							
 							//End of path is taken, discard.
 							candidateTarget = null;
 							break;
@@ -245,15 +216,8 @@ public class RuleGoToUnknownPercent implements Rule
 						if (sim.getSelfID().equals(expInRange.get(i)))
 							target = nextPreferred.getNext();
 						else
-							{
-							System.out.printf("Explorer %d will go to (%d, %d)\n",
-									expInRange.get(i).getID(),
-									candidateTarget.getRow(),
-									candidateTarget.getCol()); //TODO
-							
 							//Agent is not self, claim end of path target.
 							takenLocs.add(candidateTarget);
-							}
 						
 						//Found target for explorer i, stop looping through paths.
 						break;
@@ -286,11 +250,6 @@ public class RuleGoToUnknownPercent implements Rule
 		//If target is still null, stay put. Should not happen?
 		if (target == null)
 			return new MOVE(Direction.STAY_PUT);
-		
-		System.out.printf("I will go to (%d, %d)\n",
-				target.getRow(),
-				target.getCol()); //TODO
-
 		
 		//Move to target.
 		return new MOVE(Pathfinder.getDirection(selfLoc, target));
