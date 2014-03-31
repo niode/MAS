@@ -25,7 +25,7 @@ public class RuleChargeRequired implements Rule
 	 * Agents will go charge with enough energy to do this
 	 * many extra moves while pathing to the charger.
 	 */
-	private static final int EXTRA_MOVES = 5;
+	private static final int EXTRA_MOVES = 10;
 	private Location currentLoc = null;
 	private Path toNearestCharger = null;
 
@@ -48,12 +48,9 @@ public class RuleChargeRequired implements Rule
 
 		// Return false if the agent can't reach a charger.
 		if(toNearestCharger == null) return false;
-		
-		
-		// Use the average cost of the path for calculating the buffer.
+
 		long pathCost = toNearestCharger.getMoveCost();
-		long average = pathCost / toNearestCharger.getLength();
-		return currentEnergy <= pathCost + (average * EXTRA_MOVES);
+		return currentEnergy <= pathCost + (sim.getAverageCost() * EXTRA_MOVES);
 		}
 
 	/*
