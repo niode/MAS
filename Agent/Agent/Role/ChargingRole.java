@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import Agent.Communicator;
 import Agent.Simulation;
 import Agent.Core.BaseAgent;
-import Agent.Role.ChargingRules.RuleChargeOnLowEnergy;
+import Agent.Role.ChargingRules.RuleChargeNeeded;
 import Agent.Role.ChargingRules.RuleExploreIfAlone;
 import Agent.Role.ChargingRules.RuleStopCharging;
 import Agent.Role.ChargingRules.RuleWaitForAnother;
@@ -33,7 +33,7 @@ public class ChargingRole extends Role
 	@Override
 	public void setupRules(ArrayList<Rule> rules)
 		{
-		rules.add(new RuleChargeOnLowEnergy());
+		rules.add(new RuleChargeNeeded());
 		rules.add(new RuleExploreIfAlone());
 		rules.add(new RuleWaitForAnother());
 		rules.add(new RuleStopCharging());

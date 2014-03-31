@@ -22,7 +22,7 @@ import Ares.Commands.AgentCommands.SLEEP;
  * 
  * @author Daniel
  */
-public class RuleChargeOnLowEnergy implements Rule
+public class RuleChargeNeeded implements Rule
 	{
 
 	/* (non-Javadoc)
