@@ -21,15 +21,9 @@ import Ares.World.Objects.WorldObject;
  * 
  * @author Daniel
  */
-public class RuleCanDig implements Rule
+public class RuleDigForSurv implements Rule
 	{
 
-	/* (non-Javadoc)
-	 * @see Agent.Role.Rules.Rule#checkConditions(Agent.Simulation)
-	 */
-	/* (non-Javadoc)
-	 * @see Agent.Role.Rules.Rule#checkConditions(Agent.Simulation)
-	 */
 	/* (non-Javadoc)
 	 * @see Agent.Role.Rules.Rule#checkConditions(Agent.Simulation)
 	 */
@@ -59,7 +53,7 @@ public class RuleCanDig implements Rule
 				if (sim.getAgentRole(id) == Role.ID.EXPLORER)
 					explorersHere.add(id);
 			
-			if (rubble.getRemoveAgents() == 1)
+			if (rubble.getRemoveAgents() < 2)
 				{
 				//Dig if the only explorer here.
 				if (explorersHere.size() == 1)
