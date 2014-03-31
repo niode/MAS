@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import Agent.Communicator;
 import Agent.Simulation;
 import Agent.Core.BaseAgent;
-import Agent.Role.ChargingRules.RuleChargeNeeded;
+import Agent.Pathfinder.Path;
+import Agent.Pathfinder.PathOptions;
+import Agent.Pathfinder.Pathfinder;
+import Agent.Role.ChargingRules.RuleStillCharging;
 import Agent.Role.ChargingRules.RuleExploreIfAlone;
 import Agent.Role.ChargingRules.RuleStopCharging;
 import Agent.Role.ChargingRules.RuleWaitForAnother;
@@ -33,7 +36,7 @@ public class ChargingRole extends Role
 	@Override
 	public void setupRules(ArrayList<Rule> rules)
 		{
-		rules.add(new RuleChargeNeeded());
+		rules.add(new RuleStillCharging());
 		rules.add(new RuleExploreIfAlone());
 		rules.add(new RuleWaitForAnother());
 		rules.add(new RuleStopCharging());
@@ -56,8 +59,16 @@ public class ChargingRole extends Role
 	 */
 	public static int getRequiredEnergy(Simulation sim)
 		{
+		//Use nearest survivor for energy to charge to.
+		PathOptions opt = new PathOptions(sim.getAgentLocation(sim.getSelfID()));
+		opt.cheapest = true;
+		Path path = Pathfinder.getNearestSurvivor(sim, opt, 1);
+		long average = path.getMoveCost() / path.getLength();
+		
+		//Rather than the average world cost, use the cost to get to
+		//The nearest survivor.
 		int multiplier = sim.getRowCount() > sim.getColCount() ? sim.getRowCount() : sim.getColCount();
-		return (multiplier * sim.getAverageCost() * 3);
+		return (int)(multiplier * average * 3);
 		}
 
   public String toString()
