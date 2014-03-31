@@ -49,6 +49,9 @@ public class RuleChargeRequired implements Rule
 		// Return false if the agent can't reach a charger.
 		if(toNearestCharger == null) return false;
 		
+		// If on charger, use cost of that cell.
+		if (toNearestCharger.getLength() == 0)
+			return currentEnergy <= sim.getMoveCost(currentLoc) * EXTRA_MOVES;
 		
 		// Use the average cost of the path for calculating the buffer.
 		long pathCost = toNearestCharger.getMoveCost();

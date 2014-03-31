@@ -63,7 +63,12 @@ public class ChargingRole extends Role
 		PathOptions opt = new PathOptions(sim.getAgentLocation(sim.getSelfID()));
 		opt.cheapest = true;
 		Path path = Pathfinder.getNearestSurvivor(sim, opt, 1);
-		long average = path.getMoveCost() / path.getLength();
+		
+		long average = 0;
+		if (path.getLength() == 0)
+			average = sim.getMoveCost(sim.getAgentLocation(sim.getSelfID()));
+		else
+			average = path.getMoveCost() / path.getLength();
 		
 		//Rather than the average world cost, use the cost to get to
 		//The nearest survivor.
