@@ -40,7 +40,6 @@ public class RuleGoToUnknownPercent implements Rule
 		{
 		Location loc = sim.getAgentLocation(sim.getSelfID());
 		PathOptions opt = new PathOptions(loc);
-		opt.cheapest = true;
 		opt.withinRange = true;
 		
 		//Ensure there is a cell in range with an unknown percentage.
@@ -64,6 +63,7 @@ public class RuleGoToUnknownPercent implements Rule
 						continue;
 					
 					opt.end = new Location(i, j);
+					
 					Path path = Pathfinder.getPath(sim, opt);
 					
 					//If there is an unknown in range, rule check true!
@@ -107,7 +107,6 @@ public class RuleGoToUnknownPercent implements Rule
 		AgentID first = expInRange.get(0);
 		PathOptions firstOpt = new PathOptions(sim.getAgentLocation(first));
 		firstOpt.cheapest = true;
-		firstOpt.withinRange = true;
 		for (int i = 0; i < sim.getRowCount(); i++)
 			for (int j = 0; j < sim.getColCount(); j++)
 				{
@@ -165,7 +164,6 @@ public class RuleGoToUnknownPercent implements Rule
 				Location expLoc = sim.getAgentLocation(expInRange.get(i));
 				PathOptions otherOpt = new PathOptions(expLoc);
 				otherOpt.cheapest = true;
-				otherOpt.withinRange = true;
 				
 				/*
 				 * As first agent is in range of its path targets and
