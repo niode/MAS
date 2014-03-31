@@ -1,0 +1,40 @@
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: newList_dir/Maze2_replay.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( COUNT , C_ALL ); in "SysFiles/Config.ares"
+Ares  : Points for largest group saving survivors
+Ares  : Points for all groups when tied saving survivors
+Ares  : Connecting to agents without viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Added agent [ ID 2 , GID 1 ]
+Ares  : Added agent [ ID 3 , GID 1 ]
+Ares  : Added agent [ ID 4 , GID 1 ]
+Ares  : Added agent [ ID 5 , GID 1 ]
+Ares  : Added agent [ ID 6 , GID 1 ]
+Ares  : Added agent [ ID 7 , GID 1 ]
+Ares  : 7 out of 7 agents connected to Ares.
+Ares  : Running simulation.
+Running for 100 rounds
+Ares  : Round: 1
+Ares  : Round: 2
+Ares   : Agent [ ID 1 , GID 1 ] ran out of energy and died.
+Ares   : Agent [ ID 2 , GID 1 ] ran out of energy and died.
+Ares   : Agent [ ID 3 , GID 1 ] ran out of energy and died.
+Ares   : Agent [ ID 4 , GID 1 ] ran out of energy and died.
+Ares   : Agent [ ID 5 , GID 1 ] ran out of energy and died.
+Ares   : Agent [ ID 6 , GID 1 ] ran out of energy and died.
+Ares   : Agent [ ID 7 , GID 1 ] ran out of energy and died.
+Ares  : Round: 3
+Ares  : All Agents are Dead !!!
+Ares  : Simulation Over.
+Ares: Done.
+=================================================
+Results for each Group
+(Number Saved,Number Alive,Number Dead)
+=================================================
+( GID 1 ) NAME Test = ( 0 , 0 , 0 );

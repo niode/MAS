@@ -1,0 +1,3 @@
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Unable to start up.

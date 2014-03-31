@@ -1,0 +1,11 @@
+Survivors saved : alive ( 1 )   dead ( 0 )
+First save at round : 44
+Last save at round : 44
+Agent Idle Times :
+Agent 1 idle : 3 rounds
+Agent 2 idle : 4 rounds
+Agent 3 idle : 4 rounds
+Agent 4 idle : 4 rounds
+Agent 5 idle : 4 rounds
+Agent 6 idle : 4 rounds
+Agent 7 idle : 5 rounds

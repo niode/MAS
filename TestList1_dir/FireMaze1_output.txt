@@ -1,0 +1,158 @@
+Ares  : Initializing.
+Ares  : Starting up.
+Ares  : Protocol file is: newList_dir/FireMaze1_replay.txt 
+Ares  : Parsing Send_Message from Send_Message = ( TRUE , ALL_GROUPS ); in "SysFiles/Config.ares"
+Ares  : Sending all messages received: true 
+Ares  : Sending messages to all groups: true 
+Ares  : Parsing Sleep_On_Every from Sleep_On_Every = ( FALSE ); in "SysFiles/Config.ares"
+Ares  : Agents allowed to sleep everywhere: false 
+Ares  : Parsing Save_Surv from Save_Surv = ( COUNT , C_ALL ); in "SysFiles/Config.ares"
+Ares  : Points for largest group saving survivors
+Ares  : Points for all groups when tied saving survivors
+Ares  : Connecting to agents without viewer.
+Ares  : Added agent [ ID 1 , GID 1 ]
+Ares  : Added agent [ ID 2 , GID 1 ]
+Ares  : Added agent [ ID 3 , GID 1 ]
+Ares  : Added agent [ ID 4 , GID 1 ]
+Ares  : Added agent [ ID 5 , GID 1 ]
+Ares  : Added agent [ ID 6 , GID 1 ]
+Ares  : Added agent [ ID 7 , GID 1 ]
+Ares  : 7 out of 7 agents connected to Ares.
+Ares  : Running simulation.
+Running for 100 rounds
+Ares  : Round: 1
+Ares  : Round: 2
+Agent [ ID 1 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 2 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 3 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 4 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 5 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 6 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 7 , GID 1 ] sent no action (non-send) command this round.
+Ares  : Round: 3
+Agent [ ID 1 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 2 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 3 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 4 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 5 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 6 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 7 , GID 1 ] sent no action (non-send) command this round.
+Ares  : Round: 4
+Agent [ ID 7 , GID 1 ] sent no action (non-send) command this round.
+Ares  : Round: 5
+Agent [ ID 7 , GID 1 ] sent no action (non-send) command this round.
+Ares  : Round: 6
+Agent [ ID 7 , GID 1 ] sent no action (non-send) command this round.
+Ares  : Round: 7
+Ares  : Round: 8
+Ares  : Round: 9
+Ares  : Round: 10
+Ares  : Round: 11
+Ares  : Round: 12
+Ares  : Round: 13
+Ares  : Round: 14
+Ares  : Round: 15
+Ares  : Round: 16
+Ares  : Round: 17
+Ares  : Round: 18
+Ares  : Round: 19
+Ares  : Round: 20
+Ares  : Round: 21
+Ares  : Round: 22
+Ares  : Round: 23
+Ares  : Round: 24
+Ares  : Round: 25
+Ares  : Round: 26
+Ares  : Round: 27
+Ares  : Round: 28
+Ares  : Round: 29
+Ares  : Round: 30
+Ares  : Round: 31
+Ares  : Round: 32
+Ares  : Round: 33
+Ares  : Round: 34
+Ares  : Round: 35
+Ares  : Round: 36
+Ares  : Round: 37
+Ares  : Round: 38
+Ares  : Round: 39
+Ares  : Round: 40
+Ares  : Round: 41
+Ares  : Round: 42
+Ares  : Round: 43
+Ares  : Round: 44
+Agent [ ID 2 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 3 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 4 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 5 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 6 , GID 1 ] sent no action (non-send) command this round.
+Ares  : Group 1 saved 1 survivors alive.
+Ares  : Round: 45
+Ares  : Round: 46
+Agent [ ID 1 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 2 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 3 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 4 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 5 , GID 1 ] sent no action (non-send) command this round.
+Agent [ ID 6 , GID 1 ] sent no action (non-send) command this round.
+Ares  : Round: 47
+Ares  : Round: 48
+Ares  : Round: 49
+Ares  : Round: 50
+Ares  : Round: 51
+Ares  : Round: 52
+Ares  : Round: 53
+Ares  : Round: 54
+Ares  : Round: 55
+Ares  : Round: 56
+Ares  : Round: 57
+Ares  : Round: 58
+Ares  : Round: 59
+Ares  : Round: 60
+Ares  : Round: 61
+Ares  : Round: 62
+Ares  : Round: 63
+Ares  : Round: 64
+Ares  : Round: 65
+Ares  : Round: 66
+Ares  : Round: 67
+Ares  : Round: 68
+Ares  : Round: 69
+Ares  : Round: 70
+Ares  : Round: 71
+Ares  : Round: 72
+Ares  : Round: 73
+Ares  : Round: 74
+Ares  : Round: 75
+Ares  : Round: 76
+Ares  : Round: 77
+Ares  : Round: 78
+Ares  : Round: 79
+Ares  : Round: 80
+Ares  : Round: 81
+Ares  : Round: 82
+Ares  : Round: 83
+Ares  : Round: 84
+Ares  : Round: 85
+Ares  : Round: 86
+Ares  : Round: 87
+Ares  : Round: 88
+Ares  : Round: 89
+Ares  : Round: 90
+Ares  : Round: 91
+Ares  : Round: 92
+Ares  : Round: 93
+Ares  : Round: 94
+Ares  : Round: 95
+Ares  : Round: 96
+Ares  : Round: 97
+Ares  : Round: 98
+Ares  : Round: 99
+Ares  : Round: 100
+Ares  : Simulation Over.
+Ares: Done.
+=================================================
+Results for each Group
+(Number Saved,Number Alive,Number Dead)
+=================================================
+( GID 1 ) NAME Test = ( 1 , 1 , 0 );

@@ -1,0 +1,68 @@
+Settings
+{
+	World_Info{ Size (3,3) Seed (0) World_File_Levels( High 0, Mid 0, Low 0 )
+Agent_Energy ( 500 ) } 
+}
+
+
+
+Agent_Place {
+	(1,1,0,0)
+	(2,1,0,1)
+	(5,1,0,1)
+	(4,1,0,0)
+	(3,1,0,2)
+	(6,1,0,2)
+	(7,1,0,0)
+}
+
+Grid_Types
+{
+	Fire_Grids { }
+	Killer_Grids { }
+	Charging_Grids { }
+ }
+
+Stacks
+{
+	Grid ( (0,0), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (0,1), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (0,2), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (1,0), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (1,1), Move_Cost 1) 
+		{
+		    SV(300,0,0,0);
+		    RB(9000,2);
+		}
+
+	Grid ( (1,2), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (2,0), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (2,1), Move_Cost 1) 
+		{
+		    SV(200,0,0,0);
+		    RB(9000,1);
+		}
+
+	Grid ( (2,2), Move_Cost 1) 
+		{
+		}
+
+}

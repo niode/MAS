@@ -9,7 +9,8 @@ import java.util.Set;
 import Agent.*;
 import Agent.Core.BaseAgent;
 import Agent.Pathfinder.*;
-import Agent.Role.ExplorerRules.RuleCanDig;
+import Agent.Role.ExplorerRules.RuleClearNearRubble;
+import Agent.Role.ExplorerRules.RuleDigForSurv;
 import Agent.Role.ExplorerRules.RuleGoToUnknownPercent;
 import Agent.Role.ExplorerRules.RuleGoToUnvisited;
 import Agent.Role.ExplorerRules.RuleHelpTeam;
@@ -55,16 +56,17 @@ public class ExplorerRole extends Role
 		rules.add(new RuleSaveSurvivor()); // Save survivors over charging.
 		rules.add(new RuleChargeRequired());
 		rules.add(new RuleGoToNearSurv());
-		rules.add(new RuleCanDig());
+		rules.add(new RuleDigForSurv());
 		rules.add(new RuleHelpTeam());
-		rules.add(new RuleGoToUnknownPercent());
-		rules.add(new RuleGoToNearSoloDig());
 		rules.add(new RuleSwitchToTeam());
+		rules.add(new RuleGoToNearSoloDig());
+		rules.add(new RuleGoToUnknownPercent());
 		rules.add(new RuleGoToUnvisited());
+		rules.add(new RuleClearNearRubble());
 		}
 
 	@Override
-	public void noRuleMatch()
+	public void noActionUsed()
 		{
 		//Observe the cell with the highest % that is still <100.
 		Simulation sim = getSimulation();

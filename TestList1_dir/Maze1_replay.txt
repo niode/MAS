@@ -1,0 +1,502 @@
+3610
+Settings
+{
+	World_Info{ Size (9,9) Seed (0) World_File_Levels( High 0, Mid 0, Low 0 )
+Agent_Energy ( 500 ) } 
+}
+
+
+
+Agent_Place {
+	(5,1,0,0)
+	(2,1,0,0)
+	(1,1,0,0)
+	(4,1,0,0)
+	(6,1,0,0)
+	(3,1,0,0)
+	(7,1,0,0)
+}
+
+Grid_Types
+{
+	Fire_Grids { (1,1) (1,7) (3,2) (3,6) 
+	 (5,0) (5,3) (5,4) (7,1) (7,7) }
+	Killer_Grids { (1,0) (1,4) (1,6) (3,3) 
+	 (3,5) (3,8) (5,1) (5,7) (7,3) 
+	 (7,5) }
+	Charging_Grids { }
+ }
+
+Stacks
+{
+	Grid ( (0,0), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (0,1), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (0,2), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (0,3), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (0,4), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (0,5), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (0,6), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (0,7), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (0,8), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (1,0), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (1,1), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (1,2), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (1,3), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (1,4), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (1,5), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (1,6), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (1,7), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (1,8), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (2,0), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (2,1), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (2,2), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (2,3), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (2,4), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (2,5), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (2,6), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (2,7), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (2,8), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (3,0), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (3,1), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (3,2), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (3,3), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (3,4), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (3,5), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (3,6), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (3,7), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (3,8), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (4,0), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (4,1), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (4,2), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (4,3), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (4,4), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (4,5), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (4,6), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (4,7), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (4,8), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (5,0), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (5,1), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (5,2), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (5,3), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (5,4), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (5,5), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (5,6), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (5,7), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (5,8), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (6,0), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (6,1), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (6,2), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (6,3), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (6,4), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (6,5), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (6,6), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (6,7), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (6,8), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (7,0), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (7,1), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (7,2), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (7,3), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (7,4), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (7,5), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (7,6), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (7,7), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (7,8), Move_Cost 9000) 
+		{
+		}
+
+	Grid ( (8,0), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (8,1), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (8,2), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (8,3), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (8,4), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (8,5), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (8,6), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (8,7), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (8,8), Move_Cost 1) 
+		{
+		    SV(9000,0,0,0);
+		}
+
+}
+
+System Run date: Sun Mar 30 12:54:45 MDT 2014
+ADD_AGT; Info(ID 1, GID 1, Eng 500):Loc(Row 0, Col 0);
+ADD_AGT; Info(ID 2, GID 1, Eng 500):Loc(Row 0, Col 0);
+ADD_AGT; Info(ID 3, GID 1, Eng 500):Loc(Row 0, Col 0);
+ADD_AGT; Info(ID 4, GID 1, Eng 500):Loc(Row 0, Col 0);
+ADD_AGT; Info(ID 5, GID 1, Eng 500):Loc(Row 0, Col 0);
+ADD_AGT; Info(ID 6, GID 1, Eng 500):Loc(Row 0, Col 0);
+ADD_AGT; Info(ID 7, GID 1, Eng 500):Loc(Row 0, Col 0);
+#
+World File Used : worlds/Maze1.world;
+Simulation Start: Number of Rounds 100;
+RS;1;
+Agent_Cmds;{[(1,1)#Send BEACON::1,1,7,1,0,0,0 to all]$[(1,1)#Send ENERGY::1,1,490 to all]$[(1,1)#Send ROLE::1,1,TeamRole to all]$[(1,1)#Send STATE::1,1,0 to all]$[(2,1)#Send BEACON::2,1,7,1,0,0,0 to all]$[(2,1)#Send ENERGY::2,1,490 to all]$[(2,1)#Send ROLE::2,1,TeamRole to all]$[(2,1)#Send STATE::2,1,0 to all]$[(3,1)#Send BEACON::3,1,7,1,0,0,0 to all]$[(3,1)#Send ENERGY::3,1,490 to all]$[(3,1)#Send ROLE::3,1,TeamRole to all]$[(3,1)#Send STATE::3,1,0 to all]$[(4,1)#Send BEACON::4,1,7,1,0,0,0 to all]$[(4,1)#Send ENERGY::4,1,490 to all]$[(4,1)#Send ROLE::4,1,TeamRole to all]$[(4,1)#Send STATE::4,1,0 to all]$[(5,1)#Send BEACON::5,1,7,1,0,0,0 to all]$[(5,1)#Send ENERGY::5,1,490 to all]$[(5,1)#Send ROLE::5,1,TeamRole to all]$[(5,1)#Send STATE::5,1,0 to all]$[(6,1)#Send BEACON::6,1,7,1,0,0,0 to all]$[(6,1)#Send ENERGY::6,1,490 to all]$[(6,1)#Send ROLE::6,1,TeamRole to all]$[(6,1)#Send STATE::6,1,0 to all]$[(7,1)#Send BEACON::7,1,7,1,0,0,0 to all]$[(7,1)#Send ENERGY::7,1,490 to all]$[(7,1)#Send ROLE::7,1,TeamRole to all]$[(7,1)#Send STATE::7,1,0 to all]$[(1,1)#Move Stay_Put]$[(2,1)#Move Stay_Put]$[(3,1)#Move Stay_Put]$[(4,1)#Move Stay_Put]$[(5,1)#Move Stay_Put]$[(6,1)#Move Stay_Put]$[(7,1)#Move Stay_Put]$}
+Sim_Events;
+SV; { NONE };
+SVG; { NONE };
+Top_Layer_Rem; { NONE };
+Agents_Information; { (1,1,499,0,0),(2,1,499,0,0),(3,1,499,0,0),(4,1,499,0,0),(5,1,499,0,0),(6,1,499,0,0),(7,1,499,0,0), };
+End_Sim;
+Dead_Agents; { NONE };
+RE;
+RS;2;
+Agent_Cmds;{[(1,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 0 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 7 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , [ ID 7 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 1 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 1 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 0 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NO_GRID ) , WEST ( NO_GRID ) to all]$[(1,1)#Send ROLE::1,1,TeamRole to all]$[(1,1)#Send STATE::1,1,1 to all]$[(2,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 0 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 7 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , [ ID 7 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 1 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 1 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 0 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NO_GRID ) , WEST ( NO_GRID ) to all]$[(2,1)#Send ROLE::2,1,TeamRole to all]$[(2,1)#Send STATE::2,1,1 to all]$[(3,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 0 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 7 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , [ ID 7 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 1 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 1 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 0 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NO_GRID ) , WEST ( NO_GRID ) to all]$[(3,1)#Send ROLE::3,1,TeamRole to all]$[(3,1)#Send STATE::3,1,1 to all]$[(4,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 0 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 7 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , [ ID 7 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 1 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 1 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 0 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NO_GRID ) , WEST ( NO_GRID ) to all]$[(4,1)#Send ROLE::4,1,TeamRole to all]$[(4,1)#Send STATE::4,1,1 to all]$[(5,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 0 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 7 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , [ ID 7 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 1 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 1 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 0 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NO_GRID ) , WEST ( NO_GRID ) to all]$[(5,1)#Send ROLE::5,1,TeamRole to all]$[(5,1)#Send STATE::5,1,1 to all]$[(6,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 0 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 7 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , [ ID 7 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 1 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 1 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 0 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NO_GRID ) , WEST ( NO_GRID ) to all]$[(6,1)#Send ROLE::6,1,TeamRole to all]$[(6,1)#Send STATE::6,1,1 to all]$[(7,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 0 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 7 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , [ ID 7 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 1 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 1 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 0 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NO_GRID ) , WEST ( NO_GRID ) to all]$[(7,1)#Send ROLE::7,1,TeamRole to all]$[(7,1)#Send STATE::7,1,1 to all]$}
+Sim_Events;
+SV; { NONE };
+SVG; { NONE };
+Top_Layer_Rem; { NONE };
+Agents_Information; { (1,1,499,0,0),(2,1,499,0,0),(3,1,499,0,0),(4,1,499,0,0),(5,1,499,0,0),(6,1,499,0,0),(7,1,499,0,0), };
+End_Sim;
+Dead_Agents; { NONE };
+RE;
+RS;3;
+Agent_Cmds;{[(1,1)#Send ROLE::1,1,ExplorerRole to all]$[(1,1)#Send STATE::1,1,1 to all]$[(2,1)#Send ROLE::2,1,ExplorerRole to all]$[(2,1)#Send STATE::2,1,1 to all]$[(3,1)#Send ROLE::3,1,ExplorerRole to all]$[(3,1)#Send STATE::3,1,1 to all]$[(4,1)#Send ROLE::4,1,ExplorerRole to all]$[(4,1)#Send STATE::4,1,1 to all]$[(5,1)#Send ROLE::5,1,ExplorerRole to all]$[(5,1)#Send STATE::5,1,1 to all]$[(6,1)#Send ROLE::6,1,ExplorerRole to all]$[(6,1)#Send STATE::6,1,1 to all]$[(7,1)#Send ROLE::7,1,TeamRole to all]$[(7,1)#Send STATE::7,1,1 to all]$}
+Sim_Events;
+SV; { NONE };
+SVG; { NONE };
+Top_Layer_Rem; { NONE };
+Agents_Information; { (1,1,499,0,0),(2,1,499,0,0),(3,1,499,0,0),(4,1,499,0,0),(5,1,499,0,0),(6,1,499,0,0),(7,1,499,0,0), };
+End_Sim;
+Dead_Agents; { NONE };
+RE;
+RS;4;
+Agent_Cmds;{[(1,1)#Send BEACON::1,1,7,4,0,0,1 to all]$[(1,1)#Send ENERGY::1,1,498 to all]$[(1,1)#Send ROLE::1,1,ExplorerRole to all]$[(1,1)#Send STATE::1,1,1 to all]$[(2,1)#Send BEACON::2,1,7,4,0,0,1 to all]$[(2,1)#Send ENERGY::2,1,498 to all]$[(2,1)#Send ROLE::2,1,ExplorerRole to all]$[(2,1)#Send STATE::2,1,1 to all]$[(3,1)#Send BEACON::3,1,7,4,0,0,1 to all]$[(3,1)#Send ENERGY::3,1,498 to all]$[(3,1)#Send ROLE::3,1,ExplorerRole to all]$[(3,1)#Send STATE::3,1,1 to all]$[(4,1)#Send BEACON::4,1,7,4,0,0,1 to all]$[(4,1)#Send ENERGY::4,1,498 to all]$[(4,1)#Send ROLE::4,1,ExplorerRole to all]$[(4,1)#Send STATE::4,1,1 to all]$[(5,1)#Send BEACON::5,1,7,4,0,0,1 to all]$[(5,1)#Send ENERGY::5,1,498 to all]$[(5,1)#Send ROLE::5,1,ExplorerRole to all]$[(5,1)#Send STATE::5,1,1 to all]$[(6,1)#Send BEACON::6,1,7,4,0,0,1 to all]$[(6,1)#Send ENERGY::6,1,498 to all]$[(6,1)#Send ROLE::6,1,ExplorerRole to all]$[(6,1)#Send STATE::6,1,1 to all]$[(7,1)#Send ROLE::7,1,TeamRole to all]$[(7,1)#Send STATE::7,1,1 to all]$[(1,1)#Move East]$[(2,1)#Move East]$[(3,1)#Move East]$[(4,1)#Move East]$[(5,1)#Move East]$[(6,1)#Move East]$}
+Sim_Events;
+SV; { NONE };
+SVG; { NONE };
+Top_Layer_Rem; { NONE };
+Agents_Information; { (1,1,498,0,1),(2,1,498,0,1),(3,1,498,0,1),(4,1,498,0,1),(5,1,498,0,1),(6,1,498,0,1),(7,1,499,0,0), };
+End_Sim;
+Dead_Agents; { NONE };
+RE;
+RS;5;
+Agent_Cmds;{[(1,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 1 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 2 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 2 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 1 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 0 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 0 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 1 , ID_List ( [ ID 7 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(1,1)#Send BEACON::1,1,7,5,0,0,2 to all]$[(1,1)#Send ENERGY::1,1,497 to all]$[(1,1)#Send ROLE::1,1,ExplorerRole to all]$[(1,1)#Send STATE::1,1,1 to all]$[(2,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 1 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 2 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 2 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 1 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 0 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 0 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 1 , ID_List ( [ ID 7 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(2,1)#Send BEACON::2,1,7,5,0,0,2 to all]$[(2,1)#Send ENERGY::2,1,497 to all]$[(2,1)#Send ROLE::2,1,ExplorerRole to all]$[(2,1)#Send STATE::2,1,1 to all]$[(3,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 1 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 2 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 2 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 1 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 0 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 0 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 1 , ID_List ( [ ID 7 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(3,1)#Send BEACON::3,1,7,5,0,0,2 to all]$[(3,1)#Send ENERGY::3,1,497 to all]$[(3,1)#Send ROLE::3,1,ExplorerRole to all]$[(3,1)#Send STATE::3,1,1 to all]$[(4,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 1 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 2 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 2 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 1 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 0 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 0 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 1 , ID_List ( [ ID 7 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(4,1)#Send BEACON::4,1,7,5,0,0,2 to all]$[(4,1)#Send ENERGY::4,1,497 to all]$[(4,1)#Send ROLE::4,1,ExplorerRole to all]$[(4,1)#Send STATE::4,1,1 to all]$[(5,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 1 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 2 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 2 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 1 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 0 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 0 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 1 , ID_List ( [ ID 7 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(5,1)#Send BEACON::5,1,7,5,0,0,2 to all]$[(5,1)#Send ENERGY::5,1,497 to all]$[(5,1)#Send ROLE::5,1,ExplorerRole to all]$[(5,1)#Send STATE::5,1,1 to all]$[(6,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 1 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 2 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 2 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 1 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 0 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 0 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 1 , ID_List ( [ ID 7 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(6,1)#Send BEACON::6,1,7,5,0,0,2 to all]$[(6,1)#Send ENERGY::6,1,497 to all]$[(6,1)#Send ROLE::6,1,ExplorerRole to all]$[(6,1)#Send STATE::6,1,1 to all]$[(7,1)#Send ROLE::7,1,TeamRole to all]$[(7,1)#Send STATE::7,1,1 to all]$[(1,1)#Move East]$[(2,1)#Move East]$[(3,1)#Move East]$[(4,1)#Move East]$[(5,1)#Move East]$[(6,1)#Move East]$}
+Sim_Events;
+SV; { NONE };
+SVG; { NONE };
+Top_Layer_Rem; { NONE };
+Agents_Information; { (1,1,497,0,2),(2,1,497,0,2),(3,1,497,0,2),(4,1,497,0,2),(5,1,497,0,2),(6,1,497,0,2),(7,1,499,0,0), };
+End_Sim;
+Dead_Agents; { NONE };
+RE;
+RS;6;
+Agent_Cmds;{[(1,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 2 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 3 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 3 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( CHARGING_GRID ( ROW_ID 1 , COL_ID 2 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 1 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 1 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(1,1)#Send BEACON::1,1,7,6,0,0,3 to all]$[(1,1)#Send ENERGY::1,1,496 to all]$[(1,1)#Send ROLE::1,1,ExplorerRole to all]$[(1,1)#Send STATE::1,1,1 to all]$[(2,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 2 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 3 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 3 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( CHARGING_GRID ( ROW_ID 1 , COL_ID 2 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 1 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 1 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(2,1)#Send BEACON::2,1,7,6,0,0,3 to all]$[(2,1)#Send ENERGY::2,1,496 to all]$[(2,1)#Send ROLE::2,1,ExplorerRole to all]$[(2,1)#Send STATE::2,1,1 to all]$[(3,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 2 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 3 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 3 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( CHARGING_GRID ( ROW_ID 1 , COL_ID 2 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 1 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 1 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(3,1)#Send BEACON::3,1,7,6,0,0,3 to all]$[(3,1)#Send ENERGY::3,1,496 to all]$[(3,1)#Send ROLE::3,1,ExplorerRole to all]$[(3,1)#Send STATE::3,1,1 to all]$[(4,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 2 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 3 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 3 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( CHARGING_GRID ( ROW_ID 1 , COL_ID 2 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 1 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 1 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(4,1)#Send BEACON::4,1,7,6,0,0,3 to all]$[(4,1)#Send ENERGY::4,1,496 to all]$[(4,1)#Send ROLE::4,1,ExplorerRole to all]$[(4,1)#Send STATE::4,1,1 to all]$[(5,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 2 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 3 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 3 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( CHARGING_GRID ( ROW_ID 1 , COL_ID 2 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 1 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 1 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(5,1)#Send BEACON::5,1,7,6,0,0,3 to all]$[(5,1)#Send ENERGY::5,1,496 to all]$[(5,1)#Send ROLE::5,1,ExplorerRole to all]$[(5,1)#Send STATE::5,1,1 to all]$[(6,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 2 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 3 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 3 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( CHARGING_GRID ( ROW_ID 1 , COL_ID 2 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 1 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 1 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(6,1)#Send BEACON::6,1,7,6,0,0,3 to all]$[(6,1)#Send ENERGY::6,1,496 to all]$[(6,1)#Send ROLE::6,1,ExplorerRole to all]$[(6,1)#Send STATE::6,1,1 to all]$[(7,1)#Send ROLE::7,1,ExplorerRole to all]$[(7,1)#Send STATE::7,1,1 to all]$[(1,1)#Move East]$[(2,1)#Move East]$[(3,1)#Move East]$[(4,1)#Move East]$[(5,1)#Move East]$[(6,1)#Move East]$}
+Sim_Events;
+SV; { NONE };
+SVG; { NONE };
+Top_Layer_Rem; { NONE };
+Agents_Information; { (1,1,496,0,3),(2,1,496,0,3),(3,1,496,0,3),(4,1,496,0,3),(5,1,496,0,3),(6,1,496,0,3),(7,1,499,0,0), };
+End_Sim;
+Dead_Agents; { NONE };
+RE;
+RS;7;
+Agent_Cmds;{[(1,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 3 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 4 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 4 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( CHARGING_GRID ( ROW_ID 1 , COL_ID 3 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 2 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 2 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(1,1)#Send BEACON::1,1,7,7,0,0,4 to all]$[(1,1)#Send ENERGY::1,1,495 to all]$[(1,1)#Send ROLE::1,1,ExplorerRole to all]$[(1,1)#Send STATE::1,1,1 to all]$[(2,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 3 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 4 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 4 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( CHARGING_GRID ( ROW_ID 1 , COL_ID 3 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 2 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 2 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(2,1)#Send BEACON::2,1,7,7,0,0,4 to all]$[(2,1)#Send ENERGY::2,1,495 to all]$[(2,1)#Send ROLE::2,1,ExplorerRole to all]$[(2,1)#Send STATE::2,1,1 to all]$[(3,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 3 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 4 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 4 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( CHARGING_GRID ( ROW_ID 1 , COL_ID 3 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 2 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 2 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(3,1)#Send BEACON::3,1,7,7,0,0,4 to all]$[(3,1)#Send ENERGY::3,1,495 to all]$[(3,1)#Send ROLE::3,1,ExplorerRole to all]$[(3,1)#Send STATE::3,1,1 to all]$[(4,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 3 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 4 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 4 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( CHARGING_GRID ( ROW_ID 1 , COL_ID 3 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 2 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 2 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(4,1)#Send BEACON::4,1,7,7,0,0,4 to all]$[(4,1)#Send ENERGY::4,1,495 to all]$[(4,1)#Send ROLE::4,1,ExplorerRole to all]$[(4,1)#Send STATE::4,1,1 to all]$[(5,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 3 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 4 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 4 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( CHARGING_GRID ( ROW_ID 1 , COL_ID 3 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 2 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 2 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(5,1)#Send BEACON::5,1,7,7,0,0,4 to all]$[(5,1)#Send ENERGY::5,1,495 to all]$[(5,1)#Send ROLE::5,1,ExplorerRole to all]$[(5,1)#Send STATE::5,1,1 to all]$[(6,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 3 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 4 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 4 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( CHARGING_GRID ( ROW_ID 1 , COL_ID 3 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 2 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 2 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(6,1)#Send BEACON::6,1,7,7,0,0,4 to all]$[(6,1)#Send ENERGY::6,1,495 to all]$[(6,1)#Send ROLE::6,1,ExplorerRole to all]$[(6,1)#Send STATE::6,1,1 to all]$[(7,1)#Send BEACON::7,1,7,7,0,0,1 to all]$[(7,1)#Send ENERGY::7,1,498 to all]$[(7,1)#Send ROLE::7,1,ExplorerRole to all]$[(7,1)#Send STATE::7,1,1 to all]$[(1,1)#Move East]$[(2,1)#Move East]$[(3,1)#Move East]$[(4,1)#Move East]$[(5,1)#Move East]$[(6,1)#Move East]$[(7,1)#Move East]$}
+Sim_Events;
+SV; { NONE };
+SVG; { NONE };
+Top_Layer_Rem; { NONE };
+Agents_Information; { (1,1,495,0,4),(2,1,495,0,4),(3,1,495,0,4),(4,1,495,0,4),(5,1,495,0,4),(6,1,495,0,4),(7,1,498,0,1), };
+End_Sim;
+Dead_Agents; { NONE };
+RE;
+RS;8;
+Agent_Cmds;{[(1,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 4 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 5 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 5 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 4 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 3 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 3 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(1,1)#Send BEACON::1,1,7,8,0,0,5 to all]$[(1,1)#Send ENERGY::1,1,494 to all]$[(1,1)#Send ROLE::1,1,ExplorerRole to all]$[(1,1)#Send STATE::1,1,1 to all]$[(2,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 4 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 5 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 5 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 4 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 3 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 3 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(2,1)#Send BEACON::2,1,7,8,0,0,5 to all]$[(2,1)#Send ENERGY::2,1,494 to all]$[(2,1)#Send ROLE::2,1,ExplorerRole to all]$[(2,1)#Send STATE::2,1,1 to all]$[(3,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 4 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 5 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 5 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 4 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 3 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 3 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(3,1)#Send BEACON::3,1,7,8,0,0,5 to all]$[(3,1)#Send ENERGY::3,1,494 to all]$[(3,1)#Send ROLE::3,1,ExplorerRole to all]$[(3,1)#Send STATE::3,1,1 to all]$[(4,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 4 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 5 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 5 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 4 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 3 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 3 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(4,1)#Send BEACON::4,1,7,8,0,0,5 to all]$[(4,1)#Send ENERGY::4,1,494 to all]$[(4,1)#Send ROLE::4,1,ExplorerRole to all]$[(4,1)#Send STATE::4,1,1 to all]$[(5,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 4 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 5 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 5 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 4 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 3 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 3 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(5,1)#Send BEACON::5,1,7,8,0,0,5 to all]$[(5,1)#Send ENERGY::5,1,494 to all]$[(5,1)#Send ROLE::5,1,ExplorerRole to all]$[(5,1)#Send STATE::5,1,1 to all]$[(6,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 4 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 5 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 5 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 4 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 3 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 3 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(6,1)#Send BEACON::6,1,7,8,0,0,5 to all]$[(6,1)#Send ENERGY::6,1,494 to all]$[(6,1)#Send ROLE::6,1,ExplorerRole to all]$[(6,1)#Send STATE::6,1,1 to all]$[(7,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 1 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 1 , ID_List ( [ ID 7 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 2 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 2 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 1 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 0 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 0 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(7,1)#Send BEACON::7,1,7,8,0,1,2 to all]$[(7,1)#Send ENERGY::7,1,497 to all]$[(7,1)#Send ROLE::7,1,ExplorerRole to all]$[(7,1)#Send STATE::7,1,1 to all]$[(1,1)#Move East]$[(2,1)#Move East]$[(3,1)#Move East]$[(4,1)#Move East]$[(5,1)#Move East]$[(6,1)#Move East]$[(7,1)#Move South East]$}
+Sim_Events;
+SV; { NONE };
+SVG; { NONE };
+Top_Layer_Rem; { NONE };
+Agents_Information; { (1,1,494,0,5),(2,1,494,0,5),(3,1,494,0,5),(4,1,494,0,5),(5,1,494,0,5),(6,1,494,0,5),(7,1,0,1,2), };
+End_Sim;
+Dead_Agents; { (7,1), };
+RE;
+RS;9;
+Agent_Cmds;{[(1,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 5 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 6 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 6 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( CHARGING_GRID ( ROW_ID 1 , COL_ID 5 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 4 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 4 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(1,1)#Send BEACON::1,1,7,9,0,0,6 to all]$[(1,1)#Send ENERGY::1,1,493 to all]$[(1,1)#Send ROLE::1,1,ExplorerRole to all]$[(1,1)#Send STATE::1,1,1 to all]$[(2,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 5 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 6 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 6 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( CHARGING_GRID ( ROW_ID 1 , COL_ID 5 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 4 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 4 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(2,1)#Send BEACON::2,1,7,9,0,0,6 to all]$[(2,1)#Send ENERGY::2,1,493 to all]$[(2,1)#Send ROLE::2,1,ExplorerRole to all]$[(2,1)#Send STATE::2,1,1 to all]$[(3,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 5 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 6 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 6 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( CHARGING_GRID ( ROW_ID 1 , COL_ID 5 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 4 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 4 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(3,1)#Send BEACON::3,1,7,9,0,0,6 to all]$[(3,1)#Send ENERGY::3,1,493 to all]$[(3,1)#Send ROLE::3,1,ExplorerRole to all]$[(3,1)#Send STATE::3,1,1 to all]$[(4,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 5 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 6 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 6 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( CHARGING_GRID ( ROW_ID 1 , COL_ID 5 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 4 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 4 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(4,1)#Send BEACON::4,1,7,9,0,0,6 to all]$[(4,1)#Send ENERGY::4,1,493 to all]$[(4,1)#Send ROLE::4,1,ExplorerRole to all]$[(4,1)#Send STATE::4,1,1 to all]$[(5,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 5 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 6 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 6 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( CHARGING_GRID ( ROW_ID 1 , COL_ID 5 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 4 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 4 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(5,1)#Send BEACON::5,1,7,9,0,0,6 to all]$[(5,1)#Send ENERGY::5,1,493 to all]$[(5,1)#Send ROLE::5,1,ExplorerRole to all]$[(5,1)#Send STATE::5,1,1 to all]$[(6,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 5 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 6 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 6 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( CHARGING_GRID ( ROW_ID 1 , COL_ID 5 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 4 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 4 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(6,1)#Send BEACON::6,1,7,9,0,0,6 to all]$[(6,1)#Send ENERGY::6,1,493 to all]$[(6,1)#Send ROLE::6,1,ExplorerRole to all]$[(6,1)#Send STATE::6,1,1 to all]$[(1,1)#Move East]$[(2,1)#Move East]$[(3,1)#Move East]$[(4,1)#Move East]$[(5,1)#Move East]$[(6,1)#Move East]$}
+Sim_Events;
+SV; { NONE };
+SVG; { NONE };
+Top_Layer_Rem; { NONE };
+Agents_Information; { (1,1,493,0,6),(2,1,493,0,6),(3,1,493,0,6),(4,1,493,0,6),(5,1,493,0,6),(6,1,493,0,6), };
+End_Sim;
+Dead_Agents; { NONE };
+RE;
+RS;10;
+Agent_Cmds;{[(1,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 6 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 7 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 6 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 5 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 5 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(1,1)#Send BEACON::1,1,7,10,0,0,7 to all]$[(1,1)#Send ENERGY::1,1,492 to all]$[(1,1)#Send ROLE::1,1,ExplorerRole to all]$[(1,1)#Send STATE::1,1,1 to all]$[(2,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 6 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 7 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 6 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 5 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 5 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(2,1)#Send BEACON::2,1,7,10,0,0,7 to all]$[(2,1)#Send ENERGY::2,1,492 to all]$[(2,1)#Send ROLE::2,1,ExplorerRole to all]$[(2,1)#Send STATE::2,1,1 to all]$[(3,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 6 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 7 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 6 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 5 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 5 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(3,1)#Send BEACON::3,1,7,10,0,0,7 to all]$[(3,1)#Send ENERGY::3,1,492 to all]$[(3,1)#Send ROLE::3,1,ExplorerRole to all]$[(3,1)#Send STATE::3,1,1 to all]$[(4,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 6 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 7 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 6 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 5 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 5 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(4,1)#Send BEACON::4,1,7,10,0,0,7 to all]$[(4,1)#Send ENERGY::4,1,492 to all]$[(4,1)#Send ROLE::4,1,ExplorerRole to all]$[(4,1)#Send STATE::4,1,1 to all]$[(5,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 6 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 7 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 6 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 5 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 5 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(5,1)#Send BEACON::5,1,7,10,0,0,7 to all]$[(5,1)#Send ENERGY::5,1,492 to all]$[(5,1)#Send ROLE::5,1,ExplorerRole to all]$[(5,1)#Send STATE::5,1,1 to all]$[(6,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 6 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 7 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 6 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 5 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 5 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(6,1)#Send BEACON::6,1,7,10,0,0,7 to all]$[(6,1)#Send ENERGY::6,1,492 to all]$[(6,1)#Send ROLE::6,1,ExplorerRole to all]$[(6,1)#Send STATE::6,1,1 to all]$[(1,1)#Move East]$[(2,1)#Move East]$[(3,1)#Move East]$[(4,1)#Move East]$[(5,1)#Move East]$[(6,1)#Move East]$}
+Sim_Events;
+SV; { NONE };
+SVG; { NONE };
+Top_Layer_Rem; { NONE };
+Agents_Information; { (1,1,492,0,7),(2,1,492,0,7),(3,1,492,0,7),(4,1,492,0,7),(5,1,492,0,7),(6,1,492,0,7), };
+End_Sim;
+Dead_Agents; { NONE };
+RE;
+RS;11;
+Agent_Cmds;{[(1,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 7 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 6 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 6 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(1,1)#Send BEACON::1,1,7,11,0,1,8 to all]$[(1,1)#Send ENERGY::1,1,491 to all]$[(1,1)#Send ROLE::1,1,ExplorerRole to all]$[(1,1)#Send STATE::1,1,1 to all]$[(2,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 7 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 6 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 6 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(2,1)#Send BEACON::2,1,7,11,0,1,8 to all]$[(2,1)#Send ENERGY::2,1,491 to all]$[(2,1)#Send ROLE::2,1,ExplorerRole to all]$[(2,1)#Send STATE::2,1,1 to all]$[(3,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 7 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 6 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 6 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(3,1)#Send BEACON::3,1,7,11,0,1,8 to all]$[(3,1)#Send ENERGY::3,1,491 to all]$[(3,1)#Send ROLE::3,1,ExplorerRole to all]$[(3,1)#Send STATE::3,1,1 to all]$[(4,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 7 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 6 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 6 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(4,1)#Send BEACON::4,1,7,11,0,1,8 to all]$[(4,1)#Send ENERGY::4,1,491 to all]$[(4,1)#Send ROLE::4,1,ExplorerRole to all]$[(4,1)#Send STATE::4,1,1 to all]$[(5,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 7 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 6 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 6 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(5,1)#Send BEACON::5,1,7,11,0,1,8 to all]$[(5,1)#Send ENERGY::5,1,491 to all]$[(5,1)#Send ROLE::5,1,ExplorerRole to all]$[(5,1)#Send STATE::5,1,1 to all]$[(6,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 0 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NO_GRID ) , NORTH ( NO_GRID ) , NORTH_EAST ( NO_GRID ) , EAST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 7 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 6 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 6 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(6,1)#Send BEACON::6,1,7,11,0,1,8 to all]$[(6,1)#Send ENERGY::6,1,491 to all]$[(6,1)#Send ROLE::6,1,ExplorerRole to all]$[(6,1)#Send STATE::6,1,1 to all]$[(1,1)#Move South East]$[(2,1)#Move South East]$[(3,1)#Move South East]$[(4,1)#Move South East]$[(5,1)#Move South East]$[(6,1)#Move South East]$}
+Sim_Events;
+SV; { NONE };
+SVG; { NONE };
+Top_Layer_Rem; { NONE };
+Agents_Information; { (1,1,491,1,8),(2,1,491,1,8),(3,1,491,1,8),(4,1,491,1,8),(5,1,491,1,8),(6,1,491,1,8), };
+End_Sim;
+Dead_Agents; { NONE };
+RE;
+RS;12;
+Agent_Cmds;{[(1,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 1 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NORTH ( CHARGING_GRID ( ROW_ID 0 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NORTH_EAST ( NO_GRID ) , EAST ( NO_GRID ) , SOUTH_EAST ( NO_GRID ) , SOUTH ( CHARGING_GRID ( ROW_ID 2 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( CHARGING_GRID ( ROW_ID 2 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 7 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(1,1)#Send BEACON::1,1,7,12,0,2,7 to all]$[(1,1)#Send ENERGY::1,1,490 to all]$[(1,1)#Send ROLE::1,1,ExplorerRole to all]$[(1,1)#Send STATE::1,1,1 to all]$[(2,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 1 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NORTH ( CHARGING_GRID ( ROW_ID 0 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NORTH_EAST ( NO_GRID ) , EAST ( NO_GRID ) , SOUTH_EAST ( NO_GRID ) , SOUTH ( CHARGING_GRID ( ROW_ID 2 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( CHARGING_GRID ( ROW_ID 2 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 7 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(2,1)#Send BEACON::2,1,7,12,0,2,7 to all]$[(2,1)#Send ENERGY::2,1,490 to all]$[(2,1)#Send ROLE::2,1,ExplorerRole to all]$[(2,1)#Send STATE::2,1,1 to all]$[(3,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 1 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NORTH ( CHARGING_GRID ( ROW_ID 0 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NORTH_EAST ( NO_GRID ) , EAST ( NO_GRID ) , SOUTH_EAST ( NO_GRID ) , SOUTH ( CHARGING_GRID ( ROW_ID 2 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( CHARGING_GRID ( ROW_ID 2 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 7 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(3,1)#Send BEACON::3,1,7,12,0,2,7 to all]$[(3,1)#Send ENERGY::3,1,490 to all]$[(3,1)#Send ROLE::3,1,ExplorerRole to all]$[(3,1)#Send STATE::3,1,1 to all]$[(4,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 1 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NORTH ( CHARGING_GRID ( ROW_ID 0 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NORTH_EAST ( NO_GRID ) , EAST ( NO_GRID ) , SOUTH_EAST ( NO_GRID ) , SOUTH ( CHARGING_GRID ( ROW_ID 2 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( CHARGING_GRID ( ROW_ID 2 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 7 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(4,1)#Send BEACON::4,1,7,12,0,2,7 to all]$[(4,1)#Send ENERGY::4,1,490 to all]$[(4,1)#Send ROLE::4,1,ExplorerRole to all]$[(4,1)#Send STATE::4,1,1 to all]$[(5,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 1 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NORTH ( CHARGING_GRID ( ROW_ID 0 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NORTH_EAST ( NO_GRID ) , EAST ( NO_GRID ) , SOUTH_EAST ( NO_GRID ) , SOUTH ( CHARGING_GRID ( ROW_ID 2 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( CHARGING_GRID ( ROW_ID 2 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 7 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(5,1)#Send BEACON::5,1,7,12,0,2,7 to all]$[(5,1)#Send ENERGY::5,1,490 to all]$[(5,1)#Send ROLE::5,1,ExplorerRole to all]$[(5,1)#Send STATE::5,1,1 to all]$[(6,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 1 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( CHARGING_GRID ( ROW_ID 0 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NORTH ( CHARGING_GRID ( ROW_ID 0 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NORTH_EAST ( NO_GRID ) , EAST ( NO_GRID ) , SOUTH_EAST ( NO_GRID ) , SOUTH ( CHARGING_GRID ( ROW_ID 2 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( CHARGING_GRID ( ROW_ID 2 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 7 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(6,1)#Send BEACON::6,1,7,12,0,2,7 to all]$[(6,1)#Send ENERGY::6,1,490 to all]$[(6,1)#Send ROLE::6,1,ExplorerRole to all]$[(6,1)#Send STATE::6,1,1 to all]$[(1,1)#Move South West]$[(2,1)#Move South West]$[(3,1)#Move South West]$[(4,1)#Move South West]$[(5,1)#Move South West]$[(6,1)#Move South West]$}
+Sim_Events;
+SV; { NONE };
+SVG; { NONE };
+Top_Layer_Rem; { NONE };
+Agents_Information; { (1,1,490,2,7),(2,1,490,2,7),(3,1,490,2,7),(4,1,490,2,7),(5,1,490,2,7),(6,1,490,2,7), };
+End_Sim;
+Dead_Agents; { NONE };
+RE;
+RS;13;
+Agent_Cmds;{[(1,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 2 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 6 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NORTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 7 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NORTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , EAST ( CHARGING_GRID ( ROW_ID 2 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 3 , COL_ID 8 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( CHARGING_GRID ( ROW_ID 3 , COL_ID 7 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 3 , COL_ID 6 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 2 , COL_ID 6 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(1,1)#Send BEACON::1,1,7,13,0,3,7 to all]$[(1,1)#Send ENERGY::1,1,489 to all]$[(1,1)#Send ROLE::1,1,ExplorerRole to all]$[(1,1)#Send STATE::1,1,1 to all]$[(2,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 2 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 6 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NORTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 7 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NORTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , EAST ( CHARGING_GRID ( ROW_ID 2 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 3 , COL_ID 8 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( CHARGING_GRID ( ROW_ID 3 , COL_ID 7 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 3 , COL_ID 6 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 2 , COL_ID 6 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(2,1)#Send BEACON::2,1,7,13,0,3,7 to all]$[(2,1)#Send ENERGY::2,1,489 to all]$[(2,1)#Send ROLE::2,1,ExplorerRole to all]$[(2,1)#Send STATE::2,1,1 to all]$[(3,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 2 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 6 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NORTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 7 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NORTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , EAST ( CHARGING_GRID ( ROW_ID 2 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 3 , COL_ID 8 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( CHARGING_GRID ( ROW_ID 3 , COL_ID 7 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 3 , COL_ID 6 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 2 , COL_ID 6 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(3,1)#Send BEACON::3,1,7,13,0,3,7 to all]$[(3,1)#Send ENERGY::3,1,489 to all]$[(3,1)#Send ROLE::3,1,ExplorerRole to all]$[(3,1)#Send STATE::3,1,1 to all]$[(4,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 2 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 6 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NORTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 7 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NORTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , EAST ( CHARGING_GRID ( ROW_ID 2 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 3 , COL_ID 8 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( CHARGING_GRID ( ROW_ID 3 , COL_ID 7 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 3 , COL_ID 6 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 2 , COL_ID 6 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(4,1)#Send BEACON::4,1,7,13,0,3,7 to all]$[(4,1)#Send ENERGY::4,1,489 to all]$[(4,1)#Send ROLE::4,1,ExplorerRole to all]$[(4,1)#Send STATE::4,1,1 to all]$[(5,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 2 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 6 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NORTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 7 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NORTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , EAST ( CHARGING_GRID ( ROW_ID 2 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 3 , COL_ID 8 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( CHARGING_GRID ( ROW_ID 3 , COL_ID 7 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 3 , COL_ID 6 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 2 , COL_ID 6 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(5,1)#Send BEACON::5,1,7,13,0,3,7 to all]$[(5,1)#Send ENERGY::5,1,489 to all]$[(5,1)#Send ROLE::5,1,ExplorerRole to all]$[(5,1)#Send STATE::5,1,1 to all]$[(6,1)#Send SURROUND::CURR_GRID ( CHARGING_GRID ( ROW_ID 2 , COL_ID 7 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 6 , ID_List ( [ ID 1 , GID 1 ] , [ ID 2 , GID 1 ] , [ ID 3 , GID 1 ] , [ ID 4 , GID 1 ] , [ ID 5 , GID 1 ] , [ ID 6 , GID 1 ] , ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NUM_SIG 0 , LIFE_SIG ( ) , NORTH_WEST ( NORMAL_GRID ( ROW_ID 1 , COL_ID 6 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NORTH ( NORMAL_GRID ( ROW_ID 1 , COL_ID 7 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , NORTH_EAST ( CHARGING_GRID ( ROW_ID 1 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , EAST ( CHARGING_GRID ( ROW_ID 2 , COL_ID 8 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_EAST ( NORMAL_GRID ( ROW_ID 3 , COL_ID 8 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH ( CHARGING_GRID ( ROW_ID 3 , COL_ID 7 , ON_FIRE FALSE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , SOUTH_WEST ( NORMAL_GRID ( ROW_ID 3 , COL_ID 6 , ON_FIRE TRUE , MV_COST 9000 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) , WEST ( CHARGING_GRID ( ROW_ID 2 , COL_ID 6 , ON_FIRE FALSE , MV_COST 1 , NUM_AGT 0 , ID_List ( ) , TOP_LAYER ( BOTTOM_LAYER ) ) ) to all]$[(6,1)#Send BEACON::6,1,7,13,0,3,7 to all]$[(6,1)#Send ENERGY::6,1,489 to all]$[(6,1)#Send ROLE::6,1,ExplorerRole to all]$[(6,1)#Send STATE::6,1,1 to all]$[(1,1)#Move South]$[(2,1)#Move South]$[(3,1)#Move South]$[(4,1)#Move South]$[(5,1)#Move South]$[(6,1)#Move South]$}
+Sim_Events;
+SV; { NONE };
+SVG; { NONE };
+Top_Layer_Rem; { NONE };
+Agents_Information; { (1,1,0,3,7),(2,1,0,3,7),(3,1,0,3,7),(4,1,0,3,7),(5,1,0,3,7),(6,1,0,3,7), };
+End_Sim;
+Dead_Agents; { (1,1),(2,1),(3,1),(4,1),(5,1),(6,1), };
+RE;
+MSG;All Agents are Dead !!;
+MSG;System Run ended on: Sun Mar 30 12:54:55 MDT 2014
+MSG;Kernel Shutting Down;
