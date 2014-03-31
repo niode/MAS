@@ -498,6 +498,7 @@ public class Simulation
     if(!visited[info.getLocation().getRow()][info.getLocation().getCol()])
     {
       visited[info.getLocation().getRow()][info.getLocation().getCol()] = true;
+      getCell(info.getLocation()).setMoveCost(info.getMoveCost());
       cellsVisited++;
       totalCost += info.getMoveCost();
     }
@@ -612,7 +613,8 @@ public class Simulation
         String agntStr = String.format("%2d", getAgentsAt(loc).size()).substring(0, 2);
         String costStr = String.format("%3d", getMoveCost(loc)).substring(0, 3);
         String percentStr = String.format("%3d", getPercentage(loc)).substring(0, 3) + "%";
-        System.out.printf("(%s, %s, %s, %s) ", selfStr, agntStr, costStr, percentStr);
+        System.out.printf("(%s, %s, %s, %s, %d, %d) ",
+          selfStr, agntStr, costStr, percentStr, getVisited(i, j) ? 1 : 0, isKiller(i, j) ? 1 : 0);
       }
       System.out.println();
     }
@@ -766,49 +768,6 @@ public class Simulation
         }
 
         return L_BIG;
-
-
-         /* // this is a quicker way to do it but more complicated.
-        for( int i = origin.getCol() - width ; i <= origin.getCol() + width ; i++ ){
-
-            // add top row
-            Location newLoc =  new Location( origin.getRow() - height , i );
-            if(newLoc.valid( origin.getRow() - height , i )){ locList.add(newLoc); }
-
-            if(height > 0) {
-                // add bottom row
-                newLoc = new Location(origin.getRow() + height, i);
-                if (newLoc.valid(origin.getRow() + height, i)) {
-                    locList.add(newLoc);
-                }
-            }
-
-        }
-
-        // adding the remaining left and right column only necessary if height is greater than 1, otherwise row got them already
-        if( height > 1 ) {
-
-            // add left column
-            for (int i = origin.getRow() - height + 1 ; i <= origin.getRow() + height - 1 ; i++) {
-
-                Location newLoc = new Location(i, origin.getCol() - width);
-                if (newLoc.valid(i, origin.getCol() - width)) {
-                    locList.add(newLoc);
-                }
-            }
-
-            // add right column
-            for (int i = origin.getRow() - height + 1 ; i <= origin.getRow() + height - 1 ; i++) {
-
-                Location newLoc = new Location(i, origin.getCol() + width);
-                if (newLoc.valid(i, origin.getCol() + width)) {
-                    locList.add(newLoc);
-                }
-            }
-
-        }
-       */
-
     }
   
 }
