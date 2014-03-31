@@ -65,6 +65,7 @@ public class RuleClearNearRubble implements Rule
 				}
 			}
 		
+		
 		return false;
 		}
 

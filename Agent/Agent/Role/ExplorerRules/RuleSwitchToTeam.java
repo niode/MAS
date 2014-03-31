@@ -67,7 +67,7 @@ public class RuleSwitchToTeam implements Rule
 			return false;
 		
 		//Ensure there are other Explorers in range that could help this one after the switch.
-		for (AgentID id : sim.getTeammates())
+		for (AgentID id : sim.getTeammates(Role.ID.EXPLORER))
 			{
 			if (id.equals(sim.getSelfID()))
 				continue; //Skip self.
