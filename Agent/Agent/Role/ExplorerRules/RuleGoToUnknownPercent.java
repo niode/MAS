@@ -51,6 +51,17 @@ public class RuleGoToUnknownPercent implements Rule
 				
 				if (percentage > 0 && percentage < 100)
 					{
+					//Ensure no existing friendly agents there.
+					boolean agentThere = false;
+					for (AgentID id : sim.getAgentsAt(new Location(i, j)))
+						if (id.getGID() == sim.getSelfID().getGID())
+							{
+							agentThere = true;
+							break;
+							}
+					if (agentThere)
+						continue;
+					
 					opt.end = new Location(i, j);
 					
 					Path path = Pathfinder.getPath(sim, opt);
