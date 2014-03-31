@@ -9,6 +9,7 @@ import java.util.Set;
 import Agent.*;
 import Agent.Core.BaseAgent;
 import Agent.Pathfinder.*;
+import Agent.Role.ExplorerRules.RuleClearNearRubble;
 import Agent.Role.ExplorerRules.RuleDigForSurv;
 import Agent.Role.ExplorerRules.RuleGoToUnknownPercent;
 import Agent.Role.ExplorerRules.RuleGoToUnvisited;
@@ -61,6 +62,7 @@ public class ExplorerRole extends Role
 		rules.add(new RuleGoToNearSoloDig());
 		rules.add(new RuleGoToUnknownPercent());
 		rules.add(new RuleGoToUnvisited());
+		rules.add(new RuleClearNearRubble());
 		}
 
 	@Override
