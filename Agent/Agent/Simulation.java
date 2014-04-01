@@ -150,7 +150,7 @@ public class Simulation
     if(states.containsKey(id))
     {
       int s = states.get(id);
-      if((s & (1 << state.value())) > 0)
+      if((s & state.value()) > 0)
       {
         s ^= state.value();
         states.put(id, s);
