@@ -50,7 +50,7 @@ public class RuleClearNearRubble implements Rule
 			}
 		
 		//Check neighboring tiles too.
-		Set<Location> nearby = Pathfinder.getValidNeighbors(sim, loc);
+		Set<Location> nearby = Pathfinder.getValidNeighbors(sim, loc, sim.getAgentEnergy(sim.getSelfID()));
 		for (Location possible : nearby)
 			{
 			WorldObject top = sim.getTopLayer(possible);

@@ -474,7 +474,7 @@ private static Node2[][] genDijkstra(Simulation sim, PathOptions opt)
 		{
 			for(int k = 0; k < M*N; k++)
 			{
-				W[i*N+j][k] = new Node(W[i*N+j][k], new Location(i*N+j,k), MAX, MAX, MAX);
+				W[i*N+j][k] = new Node(W[i*N+j][k], new Location(i*N+j,k), PathOptions.MAX, PathOptions.MAX, PathOptions.MAX);
 			}
 			for(int k1 = Math.max(-1, -i); k1 < Math.min(2, M-i); k1++){
 			for(int k2 = Math.max(-1, -j); k2 < Math.min(2, N-j); k2++)
@@ -483,7 +483,7 @@ private static Node2[][] genDijkstra(Simulation sim, PathOptions opt)
 				if (sim.getVisited(i + k1, j + k2))
 					W[i * N + j][(i + k1) * N + j + k2].cost = sim.getMoveCost(i + k1, j + k2);
 
-				W[i * N + j][(i + k1) * N + j + k2].distance = (sim.isKiller(i + k1, j + k2)) ? MAX : 1;
+				W[i * N + j][(i + k1) * N + j + k2].distance = (sim.isKiller(i + k1, j + k2)) ? PathOptions.MAX : 1;
 
 				if (costopt)
 					W[i*N+j][(i+k1)*N+j+k2].delta = W[i*N+j][(i+k1)*N+j+k2].cost;
@@ -500,7 +500,7 @@ private static Node2[][] genDijkstra(Simulation sim, PathOptions opt)
 			for(int i = 0; i < N*M; i++){
 			for(int j = 0; j < N*M; j++)
 			{
-				if(W[i][k].delta != MAX && W[k][j].delta != MAX && 
+				if(W[i][k].delta != PathOptions.MAX && W[k][j].delta != PathOptions.MAX && 
 				W[i][j].delta > W[i][k].delta + W[k][j].delta)
 				{
 					W[i][j].predecessor = W[i][k];

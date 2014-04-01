@@ -56,7 +56,8 @@ public class RuleChargeRequired implements Rule
 		
 		//Calculate the average move cost of nearby non-kill cells.
 		int totalCost = 0, count = 0;
-		Set<Location> near = Pathfinder.getValidNeighbors(sim, currentLoc);
+		Set<Location> near = Pathfinder.getValidNeighbors(sim, currentLoc,
+      sim.getAgentEnergy(sim.getSelfID()));
 		near.add(currentLoc);
 		for (Location loc : near)
 			if (sim.getMoveCost(loc) < currentEnergy) //Ignore kill cell.
