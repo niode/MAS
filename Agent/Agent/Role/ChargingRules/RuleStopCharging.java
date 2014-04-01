@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import Agent.Communicator;
 import Agent.Simulation;
+import Agent.State;
 import Agent.Core.BaseAgent;
 import Agent.Role.ChargingRole;
 import Agent.Role.ExplorerRole;
@@ -91,6 +92,7 @@ public class RuleStopCharging implements Rule
 			}
 		
 		//Otherwise become Team.
+		sim.addAgentState(sim.getSelfID(), State.TEAM_SEARCH);
 		return new TeamRole(sim, com, base);
 		}
 

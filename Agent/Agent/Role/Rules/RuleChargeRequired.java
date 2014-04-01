@@ -30,6 +30,10 @@ public class RuleChargeRequired implements Rule
 	 * many extra moves while pathing to the charger.
 	 */
 	private static final int EXTRA_MOVES = 5;
+	/**
+	 * Agents will always charge if they reach this amount.
+	 */
+	private static final int ENERGY_MINIMUM = 25;
 	private Location currentLoc = null;
 	private Path toNearestCharger = null;
 
@@ -50,9 +54,13 @@ public class RuleChargeRequired implements Rule
 		opt.cheapest = true;
     opt.maxCost = sim.getAgentEnergy(sim.getSelfID());
 		toNearestCharger = Pathfinder.getNearestCharger(sim, opt);
-
+		
 		// Return false if the agent can't reach a charger.
 		if(toNearestCharger == null) return false;
+		
+		// Go to nearest charger if below minimum.
+		if (currentEnergy <= ENERGY_MINIMUM)
+			return true;
 		
 		//Calculate the average move cost of nearby non-kill cells.
 		int totalCost = 0, count = 0;
@@ -80,8 +88,8 @@ public class RuleChargeRequired implements Rule
 				}
 			}
 		int average = totalCost / count;
-
 		long pathCost = toNearestCharger.getMoveCost();
+		
 		return currentEnergy <= pathCost + (average * EXTRA_MOVES);
 		//return currentEnergy <= ChargingRole.getRequiredEnergy(sim);
 		}
