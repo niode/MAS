@@ -45,6 +45,7 @@ public class RuleHelpTeam implements Rule
 		for (AgentID id : teamAgents)
 			{
 			PathOptions opt = new PathOptions(loc, sim.getAgentLocation(id));
+      opt.maxCost = sim.getAgentEnergy(id);
 			Path path = Pathfinder.getPath(sim, opt);
 			
 			//If no path, agent isn't reachable.
@@ -70,6 +71,7 @@ public class RuleHelpTeam implements Rule
 		for (AgentID id : explorerAgents)
 			{
 			PathOptions opt = new PathOptions(loc, sim.getAgentLocation(id));
+      opt.maxCost = sim.getAgentEnergy(id);
 			Path path = Pathfinder.getPath(sim, opt);
 			
 			if (path== null)

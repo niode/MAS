@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Set;
 import Agent.Communicator;
 import Agent.Simulation;
+import Agent.Pathfinder.*;
 import Agent.Core.BaseAgent;
 import Agent.Pathfinder.Pathfinder;
 import Agent.Role.ChargingRules.RuleChargeOnLowEnergy;

@@ -72,7 +72,8 @@ public class RuleGoToNearSoloDig implements Rule
 		{
 		digLocs = new ArrayList<Location>();
 		
-		Set<Location> neighbors = Pathfinder.getValidNeighbors(sim, sim.getAgentLocation(sim.getSelfID()));
+		Set<Location> neighbors = Pathfinder.getValidNeighbors(sim, sim.getAgentLocation(sim.getSelfID()),
+        sim.getAgentEnergy(sim.getSelfID()));
 		if (neighbors == null)
 			return;
 		

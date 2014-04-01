@@ -42,9 +42,11 @@ public class GetTargetRule implements Rule
       {
         opt.start = teamLoc;
         opt.end = beacon.getLocation();
+        opt.maxCost = sim.getAgentEnergy(finder.getTeammate());
         Path teamPath = Pathfinder.getPath(sim, opt);
 
         opt.start = selfLoc;
+        opt.maxCost = sim.getAgentEnergy(sim.getSelfID());
         Path selfPath = Pathfinder.getPath(sim, opt);
         if(selfPath == null || teamPath == null) continue;
         

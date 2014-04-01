@@ -78,6 +78,7 @@ public class RuleSwitchToTeam implements Rule
 			
 			PathOptions opt = new PathOptions(loc, otherLoc);
 			opt.cheapest = true;
+      opt.maxCost = sim.getAgentEnergy(id);
 			Path path = Pathfinder.getPath(sim, opt);
 			
 			if (path != null)

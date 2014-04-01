@@ -92,7 +92,7 @@ public class ExplorerRole extends Role
 			{
 			//Not sure what to do if no places worth observing. Just move to random nearby cell.
 			Location current = sim.getAgentLocation(sim.getSelfID());
-			Object[] valid = Pathfinder.getValidNeighbors(sim, current).toArray();
+			Object[] valid = Pathfinder.getValidNeighbors(sim, current, sim.getAgentEnergy(sim.getSelfID())).toArray();
 			Random rand = new Random();
 			Location target = (Location)valid[rand.nextInt(valid.length)];
 			if (target.equals(current))

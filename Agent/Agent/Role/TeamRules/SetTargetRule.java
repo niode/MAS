@@ -84,12 +84,14 @@ public class SetTargetRule implements Rule
         }
         opt.end = beacon.getLocation();
         opt.start = sim.getAgentLocation(team.low);
+        opt.maxCost = sim.getAgentEnergy(team.low);
         Path a = Pathfinder.getPath(sim, opt);
         if(a == null) continue;
         long cost = a.getLength();
         
         opt.end = beacon.getLocation();
         opt.start = sim.getAgentLocation(team.high);
+        opt.maxCost = sim.getAgentEnergy(team.high);
         Path b = Pathfinder.getPath(sim, opt);
         if(b == null) continue;
         cost = cost > a.getLength() ? cost : a.getLength();

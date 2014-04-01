@@ -10,7 +10,7 @@ public class PathOptions
   public static final int SHORTEST      = 1 << 1;
   public static final int WITHIN_RANGE  = 1 << 2;
   public static final int VISIT_CHARGER = 1 << 3;
-  public static final int MAX = Integer.MAX_VALUE;
+  public static final int MAX           = Integer.MAX_VALUE;
 
   public Location start;
   public Location end;
@@ -20,8 +20,8 @@ public class PathOptions
   public int maxLength = MAX;
   public int maxCost = MAX;
   public boolean visitCharger;
-  public int unknownCellCost = -1;
-  
+  public int unknownCellCost = 1;
+
   // Allow only start location for use in functions like
   // getNearestWhatever.
   public PathOptions(Location start)
@@ -39,7 +39,7 @@ public class PathOptions
     setupOptions(opt);
   }
 
-  public PathOptions(long opt, int length, int cost, int unknown, int cutoff)
+  public PathOptions(long opt, int length, int cost, int unknown)
   {
     setupOptions(opt);
     maxLength = length;
