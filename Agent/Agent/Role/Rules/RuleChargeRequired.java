@@ -3,6 +3,7 @@ package Agent.Role.Rules;
 import java.util.Set;
 import Agent.Communicator;
 import Agent.Simulation;
+import Agent.State;
 import Agent.Core.BaseAgent;
 import Agent.Pathfinder.Path;
 import Agent.Pathfinder.PathOptions;
@@ -14,6 +15,8 @@ import Ares.Location;
 import Ares.Commands.AgentCommand;
 import Ares.Commands.AgentCommands.MOVE;
 import Ares.Commands.AgentCommands.SLEEP;
+import Ares.World.Objects.Rubble;
+import Ares.World.Objects.WorldObject;
 
 /**
  * Checks if the agent is in danger of having not enough energy to reach the nearest charging grid.
@@ -26,7 +29,7 @@ public class RuleChargeRequired implements Rule
 	 * Agents will go charge with enough energy to do this
 	 * many extra moves while pathing to the charger.
 	 */
-	private static final int EXTRA_MOVES = 10;
+	private static final int EXTRA_MOVES = 5;
 	private Location currentLoc = null;
 	private Path toNearestCharger = null;
 
@@ -51,18 +54,35 @@ public class RuleChargeRequired implements Rule
 		if(toNearestCharger == null) return false;
 		
 		//Calculate the average move cost of nearby non-kill cells.
-		int totalCost = sim.getMoveCost(currentLoc);
-		int count = 1;
+		int totalCost = 0, count = 0;
 		Set<Location> near = Pathfinder.getValidNeighbors(sim, currentLoc);
+		near.add(currentLoc);
 		for (Location loc : near)
 			if (sim.getMoveCost(loc) < currentEnergy) //Ignore kill cell.
 				{
 				count++;
 				totalCost += sim.getMoveCost(loc);
 				}
+		//Include remove cost of any near rubble.
+		for (Location loc : near)
+			{
+			WorldObject top = sim.getTopLayer(loc);
+			if (top instanceof Rubble)
+				{
+				int removeEnergy = ((Rubble)top).getRemoveEnergy();
+				if (removeEnergy < currentEnergy) //Ignore kill rubble.
+					{
+					count++;
+					totalCost += removeEnergy;
+					}
+				}
+			}
 		int average = totalCost / count;
+		System.out.println("\tAVERAGE IS: "+average);
 
 		long pathCost = toNearestCharger.getMoveCost();
+		System.out.println("\tHAVE ENERGY: "+currentEnergy);
+		System.out.println("\tWILL CHARGE AT: "+(pathCost + (average * EXTRA_MOVES)));
 		return currentEnergy <= pathCost + (average * EXTRA_MOVES);
 		}
 
@@ -74,6 +94,14 @@ public class RuleChargeRequired implements Rule
 	@Override
 	public AgentCommand doAction(Simulation sim, Communicator com)
 		{
+		//Remove team search state.
+		int state = sim.getAgentState(sim.getSelfID());
+		if ((state & State.TEAM_SEARCH.value()) > 0)
+			sim.setAgentState(sim.getSelfID(), (state ^ State.TEAM_SEARCH.value()));
+		
+		//Clear team state before charging.
+		sim.removeAgentState(sim.getSelfID(), State.TEAM_SEARCH);
+		
 		//If already on a charger, sleep.
 		if (toNearestCharger.getLength() == 0)
 			return new SLEEP();

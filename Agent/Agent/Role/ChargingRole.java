@@ -12,6 +12,8 @@ import Agent.Role.ChargingRules.RuleStopCharging;
 import Agent.Role.ChargingRules.RuleWaitForAnother;
 import Agent.Role.Rules.Rule;
 import Ares.Location;
+import Ares.World.Objects.Rubble;
+import Ares.World.Objects.WorldObject;
 
 /**
  *
@@ -63,19 +65,37 @@ public class ChargingRole extends Role
 		int currentEnergy = sim.getSelf().getEnergyLevel();
 		
 		//Calculate the average move cost of nearby non-kill cells.
-		int totalCost = sim.getMoveCost(currentLoc);
-		int count = 1;
+		int totalCost = 0, count = 0;
 		Set<Location> near = Pathfinder.getValidNeighbors(sim, currentLoc);
+		near.add(currentLoc);
 		for (Location loc : near)
 			if (sim.getMoveCost(loc) < currentEnergy) //Ignore kill cell.
 				{
 				count++;
 				totalCost += sim.getMoveCost(loc);
 				}
+		//Include remove cost of any near rubble.
+		for (Location loc : near)
+			{
+			WorldObject top = sim.getTopLayer(loc);
+			if (top instanceof Rubble)
+				{
+				int removeEnergy = ((Rubble)top).getRemoveEnergy();
+				if (removeEnergy < currentEnergy) //Ignore kill rubble.
+					{
+					count++;
+					totalCost += removeEnergy;
+					}
+				}
+			}
 		int average = totalCost / count;
-		
 		int multiplier = sim.getRowCount() > sim.getColCount() ? sim.getRowCount() : sim.getColCount();
-		return (multiplier * average * 3);
+		System.out.println("\tAVERAGE IS: "+average);
+		System.out.println("\tMULTIPLIER IS: "+multiplier);
+
+		System.out.println("\tHAVE ENERGY: "+currentEnergy);
+		System.out.println("\tREQUIRED ENERGY: "+ (multiplier * average * 2)); //TODO
+		return (multiplier * average * 2);
 		}
 
   public String toString()
