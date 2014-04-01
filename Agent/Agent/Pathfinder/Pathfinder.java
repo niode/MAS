@@ -223,6 +223,18 @@ public class Pathfinder
 			list.add(p);
 			this.minimize();
 		}
+		
+		
+		public void print(){
+			for(Path2 p2 : this.list)
+		  {
+		    System.out.printf("  %d, %d, ",
+		      p2.cost, p2.distance);
+		    for(Location l : p2.path)
+		      System.out.printf("%s ", l);
+		    System.out.println();
+		  }
+		}
 	}
 
 	private static class Node2 implements Comparable
@@ -311,15 +323,9 @@ private static Node2[][] genDijkstra(Simulation sim, PathOptions opt)
   	int j = currentNode.location.getCol();
   	isMarked.set(i*N+j);
     
- /*   System.out.printf("CurrentNode: %s\n", currentNode.location);
-    for(Path2 p2 : currentNode.delta.list)
-    {
-      System.out.printf("  %d, %d, ",
-        p2.cost, p2.distance);
-      for(Location l : p2.path)
-        System.out.printf("%s ", l);
-      System.out.println();
-    } */
+//  System.out.printf("CurrentNode: %s\n", currentNode.location);
+//  currentNode.delta.print();
+     
 
   	if(isMarked.cardinality() != M*N)
   	{
@@ -333,32 +339,16 @@ private static Node2[][] genDijkstra(Simulation sim, PathOptions opt)
 					Path2List tmpList = new Path2List(new ArrayList<Path2>());
           tmpList.addTo(currentNode.delta);
 
-   /*         System.out.printf("CurrentNode: %s\n", currentNode.location);
-            for(Path2 p2 : currentNode.delta.list)
-            {
-              System.out.printf("  %d, %d, ",
-                p2.cost, p2.distance);
-              for(Location l : p2.path)
-                System.out.printf("%s ", l);
-              System.out.println();
-            } */
+//       	System.out.printf("CurrentNode: %s\n", currentNode.location);
+//       	currentNode.delta.print(); 
 
 
 					int k = i+d.getRowInc();
 					int l = j+d.getColInc();
 
-  /*        System.out.printf("tmpList1:\n");
-          for(Path2 p2 : tmpList.list)
-          {
-            System.out.printf("  %d, %d, ",
-              p2.cost, p2.distance);
-            for(Location z : p2.path)
-              System.out.printf("%s ", z);
-            System.out.println();
-          }
-
-          System.out.printf("k,l = (%d, %d)\n", k, l); */
-
+//		    System.out.printf("tmpList1:\n");
+//        tmpList.print();
+          
 					List<Location> edgeKL = new ArrayList<Location>();
           edgeKL.add(new Location(k,l));
 					if (opt.shortest)
@@ -366,27 +356,13 @@ private static Node2[][] genDijkstra(Simulation sim, PathOptions opt)
 					else
 						tmpList.addTo(new Path2(c,1,edgeKL), opt.maxLength);
 
-     /*     System.out.printf("tmpList2:\n");
-          for(Path2 p2 : tmpList.list)
-          {
-            System.out.printf("  %d, %d, ",
-              p2.cost, p2.distance);
-            for(Location z : p2.path)
-              System.out.printf("%s ", z);
-            System.out.println();
-          }*/
+//			  System.out.printf("tmpList2:\n");
+//        tmpList.print();
 
 					tmpList.addTo(G[k][l].list);
 
-    /*      System.out.printf("tmpList3:\n");
-          for(Path2 p2 : tmpList.list)
-          {
-            System.out.printf("  %d, %d, ",
-              p2.cost, p2.distance);
-            for(Location z : p2.path)
-              System.out.printf("%s ", z);
-            System.out.println();
-          }*/
+//		    System.out.printf("tmpList3:\n");
+//        tmpList.print();
 
 					Path2List tmpDelta = new Path2List(new ArrayList<Path2>());
           tmpDelta.list.addAll(tmpList.list);
