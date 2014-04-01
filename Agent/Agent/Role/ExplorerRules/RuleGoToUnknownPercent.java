@@ -105,6 +105,7 @@ public class RuleGoToUnknownPercent implements Rule
 		
 		//Start with first agent. Save all paths to unknown locations.
 		AgentID first = expInRange.get(0);
+		int firstEnergy = sim.getAgentEnergy(first);
 		PathOptions firstOpt = new PathOptions(sim.getAgentLocation(first));
 		firstOpt.cheapest = true;
 		for (int i = 0; i < sim.getRowCount(); i++)
@@ -130,7 +131,11 @@ public class RuleGoToUnknownPercent implements Rule
 					firstOpt.end = targetLoc;
 					Path pathForFirst = Pathfinder.getPath(sim, firstOpt);
 					
-					if (pathForFirst != null && pathForFirst.getLength() > 0)
+					//Ignore empty or paths that would kill the agent.
+					if (pathForFirst == null || pathForFirst.getMoveCost() >= firstEnergy)
+						continue;
+					
+					if (pathForFirst.getLength() > 0)
 						//Unknown spot found! Save path.
 						allPaths.get(0).add(pathForFirst);
 					}
@@ -162,6 +167,7 @@ public class RuleGoToUnknownPercent implements Rule
 			for (int i = 1; i < expInRange.size(); i++)
 				{
 				Location expLoc = sim.getAgentLocation(expInRange.get(i));
+				int expEnergy = sim.getAgentEnergy(expInRange.get(i));
 				PathOptions otherOpt = new PathOptions(expLoc);
 				otherOpt.cheapest = true;
 				
@@ -180,10 +186,11 @@ public class RuleGoToUnknownPercent implements Rule
 					//Calculate the paths for the explorer.
 					Path path = Pathfinder.getPath(sim, otherOpt);
 					
-					//Null check just for the hell of it.
-					//A null should not be possible here.
-					if (path != null)
-						allPaths.get(i).add(path);
+					//Ignore empty paths that would kill the agent.
+					if (path == null || path.getMoveCost() >= expEnergy)
+						continue;
+					
+					allPaths.get(i).add(path);
 					}
 				
 				//Don't bother calculating for higher ids than self.
