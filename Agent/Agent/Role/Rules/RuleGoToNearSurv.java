@@ -73,7 +73,9 @@ public class RuleGoToNearSurv implements Rule
 		{
 		survLocs = new ArrayList<Location>();
 		
-		Set<Location> neighbors = Pathfinder.getValidNeighbors(sim, sim.getAgentLocation(sim.getSelfID()));
+		Set<Location> neighbors = Pathfinder.getValidNeighbors(sim,
+        sim.getAgentLocation(sim.getSelfID()), sim.getAgentEnergy(sim.getSelfID()));
+
 		if (neighbors == null)
 			return; //No valid nearby.
 		

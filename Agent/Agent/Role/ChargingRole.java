@@ -3,6 +3,7 @@ package Agent.Role;
 import java.util.ArrayList;
 import Agent.Communicator;
 import Agent.Simulation;
+import Agent.Pathfinder.*;
 import Agent.Core.BaseAgent;
 import Agent.Role.ChargingRules.RuleChargeOnLowEnergy;
 import Agent.Role.ChargingRules.RuleExploreIfAlone;
@@ -57,7 +58,15 @@ public class ChargingRole extends Role
 	public static int getRequiredEnergy(Simulation sim)
 		{
 		int multiplier = sim.getRowCount() > sim.getColCount() ? sim.getRowCount() : sim.getColCount();
-		return (multiplier * sim.getAverageCost() * 3);
+    PathOptions opt = new PathOptions(sim.getAgentLocation(sim.getSelfID()));
+    opt.maxCost = sim.getAgentEnergy(sim.getSelfID());
+    opt.shortest = false;
+    opt.cheapest = true;
+    Path path = Pathfinder.getNearestSurvivor(sim, opt, 25);
+    if(path == null)
+      return (multiplier * sim.getAverageCost() * 3);
+    else
+      return (int)path.getMoveCost() * 3;
 		}
 
   public String toString()

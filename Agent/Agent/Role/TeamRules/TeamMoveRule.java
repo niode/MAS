@@ -34,6 +34,7 @@ public class TeamMoveRule implements Rule
     PathOptions opt = new PathOptions(PathOptions.SHORTEST & PathOptions.WITHIN_RANGE);
     opt.start = sim.getAgentLocation(sim.getSelfID());
     opt.end = state.target;
+    opt.maxCost = sim.getAgentEnergy(sim.getSelfID());
     path = Pathfinder.getPath(sim, opt);
 
     // If the path is null, some new knowledge of the world has

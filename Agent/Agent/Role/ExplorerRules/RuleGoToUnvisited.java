@@ -87,6 +87,7 @@ public class RuleGoToUnvisited implements Rule
 		for (Location nextLoc : unvisited)
 			{
 			PathOptions opt = new PathOptions(selfLoc, nextLoc);
+      opt.maxCost = sim.getAgentEnergy(sim.getSelfID());
 			Path path = Pathfinder.getPath(sim, opt);
 			if (path != null && path.getLength() < nearest)
 				{

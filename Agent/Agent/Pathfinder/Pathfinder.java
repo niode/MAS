@@ -32,7 +32,7 @@ public class Pathfinder
     else return Direction.STAY_PUT;
   }
   
-  public static Set<Location> getValidNeighbors(Simulation sim, Location location)
+  public static Set<Location> getValidNeighbors(Simulation sim, Location location, int cost)
   {
   	int locRow = location.getRow();
   	int locCol = location.getCol();
@@ -54,6 +54,10 @@ public class Pathfinder
   		//Reject killer
   		if (sim.isKiller(newLoc))
   		  continue;
+
+      // Reject expensive cells.
+      if(sim.getEnergyRequired(newLoc) >= cost)
+        continue;
   		
   		//Location is good, add to result.
   		result.add(newLoc);

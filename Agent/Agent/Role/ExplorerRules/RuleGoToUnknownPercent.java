@@ -30,7 +30,7 @@ public class RuleGoToUnknownPercent implements Rule
 	public boolean checkConditions(Simulation sim)
 		{
 		Location loc = sim.getAgentLocation(sim.getSelfID());
-		Set<Location> neighbors = Pathfinder.getValidNeighbors(sim, loc);
+		Set<Location> neighbors = Pathfinder.getValidNeighbors(sim, loc, sim.getAgentEnergy(sim.getSelfID()));
 		
 		//True if nearby cell with 0 < percent < 100.
 		for (Location near : neighbors)
@@ -53,7 +53,7 @@ public class RuleGoToUnknownPercent implements Rule
 		{
 		//Find all valid cells and move to a random one.
 		Location loc = sim.getAgentLocation(sim.getSelfID());
-		Set<Location> neighbors = Pathfinder.getValidNeighbors(sim, loc);
+		Set<Location> neighbors = Pathfinder.getValidNeighbors(sim, loc, sim.getAgentEnergy(sim.getSelfID()));
 		
 		ArrayList<Location> found = new ArrayList<Location>();
 		for (Location near : neighbors)

@@ -34,7 +34,9 @@ public class DigRule implements Rule
     if(finder.getTeammate() == null) return false;
     if(!sim.getAgentLocation(finder.getTeammate()).equals(loc)) return false;
 
-    Path charger = Pathfinder.getNearestCharger(sim, new PathOptions(loc));
+    PathOptions opt = new PathOptions(loc);
+    opt.maxCost = sim.getAgentEnergy(sim.getSelfID());
+    Path charger = Pathfinder.getNearestCharger(sim, opt);
 
     if(charger != null) energy -= charger.getMoveCost();
     int energyCost = sim.getEnergyRequired(sim.getAgentLocation(sim.getSelfID()));

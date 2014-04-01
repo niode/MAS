@@ -69,6 +69,7 @@ public class TeamFinder
         {
           opt.start = sim.getAgentLocation(team.get(i));
           opt.end = sim.getAgentLocation(team.get(j));
+          opt.maxCost = sim.getAgentEnergy(team.get(i));
           path = Pathfinder.getPath(sim, opt);
           if(path == null)
             dist[i][j] = Long.MAX_VALUE;
