@@ -78,11 +78,8 @@ public class RuleChargeRequired implements Rule
 				}
 			}
 		int average = totalCost / count;
-		System.out.println("\tAVERAGE IS: "+average);
 
 		long pathCost = toNearestCharger.getMoveCost();
-		System.out.println("\tHAVE ENERGY: "+currentEnergy);
-		System.out.println("\tWILL CHARGE AT: "+(pathCost + (average * EXTRA_MOVES)));
 		return currentEnergy <= pathCost + (average * EXTRA_MOVES);
 		}
 
@@ -94,12 +91,7 @@ public class RuleChargeRequired implements Rule
 	@Override
 	public AgentCommand doAction(Simulation sim, Communicator com)
 		{
-		//Remove team search state.
-		int state = sim.getAgentState(sim.getSelfID());
-		if ((state & State.TEAM_SEARCH.value()) > 0)
-			sim.setAgentState(sim.getSelfID(), (state ^ State.TEAM_SEARCH.value()));
-		
-		//Clear team state before charging.
+		//Clear team search state before charging.
 		sim.removeAgentState(sim.getSelfID(), State.TEAM_SEARCH);
 		
 		//If already on a charger, sleep.

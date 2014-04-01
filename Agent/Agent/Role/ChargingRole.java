@@ -90,11 +90,6 @@ public class ChargingRole extends Role
 			}
 		int average = totalCost / count;
 		int multiplier = sim.getRowCount() > sim.getColCount() ? sim.getRowCount() : sim.getColCount();
-		System.out.println("\tAVERAGE IS: "+average);
-		System.out.println("\tMULTIPLIER IS: "+multiplier);
-
-		System.out.println("\tHAVE ENERGY: "+currentEnergy);
-		System.out.println("\tREQUIRED ENERGY: "+ (multiplier * average * 2)); //TODO
 		return (multiplier * average * 2);
 		}
 
