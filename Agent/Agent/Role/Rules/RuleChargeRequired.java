@@ -1,5 +1,6 @@
 package Agent.Role.Rules;
 
+import java.util.Set;
 import Agent.Communicator;
 import Agent.Simulation;
 import Agent.Core.BaseAgent;
@@ -48,9 +49,21 @@ public class RuleChargeRequired implements Rule
 
 		// Return false if the agent can't reach a charger.
 		if(toNearestCharger == null) return false;
+		
+		//Calculate the average move cost of nearby non-kill cells.
+		int totalCost = sim.getMoveCost(currentLoc);
+		int count = 1;
+		Set<Location> near = Pathfinder.getValidNeighbors(sim, currentLoc);
+		for (Location loc : near)
+			if (sim.getMoveCost(loc) < currentEnergy) //Ignore kill cell.
+				{
+				count++;
+				totalCost += sim.getMoveCost(loc);
+				}
+		int average = totalCost / count;
 
 		long pathCost = toNearestCharger.getMoveCost();
-		return currentEnergy <= pathCost + (sim.getAverageCost() * EXTRA_MOVES);
+		return currentEnergy <= pathCost + (average * EXTRA_MOVES);
 		}
 
 	/*
