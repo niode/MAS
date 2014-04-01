@@ -55,7 +55,7 @@ public class Pathfinder
   		  continue;
 
       // Reject expensive cells.
-      if(sim.getEnergyRequired(newLoc) >= cost)
+      if(sim.getMoveCost(newLoc) >= cost)
         continue;
   		
   		//Location is good, add to result.
@@ -421,12 +421,24 @@ private static Node2[][] genDijkstra(Simulation sim, PathOptions opt)
 
   public static Path getPath(Simulation sim, PathOptions opt)
   {
-    System.out.printf("Getting path to (%s, %s)\n", opt.start, opt.end);
+    //System.out.printf("Getting path to (%s, %s)\n", opt.start, opt.end);
 
     Path tmp = getPathFromTree(genDijkstra(sim, opt), opt);
-    if(tmp != null) System.out.println(tmp.toString());
-    else System.out.println("NULL");
+    //if(tmp != null) System.out.println(tmp.toString());
+    //else System.out.println("NULL");
     return getPathFromTree(genDijkstra(sim, opt), opt);
+  }
+
+  public static List<Path> getPaths(Simulation sim, PathOptions opt, List<Location> list)
+  {
+    Node2[][] G = genDijkstra(sim, opt);
+    List<Path> result = new LinkedList<Path>();
+    for(Location l : list)
+    {
+      opt.end = l;
+      result.add(getPathFromTree(G, opt));
+    }
+    return result;
   }
 
 	private static class Node implements Comparable

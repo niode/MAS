@@ -37,7 +37,7 @@ public class FindTeamRule implements Rule
 
   public Role getRoleChange(Simulation sim, Communicator com, BaseAgent base)
   {
-    if(finder.getTeammate() == null && rounds < 5)
+    if(finder.getTeammate() == null && rounds < 2)
     {
       return null;
     } else

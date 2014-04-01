@@ -87,7 +87,7 @@ public class Brain{
     
     public void think() {
         base.log(LogLevels.Always, "Thinking");
-        sim.printWorld();
+        //sim.printWorld();
         ai.think();
         com.sendState(sim.getSelfID(), sim.getAgentState(sim.getSelfID()));
 

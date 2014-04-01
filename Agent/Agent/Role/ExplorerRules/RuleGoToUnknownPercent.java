@@ -40,7 +40,9 @@ public class RuleGoToUnknownPercent implements Rule
 		{
 		Location loc = sim.getAgentLocation(sim.getSelfID());
 		PathOptions opt = new PathOptions(loc);
-		opt.withinRange = true;
+		//opt.withinRange = true;
+    opt.shortest = false;
+    opt.maxCost = sim.getAgentEnergy(sim.getSelfID());
 		
 		//Ensure there is a cell in range with an unknown percentage.
 		//These could be in visited or unvisited cells.
@@ -89,6 +91,7 @@ public class RuleGoToUnknownPercent implements Rule
 		for (AgentID id : sim.getTeammates(Role.ID.EXPLORER))
 			{
 			opt.end = sim.getAgentLocation(id);
+      opt.maxCost = sim.getAgentEnergy(sim.getSelfID());
 			Path path = Pathfinder.getPath(sim, opt);
 			//If path exists, explorer is in range.
 			if (path != null)
@@ -107,7 +110,7 @@ public class RuleGoToUnknownPercent implements Rule
 		AgentID first = expInRange.get(0);
 		int firstEnergy = sim.getAgentEnergy(first);
 		PathOptions firstOpt = new PathOptions(sim.getAgentLocation(first));
-		firstOpt.cheapest = true;
+		firstOpt.shortest = false;
 		for (int i = 0; i < sim.getRowCount(); i++)
 			for (int j = 0; j < sim.getColCount(); j++)
 				{
@@ -129,6 +132,7 @@ public class RuleGoToUnknownPercent implements Rule
 						continue;
 					
 					firstOpt.end = targetLoc;
+          firstOpt.maxCost = firstEnergy;
 					Path pathForFirst = Pathfinder.getPath(sim, firstOpt);
 					
 					//Ignore empty or paths that would kill the agent.
@@ -169,7 +173,8 @@ public class RuleGoToUnknownPercent implements Rule
 				Location expLoc = sim.getAgentLocation(expInRange.get(i));
 				int expEnergy = sim.getAgentEnergy(expInRange.get(i));
 				PathOptions otherOpt = new PathOptions(expLoc);
-				otherOpt.cheapest = true;
+				otherOpt.shortest = false;
+        otherOpt.maxCost = expEnergy;
 				
 				/*
 				 * As first agent is in range of its path targets and
