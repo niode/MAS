@@ -51,7 +51,9 @@ public class ExplorerRole extends Role
 		rules.add(new RuleGoToUnknownPercent());
 		rules.add(new RuleGoToUnvisited());
 		rules.add(new RuleObserveWithChance());
+		rules.add(new RuleGoToDigBeacon());
 		rules.add(new RuleClearNearRubble());
+		rules.add(new RuleGoToDigBeacon());
 		rules.add(new RuleObserveAnyRubble());
 		}
 
