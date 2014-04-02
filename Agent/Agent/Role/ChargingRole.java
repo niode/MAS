@@ -84,11 +84,12 @@ public class ChargingRole extends Role
 		{
 		Location chargingLoc = sim.getAgentLocation(sim.getSelfID());
 		int currentEnergy = sim.getSelf().getEnergyLevel();
+		System.out.println("\tHAVE ENERGY: "+currentEnergy); //TODO
 
 		//Create opt for all pathfinding tests.
 		PathOptions opt = new PathOptions(chargingLoc);
 		opt.shortest = false;
-		opt.maxCost = currentEnergy + 1;
+		opt.maxCost = currentEnergy;
 		
 		//Get path to nearest charging cell.
 		Path toCharging = Pathfinder.getNearestCharger(sim, opt);
@@ -100,8 +101,10 @@ public class ChargingRole extends Role
 		//If path has length, charging location is elsewhere.
 		if (!(toCharging.getLength() == 0))
 			{
-			chargingLoc = toCharging.getLast();
-			opt.start = chargingLoc;
+			System.out.println("\tMOVING TO: "+toCharging.getLast()); //TODO
+			System.out.println("\tPATH COST: "+toCharging.getMoveCost());
+			//Return energy above current, to ensure moving to charging cell.
+			return currentEnergy + 100;
 			}
 		
 		//Get path from charging location to nearest survivor.
@@ -136,6 +139,7 @@ public class ChargingRole extends Role
 				}
 			int average = totalCost / count;
 			int multiplier = sim.getRowCount() > sim.getColCount() ? sim.getRowCount() : sim.getColCount();
+			System.out.println("\tCHARGING TO: "+(multiplier * average * 2)); //TODO
 			return (multiplier * average * 2);
 			}
 		
@@ -155,10 +159,10 @@ public class ChargingRole extends Role
 		if (top instanceof Rubble)
 			rubbleCost = ((Rubble)top).getRemoveEnergy() * 2;
 		else
-			rubbleCost = 200;
+			rubbleCost = 100;
 		
 		int totalEnergy = ((int)pathCost) + rubbleCost;
-
+		System.out.println("\tCHARGING TO: "+(totalEnergy < MIN_CHARGE ? MIN_CHARGE : totalEnergy)); //TODO
 		return (totalEnergy < MIN_CHARGE ? MIN_CHARGE : totalEnergy);
 		}
 

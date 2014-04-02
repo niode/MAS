@@ -9,6 +9,8 @@ import Agent.Role.ExplorerRules.*;
 import Agent.Role.Rules.*;
 import Ares.*;
 import Ares.Commands.AgentCommands.*;
+import Ares.World.Objects.Rubble;
+import Ares.World.Objects.WorldObject;
 
 /**
  * Basic role for exploration. The agent will not cooperate, but encountering situations that
@@ -77,7 +79,19 @@ public class ExplorerRole extends Role
 			}
 		else
 			{
-			getCommunicator().send(new SLEEP());
+			//Start observing rubble piles.
+			ArrayList<Location> allRubble = new ArrayList<Location>();
+			for (int i = 0; i < sim.getRowCount(); i++)
+				for (int j = 0; j < sim.getColCount(); j++)
+					{
+					WorldObject top = sim.getTopLayer(i, j);
+					if (top instanceof Rubble)
+						allRubble.add(new Location(i, j));
+					}
+			
+			Random rand = new Random();
+			Location target = allRubble.get(rand.nextInt(allRubble.size()));
+			getCommunicator().send(new OBSERVE(target));
 			}
 		}
 

@@ -32,6 +32,10 @@ public class RuleChargeRequired implements Rule
 	 * Agents will always charge if they reach this amount.
 	 */
 	private static final int ENERGY_MINIMUM = 25;
+	/**
+	 * The minimum value that will be used as average move cost.
+	 */
+	private static final int MOVE_MINIMUM = 5;
 	Path toNearestCharger = null;
 
 	/*
@@ -53,30 +57,44 @@ public class RuleChargeRequired implements Rule
 		toNearestCharger = Pathfinder.getNearestCharger(sim, opt);
 		
 		// Return false if the agent can't reach a charger.
-		if(toNearestCharger == null) return false;
+		if (toNearestCharger == null) System.out.println("\tCAN'T REACH CHARGER"); //TODO
+		if (toNearestCharger == null) return false;
+		
+		System.out.println("\tHAVE ENERGY: "+currentEnergy);//TODO
+		System.out.println("\tMIN ENERGY: "+ENERGY_MINIMUM);
 		
 		// Go to nearest charger if below minimum.
 		if (currentEnergy <= ENERGY_MINIMUM)
 			return true;
 		
-		// If not on a charger, use the charger location.
-		Location chargerLoc = currentLoc;
-		if (toNearestCharger.getLength() > 0)
-			chargerLoc = toNearestCharger.getLast();
-		
-		//Calculate the average move cost around the nearest charger.
-		int totalCost = 0, count = 0;
-		Set<Location> near = Pathfinder.getValidNeighbors(sim, chargerLoc,
-				sim.getAgentEnergy(sim.getSelfID()));
-		near.add(chargerLoc);
-		for (Location loc : near)
-			if (sim.getMoveCost(loc) < currentEnergy) //Ignore kill cell.
-				{
-				count++;
-				totalCost += sim.getMoveCost(loc);
-				}
-		int average = totalCost / count;
+		long average = 0;
 		long pathCost = toNearestCharger.getMoveCost();
+		System.out.println("\tCOST TO CHARGER: "+pathCost);//TODO
+		if (toNearestCharger.getLength() > 0)
+			{
+			//Not on charger, use path to charger to get average.
+			average = pathCost / toNearestCharger.getLength();
+			System.out.println("\tCHARGER AT: "+toNearestCharger.getLast());//TODO
+			}
+		else
+			{
+			//On charger, calculate the average move cost in near area.
+			int totalCost = 0, count = 0;
+			Set<Location> near = Pathfinder.getValidNeighbors(sim, currentLoc,
+					sim.getAgentEnergy(sim.getSelfID()));
+			near.add(currentLoc);
+			for (Location loc : near)
+				if (sim.getMoveCost(loc) < currentEnergy) //Ignore kill cell.
+					{
+					count++;
+					totalCost += sim.getMoveCost(loc);
+					}
+			average = totalCost / count;
+			}
+		
+		//Ensure average meets minimum.
+		if (average < MOVE_MINIMUM)
+			average = MOVE_MINIMUM;
 		
 		return currentEnergy <= pathCost + (average * EXTRA_MOVES);
 		//return currentEnergy <= ChargingRole.getRequiredEnergy(sim);
