@@ -51,53 +51,13 @@ public class ExplorerRole extends Role
 		rules.add(new RuleGoToUnknownPercent());
 		rules.add(new RuleGoToUnvisited());
 		rules.add(new RuleClearNearRubble());
+		rules.add(new RuleObserveRubble());
 		}
 
 	@Override
 	public void noActionUsed()
 		{
-		//Observe the cell with the highest % that is still <100.
-		Simulation sim = getSimulation();
-		
-		int highestPercent = 0;
-		Location highestLocation = null; 
-		for (int i = 0; i <= sim.getRowCount(); i++)
-			for (int j = 0; j <= sim.getColCount(); j++)
-				{
-				int percent = sim.getPercentage(i, j);
-				if (percent < 100 && percent > highestPercent)
-					{
-					highestPercent = percent;
-					highestLocation = new Location(i, j);
-					}
-				}
-		
-		if (highestLocation != null)
-			{
-			getCommunicator().send(new OBSERVE(highestLocation));
-			}
-		else
-			{
-			//Start observing rubble piles.
-			ArrayList<Location> allRubble = new ArrayList<Location>();
-			for (int i = 0; i < sim.getRowCount(); i++)
-				for (int j = 0; j < sim.getColCount(); j++)
-					{
-					WorldObject top = sim.getTopLayer(i, j);
-					if (top instanceof Rubble)
-						allRubble.add(new Location(i, j));
-					}
-			
-			if (allRubble.size() <= 0)
-				getCommunicator().send(new SLEEP());
-			else
-				{
-				Random rand = new Random();
-				Location target = allRubble.get(rand.nextInt(allRubble.size()));
-				getCommunicator().send(new OBSERVE(target));
-				}
-			
-			}
+		getCommunicator().send(new SLEEP());
 		}
 
 	public String toString()
