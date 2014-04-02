@@ -48,6 +48,8 @@ public class RuleChargeRequired implements Rule
 		{
 		// Get current energy.
 		int currentEnergy = sim.getAgentEnergy(sim.getSelfID());
+		System.out.println("\tHAVE ENERGY: "+currentEnergy);//TODO
+		System.out.println("\tMIN ENERGY: "+ENERGY_MINIMUM);
 
 		// Get path to nearest charger.
 		Location currentLoc = sim.getAgentLocation(sim.getSelfID());
@@ -59,9 +61,6 @@ public class RuleChargeRequired implements Rule
 		// Return false if the agent can't reach a charger.
 		if (toNearestCharger == null) System.out.println("\tCAN'T REACH CHARGER"); //TODO
 		if (toNearestCharger == null) return false;
-		
-		System.out.println("\tHAVE ENERGY: "+currentEnergy);//TODO
-		System.out.println("\tMIN ENERGY: "+ENERGY_MINIMUM);
 		
 		// Go to nearest charger if below minimum.
 		if (currentEnergy <= ENERGY_MINIMUM)
