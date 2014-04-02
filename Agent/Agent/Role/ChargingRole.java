@@ -23,6 +23,7 @@ import Ares.World.Objects.WorldObject;
 public class ChargingRole extends Role
 	{
 	public static final String CODE = "ChargingRole";
+	private static final int MIN_CHARGE = 100;
 
 	/**
 	 * @param sim object representing agent world knowledge
@@ -52,7 +53,6 @@ public class ChargingRole extends Role
 	@Override
 	public void noActionUsed()
 		{
-		// TODO Auto-generated method stub
 		}
 	
 	/**
@@ -82,36 +82,79 @@ public class ChargingRole extends Role
 	 */
 	public static int getRequiredEnergy(Simulation sim)
 		{
-		Location currentLoc = sim.getAgentLocation(sim.getSelfID());
+		Location chargingLoc = sim.getAgentLocation(sim.getSelfID());
 		int currentEnergy = sim.getSelf().getEnergyLevel();
+
+		//Create opt for all pathfinding tests.
+		PathOptions opt = new PathOptions(chargingLoc);
+		opt.shortest = false;
+		opt.maxCost = currentEnergy;
 		
-		//Calculate the average move cost of nearby non-kill cells.
-		int totalCost = 0, count = 0;
-		Set<Location> near = Pathfinder.getValidNeighbors(sim, currentLoc, sim.getAgentEnergy(sim.getSelfID()));
-		near.add(currentLoc);
-		for (Location loc : near)
-			if (sim.getMoveCost(loc) < currentEnergy) //Ignore kill cell.
-				{
-				count++;
-				totalCost += sim.getMoveCost(loc);
-				}
-		//Include remove cost of any near rubble.
-		for (Location loc : near)
+		//Check if on charging cell.
+		if (!sim.getChargers().contains(chargingLoc))
 			{
-			WorldObject top = sim.getTopLayer(loc);
-			if (top instanceof Rubble)
-				{
-				int removeEnergy = ((Rubble)top).getRemoveEnergy();
-				if (removeEnergy < currentEnergy) //Ignore kill rubble.
+			//Not on charging cell, find nearest and use that for location.
+			Path toCharging = Pathfinder.getNearestCharger(sim, opt);
+			chargingLoc = toCharging.getLast();
+			opt.start = chargingLoc;
+			}
+		
+		//Get path from charging location to nearest survivor.
+		Path toSurvivor = Pathfinder.getNearestSurvivor(sim, opt, 1);
+		
+		//If no path to survivor, use area around charger for costs.
+		if (toSurvivor == null)
+			{
+			//Calculate the average move cost of nearby non-kill cells.
+			int totalCost = 0, count = 0;
+			Set<Location> near = Pathfinder.getValidNeighbors(sim, chargingLoc, sim.getAgentEnergy(sim.getSelfID()));
+			near.add(chargingLoc);
+			for (Location loc : near)
+				if (sim.getMoveCost(loc) < currentEnergy) //Ignore kill cell.
 					{
 					count++;
-					totalCost += removeEnergy;
+					totalCost += sim.getMoveCost(loc);
+					}
+			//Include remove cost of any near rubble.
+			for (Location loc : near)
+				{
+				WorldObject top = sim.getTopLayer(loc);
+				if (top instanceof Rubble)
+					{
+					int removeEnergy = ((Rubble)top).getRemoveEnergy();
+					if (removeEnergy < currentEnergy) //Ignore kill rubble.
+						{
+						count++;
+						totalCost += removeEnergy;
+						}
 					}
 				}
+			int average = totalCost / count;
+			int multiplier = sim.getRowCount() > sim.getColCount() ? sim.getRowCount() : sim.getColCount();
+			return (multiplier * average * 2);
 			}
-		int average = totalCost / count;
-		int multiplier = sim.getRowCount() > sim.getColCount() ? sim.getRowCount() : sim.getColCount();
-		return (multiplier * average * 2);
+		
+		//Path to survivor exists. Use path for costs.
+		double pathCost = 0;
+		Location survivorLoc = null;
+		if (toSurvivor.getLength() == 0)
+			survivorLoc = chargingLoc;
+		else
+			{
+			pathCost = ((double)toSurvivor.getMoveCost()) * 2.5;
+			survivorLoc = toSurvivor.getLast();
+			}
+		
+		int rubbleCost = 0;
+		WorldObject top = sim.getTopLayer(survivorLoc);
+		if (top instanceof Rubble)
+			rubbleCost = ((Rubble)top).getRemoveEnergy() * 2;
+		else
+			rubbleCost = 200;
+		
+		int totalEnergy = ((int)pathCost) + rubbleCost;
+
+		return (totalEnergy < MIN_CHARGE ? MIN_CHARGE : totalEnergy);
 		}
 
   public String toString()
