@@ -45,7 +45,8 @@ public class RuleHelpTeam implements Rule
 		for (AgentID id : teamAgents)
 			{
 			PathOptions opt = new PathOptions(loc, sim.getAgentLocation(id));
-      opt.maxCost = sim.getAgentEnergy(id);
+			opt.shortest = false;
+			opt.maxCost = sim.getAgentEnergy(id);
 			Path path = Pathfinder.getPath(sim, opt);
 			
 			//If no path, agent isn't reachable.
@@ -53,7 +54,7 @@ public class RuleHelpTeam implements Rule
 				continue;
 			
 			//Save agent searching count and the next loc to them.
-			if ((sim.getAgentState(id) & (1 << State.TEAM_SEARCH.value())) > 0)
+			if ((sim.getAgentState(id) & State.TEAM_SEARCH.value()) > 0)
 				{
 				teamSearchInRange++;
 				target = sim.getAgentLocation(id);
@@ -71,7 +72,8 @@ public class RuleHelpTeam implements Rule
 		for (AgentID id : explorerAgents)
 			{
 			PathOptions opt = new PathOptions(loc, sim.getAgentLocation(id));
-      opt.maxCost = sim.getAgentEnergy(id);
+			opt.shortest = false;
+			opt.maxCost = sim.getAgentEnergy(id);
 			Path path = Pathfinder.getPath(sim, opt);
 			
 			if (path== null)
