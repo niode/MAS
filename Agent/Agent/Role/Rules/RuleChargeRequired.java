@@ -15,8 +15,6 @@ import Ares.Location;
 import Ares.Commands.AgentCommand;
 import Ares.Commands.AgentCommands.MOVE;
 import Ares.Commands.AgentCommands.SLEEP;
-import Ares.World.Objects.Rubble;
-import Ares.World.Objects.WorldObject;
 
 /**
  * Checks if the agent is in danger of having not enough energy to reach the nearest charging grid.
@@ -34,8 +32,7 @@ public class RuleChargeRequired implements Rule
 	 * Agents will always charge if they reach this amount.
 	 */
 	private static final int ENERGY_MINIMUM = 25;
-	private Location currentLoc = null;
-	private Path toNearestCharger = null;
+	Path toNearestCharger = null;
 
 	/*
 	 * (non-Javadoc)
@@ -46,13 +43,13 @@ public class RuleChargeRequired implements Rule
 	public boolean checkConditions(Simulation sim)
 		{
 		// Get current energy.
-		int currentEnergy = sim.getSelf().getEnergyLevel();
+		int currentEnergy = sim.getAgentEnergy(sim.getSelfID());
 
-		// Get energy required to move to nearest charger.
-		currentLoc = sim.getAgentLocation(sim.getSelfID());
+		// Get path to nearest charger.
+		Location currentLoc = sim.getAgentLocation(sim.getSelfID());
 		PathOptions opt = new PathOptions(currentLoc);
-		opt.cheapest = true;
-    opt.maxCost = sim.getAgentEnergy(sim.getSelfID());
+		opt.shortest = false;
+		opt.maxCost = sim.getAgentEnergy(sim.getSelfID());
 		toNearestCharger = Pathfinder.getNearestCharger(sim, opt);
 		
 		// Return false if the agent can't reach a charger.
@@ -62,31 +59,22 @@ public class RuleChargeRequired implements Rule
 		if (currentEnergy <= ENERGY_MINIMUM)
 			return true;
 		
-		//Calculate the average move cost of nearby non-kill cells.
+		// If not on a charger, use the charger location.
+		Location chargerLoc = currentLoc;
+		if (toNearestCharger.getLength() > 0)
+			chargerLoc = toNearestCharger.getLast();
+		
+		//Calculate the average move cost around the nearest charger.
 		int totalCost = 0, count = 0;
-		Set<Location> near = Pathfinder.getValidNeighbors(sim, currentLoc,
-      sim.getAgentEnergy(sim.getSelfID()));
-		near.add(currentLoc);
+		Set<Location> near = Pathfinder.getValidNeighbors(sim, chargerLoc,
+				sim.getAgentEnergy(sim.getSelfID()));
+		near.add(chargerLoc);
 		for (Location loc : near)
 			if (sim.getMoveCost(loc) < currentEnergy) //Ignore kill cell.
 				{
 				count++;
 				totalCost += sim.getMoveCost(loc);
 				}
-		//Include remove cost of any near rubble.
-		for (Location loc : near)
-			{
-			WorldObject top = sim.getTopLayer(loc);
-			if (top instanceof Rubble)
-				{
-				int removeEnergy = ((Rubble)top).getRemoveEnergy();
-				if (removeEnergy < currentEnergy) //Ignore kill rubble.
-					{
-					count++;
-					totalCost += removeEnergy;
-					}
-				}
-			}
 		int average = totalCost / count;
 		long pathCost = toNearestCharger.getMoveCost();
 		
@@ -110,6 +98,7 @@ public class RuleChargeRequired implements Rule
 			return new SLEEP();
 		
 		//Move towards the nearest charger even before switching roles.
+		Location currentLoc = sim.getAgentLocation(sim.getSelfID());
 		Location towardsCharger = toNearestCharger.getNext();
 		Direction dir = Pathfinder.getDirection(currentLoc, towardsCharger);
 		return new MOVE(dir);
