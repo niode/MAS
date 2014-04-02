@@ -3,10 +3,16 @@
  */
 package Agent.Role.ExplorerRules;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Set;
 import Agent.Communicator;
 import Agent.Simulation;
 import Agent.Core.BaseAgent;
+import Agent.Pathfinder.Path;
+import Agent.Pathfinder.PathOptions;
 import Agent.Pathfinder.Pathfinder;
 import Agent.Role.ChargingRole;
 import Agent.Role.Role;
@@ -76,7 +82,51 @@ public class RuleClearNearRubble implements Rule
 				}
 			}
 		
-		return false;
+		//No neighboring rubble to clear. Move to the nearest one the agent can clear itself.
+		//Start with all locations of rubble that takes 1 agent.
+		ArrayList<Location> soloRubble = new ArrayList<Location>();
+		for (int i = 0; i < sim.getRowCount(); i++)
+			for (int j = 0; j < sim.getColCount(); j++)
+				{
+				Location rubbleLoc = new Location(i, j);
+				int req = sim.getAgentsRequired(rubbleLoc);
+				if (req < 2 && sim.getTopLayer(rubbleLoc) instanceof Rubble)
+					soloRubble.add(rubbleLoc);
+				}
+		
+		//If no places left to dig, false.
+		if (soloRubble.isEmpty())
+			return false;
+		
+		//Get all paths in range.
+		PathOptions opt = new PathOptions(loc);
+		opt.shortest = false;
+		opt.maxCost = sim.getAgentEnergy(sim.getSelfID());
+		List<Path> rubblePaths = Pathfinder.getPaths(sim, opt, soloRubble);
+		ArrayList<Path> rubbleInRange = new ArrayList<Path>();
+		for (Path path : rubblePaths)
+			if (path != null)
+				rubbleInRange.add(path);//TODO the null check may not be necessary.
+		
+		if (rubbleInRange.isEmpty())
+			return false;
+		
+		Collections.sort(rubbleInRange, new Comparator<Path>(){
+		@Override
+		public int compare(Path path1, Path path2)
+				{
+				return (int)(path1.getLength() - path2.getLength());
+				}
+			});
+		
+		//Move to the nearest rubble pile.
+		Path closest = rubbleInRange.get(0);
+		if (closest.getLength() == 0)
+			noMove = true;
+		else
+			target = closest.getNext();
+		
+		return true;
 		}
 
 	/* (non-Javadoc)
