@@ -1,26 +1,13 @@
-/**
- * 
- */
 package Agent.Role;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Set;
 import Agent.*;
 import Agent.Core.BaseAgent;
 import Agent.Pathfinder.*;
-import Agent.Role.ExplorerRules.RuleClearNearRubble;
-import Agent.Role.ExplorerRules.RuleDigForSurv;
-import Agent.Role.ExplorerRules.RuleGoToUnknownPercent;
-import Agent.Role.ExplorerRules.RuleGoToUnvisited;
-import Agent.Role.ExplorerRules.RuleHelpTeam;
-import Agent.Role.ExplorerRules.RulePlaceDigBeacon;
-import Agent.Role.ExplorerRules.RuleSaveSurvivor;
-import Agent.Role.ExplorerRules.RuleSwitchToTeam;
+import Agent.Role.ExplorerRules.*;
 import Agent.Role.Rules.*;
 import Ares.*;
-import Ares.World.Objects.*;
-import Ares.Commands.AgentCommand;
 import Ares.Commands.AgentCommands.*;
 
 /**

@@ -40,9 +40,8 @@ public class RuleGoToUnknownPercent implements Rule
 		{
 		Location loc = sim.getAgentLocation(sim.getSelfID());
 		PathOptions opt = new PathOptions(loc);
-		//opt.withinRange = true;
-    opt.shortest = false;
-    opt.maxCost = sim.getAgentEnergy(sim.getSelfID());
+		opt.shortest = false;
+		opt.maxCost = sim.getAgentEnergy(sim.getSelfID());
 		
 		//Ensure there is a cell in range with an unknown percentage.
 		//These could be in visited or unvisited cells.
@@ -65,7 +64,6 @@ public class RuleGoToUnknownPercent implements Rule
 						continue;
 					
 					opt.end = new Location(i, j);
-					
 					Path path = Pathfinder.getPath(sim, opt);
 					
 					//If there is an unknown in range, rule check true!
@@ -91,7 +89,8 @@ public class RuleGoToUnknownPercent implements Rule
 		for (AgentID id : sim.getTeammates(Role.ID.EXPLORER))
 			{
 			opt.end = sim.getAgentLocation(id);
-      opt.maxCost = sim.getAgentEnergy(sim.getSelfID());
+			opt.maxCost = sim.getAgentEnergy(sim.getSelfID());
+			//if maxCost removes some agents, this may cause asymmetry TODO
 			Path path = Pathfinder.getPath(sim, opt);
 			//If path exists, explorer is in range.
 			if (path != null)
@@ -132,7 +131,7 @@ public class RuleGoToUnknownPercent implements Rule
 						continue;
 					
 					firstOpt.end = targetLoc;
-          firstOpt.maxCost = firstEnergy;
+					firstOpt.maxCost = firstEnergy;
 					Path pathForFirst = Pathfinder.getPath(sim, firstOpt);
 					
 					//Ignore empty or paths that would kill the agent.
@@ -174,7 +173,7 @@ public class RuleGoToUnknownPercent implements Rule
 				int expEnergy = sim.getAgentEnergy(expInRange.get(i));
 				PathOptions otherOpt = new PathOptions(expLoc);
 				otherOpt.shortest = false;
-        otherOpt.maxCost = expEnergy;
+				otherOpt.maxCost = expEnergy;
 				
 				/*
 				 * As first agent is in range of its path targets and
@@ -254,7 +253,7 @@ public class RuleGoToUnknownPercent implements Rule
 			}
 		
 		/*
-		 * If not target, then all potentials were taken by agents with
+		 * If no target, then all potentials were taken by agents with
 		 * highest priority. Just take its last path.
 		 */
 		if (target == null)

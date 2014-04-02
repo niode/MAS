@@ -5,6 +5,10 @@ import java.util.List;
 import Agent.Communicator;
 import Agent.Simulation;
 import Agent.Core.BaseAgent;
+import Agent.Pathfinder.Path;
+import Agent.Pathfinder.PathOptions;
+import Agent.Pathfinder.Pathfinder;
+import Agent.Role.ChargingRole;
 import Agent.Role.Role;
 import Agent.Role.Rules.Rule;
 import Ares.AgentID;
@@ -47,6 +51,12 @@ public class RuleDigForSurv implements Rule
 		if (topLayer instanceof Rubble && sim.getPercentage(currentLoc) > 0)
 			{
 			Rubble rubble = (Rubble) topLayer;
+			
+			//Ensure rubble would not kill agent.
+			if (!ChargingRole.canStillCharge(sim,
+					rubble.getRemoveEnergy(), currentLoc, sim.getSelfID()))
+				return false;
+			
 			//Get list of Explorer agents on this tile.
 			LinkedList<AgentID> explorersHere = new LinkedList<AgentID>();
 			for (AgentID id : agentsHere)

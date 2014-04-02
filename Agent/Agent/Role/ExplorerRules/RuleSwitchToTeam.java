@@ -1,9 +1,5 @@
-/**
- * 
- */
 package Agent.Role.ExplorerRules;
 
-import java.util.List;
 import java.util.Set;
 import Agent.Beacon;
 import Agent.Communicator;
@@ -77,8 +73,8 @@ public class RuleSwitchToTeam implements Rule
 				continue; //Don't know why but sometimes others didn't have a location.
 			
 			PathOptions opt = new PathOptions(loc, otherLoc);
-			opt.cheapest = true;
-      opt.maxCost = sim.getAgentEnergy(id);
+			opt.shortest = false;
+			opt.maxCost = sim.getAgentEnergy(id);
 			Path path = Pathfinder.getPath(sim, opt);
 			
 			if (path != null)
@@ -98,8 +94,8 @@ public class RuleSwitchToTeam implements Rule
 		//Change to team search state.
 		sim.addAgentState(sim.getSelfID(), State.TEAM_SEARCH);
 
-    // Test
-    System.out.printf("Agent %d: digLocation : %s\n", sim.getSelfID().getID(), digLocation);
+		// Test
+		//System.out.printf("Agent %d: digLocation : %s\n", sim.getSelfID().getID(), digLocation);
 		
 		//If already at dig beacon, stay put.
 		Location loc = sim.getAgentLocation(sim.getSelfID());

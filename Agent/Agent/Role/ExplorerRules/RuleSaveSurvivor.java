@@ -3,8 +3,8 @@ package Agent.Role.ExplorerRules;
 import java.util.List;
 import Agent.Communicator;
 import Agent.Simulation;
-import Agent.Pathfinder.*;
 import Agent.Core.BaseAgent;
+import Agent.Role.ChargingRole;
 import Agent.Role.Role;
 import Agent.Role.Rules.Rule;
 import Ares.AgentID;
@@ -34,12 +34,10 @@ public class RuleSaveSurvivor implements Rule
 		Location currentLoc = sim.getAgentLocation(sim.getSelfID());
 		Cell currentCell = sim.getCell(currentLoc);
 		WorldObject topLayer = currentCell.getTopLayer();
-
-    int maxCost = sim.getAgentEnergy(sim.getSelfID()) - sim.getEnergyRequired(currentLoc) - 1;
-    PathOptions opt = new PathOptions(currentLoc);
-    opt.maxCost = maxCost;
-    Path toCharger = Pathfinder.getNearestCharger(sim, opt);
-    if(toCharger == null) return false;
+		
+		if (!ChargingRole.canStillCharge(sim, 
+				sim.getEnergyRequired(currentLoc), currentLoc, sim.getSelfID()))
+			return false;
 		
 		//If there are team agents on this cell or a lower id explorer, let them handle it.
 		List<AgentID> agentsHere = sim.getAgentsAt(currentLoc);

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package Agent.Role.ExplorerRules;
 
 import java.util.Set;
@@ -54,7 +51,7 @@ public class RulePlaceDigBeacon implements Rule
 		{
 		//Place HELP_DIG beacon.
 		Location loc = sim.getAgentLocation(sim.getSelfID());
-        com.send(new Beacon(Beacon.HELP_DIG, sim.getSelfID(), loc, Long.MAX_VALUE, 2));
+      com.send(new Beacon(Beacon.HELP_DIG, sim.getSelfID(), loc, Long.MAX_VALUE, 2));
 		return null;
 		}
 
