@@ -46,7 +46,7 @@ public class RuleHelpTeam implements Rule
 			{
 			PathOptions opt = new PathOptions(loc, sim.getAgentLocation(id));
 			opt.shortest = false;
-			opt.maxCost = sim.getAgentEnergy(id);
+			opt.maxCost = sim.getAgentEnergy(sim.getSelfID());
 			Path path = Pathfinder.getPath(sim, opt);
 			
 			//If no path, agent isn't reachable.
@@ -58,6 +58,8 @@ public class RuleHelpTeam implements Rule
 				{
 				teamSearchInRange++;
 				target = sim.getAgentLocation(id);
+				if (teamSearchInRange > 1)
+					break;
 				}
 			}
 		
@@ -66,12 +68,12 @@ public class RuleHelpTeam implements Rule
 			return false;
 		
 		//There must be a single Team agent in range that needs help.
-		//Get explorers in range.
+		//Get explorers that can reach that Team agent.
 		List<AgentID> explorerAgents = sim.getTeammates(Role.ID.EXPLORER);
 		LinkedList<AgentID> explorerInRange = new LinkedList<AgentID>();
 		for (AgentID id : explorerAgents)
 			{
-			PathOptions opt = new PathOptions(loc, sim.getAgentLocation(id));
+			PathOptions opt = new PathOptions(sim.getAgentLocation(id), target);
 			opt.shortest = false;
 			opt.maxCost = sim.getAgentEnergy(id);
 			Path path = Pathfinder.getPath(sim, opt);
@@ -89,7 +91,8 @@ public class RuleHelpTeam implements Rule
 		for (AgentID id : explorerInRange)
 			{
 			PathOptions opt = new PathOptions(sim.getAgentLocation(id), target);
-			opt.cheapest = true;
+			opt.shortest = false;
+			opt.maxCost = sim.getAgentEnergy(id);
 			Path path = Pathfinder.getPath(sim, opt);
 			
 			if (path.getLength() < distance)
