@@ -12,7 +12,7 @@ public class BasicData extends Data
   {
     super();
     PathOptions rescue1 = new PathOptions(PathOptions.CHEAPEST);
-    rescue1.cutoff = 10;
+    //rescue1.cutoff = 10;
 
     add(new long[]{0, 0, 0  }, new SleepAction());
     add(new long[]{0, 1, 1 }, new MoveAction(MoveAction.Option.NEAREST_CHARGER, new PathOptions(PathOptions.CHEAPEST)));
