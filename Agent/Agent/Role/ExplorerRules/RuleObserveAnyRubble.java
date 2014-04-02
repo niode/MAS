@@ -16,12 +16,12 @@ import Ares.World.Objects.WorldObject;
 
 /**
  * Agent has run out of things to do. Start observing
- * rubble piles, starting with those that have a chance
- * of survivors.
+ * rubble piles, observe random 0% rubble piles in
+ * hopes that one has a hidden survivor.
  * 
  * @author Daniel
  */
-public class RuleObserveRubble implements Rule
+public class RuleObserveAnyRubble implements Rule
 	{
 
 	@Override
@@ -42,32 +42,13 @@ public class RuleObserveRubble implements Rule
 	@Override
 	public AgentCommand doAction(Simulation sim, Communicator com)
 		{
-		//Observe the cell with the highest % that is still <100.
-		int highestPercent = 0;
-		Location highestLocation = null; 
-		for (int i = 0; i <= sim.getRowCount(); i++)
-			for (int j = 0; j <= sim.getColCount(); j++)
-				{
-				int percent = sim.getPercentage(i, j);
-				if (percent < 100 && percent > highestPercent)
-					{
-					highestPercent = percent;
-					highestLocation = new Location(i, j);
-					}
-				}
-		
-		if (highestLocation != null)
-			{
-			return new OBSERVE(highestLocation);
-			}
-		
-		//Start observing any rubble piles.
+		//Start observing any rubble piles with 0% chance.
 		ArrayList<Location> allRubble = new ArrayList<Location>();
 		for (int i = 0; i < sim.getRowCount(); i++)
 			for (int j = 0; j < sim.getColCount(); j++)
 				{
 				WorldObject top = sim.getTopLayer(i, j);
-				if (top instanceof Rubble)
+				if (top instanceof Rubble && sim.getPercentage(i, j) == 0)
 					allRubble.add(new Location(i, j));
 				}
 		
