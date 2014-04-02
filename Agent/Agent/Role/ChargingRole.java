@@ -88,13 +88,18 @@ public class ChargingRole extends Role
 		//Create opt for all pathfinding tests.
 		PathOptions opt = new PathOptions(chargingLoc);
 		opt.shortest = false;
-		opt.maxCost = currentEnergy;
+		opt.maxCost = currentEnergy + 1;
 		
-		//Check if on charging cell.
-		if (!sim.getChargers().contains(chargingLoc))
+		//Get path to nearest charging cell.
+		Path toCharging = Pathfinder.getNearestCharger(sim, opt);
+		
+		//If null, can't reach charging cell.
+		if (toCharging == null)
+			return 0;
+		
+		//If path has length, charging location is elsewhere.
+		if (!(toCharging.getLength() == 0))
 			{
-			//Not on charging cell, find nearest and use that for location.
-			Path toCharging = Pathfinder.getNearestCharger(sim, opt);
 			chargingLoc = toCharging.getLast();
 			opt.start = chargingLoc;
 			}
