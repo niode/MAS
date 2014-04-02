@@ -29,8 +29,8 @@ public class RoleIntelligence extends Intelligence
 		super(sim, com, base);
 
 		// Set default role.
-		//currentRole = new ExplorerRole(sim, com, base);
-    currentRole = new TeamRole(sim, com, base);
+		currentRole = new ExplorerRole(sim, com, base);
+    //currentRole = new TeamRole(sim, com, base);
     //sim.addAgentState(sim.getSelfID(), State.TEAM_SEARCH);
 		}
 
