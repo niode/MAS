@@ -12,6 +12,7 @@ import Agent.Role.ChargingRules.RuleExploreIfAlone;
 import Agent.Role.ChargingRules.RuleStopCharging;
 import Agent.Role.ChargingRules.RuleWaitForAnother;
 import Agent.Role.Rules.Rule;
+import Ares.AgentID;
 import Ares.Location;
 import Ares.World.Objects.Rubble;
 import Ares.World.Objects.WorldObject;
@@ -52,6 +53,25 @@ public class ChargingRole extends Role
 	public void noActionUsed()
 		{
 		// TODO Auto-generated method stub
+		}
+	
+	/**
+	 * Ensures the agent would still be able to reach the nearest charging
+	 * cell from a given location, after losing an amount of energy.
+	 * 
+	 * @param energyCost how much less energy the agent should have
+	 * @param fromLoc the location to path to charger from
+	 * @return true if the agent can still charge, otherwise false.
+	 */
+	public static boolean canStillCharge(Simulation sim, int energyCost, Location fromLoc, AgentID id)
+		{
+		//Ensure cost would not prevent agent from charging.
+		PathOptions opt = new PathOptions(fromLoc);
+		opt.shortest = false;
+		opt.maxCost = sim.getAgentEnergy(id) - energyCost - 1;
+		Path toCharger = Pathfinder.getNearestCharger(sim, opt);
+		
+		return !(toCharger == null);
 		}
 	
 	/**
