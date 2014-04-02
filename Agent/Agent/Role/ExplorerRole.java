@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Random;
 import Agent.*;
 import Agent.Core.BaseAgent;
-import Agent.Pathfinder.*;
 import Agent.Role.ExplorerRules.*;
 import Agent.Role.Rules.*;
 import Ares.*;
@@ -89,9 +88,15 @@ public class ExplorerRole extends Role
 						allRubble.add(new Location(i, j));
 					}
 			
-			Random rand = new Random();
-			Location target = allRubble.get(rand.nextInt(allRubble.size()));
-			getCommunicator().send(new OBSERVE(target));
+			if (allRubble.size() <= 0)
+				getCommunicator().send(new SLEEP());
+			else
+				{
+				Random rand = new Random();
+				Location target = allRubble.get(rand.nextInt(allRubble.size()));
+				getCommunicator().send(new OBSERVE(target));
+				}
+			
 			}
 		}
 
