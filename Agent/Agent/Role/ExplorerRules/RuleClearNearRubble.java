@@ -8,6 +8,7 @@ import Agent.Communicator;
 import Agent.Simulation;
 import Agent.Core.BaseAgent;
 import Agent.Pathfinder.Pathfinder;
+import Agent.Role.ChargingRole;
 import Agent.Role.Role;
 import Agent.Role.Rules.Rule;
 import Ares.Location;
@@ -44,8 +45,12 @@ public class RuleClearNearRubble implements Rule
 			Rubble topRubble = (Rubble)topHere;
 			if (topRubble.getRemoveAgents() < 2)
 				{
-				noMove = true;
-				return true;
+				if (ChargingRole.canStillCharge(sim,
+						topRubble.getRemoveEnergy(), loc, sim.getSelfID()))
+					{
+					noMove = true;
+					return true;
+					}
 				}
 			}
 		
@@ -59,8 +64,12 @@ public class RuleClearNearRubble implements Rule
 				Rubble topRubble = (Rubble)top;
 				if (topRubble.getRemoveAgents() < 2)
 					{
-					target = possible;
-					return true;
+					if (ChargingRole.canStillCharge(sim,
+							topRubble.getRemoveEnergy(), loc, sim.getSelfID()))
+						{
+						target = possible;
+						return true;
+						}
 					}
 				}
 			}
