@@ -50,7 +50,10 @@ public class Pathfinder
 	{
 		Path result = null;
 		if (!isGInit)
+		{
 			G = genDijkstra(sim, opt);
+			isGInit = true
+		}
 		for(Location loc : sim.getChargers())
 		{
 		  opt.end = loc;
@@ -65,7 +68,10 @@ public class Pathfinder
 	{
 		Path result = null;
 		if (!isGInit)
+		{
 			G = genDijkstra(sim, opt);
+			isGInit = true
+		}
 		for(int i = 0; i < sim.getRowCount(); i++)
 		  for(int j = 0; j < sim.getColCount(); j++)
 		  {
@@ -85,7 +91,10 @@ public class Pathfinder
 	{
 		//System.out.printf("Getting path to (%s, %s)\n", opt.start, opt.end);
 		if (!isGInit)
+		{
 			G = genDijkstra(sim, opt);
+			isGInit = true
+		}
 		Path tmp = getPathFromTree(G, opt);
 		//if(tmp != null) System.out.println(tmp.toString());
 		//else System.out.println("NULL");
@@ -95,7 +104,10 @@ public class Pathfinder
 		public List<Path> getPaths(List<Location> list)
 	{
 		if (!isGInit)
+		{
 			G = genDijkstra(sim, opt);
+			isGInit = true
+		}
 		List<Path> result = new LinkedList<Path>();
 		for(Location l : list)
 		{
@@ -114,7 +126,10 @@ public class Pathfinder
 	{
 		int N = sim.getColCount();
 		if (!isWInit)
+		{
 			W = floydWarshall(sim, opt.cheapest, opt.unknownCellCost); 
+			isWInit = true;
+		}
 		return W[i*N+j][k*N+l].cost;
 	}
 	
