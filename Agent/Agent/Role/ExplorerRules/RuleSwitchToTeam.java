@@ -73,7 +73,7 @@ public class RuleSwitchToTeam implements Rule
 				continue; //Don't know why but sometimes others didn't have a location.
 			
 			PathOptions opt = new PathOptions(loc, otherLoc);
-			opt.shortest = false;
+			opt.shortest = true;
 			opt.maxCost = sim.getAgentEnergy(id);
 			Path path = Pathfinder.getPath(sim, opt);
 			
