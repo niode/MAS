@@ -43,8 +43,8 @@ public class ExplorerRole extends Role
 		rules.add(new RulePlaceDigBeacon()); // No ares action.
 		rules.add(new RuleSaveSurvivor()); // Save survivors over charging.
 		rules.add(new RuleChargeRequired());
-		rules.add(new RuleGoToNearSurv());
 		rules.add(new RuleDigForSurv());
+		rules.add(new RuleGoToNearSurv());
 		rules.add(new RuleHelpTeam());
 		rules.add(new RuleSwitchToTeam());
 		rules.add(new RuleGoToNearSoloDig());
