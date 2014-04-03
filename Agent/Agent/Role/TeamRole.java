@@ -57,9 +57,9 @@ public class TeamRole extends Role
   @Override
   public void noActionUsed()
   {
-    setNextRole(new ExplorerRole(getSimulation(), getCommunicator(), getBase()));
+    //setNextRole(new ExplorerRole(getSimulation(), getCommunicator(), getBase()));
     //getSimulation().removeAgentState(getSimulation().getSelfID(), State.TEAM_SEARCH);
-    getCommunicator().send(new MOVE(Direction.STAY_PUT));
+    //getCommunicator().send(new MOVE(Direction.STAY_PUT));
   }
 
   public String toString()

@@ -32,7 +32,16 @@ public class FindTeamRule implements Rule
   public AgentCommand doAction(Simulation sim, Communicator com)
   {
     sim.addAgentState(sim.getSelfID(), State.TEAM_SEARCH);
-    return null;
+
+    for(Location loc : sim.getUnvisited())
+    {
+      if(sim.getPercentage(loc) > 0)
+      {
+        return new OBSERVE(loc);
+      }
+    }
+
+    return new MOVE(Direction.STAY_PUT);
   }
 
   public Role getRoleChange(Simulation sim, Communicator com, BaseAgent base)
