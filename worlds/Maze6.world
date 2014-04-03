@@ -1,0 +1,1703 @@
+Settings
+{
+	World_Info{ Size (19,19) Seed (0) World_File_Levels( High 0, Mid 0, Low 0 )
+Agent_Energy ( 500 ) } 
+}
+
+
+
+Agent_Place {
+	(3,2,9,9)
+	(5,1,9,9)
+	(2,1,9,9)
+	(1,1,9,9)
+	(2,2,9,9)
+	(4,1,9,9)
+	(5,2,9,9)
+	(4,2,9,9)
+	(1,2,9,9)
+	(7,2,9,9)
+	(7,1,9,9)
+	(6,1,9,9)
+	(3,1,9,9)
+	(6,2,9,9)
+}
+
+Grid_Types
+{
+	Fire_Grids { (1,1) (1,11) (1,12) (1,13) 
+	 (1,14) (1,15) (1,16) (2,2) (2,4) 
+	 (2,8) (2,16) (2,17) (2,18) (3,3) 
+	 (3,8) (4,7) (4,8) (4,10) (4,11) 
+	 (4,18) (5,8) (5,10) (6,3) (6,8) 
+	 (6,10) (6,11) (6,17) (7,3) (7,7) 
+	 (7,11) (8,0) (8,1) (8,2) (8,3) 
+	 (8,4) (8,5) (8,6) (8,7) (8,8) 
+	 (8,10) (9,8) (9,18) (10,0) (10,1) 
+	 (10,2) (10,3) (10,4) (10,5) (10,6) 
+	 (10,7) (10,10) (10,11) (10,15) (11,3) 
+	 (11,7) (11,8) (11,10) (11,13) (11,14) 
+	 (11,15) (11,17) (12,1) (12,3) (12,5) 
+	 (12,10) (12,12) (12,17) (13,1) (13,2) 
+	 (13,5) (13,6) (13,7) (13,8) (13,9) 
+	 (13,10) (13,12) (13,13) (13,14) (13,15) 
+	 (13,16) (13,17) (14,1) (14,3) (14,5) 
+	 (14,7) (14,10) (14,14) (15,1) (15,3) 
+	 (15,5) (15,8) (15,10) (15,11) (15,12) 
+	 (15,13) (15,14) (15,16) (15,17) (15,18) 
+	 (16,1) (16,4) (16,6) (16,7) (16,8) 
+	 (16,10) (17,1) (17,2) (17,3) (17,4) 
+	 (17,7) (17,10) (17,11) (17,12) (17,13) 
+	 (17,14) (17,15) (17,16) (17,17) (18,2) 
+	 (18,7) }
+	Killer_Grids { (0,0) (0,4) (0,6) (0,8) 
+	 (1,3) (1,7) (1,9) (2,0) (2,6) 
+	 (2,9) (3,1) (3,5) (4,12) (4,13) 
+	 (4,14) (4,15) (4,16) (4,17) (5,1) 
+	 (5,3) (5,5) (5,6) (7,1) (7,5) 
+	 (9,11) (9,12) (9,13) (9,14) (9,15) 
+	 (9,16) (9,17) }
+	Charging_Grids { (0,10) (0,17) (5,7) (7,13) 
+	 (14,9) (16,18) }
+ }
+
+Stacks
+{
+	Grid ( (0,0), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (0,1), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    SVG(400,4);
+		    RB(80,1);
+		    RB(10,1);
+		}
+
+	Grid ( (0,2), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(20,2);
+		}
+
+	Grid ( (0,3), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(20,2);
+		}
+
+	Grid ( (0,4), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (0,5), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(40,2);
+		}
+
+	Grid ( (0,6), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (0,7), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(20,1);
+		}
+
+	Grid ( (0,8), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (0,9), Move_Cost 400) 
+		{
+		}
+
+	Grid ( (0,10), Move_Cost 300) 
+		{
+		}
+
+	Grid ( (0,11), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (0,12), Move_Cost 75) 
+		{
+		}
+
+	Grid ( (0,13), Move_Cost 150) 
+		{
+		}
+
+	Grid ( (0,14), Move_Cost 75) 
+		{
+		}
+
+	Grid ( (0,15), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (0,16), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (0,17), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (0,18), Move_Cost 1) 
+		{
+		    SV(100,0,0,0);
+		    RB(80,1);
+		}
+
+	Grid ( (1,0), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(20,1);
+		}
+
+	Grid ( (1,1), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (1,2), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(20,1);
+		}
+
+	Grid ( (1,3), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (1,4), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(10,2);
+		}
+
+	Grid ( (1,5), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(20,1);
+		}
+
+	Grid ( (1,6), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(45,1);
+		}
+
+	Grid ( (1,7), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (1,8), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(15,1);
+		}
+
+	Grid ( (1,9), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (1,10), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (1,11), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (1,12), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (1,13), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (1,14), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (1,15), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (1,16), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (1,17), Move_Cost 1) 
+		{
+		    SVG(100,2);
+		    RB(20,2);
+		}
+
+	Grid ( (1,18), Move_Cost 1) 
+		{
+		    SVG(200,20);
+		    RB(2000,1);
+		    RB(120,2);
+		}
+
+	Grid ( (2,0), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (2,1), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(1,2);
+		}
+
+	Grid ( (2,2), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (2,3), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(45,2);
+		}
+
+	Grid ( (2,4), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (2,5), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    SVG(400,4);
+		    RB(20,1);
+		    RB(1,2);
+		}
+
+	Grid ( (2,6), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (2,7), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(15,1);
+		}
+
+	Grid ( (2,8), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (2,9), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (2,10), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (2,11), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (2,12), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (2,13), Move_Cost 300) 
+		{
+		    SV(200,0,0,0);
+		}
+
+	Grid ( (2,14), Move_Cost 300) 
+		{
+		    SV(100,0,0,0);
+		}
+
+	Grid ( (2,15), Move_Cost 300) 
+		{
+		    SVG(200,2);
+		}
+
+	Grid ( (2,16), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (2,17), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (2,18), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (3,0), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(50,2);
+		}
+
+	Grid ( (3,1), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (3,2), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    SVG(400,4);
+		    RB(20,2);
+		    RB(30,1);
+		}
+
+	Grid ( (3,3), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (3,4), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(10,1);
+		    RB(15,1);
+		    RB(15,2);
+		    RB(10,1);
+		}
+
+	Grid ( (3,5), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (3,6), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(10,2);
+		}
+
+	Grid ( (3,7), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(10,1);
+		    RB(10,2);
+		}
+
+	Grid ( (3,8), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (3,9), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (3,10), Move_Cost 190) 
+		{
+		}
+
+	Grid ( (3,11), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (3,12), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (3,13), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (3,14), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (3,15), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (3,16), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (3,17), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (3,18), Move_Cost 1) 
+		{
+		    SVG(400,20);
+		    RB(1001,1);
+		}
+
+	Grid ( (4,0), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(20,1);
+		}
+
+	Grid ( (4,1), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(20,2);
+		}
+
+	Grid ( (4,2), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(20,1);
+		    RB(10,1);
+		    RB(10,1);
+		}
+
+	Grid ( (4,3), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(10,1);
+		}
+
+	Grid ( (4,4), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(15,1);
+		}
+
+	Grid ( (4,5), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(1,2);
+		}
+
+	Grid ( (4,6), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(20,2);
+		}
+
+	Grid ( (4,7), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (4,8), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (4,9), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (4,10), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (4,11), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (4,12), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (4,13), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (4,14), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (4,15), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (4,16), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (4,17), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (4,18), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (5,0), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(10,1);
+		}
+
+	Grid ( (5,1), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (5,2), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(10,1);
+		    RB(10,1);
+		}
+
+	Grid ( (5,3), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (5,4), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(20,1);
+		}
+
+	Grid ( (5,5), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (5,6), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (5,7), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (5,8), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (5,9), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (5,10), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (5,11), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (5,12), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (5,13), Move_Cost 160) 
+		{
+		    SV(200,0,0,0);
+		}
+
+	Grid ( (5,14), Move_Cost 1) 
+		{
+		    SV(200,0,0,0);
+		}
+
+	Grid ( (5,15), Move_Cost 1) 
+		{
+		    SV(200,0,0,0);
+		}
+
+	Grid ( (5,16), Move_Cost 1) 
+		{
+		    SV(200,0,0,0);
+		}
+
+	Grid ( (5,17), Move_Cost 1) 
+		{
+		    SV(200,0,0,0);
+		}
+
+	Grid ( (5,18), Move_Cost 1) 
+		{
+		    SV(200,0,0,0);
+		}
+
+	Grid ( (6,0), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(15,2);
+		}
+
+	Grid ( (6,1), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    SVG(400,4);
+		    RB(1,2);
+		}
+
+	Grid ( (6,2), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(20,1);
+		}
+
+	Grid ( (6,3), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (6,4), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(20,1);
+		}
+
+	Grid ( (6,5), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(10,2);
+		}
+
+	Grid ( (6,6), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(10,2);
+		}
+
+	Grid ( (6,7), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(20,2);
+		}
+
+	Grid ( (6,8), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (6,9), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (6,10), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (6,11), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (6,12), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (6,13), Move_Cost 100) 
+		{
+		}
+
+	Grid ( (6,14), Move_Cost 120) 
+		{
+		    SV(200,0,0,0);
+		}
+
+	Grid ( (6,15), Move_Cost 1) 
+		{
+		    SV(200,0,0,0);
+		}
+
+	Grid ( (6,16), Move_Cost 1) 
+		{
+		    SV(200,0,0,0);
+		}
+
+	Grid ( (6,17), Move_Cost 1) 
+		{
+		    SV(200,0,0,0);
+		}
+
+	Grid ( (6,18), Move_Cost 1) 
+		{
+		    SV(200,0,0,0);
+		}
+
+	Grid ( (7,0), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(45,1);
+		}
+
+	Grid ( (7,1), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (7,2), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(40,1);
+		    RB(30,2);
+		}
+
+	Grid ( (7,3), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (7,4), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(10,2);
+		}
+
+	Grid ( (7,5), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (7,6), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(20,1);
+		}
+
+	Grid ( (7,7), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (7,8), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (7,9), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (7,10), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (7,11), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (7,12), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (7,13), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (7,14), Move_Cost 100) 
+		{
+		}
+
+	Grid ( (7,15), Move_Cost 160) 
+		{
+		    SV(200,0,0,0);
+		}
+
+	Grid ( (7,16), Move_Cost 1) 
+		{
+		    SV(200,0,0,0);
+		}
+
+	Grid ( (7,17), Move_Cost 1) 
+		{
+		    SV(200,0,0,0);
+		}
+
+	Grid ( (7,18), Move_Cost 1) 
+		{
+		    SV(200,0,0,0);
+		}
+
+	Grid ( (8,0), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (8,1), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (8,2), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (8,3), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (8,4), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (8,5), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (8,6), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (8,7), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (8,8), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (8,9), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (8,10), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (8,11), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (8,12), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (8,13), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (8,14), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (8,15), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (8,16), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (8,17), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (8,18), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (9,0), Move_Cost 1) 
+		{
+		    SV(1,0,0,0);
+		}
+
+	Grid ( (9,1), Move_Cost 1) 
+		{
+		    SV(2,0,0,0);
+		}
+
+	Grid ( (9,2), Move_Cost 1) 
+		{
+		    SV(3,0,0,0);
+		}
+
+	Grid ( (9,3), Move_Cost 1) 
+		{
+		    SV(4,0,0,0);
+		}
+
+	Grid ( (9,4), Move_Cost 1) 
+		{
+		    SV(5,0,0,0);
+		}
+
+	Grid ( (9,5), Move_Cost 1) 
+		{
+		    SV(6,0,0,0);
+		}
+
+	Grid ( (9,6), Move_Cost 1) 
+		{
+		    SV(7,0,0,0);
+		}
+
+	Grid ( (9,7), Move_Cost 1) 
+		{
+		    SV(8,0,0,0);
+		}
+
+	Grid ( (9,8), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (9,9), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (9,10), Move_Cost 120) 
+		{
+		}
+
+	Grid ( (9,11), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (9,12), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (9,13), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (9,14), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (9,15), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (9,16), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (9,17), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (9,18), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (10,0), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (10,1), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (10,2), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (10,3), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (10,4), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (10,5), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (10,6), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (10,7), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (10,8), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (10,9), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (10,10), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (10,11), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (10,12), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (10,13), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (10,14), Move_Cost 1) 
+		{
+		    SVG(400,10);
+		    RB(120,2);
+		    RB(60,2);
+		    RB(40,1);
+		}
+
+	Grid ( (10,15), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (10,16), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (10,17), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (10,18), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (11,0), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (11,1), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (11,2), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (11,3), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (11,4), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (11,5), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (11,6), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (11,7), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (11,8), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (11,9), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (11,10), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (11,11), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (11,12), Move_Cost 45) 
+		{
+		}
+
+	Grid ( (11,13), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (11,14), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (11,15), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (11,16), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (11,17), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (11,18), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (12,0), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (12,1), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (12,2), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (12,3), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (12,4), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (12,5), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (12,6), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (12,7), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (12,8), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (12,9), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (12,10), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (12,11), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (12,12), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (12,13), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (12,14), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (12,15), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (12,16), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (12,17), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (12,18), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (13,0), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(20,1);
+		}
+
+	Grid ( (13,1), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (13,2), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (13,3), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (13,4), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (13,5), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (13,6), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (13,7), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (13,8), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (13,9), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (13,10), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (13,11), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (13,12), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (13,13), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (13,14), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (13,15), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (13,16), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (13,17), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (13,18), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (14,0), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(20,1);
+		}
+
+	Grid ( (14,1), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (14,2), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (14,3), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (14,4), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (14,5), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (14,6), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (14,7), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (14,8), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (14,9), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (14,10), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (14,11), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (14,12), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (14,13), Move_Cost 15) 
+		{
+		    SVG(400,40);
+		    RB(120,2);
+		    RB(120,2);
+		    RB(80,2);
+		    RB(80,2);
+		    RB(60,2);
+		    RB(60,2);
+		    RB(60,2);
+		    RB(40,2);
+		    RB(40,2);
+		}
+
+	Grid ( (14,14), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (14,15), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (14,16), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (14,17), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (14,18), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (15,0), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(20,1);
+		}
+
+	Grid ( (15,1), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (15,2), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (15,3), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (15,4), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (15,5), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (15,6), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (15,7), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (15,8), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (15,9), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (15,10), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (15,11), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (15,12), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (15,13), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (15,14), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (15,15), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (15,16), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (15,17), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (15,18), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (16,0), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(20,1);
+		}
+
+	Grid ( (16,1), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (16,2), Move_Cost 1) 
+		{
+		    SVG(400,8);
+		    RB(45,2);
+		    RB(45,2);
+		    RB(45,1);
+		    RB(45,1);
+		}
+
+	Grid ( (16,3), Move_Cost 1) 
+		{
+		    SV(1,0,0,0);
+		    SVG(1,3);
+		    RB(120,1);
+		}
+
+	Grid ( (16,4), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (16,5), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (16,6), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (16,7), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (16,8), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (16,9), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (16,10), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (16,11), Move_Cost 1) 
+		{
+		    SVG(400,10);
+		    RB(120,2);
+		    RB(90,2);
+		    RB(1,1);
+		    SV(400,0,0,0);
+		    RB(90,1);
+		}
+
+	Grid ( (16,12), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (16,13), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (16,14), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (16,15), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (16,16), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (16,17), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (16,18), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (17,0), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (17,1), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (17,2), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (17,3), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (17,4), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (17,5), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (17,6), Move_Cost 1) 
+		{
+		    SVG(400,4);
+		    RB(40,1);
+		}
+
+	Grid ( (17,7), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (17,8), Move_Cost 1) 
+		{
+		    SV(400,0,0,0);
+		    RB(40,2);
+		}
+
+	Grid ( (17,9), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (17,10), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (17,11), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (17,12), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (17,13), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (17,14), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (17,15), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (17,16), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (17,17), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (17,18), Move_Cost 120) 
+		{
+		}
+
+	Grid ( (18,0), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (18,1), Move_Cost 1) 
+		{
+		    SVG(400,20);
+		    RB(120,2);
+		    RB(80,2);
+		    RB(20,2);
+		}
+
+	Grid ( (18,2), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (18,3), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (18,4), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (18,5), Move_Cost 1) 
+		{
+		    SVG(400,4);
+		    RB(40,1);
+		}
+
+	Grid ( (18,6), Move_Cost 1) 
+		{
+		    SVG(400,4);
+		    RB(40,1);
+		}
+
+	Grid ( (18,7), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (18,8), Move_Cost 1) 
+		{
+		    SVG(400,4);
+		    RB(20,2);
+		    RB(20,2);
+		}
+
+	Grid ( (18,9), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (18,10), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (18,11), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (18,12), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (18,13), Move_Cost 1) 
+		{
+		}
+
+	Grid ( (18,14), Move_Cost 1) 
+		{
+		    RB(20,2);
+		    RB(20,1);
+		    RB(10,1);
+		}
+
+	Grid ( (18,15), Move_Cost 1) 
+		{
+		    RB(20,2);
+		}
+
+	Grid ( (18,16), Move_Cost 1) 
+		{
+		    RB(40,2);
+		    RB(40,2);
+		}
+
+	Grid ( (18,17), Move_Cost 1) 
+		{
+		    RB(80,2);
+		    RB(80,2);
+		}
+
+	Grid ( (18,18), Move_Cost 1) 
+		{
+		    RB(80,2);
+		    RB(80,2);
+		}
+
+}
