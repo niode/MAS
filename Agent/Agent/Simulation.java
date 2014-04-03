@@ -257,6 +257,16 @@ public class Simulation
 
     return result;
   }
+  
+  public Location getFirstUnvisited(long time)
+  {
+    for(int i = 0; i < getRowCount(); i++)
+      for(int j = 0; j < getColCount(); j++)
+        if(!visited[i][j] || turnVisited[i][j] < round - time)
+          return new Location(i, j);
+    
+    return new Location(0,0);
+  }
 
   // Get all unvisited locations.
   public Set<Location> getUnvisited()
