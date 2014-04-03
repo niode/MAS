@@ -50,7 +50,7 @@ public class RuleChargeOnLowEnergy implements Rule
 			return new SLEEP();
 		
 		PathOptions opt = new PathOptions(loc);
-		opt.cheapest = true;
+		opt.shortest = false;
 		opt.maxCost = sim.getAgentEnergy(sim.getSelfID());
 		Path toCharge = Pathfinder.getNearestCharger(sim, opt);
 		
