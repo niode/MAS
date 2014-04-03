@@ -67,7 +67,7 @@ public class ChargingRole extends Role
 		{
 		//Ensure cost would not prevent agent from charging.
 		PathOptions opt = new PathOptions(fromLoc);
-		opt.shortest = false;
+		opt.shortest = true;
 		opt.maxCost = sim.getAgentEnergy(id) - energyCost - 1;
 		Path toCharger = Pathfinder.getNearestCharger(sim, opt);
 		
