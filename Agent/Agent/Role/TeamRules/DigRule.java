@@ -46,15 +46,24 @@ public class DigRule implements Rule
     // Check if there are other Team agents on this cell.
     int agentCount = 0;
     int minID = sim.getSelfID().getID();
+    int minEnergy = sim.getAgentEnergy(sim.getSelfID());
     List<AgentID> agents = sim.getAgentsAt(loc);
     for(AgentID id : agents)
       if(sim.getAgentRole(id) == Role.ID.TEAM)
       {
         agentCount++;
-        if(id.getID() < minID) minID = id.getID();
+        if(sim.getAgentEnergy(id) < minEnergy)
+        {
+          minEnergy = sim.getAgentEnergy(id);
+          minID = id.getID();
+        } else if(sim.getAgentEnergy(id) == minEnergy && minID > id.getID())
+        {
+          minID = id.getID();
+        }
       }
     if(agentCount > 1 && agentCount <= 2 && topLayer instanceof Rubble) return true;
-    else if(minID == sim.getSelfID().getID())
+    else if(minEnergy == sim.getAgentEnergy(sim.getSelfID())
+    && sim.getSelfID().getID() == minID)
     {
       if(sim.getTopLayer(loc) instanceof Survivor) return true;
       if(sim.getTopLayer(loc) instanceof SurvivorGroup) return true;

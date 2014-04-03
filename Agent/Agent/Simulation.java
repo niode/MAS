@@ -87,7 +87,8 @@ public class Simulation
 
   public boolean isAlive(AgentID id)
   {
-    return agents.get(getIndex(id)).getEnergyLevel() > 0;
+    return agents.get(getIndex(id)).getEnergyLevel() > 0
+    && (getAgentState(id) & State.ALIVE.value()) > 0;
   }
 
   public Location getAgentLocation(AgentID id)

@@ -87,9 +87,18 @@ public class Brain{
     
     public void think() {
         base.log(LogLevels.Always, "Thinking");
+        sim.addAgentState(sim.getSelfID(), State.ALIVE);
         //sim.printWorld();
         ai.think();
         com.sendState(sim.getSelfID(), sim.getAgentState(sim.getSelfID()));
+
+        // Agents must refresh their state each round. This way, dead agents
+        // will have state 0.
+        for(AgentID id : sim.getTeammates())
+        {
+          if(!id.equals(sim.getSelfID()))
+            sim.setAgentState(id, 0);
+        }
 
         System.out.println("Sending state " + Integer.toBinaryString(sim.getAgentState(sim.getSelfID())));
 

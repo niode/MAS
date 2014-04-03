@@ -196,7 +196,7 @@ public class Communicator
     long[] numbers = mapLong(string.split(DELIM));
     AgentID id = new AgentID((int)numbers[0], (int)numbers[1]);
 
-    // Do not update the agent's own energy.
+    // Do not update the agent's own state.
     if(id.equals(sim.getSelfID())) return;
 
     int state = (int)numbers[2];

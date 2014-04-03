@@ -42,6 +42,7 @@ public class FindTeamRule implements Rule
       return null;
     } else
     {
+      rounds = 0;
       sim.removeAgentState(sim.getSelfID(), State.TEAM_SEARCH);
       return new ExplorerRole(sim, com, base);
     }
