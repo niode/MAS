@@ -42,7 +42,7 @@ public class ChargingRole extends Role
 	@Override
 	public void setupRules(ArrayList<Rule> rules)
 		{
-		rules.add(new RulePlaceDigBeacon());
+		//TODO rules.add(new RulePlaceDigBeacon());
 		rules.add(new RuleChargeOnLowEnergy());
 		rules.add(new RuleExploreIfAlone());
 		rules.add(new RuleWaitForAnother());
