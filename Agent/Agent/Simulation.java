@@ -11,7 +11,7 @@ import java.util.*;
 
 public class Simulation
 {
-  public static final int NUM_AGENTS = 8;
+  public static final int NUM_AGENTS = 7;
   public static final int NUM_TEAMS = 2;
   public static final int MAX_ENERGY = 1000;
   public static final int MAX_LENGTH = 50*50;
@@ -36,9 +36,11 @@ public class Simulation
 
   public Simulation()
   {
+    /*
     for(int i = 1; i <= NUM_TEAMS; i++)
       for(int j = 1; j <= NUM_AGENTS; j++)
         locations.put(new AgentID(j, i), new ArrayList<TimeLocation>());
+    */
 
     /*
     agents = new ArrayList<Agent>(NUM_AGENTS * NUM_TEAMS);
@@ -109,8 +111,12 @@ public class Simulation
   public Location getAgentLocation(AgentID id, long round)
   {
     // Binary search for the location.
-    List<TimeLocation> list = locations.get(id);
-
+    ArrayList<TimeLocation> list = locations.get(id);
+    if(list == null)
+    {
+      list = new ArrayList<TimeLocation>();
+      locations.put(id, list);
+    }
 
     if(list.size() == 0) return null;
 
@@ -601,7 +607,12 @@ public class Simulation
 
   public void update(AgentID id, Location loc, long round)
   {
-    List<TimeLocation> list = locations.get(id);
+    ArrayList<TimeLocation> list = locations.get(id);
+    if(list == null)
+    {
+      list = new ArrayList<TimeLocation>();
+      locations.put(id, list);
+    }
 
     // Binary search the list.
     int start = 0; 
@@ -646,8 +657,11 @@ public class Simulation
         String agntStr = String.format("%2d", getAgentsAt(loc).size()).substring(0, 2);
         String costStr = String.format("%3d", getMoveCost(loc)).substring(0, 3);
         String percentStr = String.format("%3d", getPercentage(loc)).substring(0, 3) + "%";
+        /*
         System.out.printf("(%s, %s, %s, %s, %d, %d) ",
           selfStr, agntStr, costStr, percentStr, getVisited(i, j) ? 1 : 0, isKiller(i, j) ? 1 : 0);
+        */
+        System.out.printf("(%s, %s) ", selfStr, percentStr);
       }
       System.out.println();
     }
