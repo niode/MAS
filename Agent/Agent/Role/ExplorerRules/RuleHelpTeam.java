@@ -1,9 +1,5 @@
-/**
- * 
- */
 package Agent.Role.ExplorerRules;
 
-import java.util.LinkedList;
 import java.util.List;
 import Agent.Communicator;
 import Agent.Simulation;
@@ -44,6 +40,10 @@ public class RuleHelpTeam implements Rule
 		List<AgentID> teamAgents = sim.getTeammates(Role.ID.TEAM);
 		for (AgentID id : teamAgents)
 		{
+			//Ensure agent does not include itself.
+			if (id.equals(sim.getSelfID()))
+				break;
+			
 			//Save agent searching count and the next loc to them.
 			if ((sim.getAgentState(id) & State.TEAM_SEARCH.value()) > 0)
 			{
@@ -55,7 +55,8 @@ public class RuleHelpTeam implements Rule
 				//If no path, agent isn't reachable.
 				if (path == null)
 					continue;
-			
+				
+				//Add to counter.
 				teamSearchInRange++;
 				target = sim.getAgentLocation(id);
 				if (teamSearchInRange > 1)
