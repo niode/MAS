@@ -59,8 +59,11 @@ public class RuleChargeRequired implements Rule
 		toNearestCharger = Pathfinder.getNearestCharger(sim, opt);
 		
 		// Return false if the agent can't reach a charger.
-		if (toNearestCharger == null) System.out.println("\tCAN'T REACH CHARGER"); //TODO
-		if (toNearestCharger == null) return false;
+		if (toNearestCharger == null || toNearestCharger.getMoveCost > currentEnergy)
+		{
+			System.out.println("\tCAN'T REACH CHARGER"); //TODO
+		  return false;
+		}
 		
 		// Go to nearest charger if below minimum.
 		if (currentEnergy <= ENERGY_MINIMUM)
