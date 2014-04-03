@@ -90,6 +90,7 @@ public class Brain{
         sim.addAgentState(sim.getSelfID(), State.ALIVE);
         //sim.printWorld();
         ai.think();
+        com.sendInsult();
         com.sendState(sim.getSelfID(), sim.getAgentState(sim.getSelfID()));
 
         // Agents must refresh their state each round. This way, dead agents
@@ -99,8 +100,6 @@ public class Brain{
           if(!id.equals(sim.getSelfID()))
             sim.setAgentState(id, 0);
         }
-
-        System.out.println("Sending state " + Integer.toBinaryString(sim.getAgentState(sim.getSelfID())));
 
         com.send(new END_TURN());
         sim.advance();

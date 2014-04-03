@@ -52,7 +52,7 @@ public class Pathfinder
 		if (!isGInit)
 		{
 			G = genDijkstra(sim, opt);
-			isGInit = true
+			isGInit = true;
 		}
 		for(Location loc : sim.getChargers())
 		{
@@ -70,7 +70,7 @@ public class Pathfinder
 		if (!isGInit)
 		{
 			G = genDijkstra(sim, opt);
-			isGInit = true
+			isGInit = true;
 		}
 		for(int i = 0; i < sim.getRowCount(); i++)
 		  for(int j = 0; j < sim.getColCount(); j++)
@@ -93,7 +93,7 @@ public class Pathfinder
 		if (!isGInit)
 		{
 			G = genDijkstra(sim, opt);
-			isGInit = true
+			isGInit = true;
 		}
 		Path tmp = getPathFromTree(G, opt);
 		//if(tmp != null) System.out.println(tmp.toString());
@@ -106,7 +106,7 @@ public class Pathfinder
 		if (!isGInit)
 		{
 			G = genDijkstra(sim, opt);
-			isGInit = true
+			isGInit = true;
 		}
 		List<Path> result = new LinkedList<Path>();
 		for(Location l : list)

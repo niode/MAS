@@ -25,10 +25,17 @@ sleep 3
 
 echo "SCRIPT: Starting up the agents"
 
-for ((  i = 0 ;  i < $count;  i++  ))
+#for ((  i = 0 ;  i < ($count>7?7:$count);  i++  ))
+for ((  i = 0 ;  i < 7;  i++  ))
 do
 echo "java -cp $cp $main `hostname` Test&"
 java -cp $cp $main `hostname` Test&
+done
+
+for ((  i = 0 ;  i < 7;  i++  ))
+do
+echo "java -cp $cp $main `hostname` Test&"
+java -cp $cp $main `hostname` Evil&
 done
 
 sleep 1

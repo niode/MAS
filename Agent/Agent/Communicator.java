@@ -45,7 +45,7 @@ public class Communicator
       return 5;
     } else if(cmd instanceof SAVE_SURV)
     {
-
+      return 1;
     } else if(cmd instanceof TEAM_DIG)
     {
       Location loc = sim.getAgentLocation(sim.getSelfID());
@@ -57,7 +57,6 @@ public class Communicator
     {
       return 0;
     }
-    return 0;
   }
 
   public Communicator(BaseAgent base, Simulation sim)
@@ -68,6 +67,7 @@ public class Communicator
 
   public void receive(FWD_MESSAGE msg)
   {
+    // Ignore messages from other groups.
     if(msg.getFromAgentID().getGID() != sim.getSelfID().getGID())
       return;
     String[] split = msg.getMessage().split("::");
@@ -90,6 +90,12 @@ public class Communicator
     {
       parseRole(split[1]);
     }
+  }
+
+  public void sendInsult()
+  {
+    AgentIDList ids = new AgentIDList(sim.getEnemies());
+    send(ids, PREFIX_SURROUND + PREFIX_DELIM + "Go and boil your bottoms, you sons of a silly person! I blow my nose at you!");
   }
 
   public void send(AgentCommand command)
@@ -166,6 +172,11 @@ public class Communicator
   public void send(String str)
   {
     AgentIDList idList = new AgentIDList();
+    base.send(new SEND_MESSAGE(idList, str));
+  }
+
+  public void send(AgentIDList idList, String str)
+  {
     base.send(new SEND_MESSAGE(idList, str));
   }
 

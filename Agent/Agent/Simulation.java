@@ -6,6 +6,7 @@ import Ares.World.Info.*;
 import Ares.World.Objects.*;
 import Agent.*;
 import Agent.Role.*;
+import Agent.Core.*;
 import java.util.*;
 
 public class Simulation
@@ -162,6 +163,17 @@ public class Simulation
     }
   }
 
+  public List<AgentID> getEnemies()
+  {
+    List<AgentID> result = new LinkedList<AgentID>();
+    for(Agent agnt : agents)
+    {
+      if(agnt.getAgentID().getGID() != self.getGID())
+        result.add(agnt.getAgentID());
+    }
+    return result;
+  }
+
   public List<AgentID> getTeammates()
   {
     List<AgentID> result = new LinkedList<AgentID>();
@@ -281,7 +293,7 @@ public class Simulation
 
   private int getIndex(AgentID id)
   {
-    return (id.getGID() * id.getID()) - 1;
+    return ((id.getGID() - 1) * NUM_AGENTS + id.getID() - 1);
   }
 
 /* ----------------------------------------------------------------------------
