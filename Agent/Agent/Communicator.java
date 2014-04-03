@@ -95,7 +95,18 @@ public class Communicator
   public void sendInsult()
   {
     AgentIDList ids = new AgentIDList(sim.getEnemies());
-    send(ids, PREFIX_SURROUND + PREFIX_DELIM + "Go and boil your bottoms, you sons of a silly person! I blow my nose at you!");
+
+    String[] insults = {
+      "Go and boil your bottoms, you sons of a silly person! I blow my nose at you!",
+      "I don't want to talk to you no more, you empty headed animal food trough wiper!",
+      "I fart in your general direction. Your mother was a hamster and your father smelt of elderberries.",
+      "'Tis but a scratch. Come on ya pansy.",
+      "Go away or I shall taunt you a second time.",
+      "Help! Help! I'm being repressed!",
+      "Come back and get what's coming to you! I'll bite your legs off!"
+    };
+    int i = (sim.getRound() + sim.getSelfID().getID()) % 7;
+    send(ids, insults[i]);
   }
 
   public void send(AgentCommand command)
