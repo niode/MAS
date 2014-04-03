@@ -31,6 +31,30 @@ public class Pathfinder
     else return Direction.STAY_PUT;
   }
   
+  /*opt must be set as follow :
+  - shortest + maxLength if want to get a matrix that says if accessible within maxLength
+  - cheapest + maxCost if want to get a matrix that says if accessible within maxCost
+  + need to have a default cost for unvisited cells
+   */
+  public static boolean[][][][] getWithinRange(Simulation sim, PathOptions opt)
+  {
+  	int M = sim.getRowCount();
+  	int N = sim.getColCount();
+  	boolean[][][][] B = new boolean[M][N][M][N];
+  	Node[][] W = floydWarshall(sim, opt.cheapest, opt.unknownCellCost);
+  	int max = (opt.cheapest)? opt.maxCost : opt.maxLength;
+  	
+  	for(int i = 0; i < M; i++)
+  		for(int j = 0; j < N; j++)
+  			for(int k = 0; k < M; k++)
+  				for(int l = 0; l < N; l++)
+						if (W[i*N+j][k*N+l].delta < max)
+							B[i][j][k][l] = true;
+  				
+  	return B;
+  }
+  
+  
   public static Set<Location> getValidNeighbors(Simulation sim, Location location, int cost)
   {
   	int locRow = location.getRow();
@@ -389,7 +413,8 @@ private static Node2[][] genDijkstra(Simulation sim, PathOptions opt)
 		if (!(endNode.list.list.isEmpty()))
 		{
 			Path2 p = endNode.list.list.get(0);
-			return new Path(new LinkedList<Location>(p.path), p.cost);
+			int cost = (opt.shortest)? p.cost : p.distance;
+			return new Path(new LinkedList<Location>(p.path), cost);
 		}
 		else
 			return null;//new Path(new LinkedList<Location>(), PathOptions.MAX);
@@ -398,7 +423,7 @@ private static Node2[][] genDijkstra(Simulation sim, PathOptions opt)
   public static Path getPath(Simulation sim, PathOptions opt)
   {
     //System.out.printf("Getting path to (%s, %s)\n", opt.start, opt.end);
-
+    
     Path tmp = getPathFromTree(genDijkstra(sim, opt), opt);
     //if(tmp != null) System.out.println(tmp.toString());
     //else System.out.println("NULL");
@@ -488,7 +513,7 @@ private static Node2[][] genDijkstra(Simulation sim, PathOptions opt)
 			for(int i = 0; i < N*M; i++){
 			for(int j = 0; j < N*M; j++)
 			{
-				if(W[i][k].delta != PathOptions.MAX && W[k][j].delta != PathOptions.MAX && 
+				if(W[i][k].delta != PathOptions.MAX/2 && W[k][j].delta != PathOptions.MAX/2 && 
 				W[i][j].delta > W[i][k].delta + W[k][j].delta)
 				{
 					W[i][j].predecessor = W[i][k];
@@ -519,8 +544,8 @@ private static Node2[][] genDijkstra(Simulation sim, PathOptions opt)
 		for(int i = 0; i < M; i++){
 		for(int j = 0; j < N; j++)
 		{
-      int cost1 = opt.shortest ? C[s][i * N + j].cost : C[s][i * N + j].distance;
-      int cost2 = opt.shortest ? C[i * N + j][t].cost : C[i * N + j][t].distance;
+      int cost1 = C[s][i * N + j].delta;
+      int cost2 = C[i * N + j][t].delta;
       if(cost1 < max && cost2 < max && cost1 + cost2 > 0 && cost1 + cost2 < max)
 			{
 				for(Direction d : Direction.All())
@@ -533,8 +558,8 @@ private static Node2[][] genDijkstra(Simulation sim, PathOptions opt)
 		    		if (sim.getVisited(k,l))
 		    			c = sim.getMoveCost(k,l);
             int c1 = opt.shortest ? c : 1;
-            cost1 = opt.shortest ? C[k * N + l][t].cost : C[k * N + l][t].distance;
-            cost2 = opt.shortest ? C[s][i * N + j].cost : C[s][i * N + j].distance;
+            cost1 = C[k * N + l][t].delta;
+            cost2 = C[s][i * N + j].delta;
             if (c1 < max && cost1 < max && cost2 + cost1 + c < max && cost1 + cost2 > 0)
 		    			W[i*N+j][d.getIndex()] = c;
 		    	}
