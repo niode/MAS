@@ -78,13 +78,13 @@ public class RuleHelpTeam implements Rule
 			{
 			PathOptions opt = new PathOptions(sim.getAgentLocation(id), target);
 			opt.shortest = false;
-			maxCost = sim.getAgentEnergy(id);
+			int maxCost = sim.getAgentEnergy(id);
 			Path path = Pathfinder.getPath(sim, opt);
 			
 			if (path== null)
 				continue;
 			
-			if (path.getCost() < maxCost && path.getLength() < distance)
+			if (path.getMoveCost() < maxCost && path.getLength() < distance)
 				{
 				closest = id;
 				distance = path.getLength();
