@@ -11,6 +11,7 @@ import Agent.Role.ChargingRules.RuleChargeOnLowEnergy;
 import Agent.Role.ChargingRules.RuleExploreIfAlone;
 import Agent.Role.ChargingRules.RuleStopCharging;
 import Agent.Role.ChargingRules.RuleWaitForAnother;
+import Agent.Role.ExplorerRules.RulePlaceDigBeacon;
 import Agent.Role.Rules.Rule;
 import Ares.AgentID;
 import Ares.Location;
