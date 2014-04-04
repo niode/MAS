@@ -522,6 +522,7 @@ public class Simulation
     if(totalSignals > 0)
       cell.setPercentChance(100);
     else
+      //cell.setPercentChance(cell.getPercentChance()/5);
       cell.setPercentChance(0);
   }
 
