@@ -12,7 +12,6 @@ import Agent.Pathfinder.Pathfinder;
 import Agent.Role.Role;
 import Agent.Role.Rules.Rule;
 import Ares.AgentID;
-import Ares.Direction;
 import Ares.Location;
 import Ares.Commands.AgentCommand;
 import Ares.Commands.AgentCommands.MOVE;
@@ -40,9 +39,10 @@ public class RuleGoToUnknownPercent implements Rule
 	public boolean checkConditions(Simulation sim)
 		{
 		Location loc = sim.getAgentLocation(sim.getSelfID());
+		int selfEnergy = sim.getAgentEnergy(sim.getSelfID());
 		PathOptions opt = new PathOptions(loc);
 		opt.shortest = false;
-		int selfEnergy = sim.getAgentEnergy(sim.getSelfID());
+		Pathfinder pf = new Pathfinder(sim, opt);
 		
 		//Ensure there is a cell in range with an unknown percentage.
 		//These could be in visited or unvisited cells.
@@ -64,8 +64,7 @@ public class RuleGoToUnknownPercent implements Rule
 					if (agentThere)
 						continue;
 					
-					opt.end = new Location(i, j);
-					Path path = Pathfinder.getPath(sim, opt);
+					Path path = pf.getPath(new Location(i,j));
 					
 					//If there is an unknown in range, rule check true!
 					if (path != null && path.getMoveCost() < selfEnergy)
@@ -84,7 +83,7 @@ public class RuleGoToUnknownPercent implements Rule
 		{
 		Location selfLoc = sim.getAgentLocation(sim.getSelfID());
 		
-		//Find all locations that have a unknown survivor chance.
+		//Find all locations that have an unknown survivor chance.
 		ArrayList<Location> unknownLocs = new ArrayList<Location>();
 		for (int i = 0; i < sim.getRowCount(); i++)
 			for (int j = 0; j < sim.getColCount(); j++)
@@ -111,6 +110,8 @@ public class RuleGoToUnknownPercent implements Rule
 					}
 				}
 		
+		System.out.println(unknownLocs);
+		
 		//Find all explorer agents in range.
 		ArrayList<AgentID> expInRange = new ArrayList<AgentID>();
 		PathOptions opt = new PathOptions(selfLoc); 
@@ -122,7 +123,9 @@ public class RuleGoToUnknownPercent implements Rule
 			Path path = Pathfinder.getPath(sim, opt);
 			//If path exists, explorer is in range.
 			if (path != null && path.getMoveCost() < agentEnergy)
+				{
 				expInRange.add(id);
+				}
 			}
 		
 		//Ensure explorers are in sorted order. I think they are, but just in case...
@@ -188,9 +191,6 @@ public class RuleGoToUnknownPercent implements Rule
 			//Divvy up the targets starting with lowestID.
 			ArrayList<Location> takenLocs = new ArrayList<Location>();
 			
-			//First agent always gets its first choice.
-			takenLocs.add(allPaths.get(0).get(0).getLast());
-			
 			//Flip through choices of each agent until finding one that
 			//is not yet taken.
 			for (int i = 0; i < expInRange.size(); i++)
@@ -215,10 +215,14 @@ public class RuleGoToUnknownPercent implements Rule
 						//Found target to claim.
 						//If this agent is self, can just go to target.
 						if (sim.getSelfID().equals(expInRange.get(i)))
+							{
 							target = nextPreferred.getNext();
+							}
 						else
+							{
 							//Agent is not self, claim end of path target.
 							takenLocs.add(candidateTarget);
+							}
 						
 						//Found target for explorer i, stop looping through paths.
 						break;
@@ -237,7 +241,7 @@ public class RuleGoToUnknownPercent implements Rule
 		 */
 		if (target == null)
 			{
-			//Follow last path.
+			//Follow first path.
 			ArrayList<Path> selfPaths = null;
 			for (int i = 0; i < expInRange.size(); i++)
 				if (expInRange.get(i).equals(sim.getSelfID()))
@@ -246,6 +250,7 @@ public class RuleGoToUnknownPercent implements Rule
 					break;
 					}
 			target = selfPaths.get(0).getNext();
+			System.out.println("None available, going to first: "+selfPaths.get(0).getLast());
 			}
 		
 		//If target is still null, sleep. Should not happen?
