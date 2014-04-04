@@ -41,7 +41,7 @@ public class RuleGoToUnknownPercent implements Rule
 		Location loc = sim.getAgentLocation(sim.getSelfID());
 		PathOptions opt = new PathOptions(loc);
 		opt.shortest = false;
-		opt.maxCost = sim.getAgentEnergy(sim.getSelfID());
+		int selfEnergy = sim.getAgentEnergy(sim.getSelfID());
 		
 		//Ensure there is a cell in range with an unknown percentage.
 		//These could be in visited or unvisited cells.
@@ -67,7 +67,7 @@ public class RuleGoToUnknownPercent implements Rule
 					Path path = Pathfinder.getPath(sim, opt);
 					
 					//If there is an unknown in range, rule check true!
-					if (path != null)
+					if (path != null && path.getMoveCost() < selfEnergy)
 						return true;
 					}
 				}
@@ -266,7 +266,7 @@ public class RuleGoToUnknownPercent implements Rule
 					selfPaths = allPaths.get(i);
 					break;
 					}
-			target = selfPaths.get(selfPaths.size() - 1).getNext();
+			target = selfPaths.get(0).getNext();
 			}
 		
 		//If target is still null, stay put. Should not happen?
