@@ -56,6 +56,11 @@ public class RuleHelpTeam implements Rule
 				if (path == null)
 					continue;
 			
+				//Ensure agent does not include itself.
+				if (id.equals(sim.getSelfID()))
+					break;
+				
+				//Add to counter.
 				teamSearchInRange++;
 				target = sim.getAgentLocation(id);
 				if (teamSearchInRange > 1)
