@@ -52,6 +52,8 @@ public class TeamFinder
 
     Path path;
     PathOptions opt = new PathOptions(PathOptions.SHORTEST & PathOptions.WITHIN_RANGE);
+    Pathfinder pf = new Pathfinder(sim, opt);
+
     List<AgentID> team = sim.getTeammates(State.TEAM_SEARCH.value());
     int selfIndex = 0;
     long[][] dist = new long[team.size()][team.size()];
@@ -59,7 +61,14 @@ public class TeamFinder
     // Find the distances between each two agents.
     for(int i = 0; i < team.size(); i++)
     {
-      if(team.get(i).equals(sim.getSelfID())) selfIndex = i;
+      AgentID ai = team.get(i);
+      if(ai.equals(sim.getSelfID())) selfIndex = i;
+
+      opt.start = sim.getAgentLocation(ai);
+      opt.maxCost = sim.getAgentEnergy(ai);
+
+      pf.changeOpt(opt);
+
       for(int j = 0; j < team.size(); j++)
       {
         if(i == j)
@@ -67,10 +76,13 @@ public class TeamFinder
           dist[i][j] = 0;
         } else
         {
+          /*
           opt.start = sim.getAgentLocation(team.get(i));
           opt.end = sim.getAgentLocation(team.get(j));
           opt.maxCost = sim.getAgentEnergy(team.get(i));
           path = Pathfinder.getPath(sim, opt);
+          */
+          path = pf.getPath(sim.getAgentLocation(team.get(j)));
           if(path == null)
             dist[i][j] = Long.MAX_VALUE;
           else

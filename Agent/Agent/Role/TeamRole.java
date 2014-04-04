@@ -48,7 +48,7 @@ public class TeamRole extends Role
     rules.add(new SetTargetRule(finder, state));
     rules.add(new TeamMoveRule(finder, state));
     rules.add(new WaitRule(finder, state));
-    rules.add(new FindTeamRule(finder));
+    rules.add(new FindTeamRule(finder, state));
   }
 
   /* (non-Javadoc)

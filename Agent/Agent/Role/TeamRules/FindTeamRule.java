@@ -15,11 +15,13 @@ import java.util.*;
 public class FindTeamRule implements Rule
 {
   private TeamFinder finder;
+  private TeamState state;
   private int rounds;
-  public FindTeamRule(TeamFinder finder)
+  public FindTeamRule(TeamFinder finder, TeamState state)
   {
     super();
     this.finder = finder;
+    this.state = state;
     rounds = 0;
   }
 
@@ -46,7 +48,12 @@ public class FindTeamRule implements Rule
 
   public Role getRoleChange(Simulation sim, Communicator com, BaseAgent base)
   {
-    if(finder.getTeammate() == null && rounds < 2)
+    if(state.target == null)
+    {
+      rounds = 0;
+      sim.removeAgentState(sim.getSelfID(), State.TEAM_SEARCH);
+      return new ExplorerRole(sim, com, base);
+    } else if(finder.getTeammate() == null && rounds < 2)
     {
       return null;
     } else

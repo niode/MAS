@@ -26,7 +26,9 @@ public class GetTargetRule implements Rule
   public boolean checkConditions(Simulation sim)
   {
     if(finder.getTeammate() == null) return false;
-    return state.target == null;
+    //return state.target == null;
+    state.target = null;
+    return true;
   }
 
   private Location getTarget(Simulation sim)
@@ -35,6 +37,8 @@ public class GetTargetRule implements Rule
     Location teamLoc = sim.getAgentLocation(finder.getTeammate());
     Location selfLoc = sim.getAgentLocation(sim.getSelfID());
 
+    int minID = sim.getSelfID().getID();
+    Path path = null;
     for(Beacon beacon : sim.getBeaconType(Beacon.TEAM_MOVE))
     {
       if(beacon.getSenderID().equals(sim.getSelfID()) ||
@@ -50,10 +54,15 @@ public class GetTargetRule implements Rule
         Path selfPath = Pathfinder.getPath(sim, opt);
         if(selfPath == null || teamPath == null) continue;
         
-        return selfPath.getLength() > 0 ? selfPath.getLast() : selfLoc;
+        if(beacon.getSenderID().getID() <= minID)
+        {
+          minID = beacon.getSenderID().getID();
+          path = selfPath;
+        }
       }
     }
-    return null;
+    if(path == null) return null;
+    return path.getLength() > 0 ? path.getLast() : selfLoc;
   }
 
   public AgentCommand doAction(Simulation sim, Communicator com)

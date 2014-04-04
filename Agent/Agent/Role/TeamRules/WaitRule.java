@@ -49,7 +49,8 @@ public class WaitRule implements Rule
       }
     }
 
-    return new MOVE(Direction.STAY_PUT);
+    return new SAVE_SURV();
+    //return new MOVE(Direction.STAY_PUT);
   }
 
   public Role getRoleChange(Simulation sim, Communicator com, BaseAgent base)

@@ -25,26 +25,38 @@ public class NotifyRule implements Rule
   {
     //if(finder.getTeammate() == null) return false;
 
-    for(Location loc : sim.getVisited())
-    {
-      if(sim.getTopLayer(loc) instanceof Rubble &&
-         sim.getAgentsRequired(loc) >= 2 &&
-         sim.getPercentage(loc) > 0 &&
-         sim.getAgentsAt(loc).size() < 2) return true;
-    }
+    int minID = sim.getSelfID().getID();
+    for(AgentID id : sim.getTeammates(Role.ID.TEAM))
+      if(id.getID() < minID) minID = id.getID();
 
-    return false;
+    if(minID < sim.getSelfID().getID()) return false;
+    else return true;
   }
 
   public AgentCommand doAction(Simulation sim, Communicator com)
   {
     for(Location loc : sim.getVisited())
     {
-      if(sim.getTopLayer(loc) instanceof Rubble
+      boolean cond = sim.getTopLayer(loc) instanceof Rubble
       && sim.getAgentsRequired(loc) >= 2
       && sim.getPercentage(loc) > 0
       && sim.getAgentsAt(loc).size() < 2
-      && !sim.isKiller(loc))
+      && !sim.isKiller(loc);
+
+      if(!cond) continue;
+
+      for(Beacon beacon : sim.getBeacons())
+        if(beacon.getType() == Beacon.HELP_DIG
+        || beacon.getType() == Beacon.TEAM_MOVE)
+        {
+          if(beacon.getLocation().equals(loc))
+          {
+            cond = false;
+            break;
+          }
+        }
+
+      if(cond)
       {
         com.send(new Beacon(Beacon.HELP_DIG, sim.getSelfID(), loc, Long.MAX_VALUE, 2));
       }
