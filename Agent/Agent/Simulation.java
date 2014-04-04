@@ -11,14 +11,14 @@ import java.util.*;
 
 public class Simulation
 {
-  public static final int NUM_AGENTS = 7;
+  public static final int NUM_AGENTS = 8;
   public static final int NUM_TEAMS = 2;
   public static final int MAX_ENERGY = 1000;
   public static final int MAX_LENGTH = 50*50;
   public static final int DEFAULT_COST = 10;
 
   private World world = null;
-  private List<Agent> agents;
+  private Map<AgentID, Agent> agents = new TreeMap<AgentID, Agent>();
   private Map<AgentID, ArrayList<TimeLocation>> locations =
       new TreeMap<AgentID, ArrayList<TimeLocation>>();
   private List<Location> chargers = new LinkedList<Location>();
@@ -40,15 +40,17 @@ public class Simulation
       for(int j = 1; j <= NUM_AGENTS; j++)
         locations.put(new AgentID(j, i), new ArrayList<TimeLocation>());
 
+    /*
     agents = new ArrayList<Agent>(NUM_AGENTS * NUM_TEAMS);
     for(int i = 0; i < NUM_TEAMS; i++)
       for(int j = 0; j < NUM_AGENTS; j++)
         agents.add(new Agent(new AgentID(j+1, i+1), new Location(-1,-1), -1));
+    */
   }
 
   public void setSelf(AgentID id)
   {
-    this.self = agents.get(getIndex(id)).getAgentID();
+    this.self = getAgent(id).getAgentID();
   }
 
   public AgentID getSelfID()
@@ -78,17 +80,24 @@ public class Simulation
 
   public Agent getAgent(AgentID id)
   {
-    return agents.get(getIndex(id));
+    Agent result = agents.get(id);
+    if(result == null)
+    {
+      result = new Agent(id, new Location(-1, -1), -1);
+      agents.put(id, result);
+    }
+    return result;
+    //return getAgent(id);
   }
 
   public int getAgentEnergy(AgentID id)
   {
-    return agents.get(getIndex(id)).getEnergyLevel();
+    return getAgent(id).getEnergyLevel();
   }
 
   public boolean isAlive(AgentID id)
   {
-    return agents.get(getIndex(id)).getEnergyLevel() > 0
+    return getAgent(id).getEnergyLevel() > 0
     && (getAgentState(id) & State.ALIVE.value()) > 0;
   }
 
@@ -166,7 +175,7 @@ public class Simulation
   public List<AgentID> getEnemies()
   {
     List<AgentID> result = new LinkedList<AgentID>();
-    for(Agent agnt : agents)
+    for(Agent agnt : agents.values())
     {
       if(agnt.getAgentID().getGID() != self.getGID())
         result.add(agnt.getAgentID());
@@ -177,7 +186,7 @@ public class Simulation
   public List<AgentID> getTeammates()
   {
     List<AgentID> result = new LinkedList<AgentID>();
-    for(Agent agnt : agents)
+    for(Agent agnt : agents.values())
     {
       if(agnt.getAgentID().getGID() == self.getGID() && isAlive(agnt.getAgentID()))
         result.add(agnt.getAgentID());
@@ -188,7 +197,7 @@ public class Simulation
   public List<AgentID> getTeammates(Role.ID role)
   {
     List<AgentID> result = new LinkedList<AgentID>();
-    for(Agent agnt : agents)
+    for(Agent agnt : agents.values())
     {
       if(agnt.getAgentID().getGID() == self.getGID() && isAlive(agnt.getAgentID())
       && roles.get(agnt.getAgentID()) == role)
@@ -200,7 +209,7 @@ public class Simulation
   public List<AgentID> getTeammates(int state)
   {
     List<AgentID> result = new LinkedList<AgentID>();
-    for(Agent agnt : agents)
+    for(Agent agnt : agents.values())
     {
       AgentID id = agnt.getAgentID();
       if(id.getGID() == self.getGID() 
@@ -219,7 +228,7 @@ public class Simulation
   public List<AgentID> getAgentsAt(Location location, long round)
   {
     List<AgentID> result = new LinkedList<AgentID>();
-    for(Agent agt : agents)
+    for(Agent agt : agents.values())
     {
       if(agt.getAgentID().getGID() != getSelfID().getGID() || !isAlive(agt.getAgentID()))
         continue;
