@@ -95,6 +95,13 @@ public class Communicator
   public void sendInsult()
   {
     AgentIDList ids = new AgentIDList(sim.getEnemies());
+    AgentID minID = null;
+    for(AgentID id : sim.getTeammates())
+    {
+      if(minID == null || id.compareTo(minID) < 0)
+        minID = id;
+    }
+    if(!sim.getSelfID().equals(minID)) return;
 
     String[] insults = {
       "Go and boil your bottoms, you sons of a silly person! I blow my nose at you!",
