@@ -16,6 +16,7 @@ import Ares.Direction;
 import Ares.Location;
 import Ares.Commands.AgentCommand;
 import Ares.Commands.AgentCommands.MOVE;
+import Ares.Commands.AgentCommands.SLEEP;
 
 /**
  * If there exists cells with an unknown percent in range, move
@@ -83,17 +84,44 @@ public class RuleGoToUnknownPercent implements Rule
 		{
 		Location selfLoc = sim.getAgentLocation(sim.getSelfID());
 		
+		//Find all locations that have a unknown survivor chance.
+		ArrayList<Location> unknownLocs = new ArrayList<Location>();
+		for (int i = 0; i < sim.getRowCount(); i++)
+			for (int j = 0; j < sim.getColCount(); j++)
+				{
+				int percentage = sim.getPercentage(i, j);
+				if (percentage > 0 && percentage < 100)
+					{
+					Location unknownLoc = new Location(i,j);
+					
+					//Ignore locations a friendly agent is currently on, as we
+					//will learn about it next turn.
+					boolean agentThere = false;
+					for (AgentID id : sim.getAgentsAt(unknownLoc))
+						if (id.getGID() == sim.getSelfID().getGID())
+							{
+							agentThere = true;
+							break;
+							}
+					if (agentThere)
+						continue;
+					
+					//Save location.
+					unknownLocs.add(unknownLoc);
+					}
+				}
+		
 		//Find all explorer agents in range.
 		ArrayList<AgentID> expInRange = new ArrayList<AgentID>();
 		PathOptions opt = new PathOptions(selfLoc); 
 		for (AgentID id : sim.getTeammates(Role.ID.EXPLORER))
 			{
 			opt.end = sim.getAgentLocation(id);
-			opt.maxCost = sim.getAgentEnergy(sim.getSelfID());
-			//if maxCost removes some agents, this may cause asymmetry TODO
+			int agentEnergy = sim.getAgentEnergy(sim.getSelfID());
+			//if maxCost removes some agents, this may cause asymmetry
 			Path path = Pathfinder.getPath(sim, opt);
 			//If path exists, explorer is in range.
-			if (path != null)
+			if (path != null && path.getMoveCost() < agentEnergy)
 				expInRange.add(id);
 			}
 		
@@ -105,44 +133,35 @@ public class RuleGoToUnknownPercent implements Rule
 		for (int i = 0; i < expInRange.size(); i++)
 			allPaths.add(new ArrayList<Path>());
 		
-		//Start with first agent. Save all paths to unknown locations.
-		AgentID first = expInRange.get(0);
-		int firstEnergy = sim.getAgentEnergy(first);
-		PathOptions firstOpt = new PathOptions(sim.getAgentLocation(first));
-		firstOpt.shortest = false;
-		for (int i = 0; i < sim.getRowCount(); i++)
-			for (int j = 0; j < sim.getColCount(); j++)
+		//Calculate paths for all agents starting with lowest ID up to self.
+		for (int i = 0; i < expInRange.size(); i++)
+			{
+			Location expLoc = sim.getAgentLocation(expInRange.get(i));
+			int expEnergy = sim.getAgentEnergy(expInRange.get(i));
+			ArrayList<Path> expPaths = allPaths.get(i);
+			PathOptions otherOpt = new PathOptions(expLoc);
+			otherOpt.shortest = false;
+			
+			//Calculate all paths for that agent.
+			for (Location locInRange : unknownLocs)
 				{
-				int percentage = sim.getPercentage(i, j);
-				if (percentage > 0 && percentage < 100)
-					{
-					Location targetLoc = new Location(i,j);
-					
-					//Ignore locations a friendly agent is currently on, as we
-					//will learn about it next turn.
-					boolean agentThere = false;
-					for (AgentID id : sim.getAgentsAt(targetLoc))
-						if (id.getGID() == sim.getSelfID().getGID())
-							{
-							agentThere = true;
-							break;
-							}
-					if (agentThere)
-						continue;
-					
-					firstOpt.end = targetLoc;
-					firstOpt.maxCost = firstEnergy;
-					Path pathForFirst = Pathfinder.getPath(sim, firstOpt);
-					
-					//Ignore empty or paths that would kill the agent.
-					if (pathForFirst == null || pathForFirst.getMoveCost() >= firstEnergy)
-						continue;
-					
-					if (pathForFirst.getLength() > 0)
-						//Unknown spot found! Save path.
-						allPaths.get(0).add(pathForFirst);
-					}
+				//Get the location of each unknown cell in range.
+				otherOpt.end = locInRange;
+				
+				//Calculate the path for the explorer.
+				Path path = Pathfinder.getPath(sim, otherOpt);
+				
+				//Ignore empty paths that would kill the agent.
+				if (path == null || path.getMoveCost() >= expEnergy)
+					continue;
+				
+				expPaths.add(path);
 				}
+			
+			//Don't bother calculating for higher ids than self.
+			if (expInRange.get(i).equals(sim.getSelfID()))
+				break;
+			}
 		
 		//Create comparator to sort paths.
 		Comparator<Path> pathSorter = new Comparator<Path>(){
@@ -153,8 +172,9 @@ public class RuleGoToUnknownPercent implements Rule
 				}
 		};
 		
-		//Sort the paths of the first agent.
-		Collections.sort(allPaths.get(0), pathSorter);
+		//Sort the path lists of the other agents.
+		for (int i = 0; i < expInRange.size(); i++)
+			Collections.sort(allPaths.get(i), pathSorter);
 		
 		//If only one explorer or self is first.
 		Location target = null;
@@ -165,47 +185,6 @@ public class RuleGoToUnknownPercent implements Rule
 			}
 		else
 			{
-			//There are other explorers, find their paths too.
-			//Use the paths of exp1 for what is in range.
-			for (int i = 1; i < expInRange.size(); i++)
-				{
-				Location expLoc = sim.getAgentLocation(expInRange.get(i));
-				int expEnergy = sim.getAgentEnergy(expInRange.get(i));
-				PathOptions otherOpt = new PathOptions(expLoc);
-				otherOpt.shortest = false;
-				otherOpt.maxCost = expEnergy;
-				
-				/*
-				 * As first agent is in range of its path targets and
-				 * in range of the other explorers, they must be in
-				 * range of the path targets too. Use those as a list
-				 * of targets.
-				 */
-				for (Path inRange : allPaths.get(0))
-					{
-					//Get the location of each unknown cell in range.
-					Location locInRange = inRange.getLast();
-					otherOpt.end = locInRange;
-					
-					//Calculate the paths for the explorer.
-					Path path = Pathfinder.getPath(sim, otherOpt);
-					
-					//Ignore empty paths that would kill the agent.
-					if (path == null || path.getMoveCost() >= expEnergy)
-						continue;
-					
-					allPaths.get(i).add(path);
-					}
-				
-				//Don't bother calculating for higher ids than self.
-				if (expInRange.get(i).equals(sim.getSelfID()))
-					break;
-				}
-			
-			//Sort the path lists of the other agents.
-			for (int i = 1; i < expInRange.size(); i++)
-				Collections.sort(allPaths.get(i), pathSorter);
-			
 			//Divvy up the targets starting with lowestID.
 			ArrayList<Location> takenLocs = new ArrayList<Location>();
 			
@@ -214,7 +193,7 @@ public class RuleGoToUnknownPercent implements Rule
 			
 			//Flip through choices of each agent until finding one that
 			//is not yet taken.
-			for (int i = 1; i < expInRange.size(); i++)
+			for (int i = 0; i < expInRange.size(); i++)
 				{
 				//Look for target in the paths for explorer i
 				for (Path nextPreferred : allPaths.get(i))
@@ -254,7 +233,7 @@ public class RuleGoToUnknownPercent implements Rule
 		
 		/*
 		 * If no target, then all potentials were taken by agents with
-		 * highest priority. Just take its last path.
+		 * highest priority. Just take the favored path.
 		 */
 		if (target == null)
 			{
@@ -269,9 +248,9 @@ public class RuleGoToUnknownPercent implements Rule
 			target = selfPaths.get(0).getNext();
 			}
 		
-		//If target is still null, stay put. Should not happen?
+		//If target is still null, sleep. Should not happen?
 		if (target == null)
-			return new MOVE(Direction.STAY_PUT);
+			return new SLEEP();
 		
 		//Move to target.
 		return new MOVE(Pathfinder.getDirection(selfLoc, target));
