@@ -43,7 +43,6 @@ public class ChargingRole extends Role
 	@Override
 	public void setupRules(ArrayList<Rule> rules)
 		{
-		//TODO rules.add(new RulePlaceDigBeacon());
 		rules.add(new RuleChargeOnLowEnergy());
 		rules.add(new RuleExploreIfAlone());
 		rules.add(new RuleWaitForAnother());
@@ -88,7 +87,6 @@ public class ChargingRole extends Role
 		{
 		Location chargingLoc = sim.getAgentLocation(sim.getSelfID());
 		int currentEnergy = sim.getSelf().getEnergyLevel();
-		System.out.println("\tHAVE ENERGY: "+currentEnergy); //TODO
 
 		//Create opt for all pathfinding tests.
 		PathOptions opt = new PathOptions(chargingLoc);
@@ -105,8 +103,6 @@ public class ChargingRole extends Role
 		//If path has length, charging location is elsewhere.
 		if (!(toCharging.getLength() == 0))
 			{
-			System.out.println("\tMOVING TO: "+toCharging.getLast()); //TODO
-			System.out.println("\tPATH COST: "+toCharging.getMoveCost());
 			//Return energy above current, to ensure moving to charging cell.
 			return currentEnergy + 100;
 			}
@@ -149,7 +145,6 @@ public class ChargingRole extends Role
 				}
 			int average = totalCost / count;
 			int multiplier = sim.getRowCount() > sim.getColCount() ? sim.getRowCount() : sim.getColCount();
-			System.out.println("\tCHARGING TO: "+(multiplier * average * 2)); //TODO
 			return (multiplier * average * 2);
 			}
 		
@@ -172,7 +167,6 @@ public class ChargingRole extends Role
 			rubbleCost = 100;
 		
 		int totalEnergy = ((int)pathCost) + rubbleCost;
-		System.out.println("\tCHARGING TO: "+(totalEnergy < MIN_CHARGE ? MIN_CHARGE : totalEnergy)); //TODO
 		return (totalEnergy < MIN_CHARGE ? MIN_CHARGE : totalEnergy);
 		}
 
