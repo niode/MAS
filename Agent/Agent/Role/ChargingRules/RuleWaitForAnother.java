@@ -3,6 +3,7 @@
  */
 package Agent.Role.ChargingRules;
 
+import java.util.Random;
 import java.util.LinkedList;
 import java.util.List;
 import Agent.Communicator;
@@ -15,6 +16,7 @@ import Ares.AgentID;
 import Ares.Location;
 import Ares.Commands.AgentCommand;
 import Ares.Commands.AgentCommands.SLEEP;
+import Ares.Commands.AgentCommands.OBSERVE;
 
 /**
  * If done charging, but another agent is still charging
@@ -25,6 +27,7 @@ import Ares.Commands.AgentCommands.SLEEP;
 public class RuleWaitForAnother implements Rule
 	{
 
+	private static int maxWait = 100;
 	/* (non-Javadoc)
 	 * @see Agent.Role.Rules.Rule#checkConditions(Agent.Simulation)
 	 */
@@ -36,10 +39,10 @@ public class RuleWaitForAnother implements Rule
 		List<AgentID> agents = sim.getAgentsAt(loc);
 		LinkedList<AgentID> chargingAgents = new LinkedList<AgentID>();
 		for (AgentID id : agents)
-			{
+		{
 			if (sim.getAgentRole(id) == Role.ID.CHARGER)
 				chargingAgents.add(id);
-			}
+		}
 		
 		//If only one, no others to wait for.
 		if (chargingAgents.size() == 1)
@@ -48,15 +51,28 @@ public class RuleWaitForAnother implements Rule
 		//Check if agent is the only one charged.
 		int chargedCount = 0;
 		for (AgentID id : chargingAgents)
-			{
+		{
 			if (sim.getAgentEnergy(id) >= ChargingRole.getRequiredEnergy(sim))
 				chargedCount++;
-			}
+		}
 		
 		if (chargedCount > 1)
 			return false;
 		
 		//There must be others still charging.
+		
+/*		//Check if waiting for them will not take too long.
+		int tooLongCount = 0;
+		for (AgentID id : chargingAgents)
+		{
+			if (ChargingRole.getRequiredEnergy(sim) - sim.getAgentEnergy(id) >= maxWait)
+				tooLongCount++;
+		}
+		
+		if (tooLongCount == chargingAgents.size()-1 )
+			return false;
+*/		
+			
 		return true;
 		}
 
@@ -66,6 +82,14 @@ public class RuleWaitForAnother implements Rule
 	@Override
 	public AgentCommand doAction(Simulation sim, Communicator com)
 		{
+
+/*		Random rand = new Random();
+		if(rand.nextInt(2) == 0)
+		{
+			return new OBSERVE(sim.getFirstUnvisited(rand.nextInt(sim.getRound())));
+		}
+*/		
+
 		//If waiting, may as well sleep for more energy.
 		return new SLEEP();
 		}
