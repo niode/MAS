@@ -1,1 +1,1 @@
-java -jar Ares-System.jar -WorldFile worlds/Maze2.world -NumRound 1000 -ProcFile replay.txt >> output.txt
+java -jar Ares-System.jar -WorldFile worlds/TestWorld1.world -NumRound 1000 -ProcFile replay.txt >> output.txt
