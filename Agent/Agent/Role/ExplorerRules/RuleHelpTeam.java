@@ -43,19 +43,19 @@ public class RuleHelpTeam implements Rule
 		int teamSearchInRange = 0;
 		List<AgentID> teamAgents = sim.getTeammates(Role.ID.TEAM);
 		for (AgentID id : teamAgents)
-			{
-			PathOptions opt = new PathOptions(loc, sim.getAgentLocation(id));
-			opt.shortest = false;
-			opt.maxCost = sim.getAgentEnergy(sim.getSelfID());
-			Path path = Pathfinder.getPath(sim, opt);
-			
-			//If no path, agent isn't reachable.
-			if (path == null)
-				continue;
-			
+		{
 			//Save agent searching count and the next loc to them.
 			if ((sim.getAgentState(id) & State.TEAM_SEARCH.value()) > 0)
-				{
+			{
+				PathOptions opt = new PathOptions(loc, sim.getAgentLocation(id));
+				opt.shortest = true;
+				opt.maxCost = sim.getAgentEnergy(sim.getSelfID());
+				Path path = Pathfinder.getPath(sim, opt);
+			
+				//If no path, agent isn't reachable.
+				if (path == null)
+					continue;
+			
 				teamSearchInRange++;
 				target = sim.getAgentLocation(id);
 				if (teamSearchInRange > 1)
@@ -69,31 +69,20 @@ public class RuleHelpTeam implements Rule
 		
 		//There must be a single Team agent in range that needs help.
 		//Get explorers that can reach that Team agent.
-		List<AgentID> explorerAgents = sim.getTeammates(Role.ID.EXPLORER);
-		LinkedList<AgentID> explorerInRange = new LinkedList<AgentID>();
+		//Switch if I'm the closest explorer by path length.
+		List<AgentID> explorerAgents = sim.getTeammates(Role.ID.EXPLORER);	
+		AgentID closest = null;
+		long distance = Long.MAX_VALUE;
+		
 		for (AgentID id : explorerAgents)
 			{
 			PathOptions opt = new PathOptions(sim.getAgentLocation(id), target);
-			opt.shortest = false;
+			opt.shortest = true;
 			opt.maxCost = sim.getAgentEnergy(id);
 			Path path = Pathfinder.getPath(sim, opt);
 			
 			if (path== null)
 				continue;
-			
-			explorerInRange.add(id);
-			}
-		
-		//Switch if I'm the closest explorer by path length.
-		//Use cheapest to ensure avoidance of kill grids.
-		AgentID closest = null;
-		long distance = Long.MAX_VALUE;
-		for (AgentID id : explorerInRange)
-			{
-			PathOptions opt = new PathOptions(sim.getAgentLocation(id), target);
-			opt.shortest = false;
-			opt.maxCost = sim.getAgentEnergy(id);
-			Path path = Pathfinder.getPath(sim, opt);
 			
 			if (path.getLength() < distance)
 				{

@@ -87,8 +87,9 @@ public class Pathfinder
 		return result;
 	}
 	
-	public Path getPath()
+	public Path getPath(Location end)
 	{
+		opt.end = end;
 		//System.out.printf("Getting path to (%s, %s)\n", opt.start, opt.end);
 		if (!isGInit)
 		{

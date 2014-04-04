@@ -14,6 +14,7 @@ import Ares.Commands.AgentCommands.MOVE;
 import Ares.World.Objects.Survivor;
 import Ares.World.Objects.SurvivorGroup;
 import Ares.World.Objects.WorldObject;
+import Agent.Role.ChargingRole;
 
 /**
  * If a survivor is in a neighboring top layer, go there.
@@ -52,6 +53,10 @@ public class RuleGoToNearSurv implements Rule
 		Location target = survLocs.get(rand.nextInt(survLocs.size()));
 		Location current = sim.getAgentLocation(sim.getSelfID());
 		
+		if (!ChargingRole.canStillCharge(sim, 
+				sim.getEnergyRequired(target), current, sim.getSelfID()))
+				return null;
+				
 		return new MOVE(Pathfinder.getDirection(current, target));
 		}
 
