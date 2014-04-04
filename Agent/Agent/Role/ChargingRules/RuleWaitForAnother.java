@@ -44,15 +44,16 @@ public class RuleWaitForAnother implements Rule
 				chargingAgents.add(id);
 		}
 		
-		//If only one, no others to wait for.
+		//If only one, no others to wait for because it must be self.
 		if (chargingAgents.size() == 1)
 			return false;
 		
 		//Check if agent is the only one charged.
 		int chargedCount = 0;
+		int chargeAmount = ChargingRole.getRequiredEnergy(sim);
 		for (AgentID id : chargingAgents)
 		{
-			if (sim.getAgentEnergy(id) >= ChargingRole.getRequiredEnergy(sim))
+			if (sim.getAgentEnergy(id) >= chargeAmount)
 				chargedCount++;
 		}
 		
@@ -61,17 +62,16 @@ public class RuleWaitForAnother implements Rule
 		
 		//There must be others still charging.
 		
-/*		//Check if waiting for them will not take too long.
+		//Check if waiting for them will not take too long.
 		int tooLongCount = 0;
 		for (AgentID id : chargingAgents)
 		{
-			if (ChargingRole.getRequiredEnergy(sim) - sim.getAgentEnergy(id) >= maxWait)
+			if (chargeAmount - sim.getAgentEnergy(id) >= maxWait)
 				tooLongCount++;
 		}
 		
 		if (tooLongCount == chargingAgents.size()-1 )
 			return false;
-*/		
 			
 		return true;
 		}
@@ -82,15 +82,14 @@ public class RuleWaitForAnother implements Rule
 	@Override
 	public AgentCommand doAction(Simulation sim, Communicator com)
 		{
-
-/*		Random rand = new Random();
+		//Observe 50% of the time.
+		Random rand = new Random();
 		if(rand.nextInt(2) == 0)
 		{
 			return new OBSERVE(sim.getFirstUnvisited(rand.nextInt(sim.getRound())));
 		}
-*/		
 
-		//If waiting, may as well sleep for more energy.
+		//Not observing, but on charging grid, sleep for more energy.
 		return new SLEEP();
 		}
 
