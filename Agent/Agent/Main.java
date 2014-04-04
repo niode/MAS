@@ -1,7 +1,6 @@
 package Agent;
 
 import Agent.Core.*;
-import Agent.SAP.*;
 import Agent.Role.*;
 
 public class Main {
