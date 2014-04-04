@@ -56,6 +56,11 @@ public class RuleHelpTeam implements Rule
 			//Save agent searching count and the next loc to them.
 			if ((sim.getAgentState(id) & State.TEAM_SEARCH.value()) > 0)
 				{
+				//Ensure agent does not include itself.
+				if (id.equals(sim.getSelfID()))
+					break;
+				
+				//Add to counter.
 				teamSearchInRange++;
 				target = sim.getAgentLocation(id);
 				if (teamSearchInRange > 1)
