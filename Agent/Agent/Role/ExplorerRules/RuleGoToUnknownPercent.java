@@ -115,14 +115,12 @@ public class RuleGoToUnknownPercent implements Rule
 		//Find all explorer agents in range.
 		ArrayList<AgentID> expInRange = new ArrayList<AgentID>();
 		PathOptions opt = new PathOptions(selfLoc); 
+		Pathfinder pf = new Pathfinder(sim, opt);
 		for (AgentID id : sim.getTeammates(Role.ID.EXPLORER))
 			{
-			opt.end = sim.getAgentLocation(id);
-			int agentEnergy = sim.getAgentEnergy(sim.getSelfID());
-			//if maxCost removes some agents, this may cause asymmetry
-			Path path = Pathfinder.getPath(sim, opt);
+			Path path = pf.getPath(sim.getAgentLocation(id));
 			//If path exists, explorer is in range.
-			if (path != null && path.getMoveCost() < agentEnergy)
+			if (path != null)
 				{
 				expInRange.add(id);
 				}
@@ -144,17 +142,15 @@ public class RuleGoToUnknownPercent implements Rule
 			ArrayList<Path> expPaths = allPaths.get(i);
 			PathOptions otherOpt = new PathOptions(expLoc);
 			otherOpt.shortest = false;
+			pf = new Pathfinder(sim, otherOpt);
 			
-			//Calculate all paths for that agent.
+			//Find all paths for that agent.
 			for (Location locInRange : unknownLocs)
 				{
-				//Get the location of each unknown cell in range.
-				otherOpt.end = locInRange;
-				
 				//Calculate the path for the explorer.
-				Path path = Pathfinder.getPath(sim, otherOpt);
+				Path path = pf.getPath(locInRange);
 				
-				//Ignore empty paths that would kill the agent.
+				//Ignore empty paths or ones that would kill the agent.
 				if (path == null || path.getMoveCost() >= expEnergy)
 					continue;
 				
