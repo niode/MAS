@@ -35,10 +35,6 @@ public class RuleSaveSurvivor implements Rule
 		Cell currentCell = sim.getCell(currentLoc);
 		WorldObject topLayer = currentCell.getTopLayer();
 		
-		if (!ChargingRole.canStillCharge(sim, 
-				sim.getEnergyRequired(currentLoc), currentLoc, sim.getSelfID()))
-			return false;
-		
 		//If there are team agents on this cell or a lower id explorer, let them handle it.
 		List<AgentID> agentsHere = sim.getAgentsAt(currentLoc);
 		for (AgentID id : agentsHere)
