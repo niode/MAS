@@ -9,6 +9,7 @@ import Agent.Core.BaseAgent;
 import Agent.Pathfinder.Path;
 import Agent.Pathfinder.PathOptions;
 import Agent.Pathfinder.Pathfinder;
+import Agent.Role.ChargingRole;
 import Agent.Role.Role;
 import Agent.Role.Rules.Rule;
 import Ares.AgentID;
@@ -68,7 +69,11 @@ public class RuleGoToUnknownPercent implements Rule
 					
 					//If there is an unknown in range, rule check true!
 					if (path != null && path.getMoveCost() < selfEnergy)
+						{
+						System.out.println("Path Unknown Found:"+(new Location(i,j)));
+						System.out.println("Path Length: "+path.getLength());
 						return true;
+						}
 					}
 				}
 		
@@ -142,6 +147,10 @@ public class RuleGoToUnknownPercent implements Rule
 			otherOpt.shortest = false;
 			pf = new Pathfinder(sim, otherOpt);
 			
+			//Check if this agent is in range of a charger.
+			Path toCharger = pf.getNearestCharger();
+			boolean noChargerAccessible = (toCharger == null);
+			
 			//Find all paths for that agent.
 			for (Location locInRange : unknownLocs)
 				{
@@ -152,7 +161,10 @@ public class RuleGoToUnknownPercent implements Rule
 				if (path == null || path.getMoveCost() >= expEnergy)
 					continue;
 				
-				expPaths.add(path);
+				//Ensure that the agent could still get to a charger -from- the target, if possible.
+				if (noChargerAccessible || ChargingRole.canStillCharge(
+						sim, (int)path.getMoveCost(), locInRange, sim.getSelfID()))
+					expPaths.add(path);
 				}
 			
 			//Don't bother calculating for higher ids than self.
@@ -178,6 +190,9 @@ public class RuleGoToUnknownPercent implements Rule
 		if (expInRange.size() == 1 || expInRange.get(0).equals(sim.getSelfID()))
 			{
 			//Just follow the first path.
+			System.out.println("TopSize: "+allPaths.size());
+			System.out.println("InnerSize: "+allPaths.get(0).size());
+			
 			target = allPaths.get(0).get(0).getNext();
 			}
 		else
