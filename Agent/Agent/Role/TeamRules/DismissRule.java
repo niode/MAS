@@ -24,7 +24,12 @@ public class DismissRule implements Rule
   public boolean checkConditions(Simulation sim)
   {
     //if(finder.getTeammate() == null) return false;
-    return true;
+    int minID = sim.getSelfID().getID();
+    for(AgentID id : sim.getTeammates(Role.ID.TEAM))
+      if(id.getID() < minID) minID = id.getID();
+
+    if(minID < sim.getSelfID().getID()) return false;
+    else return true;
   }
 
   public AgentCommand doAction(Simulation sim, Communicator com)

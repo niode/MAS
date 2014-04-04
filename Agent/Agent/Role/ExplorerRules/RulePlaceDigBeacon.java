@@ -9,7 +9,7 @@ import Agent.Role.Role;
 import Agent.Role.Rules.Rule;
 import Ares.Location;
 import Ares.Commands.AgentCommand;
-import Ares.World.Cell;
+import Ares.World.Objects.*;
 
 /**
  * Place a HELP_DIG beacon on 100% survivor chance rubble piles
@@ -28,17 +28,20 @@ public class RulePlaceDigBeacon implements Rule
 		{
 		//Standing on 100% survivor chance cell?
 		Location loc = sim.getAgentLocation(sim.getSelfID());
-		Cell current = sim.getCell(loc);
-		if (current.getPercentChance() != 100)
-			return false;
+
+    boolean cond = sim.getTopLayer(loc) instanceof Rubble
+                && sim.getAgentsRequired(loc) >= 2
+                && sim.getPercentage(loc) > 0
+                && sim.getAgentsAt(loc).size() < 2;
 		
+    if(!cond) return false;
+
 		//Existing beacon already on cell?
-		Set<Beacon> beacons = sim.getBeacons();
-		for (Beacon beacon : beacons)
-			{
-			if (beacon.getLocation().equals(loc))
-				return false;
-			}
+		for (Beacon beacon : sim.getBeaconType(Beacon.HELP_DIG))
+			if (beacon.getLocation().equals(loc)) return false;
+
+    for(Beacon beacon : sim.getBeaconType(Beacon.TEAM_MOVE))
+      if(beacon.getLocation().equals(loc)) return false;
 		
 		return true;
 		}

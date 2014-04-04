@@ -27,6 +27,11 @@ public class DigRule implements Rule
     Location loc = sim.getAgentLocation(sim.getSelfID());
     WorldObject topLayer = sim.getTopLayer(loc);
 
+    if((sim.getTopLayer(loc) instanceof Survivor
+    || sim.getTopLayer(loc) instanceof SurvivorGroup)
+    && sim.getAgentsAt(loc).size() == 1)
+      return true;
+
     // Don't dig if there aren't any life signals.
     if(sim.getPercentage(loc) == 0) return false;
 
@@ -73,7 +78,6 @@ public class DigRule implements Rule
 
   public AgentCommand doAction(Simulation sim, Communicator com)
   {
-    System.out.println("Doing DigRule.");
     Location loc = sim.getAgentLocation(sim.getSelfID());
 
     for(Beacon beacon : sim.getBeaconType(Beacon.HELP_DIG))

@@ -53,6 +53,10 @@ public class SetTargetRule implements Rule
         if(id.getID() < minID) minID = id.getID();
       }
     }
+
+    BaseAgent.getBaseAgent().log(LogLevels.Always,
+      "thisTeam: " + thisTeam + ", otherTeam: " + otherTeam + ", minID: " + minID);
+
     if(otherTeam > thisTeam
     || (otherTeam == thisTeam
     && minID != sim.getSelfID().getID()
@@ -72,6 +76,7 @@ public class SetTargetRule implements Rule
     path = null;
     for(Beacon beacon : sim.getBeaconType(Beacon.HELP_DIG))
     {
+      BaseAgent.getBaseAgent().log(LogLevels.Always, "Evaluating beacon at " + beacon.getLocation());
       TeamFinder.Team minTeam = null;
       long minCost = 0;
       for(TeamFinder.Team team : finder.getTeams())
@@ -82,6 +87,11 @@ public class SetTargetRule implements Rule
           || sim.getPercentage(sim.getAgentLocation(team.high)) > 0)
             continue;
         }
+
+        int rmv = sim.getEnergyRequired(beacon.getLocation());
+        if(rmv > sim.getAgentEnergy(team.low) && rmv > sim.getAgentEnergy(team.high))
+          continue;
+
         opt.end = beacon.getLocation();
         opt.start = sim.getAgentLocation(team.low);
         //opt.maxCost = sim.getAgentEnergy(team.low);
@@ -138,7 +148,14 @@ public class SetTargetRule implements Rule
         || beacon.getSenderID().equals(finder.getTeammate()))
         {
           com.send(Beacon.deleteBeacon(beacon));
-          com.send(new Beacon(Beacon.HELP_DIG, sim.getSelfID(), beacon.getLocation(), beacon.getRound(), 2));
+          if(sim.getPercentage(beacon.getLocation()) > 0
+          && sim.getAgentsRequired(beacon.getLocation()) >= 2
+          && sim.getTopLayer(beacon.getLocation()) instanceof Rubble
+          && !sim.isKiller(beacon.getLocation())
+          && sim.getAgentsAt(beacon.getLocation()).size() < 2)
+          {
+            com.send(new Beacon(Beacon.HELP_DIG, sim.getSelfID(), beacon.getLocation(), beacon.getRound(), 2));
+          }
         }
       }
 
