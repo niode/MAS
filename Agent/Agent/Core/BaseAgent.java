@@ -192,7 +192,7 @@ public class BaseAgent {
                 System.out.println("Agent: " + lev + " : " + message);
             }
         } else if (lev == LogLevels.Always) {
-            System.out.println("Agent " + id.getID() +": " + message);
+            System.out.println("Agent " + id.getID() +"," + id.getGID() +": " + message);
         } else if (lev == LogLevels.Warning) {
             System.out.println("Agent: WARNING " + message);
         } else if (lev == LogLevels.Error) {

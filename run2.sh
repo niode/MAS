@@ -15,7 +15,7 @@ echo "SCRIPT: classpath: $cp" ;
 echo "SCRIPT: agent executable: $main" ;
 echo "SCRIPT: output filename: $replay" ;
 echo "SCRIPT: protocol filename: $out";
- 
+
 echo "SCRIPT: Starting up ARES"
 
 echo "java -jar Ares-System.jar -WorldFile $file -NumRound $rounds -ProcFile $replay >> $out &"
@@ -25,24 +25,23 @@ sleep 3
 
 echo "SCRIPT: Starting up the agents"
 
-#for ((  i = 0 ;  i < ($count>7?7:$count);  i++  ))
-for ((  i = 0 ;  i < 7;  i++  ))
+for ((  i = 0 ;  i < $count;  i++  ))
 do
 echo "java -cp $cp $main `hostname` Test&"
 java -cp $cp $main `hostname` Test&
 done
 
-for ((  i = 0 ;  i < 7;  i++  ))
+for ((  i = 0 ;  i < $count;  i++  ))
 do
-echo "java -cp $cp $main `hostname` Test&"
-java -cp $cp $main `hostname` Evil&
+echo "java -cp $cp $main `hostname` TestTwo&"
+java -cp $cp $main `hostname` TestTwo&
 done
 
 sleep 1
 
 echo "SCRIPT: Running Simulation"
 
-while [ `pgrep java` ]; 
+while [ `pgrep java` ];
 do
        sleep 3
 done

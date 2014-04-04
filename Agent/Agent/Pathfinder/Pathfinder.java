@@ -8,6 +8,134 @@ import java.util.*;
 
 public class Pathfinder
 {
+
+//// DYNAMIC FUNCTIONS ///
+
+	private Node[][] W = null;
+	private boolean isWInit = false;
+	private Node2[][] G = null;
+	private boolean isGInit = false;
+	private Simulation sim;
+	private PathOptions opt;
+
+	public Pathfinder(Simulation sim, PathOptions opt)
+	{
+		this.sim = sim;
+		this.opt = opt;
+	}
+
+	public void changeOpt(PathOptions opt)
+	{
+		this.opt = opt;
+		isGInit = false;
+	}
+
+	public void changeSim(Simulation sim)
+	{
+		this.sim = sim;
+		isGInit = false;
+	}
+
+	public PathOptions getOpt()
+	{
+		return this.opt;
+	}
+
+	public Simulation getSim()
+	{
+		return this.sim;
+	}
+
+	public Path getNearestCharger()
+	{
+		Path result = null;
+		if (!isGInit)
+		{
+			G = genDijkstra(sim, opt);
+			isGInit = true;
+		}
+		for(Location loc : sim.getChargers())
+		{
+		  opt.end = loc;
+		  Path tmp = getPathFromTree(G, opt);
+		  if(result == null || (tmp != null && Path.compare(result, tmp, opt) < 0))
+		    result = tmp;
+		}
+		return result;
+	}
+
+	public Path getNearestSurvivor(int cutoff)
+	{
+		Path result = null;
+		if (!isGInit)
+		{
+			G = genDijkstra(sim, opt);
+			isGInit = true;
+		}
+		for(int i = 0; i < sim.getRowCount(); i++)
+		  for(int j = 0; j < sim.getColCount(); j++)
+		  {
+		    if(i == opt.start.getRow() && j == opt.start.getCol()) continue;
+		    if(sim.getPercentage(i, j) >= cutoff)
+		    {
+		      opt.end = new Location(i, j);
+		      Path tmp = getPathFromTree(G, opt);
+		      if(result == null || (tmp != null && Path.compare(result, tmp, opt) < 0))
+		        result = tmp;
+		    }
+		  }
+		return result;
+	}
+	
+	public Path getPath()
+	{
+		//System.out.printf("Getting path to (%s, %s)\n", opt.start, opt.end);
+		if (!isGInit)
+		{
+			G = genDijkstra(sim, opt);
+			isGInit = true;
+		}
+		Path tmp = getPathFromTree(G, opt);
+		//if(tmp != null) System.out.println(tmp.toString());
+		//else System.out.println("NULL");
+		return tmp;
+	}
+
+		public List<Path> getPaths(List<Location> list)
+	{
+		if (!isGInit)
+		{
+			G = genDijkstra(sim, opt);
+			isGInit = true;
+		}
+		List<Path> result = new LinkedList<Path>();
+		for(Location l : list)
+		{
+		  opt.end = l;
+		  result.add(getPathFromTree(G, opt));
+		}
+		return result;
+	}
+
+	public int getCheapestCost(Location from, Location to)
+	{ 
+		return getCheapestCost(from.getRow(), from.getCol(),to.getRow(), to.getCol());
+	}
+	
+	public int getCheapestCost(int i, int j, int k, int l)
+	{
+		int N = sim.getColCount();
+		if (!isWInit)
+		{
+			W = floydWarshall(sim, opt.cheapest, opt.unknownCellCost); 
+			isWInit = true;
+		}
+		return W[i*N+j][k*N+l].cost;
+	}
+	
+/////// STATIC FUNCTIONS //////
+
+	
   public static Direction getDirection(Location a, Location b)
   {
     int SOUTH = 1;
@@ -31,11 +159,11 @@ public class Pathfinder
     else return Direction.STAY_PUT;
   }
   
-  /*opt must be set as follow :
-  - shortest + maxLength if want to get a matrix that says if accessible within maxLength
-  - cheapest + maxCost if want to get a matrix that says if accessible within maxCost
-  + need to have a default cost for unvisited cells
-   */
+	/*opt must be set as follow :
+	- shortest + maxLength if want to get a matrix that says if accessible within maxLength
+	- cheapest + maxCost if want to get a matrix that says if accessible within maxCost
+	+ need to have a default cost for unvisited cells
+ */
   public static boolean[][][][] getWithinRange(Simulation sim, PathOptions opt)
   {
   	int M = sim.getRowCount();
@@ -110,7 +238,7 @@ public class Pathfinder
     }
     return result;
   }
-
+  
   public static Path getNearestSurvivor(Simulation sim, PathOptions opt, int cutoff)
   {
     Path result = null;
@@ -129,8 +257,31 @@ public class Pathfinder
       }
     return result;
   }
+  
+  
+  public static Path getPath(Simulation sim, PathOptions opt)
+  {
+    //System.out.printf("Getting path to (%s, %s)\n", opt.start, opt.end);
+    
+    Path tmp = getPathFromTree(genDijkstra(sim, opt), opt);
+    //if(tmp != null) System.out.println(tmp.toString());
+    //else System.out.println("NULL");
+    return tmp;
+  }
+  
+   public static List<Path> getPaths(Simulation sim, PathOptions opt, List<Location> list)
+  {
+    Node2[][] G = genDijkstra(sim, opt);
+    List<Path> result = new LinkedList<Path>();
+    for(Location l : list)
+    {
+      opt.end = l;
+      result.add(getPathFromTree(G, opt));
+    }
+    return result;
+  }
 
-	//TO CHECK: comparator good order
+
 	//rem: distance = path.size()
 	private static class Path2 implements Comparable
 	{
@@ -181,7 +332,9 @@ public class Pathfinder
 	{
 		public List<Path2> list;
 	
-		//rem =: the list is always suppose to be minimized (ie any path of the list can be compared with an other, the is no path with infinite componant, and the smallest distance is the first one)
+		/*rem =: the list is always suppose to be minimized  (ie any path of the 
+		list can be compared with an other, the is no path with infinite componant,
+		and the smallest distance is the first one) */
 		public Path2List(List<Path2> list)
 		{
 			this.list = list;
@@ -406,7 +559,7 @@ private static Node2[][] genDijkstra(Simulation sim, PathOptions opt)
 	return G;
 }
 
-//I don't know what are the default values
+
 	private static Path getPathFromTree(Node2[][] G, PathOptions opt)
 	{
 		Node2 endNode = G[opt.end.getRow()][opt.end.getCol()];
@@ -417,30 +570,8 @@ private static Node2[][] genDijkstra(Simulation sim, PathOptions opt)
 			return new Path(new LinkedList<Location>(p.path), cost);
 		}
 		else
-			return null;//new Path(new LinkedList<Location>(), PathOptions.MAX);
+			return null;
 	}
-
-  public static Path getPath(Simulation sim, PathOptions opt)
-  {
-    //System.out.printf("Getting path to (%s, %s)\n", opt.start, opt.end);
-    
-    Path tmp = getPathFromTree(genDijkstra(sim, opt), opt);
-    //if(tmp != null) System.out.println(tmp.toString());
-    //else System.out.println("NULL");
-    return getPathFromTree(genDijkstra(sim, opt), opt);
-  }
-
-  public static List<Path> getPaths(Simulation sim, PathOptions opt, List<Location> list)
-  {
-    Node2[][] G = genDijkstra(sim, opt);
-    List<Path> result = new LinkedList<Path>();
-    for(Location l : list)
-    {
-      opt.end = l;
-      result.add(getPathFromTree(G, opt));
-    }
-    return result;
-  }
 
 	private static class Node implements Comparable
 	{
