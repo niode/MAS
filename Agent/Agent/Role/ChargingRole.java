@@ -120,6 +120,12 @@ public class ChargingRole extends Role
 			//Calculate the average move cost of nearby non-kill cells.
 			int totalCost = 0, count = 0;
 			Set<Location> near = Pathfinder.getValidNeighbors(sim, chargingLoc, sim.getAgentEnergy(sim.getSelfID()));
+			
+			//If near is null, agent's energy must have gotten so low that all neighbors would kill it.
+			//Just return 0. Maybe it can do something before it dies haha.
+			if (near == null)
+				return 0;
+			
 			near.add(chargingLoc);
 			for (Location loc : near)
 				if (sim.getMoveCost(loc) < currentEnergy) //Ignore kill cell.
