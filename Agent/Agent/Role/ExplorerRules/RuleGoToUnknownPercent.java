@@ -110,8 +110,6 @@ public class RuleGoToUnknownPercent implements Rule
 					}
 				}
 		
-		System.out.println(unknownLocs);
-		
 		//Find all explorer agents in range.
 		ArrayList<AgentID> expInRange = new ArrayList<AgentID>();
 		PathOptions opt = new PathOptions(selfLoc); 
@@ -246,7 +244,6 @@ public class RuleGoToUnknownPercent implements Rule
 					break;
 					}
 			target = selfPaths.get(0).getNext();
-			System.out.println("None available, going to first: "+selfPaths.get(0).getLast());
 			}
 		
 		//If target is still null, sleep. Should not happen?
