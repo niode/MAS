@@ -94,33 +94,4 @@ public class RoleIntelligence extends Intelligence
     getCommunicator().send(currentRole);
 		}
 
-	public static void main(String[] args)
-		{
-		if (args.length >= 2)
-			{
-			BaseAgent.setLogLevel(LogLevels.All);
-
-			// Set up agent objects
-			Simulation sim = new Simulation();
-			Communicator com = new Communicator(BaseAgent.getBaseAgent(), sim);
-			
-			// Set up intelligence
-			RoleIntelligence ai;
-			if (args.length == 2)
-				ai = new RoleIntelligence(sim, com,BaseAgent.getBaseAgent());
-			else
-				ai = new RoleIntelligence(sim, com,BaseAgent.getBaseAgent(), args[2]);
-				
-			Brain brain = new Brain(BaseAgent.getBaseAgent(), ai, sim, com);
-
-			// Start agent
-			BaseAgent.getBaseAgent().start(args[0], args[1], brain);
-			}
-		else
-			{
-			System.out.println("Agent: usage java TestAgent <hostname> <groupname>");
-			}
-
-		}
-
 	}
