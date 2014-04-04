@@ -11,6 +11,7 @@ import Agent.Role.ChargingRules.RuleChargeOnLowEnergy;
 import Agent.Role.ChargingRules.RuleExploreIfAlone;
 import Agent.Role.ChargingRules.RuleStopCharging;
 import Agent.Role.ChargingRules.RuleWaitForAnother;
+import Agent.Role.ChargingRules.RuleLeave;
 import Agent.Role.ExplorerRules.RulePlaceDigBeacon;
 import Agent.Role.Rules.Rule;
 import Ares.AgentID;
@@ -47,6 +48,7 @@ public class ChargingRole extends Role
 		rules.add(new RuleExploreIfAlone());
 		rules.add(new RuleWaitForAnother());
 		rules.add(new RuleStopCharging());
+		rules.add(new RuleLeave());
 		}
 
 	/* (non-Javadoc)
